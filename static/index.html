@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeckForge — Presentation Builder</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236c7bff'/%3E%3Cpath d='M8 9h16v4H8zM8 17h10v4H8z' fill='%23fff' opacity='.92'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="34" height="34"><rect width="32" height="32" rx="8" fill="url(#g)"/><path d="M8 9h16v4H8zM8 17h10v4H8z" fill="#fff" opacity=".93"/><defs><linearGradient id="g" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#6c7bff"/><stop offset="1" stop-color="#a06bff"/></linearGradient></defs></svg>
+      </div>
+      <div class="brand-text">
+        <h1>DeckForge</h1>
+        <p>Presentation builder</p>
+      </div>
+    </div>
+
+    <div class="side-actions">
+      <button id="btn-new" class="btn primary block">
+        <svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        New deck
+      </button>
+      <button id="btn-import" class="btn ghost block">
+        <svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 12V3M4.5 6.5L8 3l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12.5h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Import deck
+      </button>
+      <input type="file" id="file-import" accept=".json,.md,.txt,.html,.htm" hidden>
+      <div class="search">
+        <svg viewBox="0 0 16 16" width="13" height="13"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input id="search" type="text" placeholder="Search decks…" spellcheck="false">
+      </div>
+      <div class="nav-sep"></div>
+      <button id="btn-simulations" class="nav-btn" title="Scenario library">
+        <svg viewBox="0 0 16 16" width="14" height="14"><rect x="2" y="2" width="5" height="5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="2" width="5" height="5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="9" width="5" height="5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="5" height="5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        Simulations
+      </button>
+      <button id="btn-dashboard" class="nav-btn active" title="Your decks">
+        <svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 6.5h12M6 12.5V6.5" stroke="currentColor" stroke-width="1.5"/></svg>
+        Decks
+      </button>
+    </div>
+
+    <nav id="deck-list" aria-label="Presentations"></nav>
+
+    <footer class="side-foot">
+      <button id="btn-help" class="btn ghost small">
+        <svg viewBox="0 0 16 16" width="13" height="13"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6.2 6.2a1.8 1.8 0 1 1 2.6 1.9c-.5.3-.8.6-.8 1.2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="12.2" r=".6" fill="currentColor"/></svg>
+        Syntax guide
+      </button>
+      <span id="deck-count" class="count"></span>
+    </footer>
+  </aside>
+
+  <!-- ======= Main ======= -->
+  <main id="main">
+
+    <header id="topbar">
+      <div class="doc-title">
+        <input id="deck-name" placeholder="Presentation name" spellcheck="false" maxlength="80">
+        <span id="save-state" class="save-state"></span>
+      </div>
+      <div class="top-actions">
+        <span id="err-pill" class="err-pill" hidden></span>
+        <button id="btn-present" class="btn primary" title="Present the whole deck (fullscreen)">
+          <svg viewBox="0 0 16 16" width="13" height="13"><path d="M4 2.5v11l8-5.5z" fill="currentColor"/></svg>
+          Present
+        </button>
+        <div class="export-wrap">
+          <button id="btn-export" class="btn ghost">
+            <svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 2v8M4.5 7L8 10.5 11.5 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12.5h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Export
+            <svg class="caret" viewBox="0 0 16 16" width="12" height="12"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div id="export-menu" class="menu" hidden>
+            <div class="menu-head">Download as…</div>
+            <button data-fmt="presentation" class="menu-item"><span class="badge html">HTML</span> Presentation (.html)</button>
+            <button data-fmt="handout" class="menu-item"><span class="badge doc">DOC</span> Handout (.doc)</button>
+            <div class="menu-sep"></div>
+            <button data-fmt="afteraction" class="menu-item"><span class="badge doc">DOC</span> After-Action Report (.doc)</button>
+          </div>
+        </div>
+        <button id="btn-print" class="btn ghost" title="Open a print dialog / save as PDF">
+          <svg viewBox="0 0 16 16" width="14" height="14"><path d="M4 5V2h8v3M4 12H2.5A1.5 1.5 0 0 1 1 10.5v-4A1.5 1.5 0 0 1 2.5 5h11A1.5 1.5 0 0 1 15 6.5v4a1.5 1.5 0 0 1-1.5 1.5H12" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="4" y="11" width="8" height="3" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+          Print / PDF
+        </button>
+        <div id="deck-menu" class="menu deck-menu" hidden></div>
+      </div>
+    </header>
+
+    <!-- Slide strip -->
+    <div id="deck-bar" hidden>
+      <button id="btn-insert-slide" class="btn primary small" title="Insert a new slide">
+        <svg viewBox="0 0 16 16" width="13" height="13"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        Insert slide
+      </button>
+      <button id="btn-add-inject" class="btn ghost small" title="Add an inject to this exercise's timeline" hidden>
+        <svg viewBox="0 0 16 16" width="13" height="13"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M6.2 5.2v5.6l4.8-2.8z" fill="currentColor"/></svg>
+        Add Inject
+      </button>
+      <div id="slide-strip" class="slide-strip" aria-label="Slides"></div>
+      <span id="slide-count" class="count"></span>
+      <div id="slide-menu" class="menu slide-menu" hidden></div>
+    </div>
+
+    <!-- Scenario library -->
+    <section id="scenario-lib" hidden>
+      <div class="lib-head">
+        <h2>Available Simulations</h2>
+        <p>Select a scenario to initialize a new exercise.</p>
+      </div>
+      <div id="scenario-cats" class="scenario-cats"></div>
+    </section>
+
+    <!-- Welcome / empty state -->
+    <section id="empty-state" hidden>
+      <div class="empty-card">
+        <div class="empty-orb" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="52" height="52"><rect x="8" y="8" width="32" height="32" rx="8" fill="rgba(108,123,255,.16)"/><path d="M14 16h20v5H14zM14 26h12v5H14z" fill="rgba(108,123,255,.35)"/></svg>
+        </div>
+        <h2>Build a presentation, slide by slide</h2>
+        <p>Insert slides, write them with <code>{{placeholders}}</code>, fill in the data,
+           and hit <strong>Present</strong> — all in the browser.</p>
+        <div class="empty-actions">
+          <button id="btn-empty-new" class="btn primary">Start a new deck</button>
+          <button id="btn-empty-sample" class="btn ghost">Try a sample deck</button>
+        </div>
+        <div class="empty-samples" id="empty-decks"></div>
+      </div>
+    </section>
+
+    <!-- Workspace -->
+    <div id="workspace" hidden>
+      <section id="editor-pane" class="pane">
+        <div class="pane-head">
+          <span class="pane-title">
+            <svg viewBox="0 0 16 16" width="13" height="13"><path d="M4 2h8v12H4z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M6 6h4M6 8.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Slide template
+          </span>
+          <div class="editor-tools">
+            <select id="insert-var" class="tool-select" title="Insert a variable">
+              <option value="">＋ Insert variable</option>
+            </select>
+            <select id="insert-block" class="tool-select" title="Insert a block">
+              <option value="">＋ Insert block</option>
+              <option value="if">#if condition</option>
+              <option value="each">#each list</option>
+              <option value="else">#else branch</option>
+              <option value="unless">#unless condition</option>
+              <option value="comment">Comment</option>
+            </select>
+          </div>
+        </div>
+        <div id="editor-wrap" class="editor-wrap">
+          <pre class="editor-hl" id="editor-hl" aria-hidden="true"><code id="editor-code"></code></pre>
+          <textarea id="editor" spellcheck="false" autocomplete="off"
+            placeholder="Write this slide's template here…&#10;&#10;# {{title}}&#10;&#10;{{#each points}}&#10;- {{this}}&#10;{{/each}}"></textarea>
+        </div>
+      </section>
+
+      <div id="gutter" class="gutter" title="Drag to resize"></div>
+
+      <section id="right-pane" class="pane">
+        <div class="pane-head tabs">
+          <button class="tab active" data-tab="preview">
+            <svg viewBox="0 0 16 16" width="13" height="13"><path d="M1.5 8s2.5-4.5 6.5-4.5S14.5 8 14.5 8s-2.5 4.5-6.5 4.5S1.5 8 1.5 8z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="8" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+            Preview
+          </button>
+          <button class="tab" data-tab="data">
+            <svg viewBox="0 0 16 16" width="13" height="13"><rect x="2" y="3.5" width="12" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2 6.5h12M5.5 9.5h5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            Data
+          </button>
+          <div class="seg preview-seg">
+            <button id="btn-preview-mode" class="seg-btn active" title="Rendered slide preview">Preview</button>
+            <button id="btn-fill-mode" class="seg-btn" title="Type values straight into the slide — great for exercises">Fill in</button>
+          </div>
+          <span id="var-count" class="var-count" title="Variables found in this slide"></span>
+        </div>
+
+        <div class="tab-body" id="tab-preview">
+          <iframe id="preview" sandbox="" title="Slide preview"></iframe>
+          <div id="fill-wrap" hidden>
+            <div class="fill-hint">
+              <svg viewBox="0 0 16 16" width="13" height="13"><path d="M9 2.5l4.5 4.5L5.5 15H1v-4.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              Click any <u>underlined blank</u> and type — values update the Data tab, exports and totals live. <code>+ Add item</code> grows each list. Perfect for exercises.
+            </div>
+            <div id="preview-fill" class="doc-scroll"></div>
+          </div>
+        </div>
+
+        <div class="tab-body" id="tab-data" hidden>
+          <div class="data-toolbar">
+            <div class="seg">
+              <button id="btn-form" class="seg-btn active">Form</button>
+              <button id="btn-json" class="seg-btn">JSON</button>
+            </div>
+            <button id="btn-reset-data" class="btn ghost small">Reset to saved</button>
+          </div>
+          <div id="form-wrap" class="form-wrap"></div>
+          <textarea id="json-editor" class="json-editor" spellcheck="false" hidden></textarea>
+          <div id="json-error" class="err-text" hidden></div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+</div>
+
+<!-- ======= Present overlay ======= -->
+<div id="present-overlay" class="present-overlay" hidden>
+  <button id="btn-exit-present" class="btn ghost small exit-present">
+    <svg viewBox="0 0 16 16" width="13" height="13"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    Exit (Esc)
+  </button>
+  <iframe id="present-frame" title="Presentation" allowfullscreen></iframe>
+</div>
+
+<!-- ======= Interactive exercise overlay ======= -->
+<!-- ======= Help modal ======= -->
+<div id="help-modal" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Syntax guide">
+    <div class="modal-head">
+      <h2>Slide template syntax</h2>
+      <button id="btn-help-close" class="icon-btn" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <table class="cheat">
+        <tr><td><code>{{name}}</code></td><td>Insert a value. <code>{{client.address.city}}</code> walks nested data.</td></tr>
+        <tr><td><code>{{{name}}}</code> / <code>{{&amp;name}}</code></td><td>Insert without HTML escaping (raw).</td></tr>
+        <tr><td><code>{{name | filter}}</code></td><td>Apply filters, chain with <code>|</code>: <code>upper</code>, <code>lower</code>, <code>title</code>, <code>capitalize</code>, <code>trim</code>, <code>length</code>, <code>default:x</code>, <code>number</code>, <code>money</code>, <code>currency:€</code>, <code>date:%B %d, %Y</code>, <code>join:, </code>, <code>sum:amount</code>, <code>json</code>, <code>raw</code>.</td></tr>
+        <tr><td><code>{{#if field}}…{{else}}…{{/if}}</code></td><td>Conditional section. Empty / zero / false values are skipped. <code>{{#unless field}}</code> inverts.</td></tr>
+        <tr><td><code>{{#each items}}…{{/each}}</code></td><td>Repeat over a list. Inside: <code>{{this}}</code>, <code>{{@index}}</code>, <code>{{@number}}</code>, <code>{{@first}}</code>, <code>{{@last}}</code>, <code>{{@length}}</code>.</td></tr>
+        <tr><td><code>{{! hidden comment }}</code></td><td>Comment — not rendered.</td></tr>
+      </table>
+      <h3>Slides &amp; layouts</h3>
+      <p><strong>Insert slide</strong> offers four layouts that change how a slide looks when presented:</p>
+      <ul class="help-list">
+        <li><strong>Title</strong> — large centered heading + subtitle.</li>
+        <li><strong>Content</strong> — regular slide with a heading and body.</li>
+        <li><strong>Section</strong> — dark divider slide for new chapters.</li>
+        <li><strong>Exercise</strong> — content slide primed with fill-in-the-blank placeholders.</li>
+        <li><strong>Blank</strong> — an empty canvas.</li>
+      </ul>
+      <p>Drag slides on the strip to reorder, use the <strong>⋯</strong> menu to rename, duplicate, move or delete, and press <strong>Present</strong> to run the deck fullscreen (← → keys, <kbd>F</kbd> fullscreen, <kbd>Esc</kbd> to exit).</p>
+      <p class="tip"><strong>Fill-in preview:</strong> toggle <strong>Fill in</strong> on the Preview tab to type values straight into the slide — every <code>{{variable}}</code> becomes an underlined blank, computed values (filters) are read-only, and <code>+ Add item</code> / <code>− Last</code> manage each <code>{{#each}}</code> list. Great for classroom exercises.</p>
+      <p class="tip"><strong>Tip:</strong> dates work best as ISO strings (<code>2026-08-05</code>) — use the <code>date</code> filter to format them.</p>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="/app.js"></script>
+</body>
+</html>

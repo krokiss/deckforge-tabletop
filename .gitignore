@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+
+# Runtime logs / state
+server.log
+*.log
+*.log.err
+preview-*
+
+# Freebuff app internals (not part of DeckForge)
+.freebuff/
+desktop-v2.db
+desktop-v2.db-shm
+desktop-v2.db-wal
+project-id
+run.md
+
+# Legacy DocForge backup (data/decks.json IS committed on purpose —
+# the custom exercise decks ship with the deploy)
+data/templates.json.bak
