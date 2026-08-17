@@ -9,8 +9,18 @@ build step. It runs anywhere Python 3.8+ exists. Choose the path that fits:
 | **Koyeb (free)** | anyone with the link | `https://<name>.koyeb.app` | ~10 min (needs GitHub) |
 | **Render (free)** | anyone with the link | `https://<name>.onrender.com` | ~10 min (needs GitHub) |
 | **GitHub Pages** | anyone with the link | `https://<you>.github.io/<repo>/` | ~5 min |
-| **Portable zip** | colleagues who run it locally | no URL | ~1 min |
-| **Export .html** | one-off distribution | any static host / email | ~1 min |
+| **Portable zip** | colleagues who run it locally | no URL | ~1 min || **Export .html** | one-off distribution | any static host / email | ~1 min |
+
+## Securing a deployed instance
+
+Set the **`AUTH_PASSWORD`** environment variable on the host and the app
+requires a password for every page and API call: a login screen at `/login`,
+an HttpOnly session cookie (12 h sliding expiry), logout at `/logout`, and
+login rate-limited to 10 attempts per 5 minutes. With `AUTH_PASSWORD`
+unset, the app stays open — fine for local use. On Render: **Environment**
+→ add `AUTH_PASSWORD` → Deploy. All responses also carry hardening headers
+(`X-Content-Type-Options: nosniff`, `Referrer-Policy: same-origin`,
+`X-Frame-Options: SAMEORIGIN`) automatically.
 
 The server already honors the `PORT` / `HOST` environment variables, so no
 code changes are needed for any cloud host.
@@ -54,16 +64,22 @@ Railway, Fly.io, and any other container host work the same way — the
 Railway is trial-credit based, so for a genuinely free always-on URL prefer
 Koyeb or Render.)
 
-## Option B2 — Koyeb (free, longest sleep window)
+## Option B2 — Hugging Face Spaces (free Docker hosting, no card)
 
-Koyeb's free tier is the best free option in 2026: one web service (512 MB
-RAM, 0.1 vCPU, 2 GB SSD), usually **no credit card** required, and it only
-scales to zero after **1 hour** of no traffic (Render sleeps after 15 min).
+Spaces runs Docker containers on free CPU hardware with a public URL and
+**no credit card** (free Spaces sleep after ~48 h idle; first visit after
+sleep takes about a minute). It sets `PORT` automatically, which the server
+reads.
 
 1. Push this folder (with the `Dockerfile`) to a GitHub repo.
-2. On <https://koyeb.com> → **Create App** → connect the GitHub repo.
-3. Koyeb auto-detects the Dockerfile. Deploy; your URL is
-   `https://<name>.koyeb.app`.
+2. On <https://huggingface.co> → sign up (no card) → **New Space**.
+3. Pick **Docker** as the SDK, hardware **CPU basic (free)**, and under
+   "Repository" select **Connect to GitHub** → pick your repo.
+4. Create → the Space builds from the Dockerfile → your URL is
+   `https://huggingface.co/spaces/<you>/<space>`.
+
+Note: Koyeb's free tier was previously the best option here but began
+requiring payment in 2026 — skip it unless it shows a free instance again.
 
 ## Option E — GitHub Pages (free forever, static)
 

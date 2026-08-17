@@ -6,11 +6,15 @@ Options:  --port 9000   --host 0.0.0.0
 """
 
 import argparse
+import hmac
 import html as _html
+import http.cookies as _cookies
 import json
 import os
 import re
+import secrets
 import sys
+import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlsplit
@@ -34,6 +38,45 @@ MIME = {
 }
 
 store = Store()
+
+# -- optional authentication -------------------------------------------------
+# Set the AUTH_PASSWORD environment variable to protect a deployed instance.
+# When unset (local dev), the app behaves exactly as before — open access.
+AUTH_PASSWORD = os.environ.get("AUTH_PASSWORD", "").strip()
+AUTH_TTL = 12 * 3600  # session lifetime (sliding)
+_SESSIONS = {}        # token -> expiry epoch
+_SESS_LOCK = threading.Lock()
+_LOGIN_ATTEMPTS = {}  # ip -> [attempt epochs]
+
+LOGIN_PAGE = ("""<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">"""
+    "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
+    "<title>DeckForge — Sign in</title>"
+    "<style>"
+    "body{font-family:'Segoe UI',Arial,sans-serif;background:#0e1320;color:#e6edf7;margin:0;"
+    "min-height:100vh;display:flex;align-items:center;justify-content:center}"
+    ".card{background:#171e30;border:1px solid #253049;border-radius:14px;padding:40px 36px;"
+    "width:340px;box-shadow:0 10px 30px rgba(0,0,0,.35)}"
+    "h1{font-size:20px;margin:0 0 4px;letter-spacing:.3px}"
+    "p{color:#8fa1c4;font-size:13px;margin:0 0 22px}"
+    "input{width:100%;box-sizing:border-box;padding:11px 12px;border-radius:8px;border:1px solid #2c3a5c;"
+    "background:#0e1320;color:#e6edf7;font-size:14px;margin-bottom:14px}"
+    "input:focus{outline:none;border-color:#38bdf8}"
+    "button{width:100%;padding:11px;border:0;border-radius:8px;background:#0ea5e9;color:#04121c;"
+    "font-weight:700;font-size:14px;cursor:pointer}"
+    "button:hover{background:#38bdf8}"
+    ".err{color:#f87171;font-size:13px;margin:0 0 12px;min-height:16px}"
+    "</style></head><body>"
+    "<form class=\"card\" id=\"f\" method=\"post\">"
+    "<h1>DeckForge</h1><p>Table Top Exercise Builder — restricted access</p>"
+    "<input type=\"password\" id=\"p\" placeholder=\"Password\" autofocus autocomplete=\"current-password\">"
+    "<p class=\"err\" id=\"e\"></p><button type=\"submit\">Sign in</button></form>"
+    "<script>"
+    "const f=document.getElementById('f'),p=document.getElementById('p'),e=document.getElementById('e');"
+    "f.addEventListener('submit',async ev=>{ev.preventDefault();e.textContent='';"
+    "const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},"
+    "body:JSON.stringify({password:p.value})});"
+    "if(r.ok){location.href='/';}else{e.textContent=(await r.json().catch(()=>({}))).error||'Wrong password.';}});"
+    "</script></body></html>")
 
 LAYOUTS = ("title", "content", "section", "blank")
 
@@ -691,6 +734,10 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
+        # security hardening headers (harmless locally, useful when deployed)
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("Referrer-Policy", "same-origin")
+        self.send_header("X-Frame-Options", "SAMEORIGIN")
         for k, v in (headers or {}).items():
             self.send_header(k, v)
         self.end_headers()
@@ -712,6 +759,59 @@ class Handler(BaseHTTPRequestHandler):
         except (ValueError, UnicodeDecodeError):
             return {}
 
+    # -- auth helpers ---------------------------------------------------------
+
+    def _session_token(self):
+        raw = self.headers.get("Cookie", "")
+        if not raw:
+            return None
+        c = _cookies.SimpleCookie()
+        c.load(raw)
+        m = c.get("df_session")
+        return m.value if m else None
+
+    def _new_session(self):
+        tok = secrets.token_urlsafe(32)
+        with _SESS_LOCK:
+            _SESSIONS[tok] = time.time() + AUTH_TTL
+        return tok
+
+    def _valid_session(self):
+        if not AUTH_PASSWORD:
+            return True
+        tok = self._session_token()
+        if not tok:
+            return False
+        with _SESS_LOCK:
+            exp = _SESSIONS.get(tok)
+            if exp is None:
+                return False
+            if exp < time.time():
+                _SESSIONS.pop(tok, None)
+                return False
+            _SESSIONS[tok] = time.time() + AUTH_TTL  # sliding expiry
+            return True
+
+    def _clear_session(self):
+        tok = self._session_token()
+        if tok:
+            with _SESS_LOCK:
+                _SESSIONS.pop(tok, None)
+
+    def _login_blocked(self, ip):
+        now = time.time()
+        with _SESS_LOCK:
+            stamps = [t for t in _LOGIN_ATTEMPTS.get(ip, []) if now - t < 300]
+            if len(stamps) >= 10:
+                _LOGIN_ATTEMPTS[ip] = stamps
+                return True
+            stamps.append(now)
+            _LOGIN_ATTEMPTS[ip] = stamps
+            return False
+
+    def _auth_cookie(self, tok):
+        return "df_session=%s; HttpOnly; SameSite=Lax; Path=/; Max-Age=%d" % (tok, AUTH_TTL)
+
     def _static(self, name):
         safe = os.path.basename(name)
         full = os.path.join(STATIC, safe)
@@ -727,6 +827,23 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         path = urlsplit(self.path).path
+        if AUTH_PASSWORD:
+            if path == "/logout":
+                self._clear_session()
+                self._send(302, "", "text/html; charset=utf-8", {"Location": "/login"})
+                return
+            if path == "/login":
+                if self._valid_session():
+                    self._send(302, "", "text/html; charset=utf-8", {"Location": "/"})
+                    return
+                self._send(200, LOGIN_PAGE, "text/html; charset=utf-8")
+                return
+            if not self._valid_session():
+                if not path.startswith("/api/"):
+                    self._send(302, "", "text/html; charset=utf-8", {"Location": "/login"})
+                    return
+                self._json(401, {"error": "authentication required"})
+                return
         if path in ("/", "/index.html"):
             self._static("index.html")
         elif path.startswith("/api/"):
@@ -750,6 +867,24 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         path = urlsplit(self.path).path
+        if path == "/api/login":
+            if not AUTH_PASSWORD:
+                self._json(404, {"error": "auth not enabled"})
+                return
+            if self._login_blocked(self.client_address[0]):
+                self._json(429, {"error": "too many attempts — try again later"})
+                return
+            b = self._body()
+            given = (b.get("password") or "").encode("utf-8")
+            if not given or not hmac.compare_digest(given, AUTH_PASSWORD.encode("utf-8")):
+                self._json(401, {"error": "invalid password"})
+                return
+            tok = self._new_session()
+            self._send(200, json.dumps({"ok": True}), headers={"Set-Cookie": self._auth_cookie(tok)})
+            return
+        if AUTH_PASSWORD and not self._valid_session():
+            self._json(401, {"error": "authentication required"})
+            return
         if path == "/api/decks":
             b = self._body()
             name = (b.get("name") or "Untitled presentation").strip() or "Untitled presentation"
@@ -804,6 +939,9 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_PUT(self):
         path = urlsplit(self.path).path
+        if AUTH_PASSWORD and not self._valid_session():
+            self._json(401, {"error": "authentication required"})
+            return
         m = re.match(r"^/api/decks/([^/]+)$", path)
         if not m:
             self._json(404, {"error": "unknown endpoint"})
@@ -818,6 +956,9 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_DELETE(self):
         path = urlsplit(self.path).path
+        if AUTH_PASSWORD and not self._valid_session():
+            self._json(401, {"error": "authentication required"})
+            return
         m = re.match(r"^/api/decks/([^/]+)$", path)
         if not m:
             self._json(404, {"error": "unknown endpoint"})

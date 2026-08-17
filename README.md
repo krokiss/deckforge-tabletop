@@ -115,6 +115,17 @@ opens your browser). Use `python server.py --port 9000` to pick another port.
   dashboard also shows an **AAR ↓** button on every scenario card that
   downloads that exercise's executive summary (.doc) directly.
 
+## Securing a deployed instance
+
+Set the **`AUTH_PASSWORD`** environment variable and the app requires a
+password for every page and API call (login screen at `/login`, sessions via
+an HttpOnly cookie, 12-hour sliding expiry, logout at `/logout`, login
+rate-limited to 10 attempts per 5 minutes). When `AUTH_PASSWORD` is unset
+the app stays open — ideal for local use. On Render: **Environment** → add
+`AUTH_PASSWORD` → deploy. All responses also carry hardening headers
+(`X-Content-Type-Options: nosniff`, `Referrer-Policy: same-origin`,
+`X-Frame-Options: SAMEORIGIN`).
+
 ## Syntax cheat sheet
 
 | Syntax | Meaning |
