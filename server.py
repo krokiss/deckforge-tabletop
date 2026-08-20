@@ -396,6 +396,29 @@ INJECT_WIDGET_HTML = (
     '</div>'
 )
 
+DECISION_CSS = (
+    '.dec-widget{margin-top:22px;border-top:1px solid rgba(255,193,7,.4);padding-top:16px}'
+    '.dec-widget .dec-note{color:#fbbf24;font:italic 14px Segoe UI,Arial,sans-serif;margin-bottom:8px}'
+    '.dec-widget .dec-q{margin-bottom:14px}'
+    '.dec-widget .dec-q-label{color:#93c5fd;font:600 14px Segoe UI,Arial,sans-serif;margin-bottom:4px}'
+    '.dec-widget .dec-q-ta{width:100%;box-sizing:border-box;background:#0d1220;color:#e6e9f2;'
+    'border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:10px 14px;'
+    'font:15px/1.5 Segoe UI,Arial,sans-serif;min-height:80px;resize:vertical}'
+    '.dec-widget .dec-q-ta:focus{outline:none;border-color:#fbbf24;box-shadow:0 0 0 3px rgba(251,191,36,.18)}'
+    '.dec-widget .dec-saved{margin-top:6px;padding:8px 12px;background:rgba(251,191,36,.08);'
+    'border:1px solid rgba(251,191,36,.3);border-radius:8px;color:#fde68a;white-space:pre-wrap}'
+    '.dec-widget .dec-save{margin-top:12px;background:#f59e0b;color:#000;border:0;'
+    'border-radius:8px;padding:10px 20px;font:700 14px Segoe UI,Arial,sans-serif;cursor:pointer}'
+    '.dec-widget .dec-save:hover{background:#d97706}'
+)
+
+DECISION_WIDGET_HTML = (
+    '<div class="dec-widget" data-decision="1">'
+    '<div class="dec-note">\u26A0\uFE0F Record the team\u2019s response to each question below.</div>'
+    '<button class="dec-save">Save responses \u2192</button>'
+    '</div>'
+)
+
 INJECT_LOG_HTML = '<div class="inj-log"></div>'
 
 
@@ -423,15 +446,43 @@ INJECT_JS = r"""
 <script>
 (function () {
   var responses = {};
+  var decResponses = {};
   var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
   var injectIdx = [];
   slides.forEach(function (s, i) { if (s.querySelector('.inj-widget')) injectIdx.push(i); });
   var injectLast = injectIdx.length ? injectIdx[injectIdx.length - 1] : -1;
 
   function esc(s) {
-    return String(s == null ? '' : s).replace(/[&<>"'’‘]/g, function (c) {
-      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"’":'&rsquo;',"‘":'&lsquo;'}[c] || c;
+    return String(s == null ? '' : s).replace(/[&<>"''\u2018\u2019]/g, function (c) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&rsquo;',"\u2018":'&lsquo;',"\u2019":'&rsquo;'}[c] || c;
     });
+  }
+
+  function initDecisionWidget(slide, idx) {
+    var widget = slide.querySelector('.dec-widget');
+    if (!widget || widget.dataset.init) return;
+    widget.dataset.init = '1';
+    var questions = Array.prototype.slice.call(slide.querySelectorAll('h3'))
+      .filter(function (h) { return /^Q\d+/.test(h.textContent.trim()); });
+    var taWrap = document.createElement('div');
+    taWrap.className = 'dec-questions';
+    questions.forEach(function (h, qi) {
+      var label = document.createElement('div');
+      label.className = 'dec-q-label';
+      label.textContent = h.textContent.trim();
+      var ta = document.createElement('textarea');
+      ta.className = 'dec-q-ta';
+      ta.rows = 4;
+      ta.placeholder = 'Team response for Q' + (qi + 1) + '...';
+      ta.dataset.q = qi;
+      var qDiv = document.createElement('div');
+      qDiv.className = 'dec-q';
+      qDiv.appendChild(label);
+      qDiv.appendChild(ta);
+      taWrap.appendChild(qDiv);
+    });
+    var btn = widget.querySelector('.dec-save');
+    widget.insertBefore(taWrap, btn);
   }
 
   function renderSlide(idx) {
@@ -445,11 +496,40 @@ INJECT_JS = r"""
       if (responses[idx] != null) {
         if (ta) ta.style.display = 'none';
         if (saved) { saved.hidden = false; saved.textContent = responses[idx]; }
-        if (btn) btn.textContent = 'Next inject →';
+        if (btn) btn.textContent = 'Next inject \u2192';
       } else {
         if (ta) ta.style.display = '';
         if (saved) saved.hidden = true;
-        if (btn) btn.textContent = (idx === injectLast) ? 'Finish exercise →' : 'Save & next inject →';
+        if (btn) btn.textContent = (idx === injectLast) ? 'Finish exercise \u2192' : 'Save & next inject \u2192';
+      }
+    }
+    var dw = slide.querySelector('.dec-widget');
+    if (dw) {
+      initDecisionWidget(slide, idx);
+      var tas = dw.querySelectorAll('.dec-q-ta');
+      var savedBox = dw.querySelector('.inj-saved');
+      var dBtn = dw.querySelector('.dec-save');
+      var existing = decResponses[idx];
+      if (existing) {
+        tas.forEach(function (t) { t.style.display = 'none'; });
+        if (dBtn) dBtn.style.display = 'none';
+        var summary = '';
+        tas.forEach(function (t) {
+          var qi = +t.dataset.q;
+          var ans = existing[qi] || 'No response';
+          summary += 'Q' + (qi + 1) + ': ' + ans + '\n\n';
+        });
+        if (!savedBox) {
+          savedBox = document.createElement('div');
+          savedBox.className = 'inj-saved';
+          dw.appendChild(savedBox);
+        }
+        savedBox.hidden = false;
+        savedBox.textContent = summary.trim();
+      } else {
+        tas.forEach(function (t) { t.style.display = ''; });
+        if (dBtn) dBtn.style.display = '';
+        if (savedBox) savedBox.hidden = true;
       }
     }
     var pick = slide.querySelector('.role-pick');
@@ -469,15 +549,26 @@ INJECT_JS = r"""
     }
     var log = slide.querySelector('.inj-log');
     if (log) {
-      var keys = Object.keys(responses);
-      if (!keys.length) {
-        log.innerHTML = '<div class="inj-log-empty">No team responses recorded yet — walk the injects and record the team’s decision at each point.</div>';
+      var allKeys = Object.keys(responses);
+      var decKeys = Object.keys(decResponses);
+      if (!allKeys.length && !decKeys.length) {
+        log.innerHTML = '<div class="inj-log-empty">No team responses recorded yet \u2014 walk the injects and record the team\u2019s decision at each point.</div>';
       } else {
-        log.innerHTML = '<h4>Recorded team responses</h4>' + keys.map(function (k) {
+        log.innerHTML = '<h4>Recorded team responses</h4>';
+        allKeys.forEach(function (k) {
           var s = slides[+k];
           var title = s ? (s.getAttribute('data-name') || ('Inject ' + (+k + 1))) : ('Inject ' + (+k + 1));
-          return '<div class="inj-log-item"><b>' + esc(title) + '</b><span class="r">' + esc(responses[k]) + '</span></div>';
-        }).join('');
+          log.innerHTML += '<div class="inj-log-item"><b>' + esc(title) + '</b><span class="r">' + esc(responses[k]) + '</span></div>';
+        });
+        decKeys.forEach(function (k) {
+          var s = slides[+k];
+          var title = s ? (s.getAttribute('data-name') || ('Decision ' + (+k + 1))) : ('Decision ' + (+k + 1));
+          var ans = decResponses[k];
+          var text = Object.keys(ans).sort().map(function (qi) {
+            return 'Q' + (+qi + 1) + ': ' + ans[qi];
+          }).join('\n\n');
+          log.innerHTML += '<div class="inj-log-item"><b>' + esc(title) + '</b><span class="r">' + esc(text) + '</span></div>';
+        });
       }
     }
   }
@@ -493,6 +584,24 @@ INJECT_JS = r"""
       renderSlide(idx);
       return;
     }
+    var dBtn = e.target.closest('.dec-save');
+    if (dBtn) {
+      var dSlide = dBtn.closest('.slide');
+      var dIdx = slides.indexOf(dSlide);
+      var tas = dSlide.querySelectorAll('.dec-q-ta');
+      var ans = {};
+      var hasAny = false;
+      tas.forEach(function (t) {
+        var v = t.value.trim();
+        ans[+t.dataset.q] = v || 'No response';
+        if (v) hasAny = true;
+      });
+      if (!hasAny) { return; }
+      decResponses[dIdx] = ans;
+      renderSlide(dIdx);
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+      return;
+    }
     var btn = e.target.closest('.inj-next');
     if (!btn) return;
     var slide = btn.closest('.slide');
@@ -504,7 +613,7 @@ INJECT_JS = r"""
   });
 
   document.addEventListener('keydown', function (e) {
-    if (e.target && e.target.tagName === 'TEXTAREA') {
+    if (e.target && (e.target.tagName === 'TEXTAREA' || e.target.classList.contains('dec-q-ta'))) {
       if (['Enter', ' ', 'PageDown', 'PageUp', 'ArrowRight', 'ArrowLeft'].indexOf(e.key) > -1) {
         e.stopPropagation();
       }
@@ -519,9 +628,10 @@ INJECT_JS = r"""
   var stage = document.getElementById('stage');
   if (stage) mo.observe(stage, { childList: true });
   renderSlide(slides.indexOf(document.querySelector('.slide.active')));
-})();
+});
 </script>
 """
+
 
 
 
@@ -537,6 +647,9 @@ def build_presentation(name, slides, injects=None, meta=None):
         sname_raw = str(s.get("name") or "")
         if sname_raw.startswith("Inject #"):
             slide_html += INJECT_WIDGET_HTML
+            has_inject_ui = True
+        elif sname_raw.startswith("Decision"):
+            slide_html += DECISION_WIDGET_HTML
             has_inject_ui = True
         elif sname_raw == "Roles":
             slide_html += role_picker_html((s.get("data") or {}).get("roles"))
@@ -554,7 +667,7 @@ def build_presentation(name, slides, injects=None, meta=None):
     body = "\n".join(parts) or '<div class="empty-deck">This presentation has no slides yet.</div>'
     ex_css = ex_js = ""
     if has_inject_ui or injects:
-        ex_css = INJECT_CSS
+        ex_css = INJECT_CSS + DECISION_CSS
         ex_js = INJECT_JS
     return (PRESENT_PAGE.replace("%%TITLE%%", _html.escape(name))
                         .replace("%%SLIDES%%", body)
