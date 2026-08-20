@@ -103,65 +103,92 @@
         {
           "name": "Inject #1 — VPN anomaly detected",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "08:15",
             "title": "VPN anomaly detected",
             "detail": "VPN login anomaly detected from unusual IP address outside business hours.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A — Initial response\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Who leads the response, and what is the escalation trigger? (A.5.24)",
-              "Do you isolate the VPN and revoke the shadow account now — what breaks? (A.8.2, A.8.3)",
-              "How do you preserve evidence when logging was disabled? (A.8.15, A.5.28)",
-              "Which clients are told today, and what does the contract require? (A.5.20)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "Who leads the response, and what is the escalation trigger? (A.5.24)",
+                "response": ""
+              },
+              {
+                "question": "Do you isolate the VPN and revoke the shadow account now — what breaks? (A.8.2, A.8.3)",
+                "response": ""
+              },
+              {
+                "question": "How do you preserve evidence when logging was disabled? (A.8.15, A.5.28)",
+                "response": ""
+              },
+              {
+                "question": "Which clients are told today, and what does the contract require? (A.5.20)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — New admin accounts created",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "08:30",
             "title": "New admin accounts created",
             "detail": "New admin accounts created on domain controllers by unauthorized user.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Logs disabled on DC",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "08:45",
             "title": "Logs disabled on DC",
             "detail": "Logs disabled on domain controller, forensic evidence at risk.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B — Impact\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "How do you isolate the client environments from each other? (A.8.31)",
-              "Do you force password resets and terminate sessions across the fleet? (A.8.3, A.8.5)",
-              "How do you restore logging and prove the timeline is trustworthy? (A.8.15, A.8.16)",
-              "What breach-notification duties apply to the finance data? (A.5.24, compliance)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "How do you isolate the client environments from each other? (A.8.31)",
+                "response": ""
+              },
+              {
+                "question": "Do you force password resets and terminate sessions across the fleet? (A.8.3, A.8.5)",
+                "response": ""
+              },
+              {
+                "question": "How do you restore logging and prove the timeline is trustworthy? (A.8.15, A.8.16)",
+                "response": ""
+              },
+              {
+                "question": "What breach-notification duties apply to the finance data? (A.5.24, compliance)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -199,6 +226,50 @@
                 "decision": "Lessons learned",
                 "control": "A.5.27 / A.5.28 · Learning & evidence",
                 "guidance": "Improve controls from the incident (27002 §5.27–5.28)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — VPN anomaly detected",
+                "time": "08:15",
+                "detail": "VPN login anomaly detected from unusual IP address outside business hours."
+              },
+              {
+                "inject": "Inject #2 — New admin accounts created",
+                "time": "08:30",
+                "detail": "New admin accounts created on domain controllers by unauthorized user."
+              },
+              {
+                "inject": "Inject #3 — Logs disabled on DC",
+                "time": "08:45",
+                "detail": "Logs disabled on domain controller, forensic evidence at risk."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Initial response",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Impact",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -451,7 +522,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — VPN anomaly detected",
+                  "time": "08:15",
+                  "detail": "VPN login anomaly detected from unusual IP address outside business hours."
+                },
+                {
+                  "inject": "Inject #2 — New admin accounts created",
+                  "time": "08:30",
+                  "detail": "New admin accounts created on domain controllers by unauthorized user."
+                },
+                {
+                  "inject": "Inject #3 — Logs disabled on DC",
+                  "time": "08:45",
+                  "detail": "Logs disabled on domain controller, forensic evidence at risk."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -614,65 +724,92 @@
         {
           "name": "Inject #1 — Public bucket link discovered",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "07:50",
             "title": "Public bucket link discovered",
             "detail": "A client reports finding a public link to payroll files — a cloud storage bucket appears to be world-readable.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A — Initial response\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Do you take the bucket offline and revoke the link immediately? (A.8.3, A.8.12)",
-              "How do you determine what was actually exposed? (A.5.25)",
-              "What evidence do you preserve before changing permissions? (A.8.15)",
-              "Which clients are told, and what does the contract require? (A.5.20)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "Do you take the bucket offline and revoke the link immediately? (A.8.3, A.8.12)",
+                "response": ""
+              },
+              {
+                "question": "How do you determine what was actually exposed? (A.5.25)",
+                "response": ""
+              },
+              {
+                "question": "What evidence do you preserve before changing permissions? (A.8.15)",
+                "response": ""
+              },
+              {
+                "question": "Which clients are told, and what does the contract require? (A.5.20)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — Exposure scope confirmed",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "08:20",
             "title": "Exposure scope confirmed",
             "detail": "PII for two clients' employees has been exposed for six weeks; access logs show downloads from unknown IPs.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Indexed by external scanner",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "09:10",
             "title": "Indexed by external scanner",
             "detail": "An external scan service has indexed the exposed data and download logs show repeated access over the window.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B — Impact\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "What are the notification duties — clients, regulators? (A.5.20, compliance)",
-              "How do you restore a secure configuration baseline? (A.8.9, A.8.3)",
-              "How do you prevent recurrence — DLP, monitoring? (A.8.12, A.8.16)",
-              "What other storage and link configurations need review? (A.8.9)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "What are the notification duties — clients, regulators? (A.5.20, compliance)",
+                "response": ""
+              },
+              {
+                "question": "How do you restore a secure configuration baseline? (A.8.9, A.8.3)",
+                "response": ""
+              },
+              {
+                "question": "How do you prevent recurrence — DLP, monitoring? (A.8.12, A.8.16)",
+                "response": ""
+              },
+              {
+                "question": "What other storage and link configurations need review? (A.8.9)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -710,6 +847,50 @@
                 "decision": "Lessons learned",
                 "control": "A.5.27 · Learning from incidents",
                 "guidance": "Feed findings into the ISMS (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — Public bucket link discovered",
+                "time": "07:50",
+                "detail": "A client reports finding a public link to payroll files — a cloud storage bucket appears to be world-readable."
+              },
+              {
+                "inject": "Inject #2 — Exposure scope confirmed",
+                "time": "08:20",
+                "detail": "PII for two clients' employees has been exposed for six weeks; access logs show downloads from unknown IPs."
+              },
+              {
+                "inject": "Inject #3 — Indexed by external scanner",
+                "time": "09:10",
+                "detail": "An external scan service has indexed the exposed data and download logs show repeated access over the window."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Initial response",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Impact",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -938,7 +1119,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Public bucket link discovered",
+                  "time": "07:50",
+                  "detail": "A client reports finding a public link to payroll files — a cloud storage bucket appears to be world-readable."
+                },
+                {
+                  "inject": "Inject #2 — Exposure scope confirmed",
+                  "time": "08:20",
+                  "detail": "PII for two clients' employees has been exposed for six weeks; access logs show downloads from unknown IPs."
+                },
+                {
+                  "inject": "Inject #3 — Indexed by external scanner",
+                  "time": "09:10",
+                  "detail": "An external scan service has indexed the exposed data and download logs show repeated access over the window."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -1097,65 +1317,92 @@
         {
           "name": "Inject #1 — Mass encryption detected",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "08:10",
             "title": "Mass encryption detected",
             "detail": "Encryption detected across the document-processing environment and file shares. A ransom note demands $600,000.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A — Initial response\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Do you disconnect systems from the network now? (A.8.31)",
-              "How do you verify backup integrity before trusting any restore? (A.8.13)",
-              "Who decides about the ransom demand? (A.5.25)",
-              "Which clients are affected, and what is the notification trigger? (A.5.20)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "Do you disconnect systems from the network now? (A.8.31)",
+                "response": ""
+              },
+              {
+                "question": "How do you verify backup integrity before trusting any restore? (A.8.13)",
+                "response": ""
+              },
+              {
+                "question": "Who decides about the ransom demand? (A.5.25)",
+                "response": ""
+              },
+              {
+                "question": "Which clients are affected, and what is the notification trigger? (A.5.20)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — Backup integrity in doubt",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "08:40",
             "title": "Backup integrity in doubt",
             "detail": "Early checks suggest the backup repository may also have been compromised during the attack.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Last good backup is 14 days old",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "10:00",
             "title": "Last good backup is 14 days old",
             "detail": "Forensics confirm the attacker held admin access to the backup platform for nine days. The last known-good restore is 14 days old.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B — Impact\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Do you restore 14-day-old data and replay changes, or pay? What is the trade-off? (A.8.13, A.5.25)",
-              "How do you rebuild the environment without reintroducing the attacker? (A.8.9, A.8.31)",
-              "What do you tell clients about data-loss windows and SLA impact? (A.5.20)",
-              "What regulatory duties apply to the encrypted client data? (A.5.24, compliance)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "Do you restore 14-day-old data and replay changes, or pay? What is the trade-off? (A.8.13, A.5.25)",
+                "response": ""
+              },
+              {
+                "question": "How do you rebuild the environment without reintroducing the attacker? (A.8.9, A.8.31)",
+                "response": ""
+              },
+              {
+                "question": "What do you tell clients about data-loss windows and SLA impact? (A.5.20)",
+                "response": ""
+              },
+              {
+                "question": "What regulatory duties apply to the encrypted client data? (A.5.24, compliance)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -1193,6 +1440,50 @@
                 "decision": "Lessons learned",
                 "control": "A.5.27 / A.5.28 · Learning & evidence",
                 "guidance": "Evidence and improvement (27002 §5.27–5.28)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — Mass encryption detected",
+                "time": "08:10",
+                "detail": "Encryption detected across the document-processing environment and file shares. A ransom note demands $600,000."
+              },
+              {
+                "inject": "Inject #2 — Backup integrity in doubt",
+                "time": "08:40",
+                "detail": "Early checks suggest the backup repository may also have been compromised during the attack."
+              },
+              {
+                "inject": "Inject #3 — Last good backup is 14 days old",
+                "time": "10:00",
+                "detail": "Forensics confirm the attacker held admin access to the backup platform for nine days. The last known-good restore is 14 days old."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Initial response",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Impact",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -1421,7 +1712,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Mass encryption detected",
+                  "time": "08:10",
+                  "detail": "Encryption detected across the document-processing environment and file shares. A ransom note demands $600,000."
+                },
+                {
+                  "inject": "Inject #2 — Backup integrity in doubt",
+                  "time": "08:40",
+                  "detail": "Early checks suggest the backup repository may also have been compromised during the attack."
+                },
+                {
+                  "inject": "Inject #3 — Last good backup is 14 days old",
+                  "time": "10:00",
+                  "detail": "Forensics confirm the attacker held admin access to the backup platform for nine days. The last known-good restore is 14 days old."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -1580,65 +1910,92 @@
         {
           "name": "Inject #1 — Traffic spikes 50x",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "09:30",
             "title": "Traffic spikes 50x",
             "detail": "Portal traffic spikes 50x; load balancers saturate, the CDN is bypassed and portals begin timing out.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A — Initial response\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Do you engage the DDoS mitigation provider now — who decides? (A.5.24)",
-              "What traffic threshold triggers blackholing? (A.8.6)",
-              "How do you keep clients informed while portals degrade? (A.5.20)",
-              "What evidence do you preserve for attribution? (A.8.15, A.5.28)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "Do you engage the DDoS mitigation provider now — who decides? (A.5.24)",
+                "response": ""
+              },
+              {
+                "question": "What traffic threshold triggers blackholing? (A.8.6)",
+                "response": ""
+              },
+              {
+                "question": "How do you keep clients informed while portals degrade? (A.5.20)",
+                "response": ""
+              },
+              {
+                "question": "What evidence do you preserve for attribution? (A.8.15, A.5.28)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — Second wave hits APIs",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "10:05",
             "title": "Second wave hits APIs",
             "detail": "A second wave targets client APIs and the voice channel; mitigation reports a 40,000-device botnet.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Two client portals down",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "10:45",
             "title": "Two client portals down",
             "detail": "Two clients' portals are fully down. Priority decisions are needed on which services stay up.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B — Impact\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "How do you prioritise which portals and APIs stay up? (A.5.29)",
-              "What capacity can the mitigation service absorb? (A.8.6)",
-              "How do you communicate outage status and ETA? (A.5.20)",
-              "When and how do you restore full service without re-exposing? (A.8.9)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "How do you prioritise which portals and APIs stay up? (A.5.29)",
+                "response": ""
+              },
+              {
+                "question": "What capacity can the mitigation service absorb? (A.8.6)",
+                "response": ""
+              },
+              {
+                "question": "How do you communicate outage status and ETA? (A.5.20)",
+                "response": ""
+              },
+              {
+                "question": "When and how do you restore full service without re-exposing? (A.8.9)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -1676,6 +2033,50 @@
                 "decision": "Lessons learned",
                 "control": "A.5.27 · Learning from incidents",
                 "guidance": "Harden the edge (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — Traffic spikes 50x",
+                "time": "09:30",
+                "detail": "Portal traffic spikes 50x; load balancers saturate, the CDN is bypassed and portals begin timing out."
+              },
+              {
+                "inject": "Inject #2 — Second wave hits APIs",
+                "time": "10:05",
+                "detail": "A second wave targets client APIs and the voice channel; mitigation reports a 40,000-device botnet."
+              },
+              {
+                "inject": "Inject #3 — Two client portals down",
+                "time": "10:45",
+                "detail": "Two clients' portals are fully down. Priority decisions are needed on which services stay up."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Initial response",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Impact",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -1904,7 +2305,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Traffic spikes 50x",
+                  "time": "09:30",
+                  "detail": "Portal traffic spikes 50x; load balancers saturate, the CDN is bypassed and portals begin timing out."
+                },
+                {
+                  "inject": "Inject #2 — Second wave hits APIs",
+                  "time": "10:05",
+                  "detail": "A second wave targets client APIs and the voice channel; mitigation reports a 40,000-device botnet."
+                },
+                {
+                  "inject": "Inject #3 — Two client portals down",
+                  "time": "10:45",
+                  "detail": "Two clients' portals are fully down. Priority decisions are needed on which services stay up."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -2064,65 +2504,92 @@
         {
           "name": "Inject #1 — Bulk download flagged",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "20:30",
             "title": "Bulk download flagged",
             "detail": "SIEM flags a large client-database download to a USB drive and proprietary scripts emailed to a personal account.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A — Initial response\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Do you confront the employee now, or continue monitoring? Who decides? (A.5.25, A.6.5)",
-              "What do you disable — access, badge, sessions? (A.8.3)",
-              "How do you preserve evidence for HR and legal? (A.5.28, A.8.15)",
-              "Which clients are affected, and what is the notification trigger? (A.5.20)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "Do you confront the employee now, or continue monitoring? Who decides? (A.5.25, A.6.5)",
+                "response": ""
+              },
+              {
+                "question": "What do you disable — access, badge, sessions? (A.8.3)",
+                "response": ""
+              },
+              {
+                "question": "How do you preserve evidence for HR and legal? (A.5.28, A.8.15)",
+                "response": ""
+              },
+              {
+                "question": "Which clients are affected, and what is the notification trigger? (A.5.20)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — Exfiltration confirmed",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "21:10",
             "title": "Exfiltration confirmed",
             "detail": "The agent's personal cloud account is found to contain client PII going back three months.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Accomplice identified",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "08:00",
             "title": "Accomplice identified",
             "detail": "Monitoring identifies an accomplice on the same shift; the termination decision is now urgent.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B — Impact\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "How wide is the investigation — the shift, the team, all clients? (A.5.25)",
-              "How do you verify client data was not modified or sold? (A.8.15, A.8.16)",
-              "What does this reveal about DLP coverage? (A.8.12)",
-              "What people controls failed — screening, awareness, exit? (A.6.1, A.6.3, A.6.5)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "How wide is the investigation — the shift, the team, all clients? (A.5.25)",
+                "response": ""
+              },
+              {
+                "question": "How do you verify client data was not modified or sold? (A.8.15, A.8.16)",
+                "response": ""
+              },
+              {
+                "question": "What does this reveal about DLP coverage? (A.8.12)",
+                "response": ""
+              },
+              {
+                "question": "What people controls failed — screening, awareness, exit? (A.6.1, A.6.3, A.6.5)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -2160,6 +2627,50 @@
                 "decision": "Screening & awareness",
                 "control": "A.6.1 / A.6.3 · People controls",
                 "guidance": "Screen and train the workforce (27002 §6.1, §6.3)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — Bulk download flagged",
+                "time": "20:30",
+                "detail": "SIEM flags a large client-database download to a USB drive and proprietary scripts emailed to a personal account."
+              },
+              {
+                "inject": "Inject #2 — Exfiltration confirmed",
+                "time": "21:10",
+                "detail": "The agent's personal cloud account is found to contain client PII going back three months."
+              },
+              {
+                "inject": "Inject #3 — Accomplice identified",
+                "time": "08:00",
+                "detail": "Monitoring identifies an accomplice on the same shift; the termination decision is now urgent."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Initial response",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Impact",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -2388,7 +2899,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Bulk download flagged",
+                  "time": "20:30",
+                  "detail": "SIEM flags a large client-database download to a USB drive and proprietary scripts emailed to a personal account."
+                },
+                {
+                  "inject": "Inject #2 — Exfiltration confirmed",
+                  "time": "21:10",
+                  "detail": "The agent's personal cloud account is found to contain client PII going back three months."
+                },
+                {
+                  "inject": "Inject #3 — Accomplice identified",
+                  "time": "08:00",
+                  "detail": "Monitoring identifies an accomplice on the same shift; the termination decision is now urgent."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -2547,65 +3097,92 @@
         {
           "name": "Inject #1 — Credentials for sale",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "07:00",
             "title": "Credentials for sale",
             "detail": "OSINT finds 40 employee credentials for sale on a dark-web forum, including a finance analyst with payment-data access.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A — Initial response\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Do you reset passwords first, or hunt for active use? (A.8.4, A.8.5)",
-              "How do you determine whether the accounts were used? (A.8.15, A.8.16)",
-              "Who is told, and what is the risk to clients? (A.5.20, A.5.25)",
-              "Do you force MFA everywhere immediately? (A.8.5)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "Do you reset passwords first, or hunt for active use? (A.8.4, A.8.5)",
+                "response": ""
+              },
+              {
+                "question": "How do you determine whether the accounts were used? (A.8.15, A.8.16)",
+                "response": ""
+              },
+              {
+                "question": "Who is told, and what is the risk to clients? (A.5.20, A.5.25)",
+                "response": ""
+              },
+              {
+                "question": "Do you force MFA everywhere immediately? (A.8.5)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — Passwords match SSO",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "07:45",
             "title": "Passwords match SSO",
             "detail": "Some listed passwords match corporate SSO. The hunt for active use begins.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Lateral movement flagged",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "09:30",
             "title": "Lateral movement flagged",
             "detail": "UEBA flags lateral movement from a listed account into a client finance portal; a $50 test transfer was made and reversed.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B — Impact\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "How do you contain the lateral movement now? (A.8.31, A.8.3)",
-              "Do you treat this as an active intrusion and engage forensics? (A.5.24, A.5.28)",
-              "How do you verify payment-data integrity? (A.8.15)",
-              "What notification duties exist for the affected client? (A.5.20)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "How do you contain the lateral movement now? (A.8.31, A.8.3)",
+                "response": ""
+              },
+              {
+                "question": "Do you treat this as an active intrusion and engage forensics? (A.5.24, A.5.28)",
+                "response": ""
+              },
+              {
+                "question": "How do you verify payment-data integrity? (A.8.15)",
+                "response": ""
+              },
+              {
+                "question": "What notification duties exist for the affected client? (A.5.20)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -2643,6 +3220,50 @@
                 "decision": "Lessons learned",
                 "control": "A.5.27 · Learning from incidents",
                 "guidance": "Improve identity controls (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — Credentials for sale",
+                "time": "07:00",
+                "detail": "OSINT finds 40 employee credentials for sale on a dark-web forum, including a finance analyst with payment-data access."
+              },
+              {
+                "inject": "Inject #2 — Passwords match SSO",
+                "time": "07:45",
+                "detail": "Some listed passwords match corporate SSO. The hunt for active use begins."
+              },
+              {
+                "inject": "Inject #3 — Lateral movement flagged",
+                "time": "09:30",
+                "detail": "UEBA flags lateral movement from a listed account into a client finance portal; a $50 test transfer was made and reversed."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Initial response",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Impact",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -2871,7 +3492,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Credentials for sale",
+                  "time": "07:00",
+                  "detail": "OSINT finds 40 employee credentials for sale on a dark-web forum, including a finance analyst with payment-data access."
+                },
+                {
+                  "inject": "Inject #2 — Passwords match SSO",
+                  "time": "07:45",
+                  "detail": "Some listed passwords match corporate SSO. The hunt for active use begins."
+                },
+                {
+                  "inject": "Inject #3 — Lateral movement flagged",
+                  "time": "09:30",
+                  "detail": "UEBA flags lateral movement from a listed account into a client finance portal; a $50 test transfer was made and reversed."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -3030,65 +3690,92 @@
         {
           "name": "Inject #1 — Admin access gained",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "06:30",
             "title": "Admin access gained",
             "detail": "An attacker exploits an unpatched CRM plugin and gains admin access to the shared platform.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A — Initial response\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Do you take the CRM offline now? What is the impact on client interactions? (A.5.25)",
-              "How do you confirm the scope — which clients' data was touched? (A.8.15)",
-              "Who is told first — the affected client, or all six? (A.5.20)",
-              "How do you preserve evidence on the shared platform? (A.5.28)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "Do you take the CRM offline now? What is the impact on client interactions? (A.5.25)",
+                "response": ""
+              },
+              {
+                "question": "How do you confirm the scope — which clients' data was touched? (A.8.15)",
+                "response": ""
+              },
+              {
+                "question": "Who is told first — the affected client, or all six? (A.5.20)",
+                "response": ""
+              },
+              {
+                "question": "How do you preserve evidence on the shared platform? (A.5.28)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — Client data exfiltrated",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "07:10",
             "title": "Client data exfiltrated",
             "detail": "Customer data — names, contacts, purchase history — is exfiltrated for one client before the breach is detected.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Second client exposed",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "09:00",
             "title": "Second client exposed",
             "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos — a second client exposed.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B — Impact\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "How do you segregate the client data silos going forward? (A.8.31)",
-              "Do you rebuild the CRM from a clean backup? (A.8.13, A.8.9)",
-              "What notification duties apply to the exposed customer data? (A.5.20, compliance)",
-              "How do you patch and validate the plugin ecosystem? (A.8.8)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "How do you segregate the client data silos going forward? (A.8.31)",
+                "response": ""
+              },
+              {
+                "question": "Do you rebuild the CRM from a clean backup? (A.8.13, A.8.9)",
+                "response": ""
+              },
+              {
+                "question": "What notification duties apply to the exposed customer data? (A.5.20, compliance)",
+                "response": ""
+              },
+              {
+                "question": "How do you patch and validate the plugin ecosystem? (A.8.8)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -3126,6 +3813,50 @@
                 "decision": "Lessons learned",
                 "control": "A.5.27 · Learning from incidents",
                 "guidance": "Improve platform controls (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — Admin access gained",
+                "time": "06:30",
+                "detail": "An attacker exploits an unpatched CRM plugin and gains admin access to the shared platform."
+              },
+              {
+                "inject": "Inject #2 — Client data exfiltrated",
+                "time": "07:10",
+                "detail": "Customer data — names, contacts, purchase history — is exfiltrated for one client before the breach is detected."
+              },
+              {
+                "inject": "Inject #3 — Second client exposed",
+                "time": "09:00",
+                "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos — a second client exposed."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Initial response",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Impact",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -3354,7 +4085,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Admin access gained",
+                  "time": "06:30",
+                  "detail": "An attacker exploits an unpatched CRM plugin and gains admin access to the shared platform."
+                },
+                {
+                  "inject": "Inject #2 — Client data exfiltrated",
+                  "time": "07:10",
+                  "detail": "Customer data — names, contacts, purchase history — is exfiltrated for one client before the breach is detected."
+                },
+                {
+                  "inject": "Inject #3 — Second client exposed",
+                  "time": "09:00",
+                  "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos — a second client exposed."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -3523,65 +4293,92 @@
         {
           "name": "Inject #1 — Global WAN loss",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "14:20",
             "title": "Global WAN loss",
             "detail": "A backbone outage takes down the primary WAN; connectivity to client systems drops globally.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Continuity call",
           "layout": "content",
-          "body": "## Decision A — Continuity call\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Continuity call\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Who declares the incident and triggers the continuity plan? (A.5.24, A.5.29)",
-              "Do you fail over to backup connectivity now, or stabilise first? (A.5.30)",
-              "How do you keep client SLAs visible while systems are down? (A.5.20)",
-              "What is the communication cascade to clients and agents? (A.5.24)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "Who declares the incident and triggers the continuity plan? (A.5.24, A.5.29)",
+                "response": ""
+              },
+              {
+                "question": "Do you fail over to backup connectivity now, or stabilise first? (A.5.30)",
+                "response": ""
+              },
+              {
+                "question": "How do you keep client SLAs visible while systems are down? (A.5.20)",
+                "response": ""
+              },
+              {
+                "question": "What is the communication cascade to clients and agents? (A.5.24)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — Contact center degrading",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "14:50",
             "title": "Contact center degrading",
             "detail": "The contact-center platform degrades as sessions fail; two clients are mid-critical-incident handling.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Backup path fails",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "15:05",
             "title": "Backup path fails",
             "detail": "The backup link also fails; the telco provider reports a regional outage affecting multiple BPOs.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Recovery & prioritisation",
           "layout": "content",
-          "body": "## Decision B — Recovery & prioritisation\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Recovery & prioritisation\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Can agents work from home or alternate sites? (A.5.30, A.6.7)",
-              "Which client processes get priority, and who decides? (A.5.29)",
-              "What do you promise the clients about recovery time? (A.5.20)",
-              "What capacity and load limits apply when services return? (A.8.6)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "Can agents work from home or alternate sites? (A.5.30, A.6.7)",
+                "response": ""
+              },
+              {
+                "question": "Which client processes get priority, and who decides? (A.5.29)",
+                "response": ""
+              },
+              {
+                "question": "What do you promise the clients about recovery time? (A.5.20)",
+                "response": ""
+              },
+              {
+                "question": "What capacity and load limits apply when services return? (A.8.6)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -3619,6 +4416,50 @@
                 "decision": "Lessons learned",
                 "control": "A.5.27 · Learning from incidents",
                 "guidance": "Improve resilience (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — Global WAN loss",
+                "time": "14:20",
+                "detail": "A backbone outage takes down the primary WAN; connectivity to client systems drops globally."
+              },
+              {
+                "inject": "Inject #2 — Contact center degrading",
+                "time": "14:50",
+                "detail": "The contact-center platform degrades as sessions fail; two clients are mid-critical-incident handling."
+              },
+              {
+                "inject": "Inject #3 — Backup path fails",
+                "time": "15:05",
+                "detail": "The backup link also fails; the telco provider reports a regional outage affecting multiple BPOs."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Continuity call",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Recovery & prioritisation",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -3847,7 +4688,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Global WAN loss",
+                  "time": "14:20",
+                  "detail": "A backbone outage takes down the primary WAN; connectivity to client systems drops globally."
+                },
+                {
+                  "inject": "Inject #2 — Contact center degrading",
+                  "time": "14:50",
+                  "detail": "The contact-center platform degrades as sessions fail; two clients are mid-critical-incident handling."
+                },
+                {
+                  "inject": "Inject #3 — Backup path fails",
+                  "time": "15:05",
+                  "detail": "The backup link also fails; the telco provider reports a regional outage affecting multiple BPOs."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Continuity call",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Recovery & prioritisation",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -4016,65 +4896,92 @@
         {
           "name": "Inject #1 — Fire alarm in server room",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "10:05",
             "title": "Fire alarm in server room",
             "detail": "A fire alarm sounds in the Site B server room; fire suppression activates and staff evacuate.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Safety & continuity",
           "layout": "content",
-          "body": "## Decision A — Safety & continuity\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Safety & continuity\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Who decides to declare a site-level incident, and what is the authority? (A.5.24)",
-              "Do you keep staff on site or evacuate fully — what is the safety decision? (A.7.2, A.7.5)",
-              "Which clients are affected, and what is the continuity trigger? (A.5.20, A.5.29)",
-              "How do you protect evidence and equipment during the evacuation? (A.7.10, A.5.28)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "Who decides to declare a site-level incident, and what is the authority? (A.5.24)",
+                "response": ""
+              },
+              {
+                "question": "Do you keep staff on site or evacuate fully — what is the safety decision? (A.7.2, A.7.5)",
+                "response": ""
+              },
+              {
+                "question": "Which clients are affected, and what is the continuity trigger? (A.5.20, A.5.29)",
+                "response": ""
+              },
+              {
+                "question": "How do you protect evidence and equipment during the evacuation? (A.7.10, A.5.28)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — Claims cluster offline",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "10:20",
             "title": "Claims cluster offline",
             "detail": "The claims-processing cluster goes offline during peak claims season with Site B at 90% capacity.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Site loss confirmed",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "12:30",
             "title": "Site loss confirmed",
             "detail": "The fire is contained but the server room is water-damaged; the cluster is down for days and the claims backlog is growing.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Recovery & backlog",
           "layout": "content",
-          "body": "## Decision B — Recovery & backlog\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Recovery & backlog\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "How do you redistribute work to Site A and remote agents? (A.5.30, A.6.7)",
-              "What is the recovery priority order — systems, data, connectivity? (A.5.29)",
-              "How do you validate restored data from off-site backups? (A.8.13)",
-              "What do you tell clients about backlog and recovery estimates? (A.5.20)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "How do you redistribute work to Site A and remote agents? (A.5.30, A.6.7)",
+                "response": ""
+              },
+              {
+                "question": "What is the recovery priority order — systems, data, connectivity? (A.5.29)",
+                "response": ""
+              },
+              {
+                "question": "How do you validate restored data from off-site backups? (A.8.13)",
+                "response": ""
+              },
+              {
+                "question": "What do you tell clients about backlog and recovery estimates? (A.5.20)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -4112,6 +5019,50 @@
                 "decision": "Lessons learned",
                 "control": "A.5.27 · Learning from incidents",
                 "guidance": "Improve site resilience (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — Fire alarm in server room",
+                "time": "10:05",
+                "detail": "A fire alarm sounds in the Site B server room; fire suppression activates and staff evacuate."
+              },
+              {
+                "inject": "Inject #2 — Claims cluster offline",
+                "time": "10:20",
+                "detail": "The claims-processing cluster goes offline during peak claims season with Site B at 90% capacity."
+              },
+              {
+                "inject": "Inject #3 — Site loss confirmed",
+                "time": "12:30",
+                "detail": "The fire is contained but the server room is water-damaged; the cluster is down for days and the claims backlog is growing."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Safety & continuity",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Recovery & backlog",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -4340,7 +5291,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Fire alarm in server room",
+                  "time": "10:05",
+                  "detail": "A fire alarm sounds in the Site B server room; fire suppression activates and staff evacuate."
+                },
+                {
+                  "inject": "Inject #2 — Claims cluster offline",
+                  "time": "10:20",
+                  "detail": "The claims-processing cluster goes offline during peak claims season with Site B at 90% capacity."
+                },
+                {
+                  "inject": "Inject #3 — Site loss confirmed",
+                  "time": "12:30",
+                  "detail": "The fire is contained but the server room is water-damaged; the cluster is down for days and the claims backlog is growing."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Safety & continuity",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Recovery & backlog",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -4509,65 +5499,92 @@
         {
           "name": "Inject #1 — Regional power loss",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "15:05",
             "title": "Regional power loss",
             "detail": "A regional power outage hits HQ; the UPS engages but the backup generators fail to start.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Battery & shutdown call",
           "layout": "content",
-          "body": "## Decision A — Battery & shutdown call\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Battery & shutdown call\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Do you keep processing on battery while it lasts — what is the cutoff decision? (A.8.6, A.5.29)",
-              "Who owns the call to shut down non-critical systems? (A.5.24)",
-              "How do you preserve in-flight transactions and records? (A.8.13, A.7.10)",
-              "Which clients are told, and what is the SLA trigger? (A.5.20)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "Do you keep processing on battery while it lasts — what is the cutoff decision? (A.8.6, A.5.29)",
+                "response": ""
+              },
+              {
+                "question": "Who owns the call to shut down non-critical systems? (A.5.24)",
+                "response": ""
+              },
+              {
+                "question": "How do you preserve in-flight transactions and records? (A.8.13, A.7.10)",
+                "response": ""
+              },
+              {
+                "question": "Which clients are told, and what is the SLA trigger? (A.5.20)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — Systems shutting down",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "15:20",
             "title": "Systems shutting down",
             "detail": "Workstations and servers begin shutting down while month-end processing is underway for three clients.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Extended outage confirmed",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "16:00",
             "title": "Extended outage confirmed",
             "detail": "The utility reports six or more hours without power; generators can be repaired, but not before midnight.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Sustained operations",
           "layout": "content",
-          "body": "## Decision B — Sustained operations\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Sustained operations\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "How do you continue critical client processes without the HQ? (A.5.30, A.6.7)",
-              "What is the order of restoration when power returns? (A.5.29)",
-              "How do you verify data integrity after unclean shutdowns? (A.8.13)",
-              "What do you commit to clients about the month-end deadline? (A.5.20)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "How do you continue critical client processes without the HQ? (A.5.30, A.6.7)",
+                "response": ""
+              },
+              {
+                "question": "What is the order of restoration when power returns? (A.5.29)",
+                "response": ""
+              },
+              {
+                "question": "How do you verify data integrity after unclean shutdowns? (A.8.13)",
+                "response": ""
+              },
+              {
+                "question": "What do you commit to clients about the month-end deadline? (A.5.20)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -4605,6 +5622,50 @@
                 "decision": "Lessons learned",
                 "control": "A.5.27 · Learning from incidents",
                 "guidance": "Improve power resilience (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — Regional power loss",
+                "time": "15:05",
+                "detail": "A regional power outage hits HQ; the UPS engages but the backup generators fail to start."
+              },
+              {
+                "inject": "Inject #2 — Systems shutting down",
+                "time": "15:20",
+                "detail": "Workstations and servers begin shutting down while month-end processing is underway for three clients."
+              },
+              {
+                "inject": "Inject #3 — Extended outage confirmed",
+                "time": "16:00",
+                "detail": "The utility reports six or more hours without power; generators can be repaired, but not before midnight."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Battery & shutdown call",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Sustained operations",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -4833,7 +5894,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Regional power loss",
+                  "time": "15:05",
+                  "detail": "A regional power outage hits HQ; the UPS engages but the backup generators fail to start."
+                },
+                {
+                  "inject": "Inject #2 — Systems shutting down",
+                  "time": "15:20",
+                  "detail": "Workstations and servers begin shutting down while month-end processing is underway for three clients."
+                },
+                {
+                  "inject": "Inject #3 — Extended outage confirmed",
+                  "time": "16:00",
+                  "detail": "The utility reports six or more hours without power; generators can be repaired, but not before midnight."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Battery & shutdown call",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Sustained operations",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -5002,65 +6102,92 @@
         {
           "name": "Inject #1 — 60% absenteeism",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "09:00",
             "title": "60% absenteeism",
             "detail": "A fast-spreading illness leaves 60% of the agent workforce unavailable — sick, isolating or caring for family.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Prioritisation",
           "layout": "content",
-          "body": "## Decision A — Prioritisation\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Prioritisation\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Who decides which client services get the remaining staff? (A.5.29)",
-              "Do you move agents to remote work at scale — and can the platform take it? (A.6.7, A.8.6)",
-              "What is the communication to clients about capacity? (A.5.20)",
-              "How do you protect staff health data and maintain screening? (A.6.1, privacy)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "Who decides which client services get the remaining staff? (A.5.29)",
+                "response": ""
+              },
+              {
+                "question": "Do you move agents to remote work at scale — and can the platform take it? (A.6.7, A.8.6)",
+                "response": ""
+              },
+              {
+                "question": "What is the communication to clients about capacity? (A.5.20)",
+                "response": ""
+              },
+              {
+                "question": "How do you protect staff health data and maintain screening? (A.6.1, privacy)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — Critical windows at risk",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "09:30",
             "title": "Critical windows at risk",
             "detail": "Three shifts are understaffed and two clients are on critical service windows; call queues build.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Service-credit trigger",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "Tue 09:00",
             "title": "Service-credit trigger",
             "detail": "Absenteeism holds at 60%; the contact center answers 30% of calls and a client triggers a service-credit clause.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Sustained delivery",
           "layout": "content",
-          "body": "## Decision B — Sustained delivery\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Sustained delivery\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "How do you prioritise across all clients — queue, triage, pause? (A.5.29)",
-              "What surge capacity exists — contractors, cross-training, other sites? (A.5.30)",
-              "How do you track SLA impact per client and report it? (A.5.20, A.8.16)",
-              "What health-and-safety measures keep remaining staff safe? (duty of care)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "How do you prioritise across all clients — queue, triage, pause? (A.5.29)",
+                "response": ""
+              },
+              {
+                "question": "What surge capacity exists — contractors, cross-training, other sites? (A.5.30)",
+                "response": ""
+              },
+              {
+                "question": "How do you track SLA impact per client and report it? (A.5.20, A.8.16)",
+                "response": ""
+              },
+              {
+                "question": "What health-and-safety measures keep remaining staff safe? (duty of care)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -5098,6 +6225,50 @@
                 "decision": "Lessons learned",
                 "control": "A.5.27 · Learning from incidents",
                 "guidance": "Improve workforce resilience (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — 60% absenteeism",
+                "time": "09:00",
+                "detail": "A fast-spreading illness leaves 60% of the agent workforce unavailable — sick, isolating or caring for family."
+              },
+              {
+                "inject": "Inject #2 — Critical windows at risk",
+                "time": "09:30",
+                "detail": "Three shifts are understaffed and two clients are on critical service windows; call queues build."
+              },
+              {
+                "inject": "Inject #3 — Service-credit trigger",
+                "time": "Tue 09:00",
+                "detail": "Absenteeism holds at 60%; the contact center answers 30% of calls and a client triggers a service-credit clause."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Prioritisation",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Sustained delivery",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -5326,7 +6497,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — 60% absenteeism",
+                  "time": "09:00",
+                  "detail": "A fast-spreading illness leaves 60% of the agent workforce unavailable — sick, isolating or caring for family."
+                },
+                {
+                  "inject": "Inject #2 — Critical windows at risk",
+                  "time": "09:30",
+                  "detail": "Three shifts are understaffed and two clients are on critical service windows; call queues build."
+                },
+                {
+                  "inject": "Inject #3 — Service-credit trigger",
+                  "time": "Tue 09:00",
+                  "detail": "Absenteeism holds at 60%; the contact center answers 30% of calls and a client triggers a service-credit clause."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Prioritisation",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Sustained delivery",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -5495,65 +6705,92 @@
         {
           "name": "Inject #1 — Spoofed 'CEO' calls",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "14:10",
             "title": "Spoofed 'CEO' calls",
             "detail": "Agents receive calls from 'the CEO' and 'IT support' requesting password-reset and MFA codes.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Contain the transfer",
           "layout": "content",
-          "body": "## Decision A — Contain the transfer\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Contain the transfer\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "How do you verify the caller before acting — what is the check process? (A.5.24, A.6.3)",
-              "Do you stop payment processing immediately — who decides? (A.5.25)",
-              "What evidence do you preserve from calls and systems? (A.8.15)",
-              "Which client is affected, and what is the notification trigger? (A.5.20)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "How do you verify the caller before acting — what is the check process? (A.5.24, A.6.3)",
+                "response": ""
+              },
+              {
+                "question": "Do you stop payment processing immediately — who decides? (A.5.25)",
+                "response": ""
+              },
+              {
+                "question": "What evidence do you preserve from calls and systems? (A.8.15)",
+                "response": ""
+              },
+              {
+                "question": "Which client is affected, and what is the notification trigger? (A.5.20)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — MFA codes shared",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "14:35",
             "title": "MFA codes shared",
             "detail": "Two finance staff share MFA codes; an unauthorised wire transfer of $180,000 is initiated before anyone notices.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Fraud confirmed",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "15:00",
             "title": "Fraud confirmed",
             "detail": "The wire is confirmed fraudulent and funds are already moving; two more employees admit sharing codes.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Prevent recurrence",
           "layout": "content",
-          "body": "## Decision B — Prevent recurrence\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Prevent recurrence\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "How do you contain the credential exposure — reset codes, tokens, sessions? (A.8.5, A.8.3)",
-              "What is the process to work with the bank and law enforcement? (A.5.24)",
-              "How do you prevent recurrence — awareness, verification protocol? (A.6.3)",
-              "What are the regulatory and client reporting duties? (A.5.20, compliance)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "How do you contain the credential exposure — reset codes, tokens, sessions? (A.8.5, A.8.3)",
+                "response": ""
+              },
+              {
+                "question": "What is the process to work with the bank and law enforcement? (A.5.24)",
+                "response": ""
+              },
+              {
+                "question": "How do you prevent recurrence — awareness, verification protocol? (A.6.3)",
+                "response": ""
+              },
+              {
+                "question": "What are the regulatory and client reporting duties? (A.5.20, compliance)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -5591,6 +6828,50 @@
                 "decision": "Client & regulator reporting",
                 "control": "A.5.20 · Supplier agreements",
                 "guidance": "Notification duties (27002 §5.20)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — Spoofed 'CEO' calls",
+                "time": "14:10",
+                "detail": "Agents receive calls from 'the CEO' and 'IT support' requesting password-reset and MFA codes."
+              },
+              {
+                "inject": "Inject #2 — MFA codes shared",
+                "time": "14:35",
+                "detail": "Two finance staff share MFA codes; an unauthorised wire transfer of $180,000 is initiated before anyone notices."
+              },
+              {
+                "inject": "Inject #3 — Fraud confirmed",
+                "time": "15:00",
+                "detail": "The wire is confirmed fraudulent and funds are already moving; two more employees admit sharing codes."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Contain the transfer",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Prevent recurrence",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -5819,7 +7100,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Spoofed 'CEO' calls",
+                  "time": "14:10",
+                  "detail": "Agents receive calls from 'the CEO' and 'IT support' requesting password-reset and MFA codes."
+                },
+                {
+                  "inject": "Inject #2 — MFA codes shared",
+                  "time": "14:35",
+                  "detail": "Two finance staff share MFA codes; an unauthorised wire transfer of $180,000 is initiated before anyone notices."
+                },
+                {
+                  "inject": "Inject #3 — Fraud confirmed",
+                  "time": "15:00",
+                  "detail": "The wire is confirmed fraudulent and funds are already moving; two more employees admit sharing codes."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Contain the transfer",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Prevent recurrence",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {
@@ -5977,65 +7297,92 @@
         {
           "name": "Inject #1 — Restore fails at 62%",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "09:15",
             "title": "Restore fails at 62%",
             "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A — Initial response\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Is this still a test, or do you declare a real incident? Who makes that call? (A.5.24, A.5.25)",
-              "Do you quarantine the corrupt backup set to stop it being reused? (A.8.13)",
-              "What is your restore path from the last known-good point — and how do you prove it? (A.8.13, A.8.15)",
-              "Who in the room knows what the client SLAs actually guarantee on RTO? (A.5.20)"
-            ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "Is this still a test, or do you declare a real incident? Who makes that call? (A.5.24, A.5.25)",
+                "response": ""
+              },
+              {
+                "question": "Do you quarantine the corrupt backup set to stop it being reused? (A.8.13)",
+                "response": ""
+              },
+              {
+                "question": "What is your restore path from the last known-good point — and how do you prove it? (A.8.13, A.8.15)",
+                "response": ""
+              },
+              {
+                "question": "Who in the room knows what the client SLAs actually guarantee on RTO? (A.5.20)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — Silent backup gap found",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "09:40",
             "title": "Silent backup gap found",
             "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — RTO blown, clients impacted",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "10:30",
             "title": "RTO blown, clients impacted",
             "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B — Impact\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "questions": [
-              "Do you restore from the 14-day-old point, and what data do you lose? (A.8.13)",
-              "How do you validate the restored environment is clean and complete? (A.8.15, A.8.9)",
-              "Do you invoke the hot site / alternate facility for capacity? (A.8.14, A.5.30)",
-              "Which clients are told — and does the contract require disclosure of the test failure? (A.5.20)"
-            ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "Do you restore from the 14-day-old point, and what data do you lose? (A.8.13)",
+                "response": ""
+              },
+              {
+                "question": "How do you validate the restored environment is clean and complete? (A.8.15, A.8.9)",
+                "response": ""
+              },
+              {
+                "question": "Do you invoke the hot site / alternate facility for capacity? (A.8.14, A.5.30)",
+                "response": ""
+              },
+              {
+                "question": "Which clients are told — and does the contract require disclosure of the test failure? (A.5.20)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -6083,6 +7430,50 @@
                 "decision": "Lessons learned",
                 "control": "A.5.27 · Learning from incidents",
                 "guidance": "Feed DR-test findings into the ISMS (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+          "data": {
+            "injects": [
+              {
+                "inject": "Inject #1 — Restore fails at 62%",
+                "time": "09:15",
+                "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts."
+              },
+              {
+                "inject": "Inject #2 — Silent backup gap found",
+                "time": "09:40",
+                "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old."
+              },
+              {
+                "inject": "Inject #3 — RTO blown, clients impacted",
+                "time": "10:30",
+                "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site."
+              }
+            ],
+            "decisions": [
+              {
+                "decision": "Decision A — Initial response",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
+              },
+              {
+                "decision": "Decision B — Impact",
+                "responses": [
+                  "",
+                  "",
+                  "",
+                  ""
+                ]
               }
             ]
           }
@@ -6311,7 +7702,46 @@
                 "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ]
+            ],
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Restore fails at 62%",
+                  "time": "09:15",
+                  "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts."
+                },
+                {
+                  "inject": "Inject #2 — Silent backup gap found",
+                  "time": "09:40",
+                  "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old."
+                },
+                {
+                  "inject": "Inject #3 — RTO blown, clients impacted",
+                  "time": "10:30",
+                  "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            }
           }
         },
         {

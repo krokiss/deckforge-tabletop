@@ -173,6 +173,7 @@ AAR_BODY = (
     "**Participants:** {{participants | default:\"—\"}}\n\n"
     "### Summary\n{{story}}\n\n"
     "### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n"
+    "### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n"
     "### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n"
     "### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n"
     "### Corrective & Preventive Actions (CAPA)\n"
@@ -293,6 +294,8 @@ def inject_slides(injs):
 
     Each inject is {time, title, detail, prompt}; the deck carries the same
     list under its "injects" key so the interactive runner can replay them.
+    Inject slides now include an observation field for participants to capture
+    their initial reactions and observations.
     """
     out = []
     for i, inj in enumerate(injs or []):
@@ -300,13 +303,14 @@ def inject_slides(injs):
         out.append({
             "name": "Inject #%d — %s" % (n, inj.get("title") or "Inject %d" % n),
             "layout": "section",
-            "body": "# Inject #%d — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}" % n,
+            "body": "# Inject #%d — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}" % n,
             "data": {
                 "number": n,
                 "time": inj.get("time", ""),
                 "title": inj.get("title", "Inject %d" % n),
                 "detail": inj.get("detail", ""),
                 "prompt": inj.get("prompt", "Team Response — Critical decision point"),
+                "observation": "",
             },
         })
     return out
@@ -354,19 +358,41 @@ def _build_deck(s):
     # Inject timeline: Inject #1 -> Decision A -> Inject #2 -> Inject #3 -> Decision B
     if injs:
         slides.append(injs[0])
+    # Decision A with response fields (paired questions+responses)
+    q1_pairs = [{"question": q, "response": ""} for q in s["q1"]]
     slides.append({
         "name": "Decision A — " + da, "layout": "content",
-        "body": "## Decision A — %s\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}" % da,
-        "data": {"questions": s["q1"], "timebox": "15 minutes"},
+        "body": "## Decision A — %s\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}" % da,
+        "data": {"pairs": q1_pairs, "timebox": "15 minutes"},
     })
     if len(injs) > 1:
         slides.append(injs[1])
     if len(injs) > 2:
         slides.append(injs[2])
+    # Decision B with response fields (paired questions+responses)
+    q2_pairs = [{"question": q, "response": ""} for q in s["q2"]]
     slides.append({
         "name": "Decision B — " + db, "layout": "content",
-        "body": "## Decision B — %s\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}" % db,
-        "data": {"questions": s["q2"], "timebox": "20 minutes"},
+        "body": "## Decision B — %s\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}" % db,
+        "data": {"pairs": q2_pairs, "timebox": "20 minutes"},
+    })
+    # Discussion Summary slide — aggregates all injects and decisions
+    inject_summary = []
+    for i, inj in enumerate(s.get("injects") or []):
+        inject_summary.append({
+            "inject": "Inject #%d — %s" % (i + 1, inj.get("title", "")),
+            "time": inj.get("time", ""),
+            "detail": inj.get("detail", ""),
+        })
+    # Extract responses from paired format
+    decision_summary = [
+        {"decision": "Decision A — " + da, "responses": [p.get("response", "") for p in q1_pairs]},
+        {"decision": "Decision B — " + db, "responses": [p.get("response", "") for p in q2_pairs]},
+    ]
+    slides.append({
+        "name": "Discussion Summary", "layout": "content",
+        "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+        "data": {"injects": inject_summary, "decisions": decision_summary},
     })
     slides += [
         {
@@ -386,6 +412,8 @@ def _build_deck(s):
                      "participants": "CISO, Client delivery, InfoSec, IT, Communications",
                      "highlights": s["highlights"], "lessons": s["lessons"],
                      "story": story_summary(s),
+                     "discussion": {"injects": [{"inject": "Inject #%d — %s" % (i+1, inj.get("title","")), "time": inj.get("time",""), "detail": inj.get("detail","")} for i, inj in enumerate(s.get("injects") or [])],
+                                     "decisions": [{"decision": "Decision A — " + da, "responses": ["" for _ in s["q1"]]}, {"decision": "Decision B — " + db, "responses": ["" for _ in s["q2"]]}]},
                      "recommendations": recommendations_from_actions(s.get("actions") or []),
                      "capa": capa_rows(s.get("actions") or []),
                      "meta": dict(AAR_META_DEFAULT),
