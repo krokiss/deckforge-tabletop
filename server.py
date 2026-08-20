@@ -397,19 +397,25 @@ INJECT_WIDGET_HTML = (
 )
 
 DECISION_CSS = (
-    '.dec-widget{margin-top:22px;border-top:1px solid rgba(255,193,7,.4);padding-top:16px}'
-    '.dec-widget .dec-note{color:#fbbf24;font:italic 14px Segoe UI,Arial,sans-serif;margin-bottom:8px}'
-    '.dec-widget .dec-q{margin-bottom:14px}'
-    '.dec-widget .dec-q-label{color:#93c5fd;font:600 14px Segoe UI,Arial,sans-serif;margin-bottom:4px}'
+    '.slide.content.dec-slide .inner{overflow-y:auto;padding-bottom:80px}'
+    '.dec-widget{margin-top:12px;border-top:1px solid rgba(255,193,7,.4);padding-top:10px}'
+    '.dec-widget .dec-note{color:#fbbf24;font:italic 12px Segoe UI,Arial,sans-serif;margin-bottom:4px}'
+    '.dec-widget .dec-q{margin-bottom:6px}'
+    '.dec-widget .dec-q-label{color:#93c5fd;font:600 12px Segoe UI,Arial,sans-serif;margin-bottom:2px}'
     '.dec-widget .dec-q-ta{width:100%;box-sizing:border-box;background:#0d1220;color:#e6e9f2;'
-    'border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:10px 14px;'
-    'font:15px/1.5 Segoe UI,Arial,sans-serif;min-height:80px;resize:vertical}'
+    'border:1px solid rgba(255,255,255,.16);border-radius:6px;padding:6px 10px;'
+    'font:13px/1.3 Segoe UI,Arial,sans-serif;height:44px;resize:none}'
     '.dec-widget .dec-q-ta:focus{outline:none;border-color:#fbbf24;box-shadow:0 0 0 3px rgba(251,191,36,.18)}'
-    '.dec-widget .dec-saved{margin-top:6px;padding:8px 12px;background:rgba(251,191,36,.08);'
-    'border:1px solid rgba(251,191,36,.3);border-radius:8px;color:#fde68a;white-space:pre-wrap}'
-    '.dec-widget .dec-save{margin-top:12px;background:#f59e0b;color:#000;border:0;'
-    'border-radius:8px;padding:10px 20px;font:700 14px Segoe UI,Arial,sans-serif;cursor:pointer}'
+    '.dec-widget .dec-saved{margin-top:4px;padding:4px 8px;background:rgba(251,191,36,.08);'
+    'border:1px solid rgba(251,191,36,.3);border-radius:6px;color:#fde68a;white-space:pre-wrap;'
+    'font:12px/1.3 Segoe UI,Arial,sans-serif}'
+    '.dec-widget .dec-save{display:block;margin:6px auto 0;background:#f59e0b;color:#000;border:0;'
+    'border-radius:8px;padding:7px 22px;font:700 13px Segoe UI,Arial,sans-serif;cursor:pointer}'
     '.dec-widget .dec-save:hover{background:#d97706}'
+    '.slide.dec-slide .inner h2{font-size:22px;margin:0 0 6px;padding-bottom:5px}'
+    '.slide.dec-slide .inner h3{font-size:12px;margin:2px 0 1px}'
+    '.slide.dec-slide .inner blockquote{margin:1px 0 4px;padding:3px 8px;font-size:11px}'
+    '.slide.dec-slide .inner p{margin:1px 0}'
 )
 
 def decision_widget_html(pairs):
@@ -427,7 +433,7 @@ def decision_widget_html(pairs):
         q_parts.append(
             '<div class="dec-q">'
             '<div class="dec-q-label">Q%d. %s</div>'
-            '<textarea class="dec-q-ta" rows="4" data-q="%d" '
+            '<textarea class="dec-q-ta" rows="2" data-q="%d" '
             'placeholder="Team response for Q%d..." '
             'autocomplete="off" spellcheck="false"></textarea>'
             '</div>' % (i + 1, q, i, i + 1)
@@ -680,6 +686,8 @@ def build_presentation(name, slides, injects=None, meta=None):
             slide_html += INJECT_LOG_HTML
             has_inject_ui = True
         extra = ' roles' if sname_raw == 'Roles' else ''
+        if sname_raw.startswith('Decision'):
+            extra += ' dec-slide'
         data_h = ''
         if sname_raw.startswith('After Action Executive'):
             extra += ' aar-slide'
