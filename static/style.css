@@ -585,6 +585,13 @@ textarea.field-input { min-height: 74px; resize: vertical; font-family: var(--mo
   opacity: .75; backdrop-filter: blur(6px);
 }
 .exit-present:hover { opacity: 1; }
+.end-exercise {
+  position: fixed; top: 16px; left: 140px; z-index: 160;
+  opacity: .85; backdrop-filter: blur(6px);
+  background: rgba(220, 53, 69, .85);
+  border-color: rgba(220, 53, 69, .6);
+}
+.end-exercise:hover { opacity: 1; background: rgba(220, 53, 69, 1); }
 
 /* ============================================================
    Modal

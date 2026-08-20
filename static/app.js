@@ -35,7 +35,7 @@ const IDS = ['deck-name', 'deck-list', 'btn-new', 'search', 'btn-help', 'btn-hel
   'btn-empty-new', 'btn-empty-sample', 'empty-decks', 'editor-pane', 'right-pane',
   'btn-import', 'file-import', 'deck-menu', 'btn-preview-mode', 'btn-fill-mode',
   'fill-wrap', 'preview-fill', 'btn-insert-slide', 'slide-strip', 'slide-menu',
-  'btn-present', 'present-overlay', 'present-frame', 'btn-exit-present', 'deck-bar', 'slide-count',
+  'btn-present', 'present-overlay', 'present-frame', 'btn-exit-present', 'btn-end-exercise', 'deck-bar', 'slide-count',
   'btn-simulations', 'btn-dashboard', 'scenario-lib', 'scenario-cats', 'btn-add-inject'];
 for (const id of IDS) els[id.replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = document.getElementById(id);
 
@@ -1203,6 +1203,43 @@ function closePresent() {
   els.presentFrame.srcdoc = '';
 }
 
+/* End Exercise — close presentation + download After-Action Report */
+async function endExercise() {
+  if (els.presentOverlay.hidden) return;
+  if (!confirm('End this exercise?\n\nThe After-Action Report (Word) will download automatically.')) return;
+  closePresent();
+  try {
+    const full = state.decks.find(d => d.id === state.deckId) || { name: state.name, slides: state.slides };
+    const res = await fetch('/api/export', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: full.name || state.name,
+        slides: full.slides || state.slides,
+        format: 'afteraction',
+        injects: full.injects || state.injects,
+        meta: full.meta || state.meta,
+      }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || res.statusText);
+    }
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = slug(state.name) + '-after-action.doc';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    showToast('Exercise ended — After-Action Report downloaded');
+  } catch (e) {
+    showToast('Report download failed: ' + e.message, true);
+  }
+}
+
 async function exportDeck(fmt) {
   try {
     const res = await fetch('/api/export', {
@@ -1525,6 +1562,7 @@ function bindEvents() {
   els.btnPrint.addEventListener('click', doPrint);
   els.btnPresent.addEventListener('click', openPresent);
   els.btnExitPresent.addEventListener('click', closePresent);
+  els.btnEndExercise.addEventListener('click', endExercise);
 
   els.btnAddInject.addEventListener('click', addInject);
 
