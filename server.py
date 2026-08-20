@@ -412,12 +412,33 @@ DECISION_CSS = (
     '.dec-widget .dec-save:hover{background:#d97706}'
 )
 
-DECISION_WIDGET_HTML = (
-    '<div class="dec-widget" data-decision="1">'
-    '<div class="dec-note">\u26A0\uFE0F Record the team\u2019s response to each question below.</div>'
-    '<button class="dec-save">Save responses \u2192</button>'
-    '</div>'
-)
+def decision_widget_html(pairs):
+    """Build a per-question response widget for a Decision slide.
+
+    Each pair is {question, response}; we render a labeled textarea for each
+    question so the facilitator can type the team's answer during the live
+    presentation.
+    """
+    if not pairs:
+        return ''
+    q_parts = []
+    for i, p in enumerate(pairs or []):
+        q = _html.escape(str(p.get('question') or ''), quote=True)
+        q_parts.append(
+            '<div class="dec-q">'
+            '<div class="dec-q-label">Q%d. %s</div>'
+            '<textarea class="dec-q-ta" rows="4" data-q="%d" '
+            'placeholder="Team response for Q%d..." '
+            'autocomplete="off" spellcheck="false"></textarea>'
+            '</div>' % (i + 1, q, i, i + 1)
+        )
+    return (
+        '<div class="dec-widget" data-decision="1">'
+        '<div class="dec-note">\u26A0\uFE0F Record the team\u2019s response to each question below.</div>'
+        '<div class="dec-questions">' + ''.join(q_parts) + '</div>'
+        '<button class="dec-save">Save responses \u2192</button>'
+        '</div>'
+    )
 
 INJECT_LOG_HTML = '<div class="inj-log"></div>'
 
@@ -649,7 +670,8 @@ def build_presentation(name, slides, injects=None, meta=None):
             slide_html += INJECT_WIDGET_HTML
             has_inject_ui = True
         elif sname_raw.startswith("Decision"):
-            slide_html += DECISION_WIDGET_HTML
+            pairs = ((s.get("data") or {}).get("pairs") or [])
+            slide_html += decision_widget_html(pairs)
             has_inject_ui = True
         elif sname_raw == "Roles":
             slide_html += role_picker_html((s.get("data") or {}).get("roles"))
