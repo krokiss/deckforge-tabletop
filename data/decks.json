@@ -6705,7 +6705,7 @@
         {
           "name": "Inject #1 - Spoofed IT call for MFA codes",
           "layout": "section",
-          "body": "# Inject #{{data.number}} — {{data.title}}\n\n**{{data.time}}** — {{data.detail}}\n\n> {{data.prompt}}\n\n---\n\n**Initial Observations:** {{data.observation}}",
+          "body": "# Inject #{{number}} — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n---\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "14:10",
@@ -6751,7 +6751,7 @@
         {
           "name": "Inject #2 - Unauthorized access flagged",
           "layout": "section",
-          "body": "# Inject #{{data.number}} — {{data.title}}\n\n**{{data.time}}** — {{data.detail}}\n\n> {{data.prompt}}\n\n---\n\n**Initial Observations:** {{data.observation}}",
+          "body": "# Inject #{{number}} — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n---\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "14:35",
