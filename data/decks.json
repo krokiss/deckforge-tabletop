@@ -7118,7 +7118,7 @@
           "data": {
             "scenario": {
               "title": "Backup & Recovery DR Test",
-              "kicker": "Cyber Incident Tabletop Â· ISO/IEC 27001:2022 & ISO/IEC 27002:2022 Â· Information Technology Â· Advanced Â· 90 minutes Â· Facilitated discussion"
+              "kicker": "Disaster recovery test exposing backup integrity issues and RTO failure"
             }
           }
         },
@@ -7130,10 +7130,10 @@
             "objectives": {
               "title": "Objectives & ground rules",
               "items": [
-                "Test detection and response when client data is at stake",
-                "Map every decision to an ISO/IEC 27001:2022 Annex A control",
-                "Expose gaps in monitoring, access and segmentation",
-                "Leave with an after-action list with owners and dates"
+                "Test the DR team's ability to respond to backup failures during a restore test",
+                "Evaluate backup monitoring and alerting effectiveness",
+                "Assess incident declaration and escalation procedures",
+                "Review client notification and SLA compliance processes"
               ]
             },
             "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
@@ -7145,16 +7145,16 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "Organization running services for clients"
+              "profile": "BPO organization providing finance & accounting services for 8 clients"
             },
-            "iso_scope": "Client services with nightly backups, quarterly restore tests and a specific RTO",
+            "iso_scope": "Client services with nightly backups, quarterly restore tests and a stated 4-hour RTO",
             "systems": [
               "Backup platform (nightly full + incremental)",
               "File shares (client PII)",
               "Monitoring / alerting",
               "DR runbook & RTO targets"
             ],
-            "setting": "Wednesday 09:00 â€” the quarterly DR test is underway: restore the client portal to a test environment and validate it. The test is supposed to complete within the aceppted RTO."
+            "setting": "Wednesday 09:00 — the quarterly DR test is underway: restore the client finance portal to a test environment and validate it. The test is supposed to take 4 hours."
           }
         },
         {
@@ -7214,7 +7214,7 @@
             "number": 1,
             "time": "09:15",
             "title": "Restore fails at 62%",
-            "detail": "The first restore attempt of the portal DB fails at 62% â€” the backup set is corrupt and the restore job aborts.",
+            "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts.",
             "prompt": "Team Response â€” Critical decision point",
             "observation": ""
           }
@@ -7242,7 +7242,8 @@
                 "question": "Who in the room knows what the client SLAs actually guarantee on RTO? (A.5.20)",
                 "response": ""
               }
-            ]
+            ],
+            "inject_context": "Inject #1: Restore fails at 62% (09:15) — Backup set is corrupt, restore job aborts"
           }
         },
         {
@@ -7253,7 +7254,7 @@
             "number": 2,
             "time": "09:40",
             "title": "Silent backup gap found",
-            "detail": "Backup jobs for the portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old.",
+            "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old.",
             "prompt": "Team Response â€” Critical decision point",
             "observation": ""
           }
@@ -7266,7 +7267,7 @@
             "number": 3,
             "time": "10:30",
             "title": "RTO blown, clients impacted",
-            "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site.",
+            "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on hot-site failover.",
             "prompt": "Team Response â€” Critical decision point",
             "observation": ""
           }
@@ -7294,7 +7295,8 @@
                 "question": "Which clients are told â€” and does the contract require disclosure of the test failure? (A.5.20)",
                 "response": ""
               }
-            ]
+            ],
+            "inject_context": "Inject #3: RTO blown, clients impacted (10:30) — 4-hour RTO exceeded, two clients affected"
           }
         },
         {
@@ -7687,7 +7689,7 @@
         {
           "time": "09:15",
           "title": "Restore fails at 62%",
-          "detail": "The first restore attempt of the finance portal DB fails at 62% â€” the backup set is corrupt and the restore job aborts."
+          "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts."
         },
         {
           "time": "09:40",
@@ -7697,7 +7699,7 @@
         {
           "time": "10:30",
           "title": "RTO blown, clients impacted",
-          "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site."
+          "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on hot-site failover."
         }
       ],
       "meta": {
