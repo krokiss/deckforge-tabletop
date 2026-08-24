@@ -6630,13 +6630,12 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "Organization providing Cust Careservicers"
+              "profile": "Organization providing Cust Care services"
             },
             "iso_scope": "Care Team -processing services, including client payments, PII",
             "systems": [
               "Phone system (VoIP)",
               "Email & identity",
-              "Finance / payment-approval workflow",
               "SIEM",
               "DLP"
             ],
@@ -6703,14 +6702,14 @@
           }
         },
         {
-          "name": "Inject #1 — Spoofed 'CEO' calls",
+          "name": "Inject #1 - Spoofed IT call for MFA codes",
           "layout": "section",
           "body": "# Inject #{{data.number}} — {{data.title}}\n\n**{{data.time}}** — {{data.detail}}\n\n> {{data.prompt}}\n\n---\n\n**Initial Observations:** {{data.observation}}",
           "data": {
             "number": 1,
             "time": "14:10",
-            "title": "Spoofed 'CEO' calls",
-            "detail": "Agents receive calls from 'the CEO' and 'IT support' requesting password-reset and MFA codes.",
+            "title": "Spoofed IT call for MFA codes",
+            "detail": "A spoofed call from IT support requests account access verification and asks for MFA codes. Two staff members provide their MFA codes.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -6743,29 +6742,37 @@
           }
         },
         {
-          "name": "Inject #2 — MFA codes shared",
+          "name": "Inject #2 - Unauthorized access flagged",
           "layout": "section",
           "body": "# Inject #{{data.number}} — {{data.title}}\n\n**{{data.time}}** — {{data.detail}}\n\n> {{data.prompt}}\n\n---\n\n**Initial Observations:** {{data.observation}}",
           "data": {
             "number": 2,
             "time": "14:35",
-            "title": "MFA codes shared",
-            "detail": "Two staff share MFA codes; an unauthorised access is initiated before anyone notices.",
+            "title": "Unauthorized access flagged",
+            "detail": "Unauthorized access attempt is initiated using the compromised MFA codes. IT security flags the access due to unauthorized location. Access is disallowed and no data is compromised.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 — Fraud confirmed",
-          "layout": "section",
-          "body": "# Inject #{{data.number}} — {{data.title}}\n\n**{{data.time}}** — {{data.detail}}\n\n> {{data.prompt}}\n\n---\n\n**Initial Observations:** {{data.observation}}",
+          "name": "Discussion Summary",
+          "layout": "content",
+          "body": "## Discussion Summary\n\n### Injects Covered\n{{#each data.injects}}\n- **Inject #{{number}} ({{time}}):** {{title}}\n{{/each}}\n\n### Key Observations\n{{data.observations}}\n\n### Decision Responses\n{{data.decisionResponses}}",
           "data": {
-            "number": 3,
-            "time": "15:00",
-            "title": "Fraud confirmed",
-            "detail": "The access was confirmed fraudulent however acess has been flaged by security and IT, access has been denied due to location and no access has been compromised; two employees admit sharing codes.",
-            "prompt": "Team Response — Critical decision point",
-            "observation": ""
+            "injects": [
+              {
+                "number": 1,
+                "time": "14:10",
+                "title": "Spoofed IT call for MFA codes"
+              },
+              {
+                "number": 2,
+                "time": "14:35",
+                "title": "Unauthorized access flagged"
+              }
+            ],
+            "observations": "",
+            "decisionResponses": ""
           }
         },
         {
@@ -7078,18 +7085,13 @@
       "injects": [
         {
           "time": "14:10",
-          "title": "Spoofed 'CEO' calls",
-          "detail": "Agents receive calls from 'the CEO' and 'IT support' requesting password-reset and MFA codes."
+          "title": "Spoofed IT call for MFA codes",
+          "detail": "A spoofed call from IT support requests account access verification and asks for MFA codes. Two staff members provide their MFA codes."
         },
         {
           "time": "14:35",
-          "title": "MFA codes shared",
-          "detail": "Two finance staff share MFA codes; an unauthorised wire transfer of $180,000 is initiated before anyone notices."
-        },
-        {
-          "time": "15:00",
-          "title": "Fraud confirmed",
-          "detail": "The wire is confirmed fraudulent and funds are already moving; two more employees admit sharing codes."
+          "title": "Unauthorized access flagged",
+          "detail": "Unauthorized access attempt is initiated using the compromised MFA codes. IT security flags the access due to unauthorized location. Access is disallowed and no data is compromised."
         }
       ],
       "meta": {
@@ -7099,7 +7101,7 @@
         "diff": "INTERMEDIATE"
       },
       "created": "2026-08-17T22:27:21",
-      "updated": "2026-08-24T23:13:16"
+      "updated": "2026-08-24T23:20:04"
     },
     {
       "id": "91670dae1ed3",
