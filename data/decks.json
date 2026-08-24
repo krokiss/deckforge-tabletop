@@ -199,33 +199,33 @@
             "clause_map": [
               {
                 "decision": "Isolate VPN & domain",
-                "control": "A.8.2 Â· Privileged access rights",
-                "guidance": "Restrict and review admin access (27002 Â§8.2)"
+                "control": "A.8.2 - Privileged access rights",
+                "guidance": "Restrict and review admin access (27002 Section 8.2)"
               },
               {
                 "decision": "Revoke shadow accounts",
-                "control": "A.8.3 Â· Access restriction",
-                "guidance": "Remove unauthorised access (27002 Â§8.3)"
+                "control": "A.8.3 - Access restriction",
+                "guidance": "Remove unauthorised access (27002 Section 8.3)"
               },
               {
                 "decision": "Preserve evidence",
-                "control": "A.5.28 Â· Evidence collection",
-                "guidance": "Chain of custody despite disabled logs (27002 Â§5.28)"
+                "control": "A.5.28 - Evidence collection",
+                "guidance": "Chain of custody despite disabled logs (27002 Section 5.28)"
               },
               {
                 "decision": "Client notification",
-                "control": "A.5.20 Â· Supplier agreements",
-                "guidance": "Contractual notification terms (27002 Â§5.20)"
+                "control": "A.5.20 - Supplier agreements",
+                "guidance": "Contractual notification terms (27002 Section 5.20)"
               },
               {
                 "decision": "Restore logging & monitoring",
-                "control": "A.8.15 / A.8.16 Â· Logging & monitoring",
-                "guidance": "Rebuild a trustworthy audit trail (27002 Â§8.15â€“8.16)"
+                "control": "A.8.15 / A.8.16 - Logging & monitoring",
+                "guidance": "Rebuild a trustworthy audit trail (27002 Section 8.15â€“8.16)"
               },
               {
                 "decision": "Lessons learned",
-                "control": "A.5.27 / A.5.28 Â· Learning & evidence",
-                "guidance": "Improve controls from the incident (27002 Â§5.27â€“5.28)"
+                "control": "A.5.27 / A.5.28 - Learning & evidence",
+                "guidance": "Improve controls from the incident (27002 Section 5.27â€“5.28)"
               }
             ]
           }
@@ -820,33 +820,33 @@
             "clause_map": [
               {
                 "decision": "Take the bucket offline",
-                "control": "A.8.3 Â· Access restriction",
-                "guidance": "Restrict access to authorised users (27002 Â§8.3)"
+                "control": "A.8.3 - Access restriction",
+                "guidance": "Restrict access to authorised users (27002 Section 8.3)"
               },
               {
                 "decision": "Preserve evidence",
-                "control": "A.8.15 Â· Logging",
-                "guidance": "Capture access logs before changes (27002 Â§8.15)"
+                "control": "A.8.15 - Logging",
+                "guidance": "Capture access logs before changes (27002 Section 8.15)"
               },
               {
                 "decision": "Fix configuration",
-                "control": "A.8.9 Â· Configuration management",
-                "guidance": "Secure baseline for storage (27002 Â§8.9)"
+                "control": "A.8.9 - Configuration management",
+                "guidance": "Secure baseline for storage (27002 Section 8.9)"
               },
               {
                 "decision": "Client notification",
-                "control": "A.5.20 Â· Supplier agreements",
-                "guidance": "Contractual reporting duties (27002 Â§5.20)"
+                "control": "A.5.20 - Supplier agreements",
+                "guidance": "Contractual reporting duties (27002 Section 5.20)"
               },
               {
                 "decision": "DLP & monitoring",
-                "control": "A.8.12 / A.8.16 Â· Data leakage prevention & monitoring",
-                "guidance": "Detect future exposure (27002 Â§8.12, Â§8.16)"
+                "control": "A.8.12 / A.8.16 - Data leakage prevention & monitoring",
+                "guidance": "Detect future exposure (27002 Section 8.12, Section 8.16)"
               },
               {
                 "decision": "Lessons learned",
-                "control": "A.5.27 Â· Learning from incidents",
-                "guidance": "Feed findings into the ISMS (27002 Â§5.27)"
+                "control": "A.5.27 - Learning from incidents",
+                "guidance": "Feed findings into the ISMS (27002 Section 5.27)"
               }
             ]
           }
@@ -1413,33 +1413,33 @@
             "clause_map": [
               {
                 "decision": "Isolate & contain",
-                "control": "A.8.31 Â· Separation of environments",
-                "guidance": "Cut off the spread (27002 Â§8.31)"
+                "control": "A.8.31 - Separation of environments",
+                "guidance": "Cut off the spread (27002 Section 8.31)"
               },
               {
                 "decision": "Verify backups",
-                "control": "A.8.13 Â· Information backup",
-                "guidance": "Test and validate restore points (27002 Â§8.13)"
+                "control": "A.8.13 - Information backup",
+                "guidance": "Test and validate restore points (27002 Section 8.13)"
               },
               {
                 "decision": "Ransom decision",
-                "control": "A.5.25 Â· Incident assessment",
-                "guidance": "Leadership decision and authority (27002 Â§5.25)"
+                "control": "A.5.25 - Incident assessment",
+                "guidance": "Leadership decision and authority (27002 Section 5.25)"
               },
               {
                 "decision": "Rebuild cleanly",
-                "control": "A.8.9 / A.8.31 Â· Configuration & separation",
-                "guidance": "Recovery without reintroducing the attacker (27002 Â§8.9, Â§8.31)"
+                "control": "A.8.9 / A.8.31 - Configuration & separation",
+                "guidance": "Recovery without reintroducing the attacker (27002 Section 8.9, Section 8.31)"
               },
               {
                 "decision": "Client communication",
-                "control": "A.5.20 Â· Supplier agreements",
-                "guidance": "Data-loss and SLA terms (27002 Â§5.20)"
+                "control": "A.5.20 - Supplier agreements",
+                "guidance": "Data-loss and SLA terms (27002 Section 5.20)"
               },
               {
                 "decision": "Lessons learned",
-                "control": "A.5.27 / A.5.28 Â· Learning & evidence",
-                "guidance": "Evidence and improvement (27002 Â§5.27â€“5.28)"
+                "control": "A.5.27 / A.5.28 - Learning & evidence",
+                "guidance": "Evidence and improvement (27002 Section 5.27â€“5.28)"
               }
             ]
           }
@@ -2006,33 +2006,33 @@
             "clause_map": [
               {
                 "decision": "Engage mitigation",
-                "control": "A.5.24 Â· Incident management planning",
-                "guidance": "Pre-agreed response (27002 Â§5.24)"
+                "control": "A.5.24 - Incident management planning",
+                "guidance": "Pre-agreed response (27002 Section 5.24)"
               },
               {
                 "decision": "Capacity & thresholds",
-                "control": "A.8.6 Â· Capacity management",
-                "guidance": "Sizing and limits (27002 Â§8.6)"
+                "control": "A.8.6 - Capacity management",
+                "guidance": "Sizing and limits (27002 Section 8.6)"
               },
               {
                 "decision": "Preserve evidence",
-                "control": "A.5.28 / A.8.15 Â· Evidence & logging",
-                "guidance": "Logs for attribution (27002 Â§5.28, Â§8.15)"
+                "control": "A.5.28 / A.8.15 - Evidence & logging",
+                "guidance": "Logs for attribution (27002 Section 5.28, Section 8.15)"
               },
               {
                 "decision": "Client communication",
-                "control": "A.5.20 Â· Supplier agreements",
-                "guidance": "Outage and SLA terms (27002 Â§5.20)"
+                "control": "A.5.20 - Supplier agreements",
+                "guidance": "Outage and SLA terms (27002 Section 5.20)"
               },
               {
                 "decision": "Continuity of service",
-                "control": "A.5.29 Â· Continuity planning",
-                "guidance": "Keep priority services up (27002 Â§5.29)"
+                "control": "A.5.29 - Continuity planning",
+                "guidance": "Keep priority services up (27002 Section 5.29)"
               },
               {
                 "decision": "Lessons learned",
-                "control": "A.5.27 Â· Learning from incidents",
-                "guidance": "Harden the edge (27002 Â§5.27)"
+                "control": "A.5.27 - Learning from incidents",
+                "guidance": "Harden the edge (27002 Section 5.27)"
               }
             ]
           }
@@ -2600,33 +2600,33 @@
             "clause_map": [
               {
                 "decision": "Disable access",
-                "control": "A.8.3 / A.6.5 Â· Access restriction & termination",
-                "guidance": "Cut access decisively (27002 Â§8.3, Â§6.5)"
+                "control": "A.8.3 / A.6.5 - Access restriction & termination",
+                "guidance": "Cut access decisively (27002 Section 8.3, Section 6.5)"
               },
               {
                 "decision": "Preserve evidence",
-                "control": "A.5.28 Â· Evidence collection",
-                "guidance": "HR & legal chain of custody (27002 Â§5.28)"
+                "control": "A.5.28 - Evidence collection",
+                "guidance": "HR & legal chain of custody (27002 Section 5.28)"
               },
               {
                 "decision": "DLP coverage",
-                "control": "A.8.12 Â· Data leakage prevention",
-                "guidance": "Detect USB and web egress (27002 Â§8.12)"
+                "control": "A.8.12 - Data leakage prevention",
+                "guidance": "Detect USB and web egress (27002 Section 8.12)"
               },
               {
                 "decision": "Monitor activity",
-                "control": "A.8.16 Â· Monitoring activities",
-                "guidance": "Watch for accomplices (27002 Â§8.16)"
+                "control": "A.8.16 - Monitoring activities",
+                "guidance": "Watch for accomplices (27002 Section 8.16)"
               },
               {
                 "decision": "Client notification",
-                "control": "A.5.20 Â· Supplier agreements",
-                "guidance": "Contractual reporting (27002 Â§5.20)"
+                "control": "A.5.20 - Supplier agreements",
+                "guidance": "Contractual reporting (27002 Section 5.20)"
               },
               {
                 "decision": "Screening & awareness",
-                "control": "A.6.1 / A.6.3 Â· People controls",
-                "guidance": "Screen and train the workforce (27002 Â§6.1, Â§6.3)"
+                "control": "A.6.1 / A.6.3 - People controls",
+                "guidance": "Screen and train the workforce (27002 Section 6.1, Section 6.3)"
               }
             ]
           }
@@ -3193,33 +3193,33 @@
             "clause_map": [
               {
                 "decision": "Reset credentials",
-                "control": "A.8.4 / A.8.5 Â· Secure authentication",
-                "guidance": "Enforce MFA and password reset (27002 Â§8.4â€“8.5)"
+                "control": "A.8.4 / A.8.5 - Secure authentication",
+                "guidance": "Enforce MFA and password reset (27002 Section 8.4â€“8.5)"
               },
               {
                 "decision": "Detect active use",
-                "control": "A.8.16 Â· Monitoring activities",
-                "guidance": "UEBA and session analysis (27002 Â§8.16)"
+                "control": "A.8.16 - Monitoring activities",
+                "guidance": "UEBA and session analysis (27002 Section 8.16)"
               },
               {
                 "decision": "Contain lateral movement",
-                "control": "A.8.31 Â· Separation of environments",
-                "guidance": "Isolate compromised paths (27002 Â§8.31)"
+                "control": "A.8.31 - Separation of environments",
+                "guidance": "Isolate compromised paths (27002 Section 8.31)"
               },
               {
                 "decision": "Engage forensics",
-                "control": "A.5.24 / A.5.28 Â· Incident response & evidence",
-                "guidance": "Structured response and evidence (27002 Â§5.24, Â§5.28)"
+                "control": "A.5.24 / A.5.28 - Incident response & evidence",
+                "guidance": "Structured response and evidence (27002 Section 5.24, Section 5.28)"
               },
               {
                 "decision": "Client notification",
-                "control": "A.5.20 Â· Supplier agreements",
-                "guidance": "Contractual reporting (27002 Â§5.20)"
+                "control": "A.5.20 - Supplier agreements",
+                "guidance": "Contractual reporting (27002 Section 5.20)"
               },
               {
                 "decision": "Lessons learned",
-                "control": "A.5.27 Â· Learning from incidents",
-                "guidance": "Improve identity controls (27002 Â§5.27)"
+                "control": "A.5.27 - Learning from incidents",
+                "guidance": "Improve identity controls (27002 Section 5.27)"
               }
             ]
           }
@@ -3786,33 +3786,33 @@
             "clause_map": [
               {
                 "decision": "Isolate the CRM",
-                "control": "A.8.31 Â· Separation of environments",
-                "guidance": "Contain the shared platform (27002 Â§8.31)"
+                "control": "A.8.31 - Separation of environments",
+                "guidance": "Contain the shared platform (27002 Section 8.31)"
               },
               {
                 "decision": "Determine scope",
-                "control": "A.8.15 Â· Logging",
-                "guidance": "Trace access across silos (27002 Â§8.15)"
+                "control": "A.8.15 - Logging",
+                "guidance": "Trace access across silos (27002 Section 8.15)"
               },
               {
                 "decision": "Patch the vulnerability",
-                "control": "A.8.8 Â· Vulnerability management",
-                "guidance": "Remediate the plugin (27002 Â§8.8)"
+                "control": "A.8.8 - Vulnerability management",
+                "guidance": "Remediate the plugin (27002 Section 8.8)"
               },
               {
                 "decision": "Rebuild cleanly",
-                "control": "A.8.13 / A.8.9 Â· Backup & configuration",
-                "guidance": "Restore from known-good (27002 Â§8.13, Â§8.9)"
+                "control": "A.8.13 / A.8.9 - Backup & configuration",
+                "guidance": "Restore from known-good (27002 Section 8.13, Section 8.9)"
               },
               {
                 "decision": "Client notification",
-                "control": "A.5.20 Â· Supplier agreements",
-                "guidance": "Data-exposure reporting (27002 Â§5.20)"
+                "control": "A.5.20 - Supplier agreements",
+                "guidance": "Data-exposure reporting (27002 Section 5.20)"
               },
               {
                 "decision": "Lessons learned",
-                "control": "A.5.27 Â· Learning from incidents",
-                "guidance": "Improve platform controls (27002 Â§5.27)"
+                "control": "A.5.27 - Learning from incidents",
+                "guidance": "Improve platform controls (27002 Section 5.27)"
               }
             ]
           }
@@ -4389,33 +4389,33 @@
             "clause_map": [
               {
                 "decision": "Declare incident",
-                "control": "A.5.24 Â· Incident management planning",
-                "guidance": "Define roles and process (27002 Â§5.24)"
+                "control": "A.5.24 - Incident management planning",
+                "guidance": "Define roles and process (27002 Section 5.24)"
               },
               {
                 "decision": "Fail over connectivity",
-                "control": "A.5.30 Â· ICT readiness",
-                "guidance": "Tested continuity arrangements (27002 Â§5.30)"
+                "control": "A.5.30 - ICT readiness",
+                "guidance": "Tested continuity arrangements (27002 Section 5.30)"
               },
               {
                 "decision": "Remote working",
-                "control": "A.6.7 Â· Remote working",
-                "guidance": "Secure alternatives for agents (27002 Â§6.7)"
+                "control": "A.6.7 - Remote working",
+                "guidance": "Secure alternatives for agents (27002 Section 6.7)"
               },
               {
                 "decision": "Client communication",
-                "control": "A.5.20 Â· Supplier agreements",
-                "guidance": "SLA and notification terms (27002 Â§5.20)"
+                "control": "A.5.20 - Supplier agreements",
+                "guidance": "SLA and notification terms (27002 Section 5.20)"
               },
               {
                 "decision": "Capacity on return",
-                "control": "A.8.6 Â· Capacity management",
-                "guidance": "Manage load after restore (27002 Â§8.6)"
+                "control": "A.8.6 - Capacity management",
+                "guidance": "Manage load after restore (27002 Section 8.6)"
               },
               {
                 "decision": "Lessons learned",
-                "control": "A.5.27 Â· Learning from incidents",
-                "guidance": "Improve resilience (27002 Â§5.27)"
+                "control": "A.5.27 - Learning from incidents",
+                "guidance": "Improve resilience (27002 Section 5.27)"
               }
             ]
           }
@@ -4992,33 +4992,33 @@
             "clause_map": [
               {
                 "decision": "Evacuate & secure the site",
-                "control": "A.7.2 / A.7.5 Â· Physical entry & threats",
-                "guidance": "Control access during the incident (27002 Â§7.2, Â§7.5)"
+                "control": "A.7.2 / A.7.5 - Physical entry & threats",
+                "guidance": "Control access during the incident (27002 Section 7.2, Section 7.5)"
               },
               {
                 "decision": "Declare continuity event",
-                "control": "A.5.29 Â· Continuity planning",
-                "guidance": "Trigger tested plans (27002 Â§5.29)"
+                "control": "A.5.29 - Continuity planning",
+                "guidance": "Trigger tested plans (27002 Section 5.29)"
               },
               {
                 "decision": "Redistribute work",
-                "control": "A.5.30 Â· ICT readiness",
-                "guidance": "Restore capability at the alternate site (27002 Â§5.30)"
+                "control": "A.5.30 - ICT readiness",
+                "guidance": "Restore capability at the alternate site (27002 Section 5.30)"
               },
               {
                 "decision": "Restore from backup",
-                "control": "A.8.13 Â· Information backup",
-                "guidance": "Validate restored claims data (27002 Â§8.13)"
+                "control": "A.8.13 - Information backup",
+                "guidance": "Validate restored claims data (27002 Section 8.13)"
               },
               {
                 "decision": "Client communication",
-                "control": "A.5.20 Â· Supplier agreements",
-                "guidance": "SLA and backlog commitments (27002 Â§5.20)"
+                "control": "A.5.20 - Supplier agreements",
+                "guidance": "SLA and backlog commitments (27002 Section 5.20)"
               },
               {
                 "decision": "Lessons learned",
-                "control": "A.5.27 Â· Learning from incidents",
-                "guidance": "Improve site resilience (27002 Â§5.27)"
+                "control": "A.5.27 - Learning from incidents",
+                "guidance": "Improve site resilience (27002 Section 5.27)"
               }
             ]
           }
@@ -5595,33 +5595,33 @@
             "clause_map": [
               {
                 "decision": "Declare continuity event",
-                "control": "A.5.29 Â· Continuity planning",
-                "guidance": "Trigger BCP for an extended outage (27002 Â§5.29)"
+                "control": "A.5.29 - Continuity planning",
+                "guidance": "Trigger BCP for an extended outage (27002 Section 5.29)"
               },
               {
                 "decision": "Protect in-flight data",
-                "control": "A.8.13 Â· Information backup",
-                "guidance": "Preserve transactions and restore integrity (27002 Â§8.13)"
+                "control": "A.8.13 - Information backup",
+                "guidance": "Preserve transactions and restore integrity (27002 Section 8.13)"
               },
               {
                 "decision": "Shutdown coordination",
-                "control": "A.5.24 Â· Incident management planning",
-                "guidance": "Coordinated decisions and authority (27002 Â§5.24)"
+                "control": "A.5.24 - Incident management planning",
+                "guidance": "Coordinated decisions and authority (27002 Section 5.24)"
               },
               {
                 "decision": "Remote continuity",
-                "control": "A.6.7 Â· Remote working",
-                "guidance": "Continue critical work off-site (27002 Â§6.7)"
+                "control": "A.6.7 - Remote working",
+                "guidance": "Continue critical work off-site (27002 Section 6.7)"
               },
               {
                 "decision": "Restore & verify",
-                "control": "A.8.6 / A.8.13 Â· Capacity & backup",
-                "guidance": "Bring systems back safely (27002 Â§8.6, Â§8.13)"
+                "control": "A.8.6 / A.8.13 - Capacity & backup",
+                "guidance": "Bring systems back safely (27002 Section 8.6, Section 8.13)"
               },
               {
                 "decision": "Lessons learned",
-                "control": "A.5.27 Â· Learning from incidents",
-                "guidance": "Improve power resilience (27002 Â§5.27)"
+                "control": "A.5.27 - Learning from incidents",
+                "guidance": "Improve power resilience (27002 Section 5.27)"
               }
             ]
           }
@@ -6198,33 +6198,33 @@
             "clause_map": [
               {
                 "decision": "Prioritise services",
-                "control": "A.5.29 Â· Continuity planning",
-                "guidance": "BCP for people availability (27002 Â§5.29)"
+                "control": "A.5.29 - Continuity planning",
+                "guidance": "BCP for people availability (27002 Section 5.29)"
               },
               {
                 "decision": "Remote working at scale",
-                "control": "A.6.7 Â· Remote working",
-                "guidance": "Secure work-from-home (27002 Â§6.7)"
+                "control": "A.6.7 - Remote working",
+                "guidance": "Secure work-from-home (27002 Section 6.7)"
               },
               {
                 "decision": "Capacity management",
-                "control": "A.8.6 Â· Capacity management",
-                "guidance": "Platform load and queue limits (27002 Â§8.6)"
+                "control": "A.8.6 - Capacity management",
+                "guidance": "Platform load and queue limits (27002 Section 8.6)"
               },
               {
                 "decision": "Client reporting",
-                "control": "A.5.20 Â· Supplier agreements",
-                "guidance": "SLA breach and service credits (27002 Â§5.20)"
+                "control": "A.5.20 - Supplier agreements",
+                "guidance": "SLA breach and service credits (27002 Section 5.20)"
               },
               {
                 "decision": "Screening & awareness",
-                "control": "A.6.1 / A.6.3 Â· People controls",
-                "guidance": "People controls during crisis (27002 Â§6.1, Â§6.3)"
+                "control": "A.6.1 / A.6.3 - People controls",
+                "guidance": "People controls during crisis (27002 Section 6.1, Section 6.3)"
               },
               {
                 "decision": "Lessons learned",
-                "control": "A.5.27 Â· Learning from incidents",
-                "guidance": "Improve workforce resilience (27002 Â§5.27)"
+                "control": "A.5.27 - Learning from incidents",
+                "guidance": "Improve workforce resilience (27002 Section 5.27)"
               }
             ]
           }
@@ -6816,28 +6816,28 @@
             "clause_map": [
               {
                 "decision": "Verify the caller",
-                "control": "A.5.24 · Incident management planning",
-                "guidance": "Predefined checks and authority (27002 §5.24)"
+                "control": "A.5.24 - Incident management planning",
+                "guidance": "Predefined checks and authority (27002 Section 5.24)"
               },
               {
                 "decision": "Reset credentials",
-                "control": "A.8.5 · Secure authentication",
-                "guidance": "Reissue MFA and tokens (27002 §8.5)"
+                "control": "A.8.5 - Secure authentication",
+                "guidance": "Reissue MFA and tokens (27002 Section 8.5)"
               },
               {
                 "decision": "Preserve evidence",
-                "control": "A.8.15 · Logging",
-                "guidance": "Call and system records (27002 §8.15)"
+                "control": "A.8.15 - Logging",
+                "guidance": "Call and system records (27002 Section 8.15)"
               },
               {
                 "decision": "Awareness & training",
-                "control": "A.6.3 · Awareness",
-                "guidance": "Social-engineering training (27002 §6.3)"
+                "control": "A.6.3 - Awareness",
+                "guidance": "Social-engineering training (27002 Section 6.3)"
               },
               {
                 "decision": "Client & regulator reporting",
-                "control": "A.5.20 · Supplier agreements",
-                "guidance": "Notification duties (27002 §5.20)"
+                "control": "A.5.20 - Supplier agreements",
+                "guidance": "Notification duties (27002 Section 5.20)"
               }
             ]
           }
@@ -7315,43 +7315,43 @@
             "clause_map": [
               {
                 "decision": "Quarantine the corrupt set",
-                "control": "A.8.13 Â· Information backup",
-                "guidance": "Protect and verify backup integrity (27002 Â§8.13)"
+                "control": "A.8.13 - Information backup",
+                "guidance": "Protect and verify backup integrity (27002 Section 8.13)"
               },
               {
                 "decision": "Declare a real incident",
-                "control": "A.5.24 / A.5.25 Â· Incident response",
-                "guidance": "Escalate and assess the DR-test failure (27002 Â§5.24â€“5.25)"
+                "control": "A.5.24 / A.5.25 - Incident response",
+                "guidance": "Escalate and assess the DR-test failure (27002 Section 5.24â€“5.25)"
               },
               {
                 "decision": "Restore from last known-good",
-                "control": "A.8.13 Â· Information backup",
-                "guidance": "Restore to a clean environment, verify integrity (27002 Â§8.13)"
+                "control": "A.8.13 - Information backup",
+                "guidance": "Restore to a clean environment, verify integrity (27002 Section 8.13)"
               },
               {
                 "decision": "Invoke hot site / alternate facility",
-                "control": "A.8.14 Â· Redundancy of processing facilities",
-                "guidance": "Maintain redundant capacity for recovery (27002 Â§8.14)"
+                "control": "A.8.14 - Redundancy of processing facilities",
+                "guidance": "Maintain redundant capacity for recovery (27002 Section 8.14)"
               },
               {
                 "decision": "Fix backup alerting",
-                "control": "A.8.16 Â· Monitoring activities",
-                "guidance": "Alert on failures, not just successes (27002 Â§8.16)"
+                "control": "A.8.16 - Monitoring activities",
+                "guidance": "Alert on failures, not just successes (27002 Section 8.16)"
               },
               {
                 "decision": "Validate capacity & RTO",
-                "control": "A.5.30 Â· ICT readiness",
-                "guidance": "Test continuity arrangements under load (27002 Â§5.30)"
+                "control": "A.5.30 - ICT readiness",
+                "guidance": "Test continuity arrangements under load (27002 Section 5.30)"
               },
               {
                 "decision": "Client notification",
-                "control": "A.5.20 Â· Supplier agreements",
-                "guidance": "Contractual disclosure of service impact (27002 Â§5.20)"
+                "control": "A.5.20 - Supplier agreements",
+                "guidance": "Contractual disclosure of service impact (27002 Section 5.20)"
               },
               {
                 "decision": "Lessons learned",
-                "control": "A.5.27 Â· Learning from incidents",
-                "guidance": "Feed DR-test findings into the ISMS (27002 Â§5.27)"
+                "control": "A.5.27 - Learning from incidents",
+                "guidance": "Feed DR-test findings into the ISMS (27002 Section 5.27)"
               }
             ]
           }
