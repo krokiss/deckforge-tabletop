@@ -6630,9 +6630,9 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "ISO/IEC 27001-certified BPO providing payroll, HR and finance processing"
+              "profile": "Organization providing Cust Careservicers"
             },
-            "iso_scope": "Payroll, HR and finance-processing services, including client payments",
+            "iso_scope": "Care Team -processing services, including client payments, PII",
             "systems": [
               "Phone system (VoIP)",
               "Email & identity",
@@ -6640,7 +6640,7 @@
               "SIEM",
               "DLP"
             ],
-            "setting": "Thursday afternoon, payroll week. The finance team processes client payments."
+            "setting": "Normal business operation, team has access to customer PII and transactions."
           }
         },
         {
@@ -6705,65 +6705,94 @@
         {
           "name": "Inject #1 — Spoofed 'CEO' calls",
           "layout": "section",
-          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #{{data.number}} — {{data.title}}\n\n**{{data.time}}** — {{data.detail}}\n\n> {{data.prompt}}\n\n---\n\n**Initial Observations:** {{data.observation}}",
           "data": {
             "number": 1,
             "time": "14:10",
             "title": "Spoofed 'CEO' calls",
             "detail": "Agents receive calls from 'the CEO' and 'IT support' requesting password-reset and MFA codes.",
-            "prompt": "Team Response — Critical decision point"
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision A — Contain the transfer",
           "layout": "content",
-          "body": "## Decision A — Contain the transfer\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Contain the transfer\n\n{{#each data.pairs}}\n> **Q{{@index1}}:** {{question | raw}}\n\n> **Team Response:** {{response}}\n{{/each}}\n\n**Timebox:** {{data.timebox}}",
           "data": {
             "questions": [
               "How do you verify the caller before acting — what is the check process? (A.5.24, A.6.3)",
-              "Do you stop payment processing immediately — who decides? (A.5.25)",
               "What evidence do you preserve from calls and systems? (A.8.15)",
               "Which client is affected, and what is the notification trigger? (A.5.20)"
             ],
-            "timebox": "15 minutes"
+            "timebox": "15 minutes",
+            "pairs": [
+              {
+                "question": "How do you verify the caller before acting — what is the check process? (A.5.24, A.6.3)",
+                "response": ""
+              },
+              {
+                "question": "What evidence do you preserve from calls and systems? (A.8.15)",
+                "response": ""
+              },
+              {
+                "question": "Which client is affected, and what is the notification trigger? (A.5.20)",
+                "response": ""
+              }
+            ]
           }
         },
         {
           "name": "Inject #2 — MFA codes shared",
           "layout": "section",
-          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #{{data.number}} — {{data.title}}\n\n**{{data.time}}** — {{data.detail}}\n\n> {{data.prompt}}\n\n---\n\n**Initial Observations:** {{data.observation}}",
           "data": {
             "number": 2,
             "time": "14:35",
             "title": "MFA codes shared",
-            "detail": "Two finance staff share MFA codes; an unauthorised wire transfer of $180,000 is initiated before anyone notices.",
-            "prompt": "Team Response — Critical decision point"
+            "detail": "Two staff share MFA codes; an unauthorised access is initiated before anyone notices.",
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Inject #3 — Fraud confirmed",
           "layout": "section",
-          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}",
+          "body": "# Inject #{{data.number}} — {{data.title}}\n\n**{{data.time}}** — {{data.detail}}\n\n> {{data.prompt}}\n\n---\n\n**Initial Observations:** {{data.observation}}",
           "data": {
             "number": 3,
             "time": "15:00",
             "title": "Fraud confirmed",
-            "detail": "The wire is confirmed fraudulent and funds are already moving; two more employees admit sharing codes.",
-            "prompt": "Team Response — Critical decision point"
+            "detail": "The access was confirmed fraudulent however acess has been flaged by security and IT, access has been denied due to location and no access has been compromised; two employees admit sharing codes.",
+            "prompt": "Team Response — Critical decision point",
+            "observation": ""
           }
         },
         {
           "name": "Decision B — Prevent recurrence",
           "layout": "content",
-          "body": "## Decision B — Prevent recurrence\n\n{{#each questions}}\n1. {{this}}\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Prevent recurrence\n\n{{#each data.pairs}}\n> **Q{{@index1}}:** {{question | raw}}\n\n> **Team Response:** {{response}}\n{{/each}}\n\n**Timebox:** {{data.timebox}}",
           "data": {
             "questions": [
               "How do you contain the credential exposure — reset codes, tokens, sessions? (A.8.5, A.8.3)",
-              "What is the process to work with the bank and law enforcement? (A.5.24)",
               "How do you prevent recurrence — awareness, verification protocol? (A.6.3)",
               "What are the regulatory and client reporting duties? (A.5.20, compliance)"
             ],
-            "timebox": "20 minutes"
+            "timebox": "20 minutes",
+            "pairs": [
+              {
+                "question": "How do you contain the credential exposure — reset codes, tokens, sessions? (A.8.5, A.8.3)",
+                "response": ""
+              },
+              {
+                "question": "How do you prevent recurrence — awareness, verification protocol? (A.6.3)",
+                "response": ""
+              },
+              {
+                "question": "What are the regulatory and client reporting duties? (A.5.20, compliance)",
+                "response": ""
+              }
+            ]
           }
         },
         {
@@ -6776,11 +6805,6 @@
                 "decision": "Verify the caller",
                 "control": "A.5.24 · Incident management planning",
                 "guidance": "Predefined checks and authority (27002 §5.24)"
-              },
-              {
-                "decision": "Stop payment processing",
-                "control": "A.5.25 · Incident assessment",
-                "guidance": "Assess and act fast (27002 §5.25)"
               },
               {
                 "decision": "Reset credentials",
@@ -6810,7 +6834,7 @@
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
           "data": {
-            "text": "Would our finance team challenge a 'CEO' call? What is our verification ritual?"
+            "text": "Would our team challenge a 'CEO' call? What is our verification ritual?"
           }
         },
         {
@@ -6833,7 +6857,7 @@
               "Caller verification needs a ritual, not good intentions",
               "Vishing must be part of awareness training, including finance teams"
             ],
-            "story": "Thursday afternoon, payroll week. The finance team processes client payments. The exercise unfolded through the following injects: At 14:10, Spoofed 'CEO' calls — Agents receive calls from 'the CEO' and 'IT support' requesting password-reset and MFA codes. At 14:35, MFA codes shared — Two finance staff share MFA codes; an unauthorised wire transfer of $180,000 is initiated before anyone notices. At 15:00, Fraud confirmed — The wire is confirmed fraudulent and funds are already moving; two more employees admit sharing codes. The hotwash closed on a single question: Would our finance team challenge a 'CEO' call? What is our verification ritual? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "The exercise unfolded through the following injects: At 14:10, Spoofed 'CEO/IT' calls — Agents receive calls from 'the CEO' and 'IT support' requesting password-reset and MFA codes. At 14:35, MFA codes shared — Two staff share MFA codes; an unauthorised access is initiated before anyone notices. At 15:00, Fraud confirmed — acess confirmed fraudulent; two employees admit sharing codes. The hotwash closed on a single question: Would our team challenge a 'CEO/IT' call? What is our verification ritual? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
               "Prioritise: Introduce dual-authorisation for wires (A.5.24) — owner: Finance.",
               "Prioritise: Add a caller-verification code word or ritual (A.6.3) — owner: HR.",
@@ -7039,23 +7063,15 @@
           "data": {
             "actions": [
               {
-                "item": "Introduce dual-authorisation for wires (A.5.24)",
-                "owner": "Finance"
-              },
-              {
-                "item": "Add a caller-verification code word or ritual (A.6.3)",
-                "owner": "HR"
-              },
-              {
                 "item": "Reissue MFA tokens and audit sessions (A.8.5)",
                 "owner": "IT"
               },
               {
                 "item": "Add vishing to awareness training (A.6.3)",
-                "owner": "HR"
+                "owner": "Corporate Security"
               }
             ],
-            "next_step": "Payment-controls review within 5 working days; awareness training refreshed this month."
+            "next_step": "controls review within 5 working days; awareness training refreshed this month."
           }
         }
       ],
@@ -7083,7 +7099,7 @@
         "diff": "INTERMEDIATE"
       },
       "created": "2026-08-17T22:27:21",
-      "updated": "2026-08-18T01:54:55"
+      "updated": "2026-08-24T23:13:16"
     },
     {
       "id": "91670dae1ed3",
