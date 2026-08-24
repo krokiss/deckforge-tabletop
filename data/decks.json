@@ -7145,7 +7145,7 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "BPO organization providing finance & accounting services for 8 clients"
+              "profile": "Organization providing customer care services for 8 clients"
             },
             "iso_scope": "Client services with nightly backups, quarterly restore tests and a stated 4-hour RTO",
             "systems": [
@@ -7235,15 +7235,21 @@
                 "response": ""
               },
               {
-                "question": "What is your restore path from the last known-good point â€” and how do you prove it? (A.8.13, A.8.15)",
+                "question": "What is your restore path from the last known-good point — and how do you prove it? (A.8.13, A.8.15)",
                 "response": ""
               },
               {
-                "question": "Who in the room knows what the client SLAs actually guarantee on RTO? (A.5.20)",
+                "question": "Who in the room knows what the client SLAs actually guarantee on recovery time? (A.5.20)",
                 "response": ""
               }
             ],
-            "inject_context": "Inject #1: Restore fails at 62% (09:15) — Backup set is corrupt, restore job aborts"
+            "inject_context": "Inject #1: Restore fails at 62% (09:15) — Backup set is corrupt, restore job aborts",
+            "questions": [
+              "Is this still a test, or do you declare a real incident? Who makes that call? (A.5.24, A.5.25)",
+              "Do you quarantine the corrupt backup set to stop it being reused? (A.8.13)",
+              "What is your restore path from the last known-good point — and how do you prove it? (A.8.13, A.8.15)",
+              "Who in the room knows what the client SLAs actually guarantee on recovery time? (A.5.20)"
+            ]
           }
         },
         {
@@ -7267,7 +7273,7 @@
             "number": 3,
             "time": "10:30",
             "title": "RTO blown, clients impacted",
-            "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on hot-site failover.",
+            "detail": "Recovery time objective is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on hot-site failover.",
             "prompt": "Team Response â€” Critical decision point",
             "observation": ""
           }
@@ -7292,11 +7298,17 @@
                 "response": ""
               },
               {
-                "question": "Which clients are told â€” and does the contract require disclosure of the test failure? (A.5.20)",
+                "question": "Which clients are told — and does the contract require disclosure of the test failure? (A.5.20)",
                 "response": ""
               }
             ],
-            "inject_context": "Inject #3: RTO blown, clients impacted (10:30) — 4-hour RTO exceeded, two clients affected"
+            "inject_context": "Inject #3: RTO blown, clients impacted (10:30) — Recovery time objective exceeded, two clients affected",
+            "questions": [
+              "Do you restore from the 14-day-old point, and what data do you lose? (A.8.13)",
+              "How do you validate the restored environment is clean and complete? (A.8.15, A.8.9)",
+              "Do you invoke the hot site / alternate facility for capacity? (A.8.14, A.5.30)",
+              "Which clients are told — and does the contract require disclosure of the test failure? (A.5.20)"
+            ]
           }
         },
         {
@@ -7699,7 +7711,7 @@
         {
           "time": "10:30",
           "title": "RTO blown, clients impacted",
-          "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on hot-site failover."
+          "detail": "Recovery time objective is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on hot-site failover."
         }
       ],
       "meta": {
@@ -7709,7 +7721,7 @@
         "diff": "ADVANCED"
       },
       "created": "2026-08-18T00:55:18",
-      "updated": "2026-08-24T22:13:54"
+      "updated": "2026-08-25T00:18:19"
     }
   ]
 }
