@@ -6603,7 +6603,7 @@
           "data": {
             "scenario": {
               "title": "Vishing Attack",
-              "kicker": "Social engineering attack targeting IT service desk staff to obtain MFA codes"
+              "kicker": "Social engineering attack targeting customer care staff to obtain account access"
             }
           }
         },
@@ -6615,10 +6615,10 @@
             "objectives": {
               "title": "Objectives & ground rules",
               "items": [
-                "Test the IT service desk verification protocol for incoming calls",
-                "Evaluate MFA code handling procedures and policy compliance",
-                "Assess incident detection and response time for social engineering attacks",
-                "Review client notification and regulatory reporting processes"
+                "Test the customer care team's ability to identify and report spoofed IT calls",
+                "Evaluate account security procedures and escalation protocols",
+                "Assess operational impact on service delivery during a security incident",
+                "Review incident communication and client notification processes"
               ]
             },
             "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
@@ -6630,17 +6630,17 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "BPO organization providing IT support services to multiple clients"
+              "profile": "BPO organization with customer care teams handling client inquiries"
             },
-            "iso_scope": "IT service desk operations with MFA enforcement, caller verification protocols, and incident response procedures",
+            "iso_scope": "Customer care operations with account access controls, caller verification protocols, and incident escalation procedures",
             "systems": [
-              "MFA authentication platform (tokens, apps)",
-              "IT service desk telephony system",
+              "Customer relationship management (CRM) platform",
+              "Account management system",
+              "Telephony and call logging system",
               "Identity and access management (IAM)",
-              "Security information and event management (SIEM)",
-              "Incident response procedures"
+              "Security incident reporting"
             ],
-            "setting": "Monday 14:10 — the IT service desk receives a call from someone claiming to be from internal IT support, requesting account verification and MFA codes for a \"critical system update.\""
+            "setting": "Monday 14:10 — a customer care agent receives a call from someone claiming to be from internal IT support, requesting account verification for a \"system migration.\""
           }
         },
         {
@@ -6703,14 +6703,14 @@
           }
         },
         {
-          "name": "Inject #1 - Spoofed IT call for MFA codes",
+          "name": "Inject #1 - Spoofed IT call for account access",
           "layout": "section",
           "body": "# Inject #{{number}} — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n---\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "14:10",
-            "title": "Spoofed IT call for MFA codes",
-            "detail": "A spoofed call from IT support requests account access verification and asks for MFA codes. Two staff members provide their MFA codes.",
+            "title": "Spoofed IT call for account access",
+            "detail": "A spoofed call from \"IT support\" requests account verification. The agent provides login credentials and answers security questions.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -6721,42 +6721,42 @@
           "body": "## Decision A — Contain the breach\n\n**Context:** {{inject_context}}\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "questions": [
-              "How do you immediately contain the compromised MFA codes - reset all tokens, revoke sessions, disable accounts? (A.8.5, A.8.3)",
-              "Which staff members provided the MFA codes and what is the extent of potential exposure? (A.6.3, A.5.24)",
-              "How do you verify if any unauthorized access or data exfiltration occurred before detection? (A.8.15, A.8.16)",
-              "What is the notification process for affected clients and regulatory bodies? (A.5.20, A.5.25)"
+              "How do you immediately secure the compromised account - reset password, revoke sessions, disable access? (A.8.5, A.8.3)",
+              "What is the operational impact - is the agent's queue affected and how do you redistribute workload? (A.5.24)",
+              "How do you verify if unauthorized access occurred and what customer data may be exposed? (A.8.15, A.8.16)",
+              "What is the escalation process to notify operations management and affected clients? (A.5.20, A.5.25)"
             ],
             "timebox": "15 minutes",
             "pairs": [
               {
-                "question": "How do you immediately contain the compromised MFA codes - reset all tokens, revoke sessions, disable accounts? (A.8.5, A.8.3)",
+                "question": "How do you immediately secure the compromised account - reset password, revoke sessions, disable access? (A.8.5, A.8.3)",
                 "response": ""
               },
               {
-                "question": "Which staff members provided the MFA codes and what is the extent of potential exposure? (A.6.3, A.5.24)",
+                "question": "What is the operational impact - is the agent's queue affected and how do you redistribute workload? (A.5.24)",
                 "response": ""
               },
               {
-                "question": "How do you verify if any unauthorized access or data exfiltration occurred before detection? (A.8.15, A.8.16)",
+                "question": "How do you verify if unauthorized access occurred and what customer data may be exposed? (A.8.15, A.8.16)",
                 "response": ""
               },
               {
-                "question": "What is the notification process for affected clients and regulatory bodies? (A.5.20, A.5.25)",
+                "question": "What is the escalation process to notify operations management and affected clients? (A.5.20, A.5.25)",
                 "response": ""
               }
             ],
-            "inject_context": "Inject #1: Spoofed IT call for MFA codes (14:10) — Two staff provided MFA codes"
+            "inject_context": "Inject #1: Spoofed IT call for account access (14:10) — Agent provided credentials and security answers"
           }
         },
         {
-          "name": "Inject #2 - Unauthorized access flagged",
+          "name": "Inject #2 - Unauthorized access detected",
           "layout": "section",
           "body": "# Inject #{{number}} — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n---\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "14:35",
-            "title": "Unauthorized access flagged",
-            "detail": "Unauthorized access attempt is initiated using the compromised MFA codes. IT security flags the access due to unauthorized location. Access is disallowed and no data is compromised.",
+            "title": "Unauthorized access detected",
+            "detail": "Security alerts flag login attempts from an unknown location. The attacker has accessed customer records and is attempting to export data.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -6767,45 +6767,45 @@
           "body": "## Key Findings\n\n### Attack Timeline\n- **14:10** — Spoofed IT call received, MFA codes obtained from 2 staff\n- **14:35** — Unauthorized access attempt detected and blocked\n\n### Findings\n{{#each findings}}\n- {{this}}\n{{/each}}\n\n### Impact Assessment\n{{impact}}",
           "data": {
             "findings": [
-              "Social engineering attack successfully obtained MFA codes from 2 staff members",
-              "IT security detected unauthorized access attempt within 25 minutes",
-              "Access was blocked before any data exfiltration occurred",
-              "Caller verification protocol was not followed per policy"
+              "Agent fell victim to social engineering and provided account credentials",
+              "Attacker accessed customer records from unauthorized location",
+              "Data export attempt was blocked by DLP controls",
+              "Verification protocol was not followed per policy"
             ],
-            "impact": "No data compromised, but MFA codes were exposed and could be reused"
+            "impact": "Customer data exposure risk, potential regulatory reporting required"
           }
         },
         {
-          "name": "Decision B - Prevent recurrence",
+          "name": "Decision B - Operations recovery",
           "layout": "content",
           "body": "## Decision B — Prevent recurrence\n\n**Context:** {{inject_context}}\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "questions": [
-              "How do you implement a verification protocol for IT support calls to prevent future spoofing? (A.6.3, A.5.24)",
-              "What MFA policy changes are needed - hardware tokens, biometric, or out-of-band verification? (A.8.5, A.8.2)",
-              "What vishing awareness training program will you deploy to all staff? (A.6.3, A.7.2)",
-              "What are the regulatory reporting obligations and timelines for this incident? (A.5.20, A.5.25)"
+              "How do you restore normal operations while maintaining security controls? (A.8.5, A.8.2)",
+              "What additional verification steps should be implemented for IT support calls? (A.6.3, A.5.24)",
+              "How do you train the customer care team to recognize social engineering attempts? (A.6.3, A.7.2)",
+              "What operational adjustments are needed to prevent similar incidents? (A.5.20, A.5.25)"
             ],
             "timebox": "20 minutes",
             "pairs": [
               {
-                "question": "How do you implement a verification protocol for IT support calls to prevent future spoofing? (A.6.3, A.5.24)",
+                "question": "How do you restore normal operations while maintaining security controls? (A.8.5, A.8.2)",
                 "response": ""
               },
               {
-                "question": "What MFA policy changes are needed - hardware tokens, biometric, or out-of-band verification? (A.8.5, A.8.2)",
+                "question": "What additional verification steps should be implemented for IT support calls? (A.6.3, A.5.24)",
                 "response": ""
               },
               {
-                "question": "What vishing awareness training program will you deploy to all staff? (A.6.3, A.7.2)",
+                "question": "How do you train the customer care team to recognize social engineering attempts? (A.6.3, A.7.2)",
                 "response": ""
               },
               {
-                "question": "What are the regulatory reporting obligations and timelines for this incident? (A.5.20, A.5.25)",
+                "question": "What operational adjustments are needed to prevent similar incidents? (A.5.20, A.5.25)",
                 "response": ""
               }
             ],
-            "inject_context": "Inject #2: Unauthorized access flagged (14:35) — IT detected unauthorized location access"
+            "inject_context": "Inject #2: Unauthorized access detected (14:35) — Attacker accessed customer records from unknown location"
           }
         },
         {
@@ -7091,13 +7091,13 @@
       "injects": [
         {
           "time": "14:10",
-          "title": "Spoofed IT call for MFA codes",
-          "detail": "A spoofed call from IT support requests account access verification and asks for MFA codes. Two staff members provide their MFA codes."
+          "title": "Spoofed IT call for account access",
+          "detail": "A spoofed call from \"IT support\" requests account verification. The agent provides login credentials and answers security questions."
         },
         {
           "time": "14:35",
-          "title": "Unauthorized access flagged",
-          "detail": "Unauthorized access attempt is initiated using the compromised MFA codes. IT security flags the access due to unauthorized location. Access is disallowed and no data is compromised."
+          "title": "Unauthorized access detected",
+          "detail": "Security alerts flag login attempts from an unknown location. The attacker has accessed customer records and is attempting to export data."
         }
       ],
       "meta": {
