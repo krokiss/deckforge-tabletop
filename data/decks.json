@@ -6859,60 +6859,62 @@
               "name": "Vishing Attack",
               "date": "2026-08-17"
             },
-            "participants": "CISO, Client delivery, InfoSec, IT, Communications",
+            "participants": "Operations Manager, Team Leaders, Customer Care Agents, IT Security, Compliance, HR",
             "highlights": [
-              "Payment processing was halted before the second transfer could complete",
-              "MFA tokens were reissued and sessions audited the same day",
-              "The affected client was notified within the contractual window"
+              "Customer care agent fell victim to social engineering and provided account credentials",
+              "Security detected unauthorized access from unknown location within 25 minutes",
+              "Data export attempt was blocked by DLP controls before customer data was exfiltrated",
+              "Verification protocol was not followed — no challenge to caller identity"
             ],
             "lessons": [
-              "Wires need dual-authorisation — a single approval is too easy to spoof",
-              "Caller verification needs a ritual, not good intentions",
-              "Vishing must be part of awareness training, including finance teams"
+              "Caller verification needs a formal ritual — not just good intentions",
+              "Customer care teams need regular social engineering awareness training",
+              "Operational impact assessment must be immediate — agent queue redistribution",
+              "Client notification criteria need to be clear and contractual"
             ],
-            "story": "The exercise unfolded through the following injects: At 14:10, Spoofed 'CEO/IT' calls — Agents receive calls from 'the CEO' and 'IT support' requesting password-reset and MFA codes. At 14:35, MFA codes shared — Two staff share MFA codes; an unauthorised access is initiated before anyone notices. At 15:00, Fraud confirmed — acess confirmed fraudulent; two employees admit sharing codes. The hotwash closed on a single question: Would our team challenge a 'CEO/IT' call? What is our verification ritual? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "The exercise unfolded through the following injects: At 14:10, Spoofed IT call for account access — A customer care agent received a call from someone claiming to be from internal IT support, requesting account verification for a 'system migration.' The agent provided login credentials and answered security questions. At 14:35, Unauthorized access detected — Security alerts flagged login attempts from an unknown location. The attacker had accessed customer records and was attempting to export data. The hotwash closed on a single question: Would our customer care team challenge a spoofed IT call? What is our verification ritual? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Introduce dual-authorisation for wires (A.5.24) — owner: Finance.",
-              "Prioritise: Add a caller-verification code word or ritual (A.6.3) — owner: HR.",
-              "Prioritise: Reissue MFA tokens and audit sessions (A.8.5) — owner: IT.",
-              "Prioritise: Add vishing to awareness training (A.6.3) — owner: HR."
+              "Prioritise: Implement IT support call verification protocol (A.6.3) — owner: IT Security",
+              "Prioritise: Add social engineering training for customer care teams (A.7.2) — owner: HR",
+              "Prioritise: Deploy account monitoring for unauthorized location access (A.8.15) — owner: IT Security",
+              "Prioritise: Establish client notification criteria and escalation matrix (A.5.20) — owner: Compliance"
             ],
             "capa": [
               {
-                "item": "Introduce dual-authorisation for wires (A.5.24)",
+                "item": "Implement IT support call verification protocol (A.6.3)",
                 "type": "Corrective",
-                "owner": "Finance",
+                "owner": "IT Security",
                 "due": "30 days",
-                "target": "0–30 days",
-                "framework_focus": "ISO/IEC 27001:2022 A.5.24",
-                "evidence": "Implementation evidence, validation test result and owner sign-off."
-              },
-              {
-                "item": "Add a caller-verification code word or ritual (A.6.3)",
-                "type": "Corrective",
-                "owner": "HR",
-                "due": "30 days",
-                "target": "0–30 days",
+                "target": "0-30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.6.3",
-                "evidence": "Implementation evidence, validation test result and owner sign-off."
+                "evidence": "Verification procedure document, training completion records, and test results"
               },
               {
-                "item": "Reissue MFA tokens and audit sessions (A.8.5)",
-                "type": "Preventive",
-                "owner": "IT",
-                "due": "30 days",
-                "target": "0–30 days",
-                "framework_focus": "ISO/IEC 27001:2022 A.8.5",
-                "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
-              },
-              {
-                "item": "Add vishing to awareness training (A.6.3)",
+                "item": "Deploy social engineering awareness training for customer care (A.7.2)",
                 "type": "Preventive",
                 "owner": "HR",
                 "due": "30 days",
-                "target": "0–30 days",
-                "framework_focus": "ISO/IEC 27001:2022 A.6.3",
-                "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
+                "target": "0-30 days",
+                "framework_focus": "ISO/IEC 27001:2022 A.7.2",
+                "evidence": "Training materials, attendance records, and phishing simulation results"
+              },
+              {
+                "item": "Enhance account monitoring for unauthorized location access (A.8.15)",
+                "type": "Corrective",
+                "owner": "IT Security",
+                "due": "30 days",
+                "target": "0-30 days",
+                "framework_focus": "ISO/IEC 27001:2022 A.8.15",
+                "evidence": "SIEM alert configuration, test alerts, and response playbook"
+              },
+              {
+                "item": "Establish client notification criteria and escalation matrix (A.5.20)",
+                "type": "Preventive",
+                "owner": "Compliance",
+                "due": "30 days",
+                "target": "0-30 days",
+                "framework_focus": "ISO/IEC 27001:2022 A.5.20",
+                "evidence": "Notification matrix document, escalation contacts, and test notification"
               }
             ],
             "meta": {
@@ -7003,55 +7005,51 @@
             ],
             "kpis": [
               {
-                "kpi": "Mean time to triage high-severity identity incident",
+                "kpi": "Mean time to detect unauthorized account access",
                 "target": "< 15 minutes"
               },
               {
-                "kpi": "Time to revoke all active remote sessions for compromised scope",
-                "target": "< 15 minutes after declaration"
+                "kpi": "Time to secure compromised account",
+                "target": "< 30 minutes after detection"
               },
               {
-                "kpi": "Time to disable confirmed rogue or suspicious privileged accounts",
-                "target": "< 30 minutes"
+                "kpi": "Time to complete customer care team training",
+                "target": "< 30 days"
               },
               {
-                "kpi": "Time to complete privileged credential rotation plan",
-                "target": "< 24 hours for highest-risk credentials"
+                "kpi": "Time to notify affected clients",
+                "target": "Within contractual window"
               },
               {
-                "kpi": "Coverage of critical AD/VPN logs into SIEM",
-                "target": "≥ 95% of in-scope assets"
+                "kpi": "Customer care social engineering awareness score",
+                "target": ">= 90%"
               },
               {
-                "kpi": "Percentage of privileged accounts under MFA/PAM/JIT control",
-                "target": "≥ 98%"
-              },
-              {
-                "kpi": "Time to complete initial data-exfiltration impact assessment",
-                "target": "< 24 hours"
+                "kpi": "Caller verification protocol compliance",
+                "target": ">= 95%"
               },
               {
                 "kpi": "CAPA closure by committed date",
-                "target": "≥ 90% on time"
+                "target": ">= 90% on time"
               },
               {
                 "kpi": "Follow-up tabletop exercise score",
-                "target": "≥ 22/25"
+                "target": ">= 22/25"
               }
             ],
             "decisions": [
-              "Approve a funded remediation program for identity containment, privileged access hardening, exfiltration monitoring, and forensic readiness.",
-              "Designate a single executive owner for CAPA governance and monthly reporting until all high-priority items are closed and validated.",
-              "Direct Corporate Security, Legal, HR, Compliance, and IT to finalize breach-notification and insider-threat decision matrices within 30 days.",
-              "Require a follow-up tabletop exercise within 180 days using the same scoring model and evidence pack requirements."
+              "Approve a funded remediation program for caller verification, social engineering training, account monitoring, and client notification.",
+              "Designate a single operations owner for CAPA governance and monthly reporting until all high-priority items are closed.",
+              "Require customer care teams to complete social engineering awareness training within 30 days.",
+              "Require a follow-up tabletop exercise within 180 days to verify improvement."
             ],
             "evidence": [
-              "Incident declaration, severity classification, commander assignment, scribe notes, and time-stamped decision log.",
-              "Isolation, session revocation, account disablement, privileged access review, and credential rotation evidence.",
-              "SIEM/EDR queries, IOC lists, block rules, firewall approvals, threat-hunting notes, malware analysis, and eradication evidence.",
-              "Impact assessment, data classification, DLP/CASB alerts, provider notes, legal/privacy decision logs, and notification determinations.",
-              "Forensic and insider evidence: device recall, images, storage snapshots, chain of custody, HR/legal coordination, and closure rationale.",
-              "Recovery and improvement evidence: clean-reconnect approvals, backup/restore validation, persistence re-scan, RCA, CAPA closure, and management review."
+              "Incident declaration, severity classification, and time-stamped decision log.",
+              "Account access logs, login attempt records, and unauthorized location evidence.",
+              "DLP alerts, data export attempts, and blocked transfer evidence.",
+              "Caller verification protocol test results and training completion records.",
+              "Client notification records and escalation matrix documentation.",
+              "Recovery and improvement evidence: account reset, session revocation, and CAPA closure."
             ],
             "roadmap": [
               {
