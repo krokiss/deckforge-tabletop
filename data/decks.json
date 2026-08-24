@@ -6612,12 +6612,15 @@
           "layout": "content",
           "body": "## {{objectives.title}}\n\n{{#each objectives.items}}\n- {{this}}\n{{/each}}\n\n**Ground rules:** {{ground_rules}}",
           "data": {
-            "objectives": [
-              "Test the IT service desk verification protocol for incoming calls",
-              "Evaluate MFA code handling procedures and policy compliance",
-              "Assess incident detection and response time for social engineering attacks",
-              "Review client notification and regulatory reporting processes"
-            ],
+            "objectives": {
+              "title": "Objectives & ground rules",
+              "items": [
+                "Test the IT service desk verification protocol for incoming calls",
+                "Evaluate MFA code handling procedures and policy compliance",
+                "Assess incident detection and response time for social engineering attacks",
+                "Review client notification and regulatory reporting processes"
+              ]
+            },
             "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
