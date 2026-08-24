@@ -7145,16 +7145,16 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "Organization providing customer care services for 8 clients"
+              "profile": "Organization providing customer care services for clients"
             },
-            "iso_scope": "Client services with nightly backups, quarterly restore tests and a stated 4-hour RTO",
+            "iso_scope": "Client services with nightly backups, quarterly restore tests and a stated agreed upon RTO",
             "systems": [
               "Backup platform (nightly full + incremental)",
               "File shares (client PII)",
               "Monitoring / alerting",
               "DR runbook & RTO targets"
             ],
-            "setting": "Wednesday 09:00 — the quarterly DR test is underway: restore the client finance portal to a test environment and validate it. The test is supposed to take 4 hours."
+            "setting": "Wednesday 09:00 — the quarterly DR test is underway: restore the client portal to a test environment and validate it."
           }
         },
         {
@@ -7214,7 +7214,7 @@
             "number": 1,
             "time": "09:15",
             "title": "Restore fails at 62%",
-            "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts.",
+            "detail": "The first restore attempt of the portal DB fails at 62% — the backup set is corrupt and the restore job aborts.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -7237,10 +7237,6 @@
               {
                 "question": "What is your restore path from the last known-good point — and how do you prove it? (A.8.13, A.8.15)",
                 "response": ""
-              },
-              {
-                "question": "Who in the room knows what the client SLAs actually guarantee on recovery time? (A.5.20)",
-                "response": ""
               }
             ],
             "inject_context": "Inject #1: Restore fails at 62% (09:15) — Backup set is corrupt, restore job aborts",
@@ -7260,7 +7256,7 @@
             "number": 2,
             "time": "09:40",
             "title": "Silent backup gap found",
-            "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old.",
+            "detail": "Backup jobs for the portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -7369,17 +7365,17 @@
               {
                 "inject": "Inject #1 — Restore fails at 62%",
                 "time": "09:15",
-                "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts."
+                "detail": "The first restore attempt of the portal DB fails at 62% — the backup set is corrupt and the restore job aborts."
               },
               {
                 "inject": "Inject #2 — Silent backup gap found",
                 "time": "09:40",
-                "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old."
+                "detail": "Backup jobs for the portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old."
               },
               {
                 "inject": "Inject #3 — RTO blown, clients impacted",
                 "time": "10:30",
-                "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site."
+                "detail": "Recovery time objective is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site."
               }
             ],
             "decisions": [
@@ -7421,60 +7417,62 @@
               "name": "Backup & Recovery DR Test",
               "date": "2026-08-17"
             },
-            "participants": "CISO, Client delivery, InfoSec, IT, Communications",
+            "participants": "Operations Manager, Team Leaders, IT Operations, Backup & Recovery Team, Compliance, Client Delivery",
             "highlights": [
-              "The corrupt backup was found during a scheduled test, not during a real outage",
-              "The last known-good restore point was confirmed before any destructive action",
-              "Clients were notified within the contractual window once the RTO was blown"
+              "The corrupt backup was identified during a scheduled DR test, not a real outage",
+              "Silent backup failures went undetected for 6 days due to missing failure alerts",
+              "The last known-good restore point was 14 days old, exceeding acceptable data loss",
+              "Clients were notified within the contractual window once the RTO was exceeded"
             ],
             "lessons": [
-              "Backup monitoring fired on success only — failure alerting is now a requirement",
+              "Backup monitoring must alert on failures, not just successes",
               "Restore tests must validate the restore step, not just the backup job",
-              "The 4-hour RTO was never validated under realistic load"
+              "Backup job health should be verified daily, not just during quarterly tests",
+              "RTO and RPO should be validated under realistic load conditions"
             ],
-            "story": "Wednesday 09:00 — the quarterly DR test is underway: restore the client finance portal to a test environment and validate it. The test is supposed to take 4 hours. The exercise unfolded through the following injects: At 09:15, Restore fails at 62% — The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts. At 09:40, Silent backup gap found — Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old. At 10:30, RTO blown, clients impacted — Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site. The hotwash closed on a single question: Would we have noticed a silent backup failure tomorrow? How old may the last good restore point get before it becomes unacceptable? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "The exercise unfolded through the following injects: At 09:15, Restore fails at 62% — The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts. At 09:40, Silent backup gap found — Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old. At 10:30, RTO blown, clients impacted — Recovery time objective is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on hot-site failover. The hotwash closed on a single question: Do we really know our backup status? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Alert on backup job failures, not just successes (A.8.16) — owner: IT.",
-              "Prioritise: Schedule quarterly restore tests that run to completion (A.8.13) — owner: IT.",
-              "Prioritise: Validate RTO under realistic load and document it (A.5.30) — owner: CISO.",
-              "Prioritise: Review client SLAs for RTO/RPO disclosure duties (A.5.20) — owner: Client delivery."
+              "Prioritise: Implement backup failure alerting and daily health checks (A.8.16) — owner: IT Operations",
+              "Prioritise: Schedule restore tests that validate full recovery, not just backup completion (A.8.13) — owner: Backup Team",
+              "Prioritise: Establish backup job monitoring dashboard with real-time alerts (A.8.15) — owner: IT Operations",
+              "Prioritise: Document and test RTO/RPO under realistic load conditions (A.8.14) — owner: DR Team"
             ],
             "capa": [
               {
-                "item": "Alert on backup job failures, not just successes (A.8.16)",
-                "type": "Preventive",
-                "owner": "IT",
+                "item": "Implement backup failure alerting and daily health checks (A.8.16)",
+                "type": "Corrective",
+                "owner": "IT Operations",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0-30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.16",
-                "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
+                "evidence": "Alert configuration, test alerts, and daily check procedures"
               },
               {
-                "item": "Schedule quarterly restore tests that run to completion (A.8.13)",
-                "type": "Preventive",
-                "owner": "IT",
-                "due": "Quarterly",
-                "target": "Quarterly / recurring",
+                "item": "Schedule restore tests that validate full recovery (A.8.13)",
+                "type": "Corrective",
+                "owner": "Backup Team",
+                "due": "30 days",
+                "target": "0-30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.13",
-                "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
+                "evidence": "Test procedures, completion records, and validation results"
               },
               {
-                "item": "Validate RTO under realistic load and document it (A.5.30)",
+                "item": "Establish backup job monitoring dashboard with real-time alerts (A.8.15)",
                 "type": "Preventive",
-                "owner": "CISO",
+                "owner": "IT Operations",
                 "due": "30 days",
-                "target": "0â€“30 days",
-                "framework_focus": "ISO/IEC 27001:2022 A.5.30",
-                "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
+                "target": "0-30 days",
+                "framework_focus": "ISO/IEC 27001:2022 A.8.15",
+                "evidence": "Dashboard screenshots, alert configuration, and test results"
               },
               {
-                "item": "Review client SLAs for RTO/RPO disclosure duties (A.5.20)",
+                "item": "Document and test RTO/RPO under realistic load (A.8.14)",
                 "type": "Preventive",
-                "owner": "Client delivery",
+                "owner": "DR Team",
                 "due": "30 days",
-                "target": "0â€“30 days",
-                "framework_focus": "ISO/IEC 27001:2022 A.5.20",
-                "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
+                "target": "0-30 days",
+                "framework_focus": "ISO/IEC 27001:2022 A.8.14",
+                "evidence": "RTO/RPO documentation, load test results, and validation report"
               }
             ],
             "meta": {
@@ -7565,55 +7563,50 @@
             ],
             "kpis": [
               {
-                "kpi": "Mean time to triage high-severity identity incident",
-                "target": "< 15 minutes"
+                "kpi": "Backup job failure detection time",
+                "target": "< 1 hour"
               },
               {
-                "kpi": "Time to revoke all active remote sessions for compromised scope",
-                "target": "< 15 minutes after declaration"
+                "kpi": "Time to identify corrupt backup set",
+                "target": "During scheduled test"
               },
               {
-                "kpi": "Time to disable confirmed rogue or suspicious privileged accounts",
-                "target": "< 30 minutes"
+                "kpi": "Time to validate restore from last known-good point",
+                "target": "< 2 hours"
               },
               {
-                "kpi": "Time to complete privileged credential rotation plan",
-                "target": "< 24 hours for highest-risk credentials"
+                "kpi": "Time to complete client notification",
+                "target": "Within contractual window"
               },
               {
-                "kpi": "Coverage of critical AD/VPN logs into SIEM",
-                "target": "â‰¥ 95% of in-scope assets"
+                "kpi": "Backup health check completion rate",
+                "target": "100% daily"
               },
               {
-                "kpi": "Percentage of privileged accounts under MFA/PAM/JIT control",
-                "target": "â‰¥ 98%"
-              },
-              {
-                "kpi": "Time to complete initial data-exfiltration impact assessment",
-                "target": "< 24 hours"
+                "kpi": "Restore test completion rate",
+                "target": "100% quarterly"
               },
               {
                 "kpi": "CAPA closure by committed date",
-                "target": "â‰¥ 90% on time"
+                "target": ">= 90% on time"
               },
               {
-                "kpi": "Follow-up tabletop exercise score",
-                "target": "â‰¥ 22/25"
+                "kpi": "Follow-up DR test score",
+                "target": ">= 22/25"
               }
             ],
             "decisions": [
-              "Approve a funded remediation program for identity containment, privileged access hardening, exfiltration monitoring, and forensic readiness.",
-              "Designate a single executive owner for CAPA governance and monthly reporting until all high-priority items are closed and validated.",
-              "Direct Corporate Security, Legal, HR, Compliance, and IT to finalize breach-notification and insider-threat decision matrices within 30 days.",
-              "Require a follow-up tabletop exercise within 180 days using the same scoring model and evidence pack requirements."
+              "Approve immediate implementation of backup failure alerting and daily health checks.",
+              "Require quarterly restore tests to validate full recovery, not just backup completion.",
+              "Establish a backup monitoring dashboard with real-time visibility for IT operations.",
+              "Require a follow-up DR test within 90 days to validate improvements."
             ],
             "evidence": [
-              "Incident declaration, severity classification, commander assignment, scribe notes, and time-stamped decision log.",
-              "Isolation, session revocation, account disablement, privileged access review, and credential rotation evidence.",
-              "SIEM/EDR queries, IOC lists, block rules, firewall approvals, threat-hunting notes, malware analysis, and eradication evidence.",
-              "Impact assessment, data classification, DLP/CASB alerts, provider notes, legal/privacy decision logs, and notification determinations.",
-              "Forensic and insider evidence: device recall, images, storage snapshots, chain of custody, HR/legal coordination, and closure rationale.",
-              "Recovery and improvement evidence: clean-reconnect approvals, backup/restore validation, persistence re-scan, RCA, CAPA closure, and management review."
+              "DR test declaration, restore attempt logs, and failure evidence.",
+              "Backup job history, failure alerts (or lack thereof), and monitoring gaps.",
+              "Restore validation results, data integrity checks, and RTO measurement.",
+              "Client notification records, escalation matrix, and contractual obligations.",
+              "Recovery and improvement evidence: backup health checks, monitoring dashboard, and CAPA closure."
             ],
             "roadmap": [
               {
@@ -7721,7 +7714,7 @@
         "diff": "ADVANCED"
       },
       "created": "2026-08-18T00:55:18",
-      "updated": "2026-08-25T00:18:19"
+      "updated": "2026-08-25T00:36:23"
     }
   ]
 }
