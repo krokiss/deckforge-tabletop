@@ -6715,7 +6715,7 @@
         {
           "name": "Decision A - Contain the breach",
           "layout": "content",
-          "body": "## Decision A — Contain the breach\n\n{{#each data.pairs}}\n> **Q{{@index1}}:** {{question | raw}}\n\n> **Team Response:** {{response}}\n{{/each}}\n\n**Timebox:** {{data.timebox}}",
+          "body": "## Decision A — Contain the breach\n\n**Context:** {{inject_context}}\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "questions": [
               "How do you immediately contain the compromised MFA codes - reset all tokens, revoke sessions, disable accounts? (A.8.5, A.8.3)",
@@ -6741,7 +6741,8 @@
                 "question": "What is the notification process for affected clients and regulatory bodies? (A.5.20, A.5.25)",
                 "response": ""
               }
-            ]
+            ],
+            "inject_context": "Inject #1: Spoofed IT call for MFA codes (14:10) — Two staff provided MFA codes"
           }
         },
         {
@@ -6758,30 +6759,23 @@
           }
         },
         {
-          "name": "Discussion Summary",
+          "name": "Key Findings",
           "layout": "content",
-          "body": "## Discussion Summary\n\n### Injects Covered\n{{#each data.injects}}\n- **Inject #{{number}} ({{time}}):** {{title}}\n{{/each}}\n\n### Key Observations\n{{data.observations}}\n\n### Decision Responses\n{{data.decisionResponses}}",
+          "body": "## Key Findings\n\n### Attack Timeline\n- **14:10** — Spoofed IT call received, MFA codes obtained from 2 staff\n- **14:35** — Unauthorized access attempt detected and blocked\n\n### Findings\n{{#each findings}}\n- {{this}}\n{{/each}}\n\n### Impact Assessment\n{{impact}}",
           "data": {
-            "injects": [
-              {
-                "number": 1,
-                "time": "14:10",
-                "title": "Spoofed IT call for MFA codes"
-              },
-              {
-                "number": 2,
-                "time": "14:35",
-                "title": "Unauthorized access flagged"
-              }
+            "findings": [
+              "Social engineering attack successfully obtained MFA codes from 2 staff members",
+              "IT security detected unauthorized access attempt within 25 minutes",
+              "Access was blocked before any data exfiltration occurred",
+              "Caller verification protocol was not followed per policy"
             ],
-            "observations": "",
-            "decisionResponses": ""
+            "impact": "No data compromised, but MFA codes were exposed and could be reused"
           }
         },
         {
           "name": "Decision B - Prevent recurrence",
           "layout": "content",
-          "body": "## Decision B — Prevent recurrence\n\n{{#each data.pairs}}\n> **Q{{@index1}}:** {{question | raw}}\n\n> **Team Response:** {{response}}\n{{/each}}\n\n**Timebox:** {{data.timebox}}",
+          "body": "## Decision B — Prevent recurrence\n\n**Context:** {{inject_context}}\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "questions": [
               "How do you implement a verification protocol for IT support calls to prevent future spoofing? (A.6.3, A.5.24)",
@@ -6807,7 +6801,8 @@
                 "question": "What are the regulatory reporting obligations and timelines for this incident? (A.5.20, A.5.25)",
                 "response": ""
               }
-            ]
+            ],
+            "inject_context": "Inject #2: Unauthorized access flagged (14:35) — IT detected unauthorized location access"
           }
         },
         {
