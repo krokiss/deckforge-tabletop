@@ -7233,16 +7233,16 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "ISO/IEC 27001-certified BPO running finance & accounting services for 9 clients"
+              "profile": "Organization running services for clients"
             },
-            "iso_scope": "Client services with nightly backups, quarterly restore tests and a stated 4-hour RTO",
+            "iso_scope": "Client services with nightly backups, quarterly restore tests and a specific RTO",
             "systems": [
               "Backup platform (nightly full + incremental)",
               "File shares (client PII)",
               "Monitoring / alerting",
               "DR runbook & RTO targets"
             ],
-            "setting": "Wednesday 09:00 — the quarterly DR test is underway: restore the client finance portal to a test environment and validate it. The test is supposed to take 4 hours."
+            "setting": "Wednesday 09:00 — the quarterly DR test is underway: restore the client portal to a test environment and validate it. The test is supposed to complete within the aceppted RTO."
           }
         },
         {
@@ -7302,7 +7302,7 @@
             "number": 1,
             "time": "09:15",
             "title": "Restore fails at 62%",
-            "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts.",
+            "detail": "The first restore attempt of the portal DB fails at 62% — the backup set is corrupt and the restore job aborts.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -7341,7 +7341,7 @@
             "number": 2,
             "time": "09:40",
             "title": "Silent backup gap found",
-            "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old.",
+            "detail": "Backup jobs for the portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -7795,7 +7795,7 @@
         "diff": "ADVANCED"
       },
       "created": "2026-08-18T00:55:18",
-      "updated": "2026-08-18T01:54:55"
+      "updated": "2026-08-24T22:13:54"
     }
   ]
 }
