@@ -29,7 +29,7 @@
                 "Leave with an after-action list with owners and dates"
               ]
             },
-            "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+            "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
         {
@@ -101,22 +101,22 @@
           }
         },
         {
-          "name": "Inject #1 â€” VPN anomaly detected",
+          "name": "Inject #1 — VPN anomaly detected",
           "layout": "section",
-          "body": "# Inject #1 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "08:15",
             "title": "VPN anomaly detected",
             "detail": "VPN login anomaly detected from unusual IP address outside business hours.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision A â€” Initial response",
+          "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A â€” Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "15 minutes",
             "pairs": [
@@ -125,7 +125,7 @@
                 "response": ""
               },
               {
-                "question": "Do you isolate the VPN and revoke the shadow account now â€” what breaks? (A.8.2, A.8.3)",
+                "question": "Do you isolate the VPN and revoke the shadow account now — what breaks? (A.8.2, A.8.3)",
                 "response": ""
               },
               {
@@ -140,35 +140,35 @@
           }
         },
         {
-          "name": "Inject #2 â€” New admin accounts created",
+          "name": "Inject #2 — New admin accounts created",
           "layout": "section",
-          "body": "# Inject #2 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "08:30",
             "title": "New admin accounts created",
             "detail": "New admin accounts created on domain controllers by unauthorized user.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 â€” Logs disabled on DC",
+          "name": "Inject #3 — Logs disabled on DC",
           "layout": "section",
-          "body": "# Inject #3 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "08:45",
             "title": "Logs disabled on DC",
             "detail": "Logs disabled on domain controller, forensic evidence at risk.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision B â€” Impact",
+          "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B â€” Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "20 minutes",
             "pairs": [
@@ -237,24 +237,24 @@
           "data": {
             "injects": [
               {
-                "inject": "Inject #1 â€” VPN anomaly detected",
+                "inject": "Inject #1 — VPN anomaly detected",
                 "time": "08:15",
                 "detail": "VPN login anomaly detected from unusual IP address outside business hours."
               },
               {
-                "inject": "Inject #2 â€” New admin accounts created",
+                "inject": "Inject #2 — New admin accounts created",
                 "time": "08:30",
                 "detail": "New admin accounts created on domain controllers by unauthorized user."
               },
               {
-                "inject": "Inject #3 â€” Logs disabled on DC",
+                "inject": "Inject #3 — Logs disabled on DC",
                 "time": "08:45",
                 "detail": "Logs disabled on domain controller, forensic evidence at risk."
               }
             ],
             "decisions": [
               {
-                "decision": "Decision A â€” Initial response",
+                "decision": "Decision A — Initial response",
                 "responses": [
                   "",
                   "",
@@ -263,7 +263,7 @@
                 ]
               },
               {
-                "decision": "Decision B â€” Impact",
+                "decision": "Decision B — Impact",
                 "responses": [
                   "",
                   "",
@@ -285,7 +285,7 @@
         {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"â€”\"}}\n**Participants:** {{participants | default:\"â€”\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Cyber-Intrusion",
@@ -526,24 +526,24 @@
             "discussion": {
               "injects": [
                 {
-                  "inject": "Inject #1 â€” VPN anomaly detected",
+                  "inject": "Inject #1 — VPN anomaly detected",
                   "time": "08:15",
                   "detail": "VPN login anomaly detected from unusual IP address outside business hours."
                 },
                 {
-                  "inject": "Inject #2 â€” New admin accounts created",
+                  "inject": "Inject #2 — New admin accounts created",
                   "time": "08:30",
                   "detail": "New admin accounts created on domain controllers by unauthorized user."
                 },
                 {
-                  "inject": "Inject #3 â€” Logs disabled on DC",
+                  "inject": "Inject #3 — Logs disabled on DC",
                   "time": "08:45",
                   "detail": "Logs disabled on domain controller, forensic evidence at risk."
                 }
               ],
               "decisions": [
                 {
-                  "decision": "Decision A â€” Initial response",
+                  "decision": "Decision A — Initial response",
                   "responses": [
                     "",
                     "",
@@ -552,7 +552,7 @@
                   ]
                 },
                 {
-                  "decision": "Decision B â€” Impact",
+                  "decision": "Decision B — Impact",
                   "responses": [
                     "",
                     "",
@@ -567,7 +567,7 @@
         {
           "name": "After-action review",
           "layout": "content",
-          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** â€” owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
           "data": {
             "actions": [
               {
@@ -650,7 +650,7 @@
                 "Leave with an after-action list with owners and dates"
               ]
             },
-            "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+            "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
         {
@@ -722,22 +722,22 @@
           }
         },
         {
-          "name": "Inject #1 â€” Public bucket link discovered",
+          "name": "Inject #1 — Public bucket link discovered",
           "layout": "section",
-          "body": "# Inject #1 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "07:50",
             "title": "Public bucket link discovered",
-            "detail": "A client reports finding a public link to payroll files â€” a cloud storage bucket appears to be world-readable.",
-            "prompt": "Team Response â€” Critical decision point",
+            "detail": "A client reports finding a public link to payroll files — a cloud storage bucket appears to be world-readable.",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision A â€” Initial response",
+          "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A â€” Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "15 minutes",
             "pairs": [
@@ -761,40 +761,40 @@
           }
         },
         {
-          "name": "Inject #2 â€” Exposure scope confirmed",
+          "name": "Inject #2 — Exposure scope confirmed",
           "layout": "section",
-          "body": "# Inject #2 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "08:20",
             "title": "Exposure scope confirmed",
             "detail": "PII for two clients' employees has been exposed for six weeks; access logs show downloads from unknown IPs.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 â€” Indexed by external scanner",
+          "name": "Inject #3 — Indexed by external scanner",
           "layout": "section",
-          "body": "# Inject #3 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "09:10",
             "title": "Indexed by external scanner",
             "detail": "An external scan service has indexed the exposed data and download logs show repeated access over the window.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision B â€” Impact",
+          "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B â€” Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "20 minutes",
             "pairs": [
               {
-                "question": "What are the notification duties â€” clients, regulators? (A.5.20, compliance)",
+                "question": "What are the notification duties — clients, regulators? (A.5.20, compliance)",
                 "response": ""
               },
               {
@@ -802,7 +802,7 @@
                 "response": ""
               },
               {
-                "question": "How do you prevent recurrence â€” DLP, monitoring? (A.8.12, A.8.16)",
+                "question": "How do you prevent recurrence — DLP, monitoring? (A.8.12, A.8.16)",
                 "response": ""
               },
               {
@@ -858,24 +858,24 @@
           "data": {
             "injects": [
               {
-                "inject": "Inject #1 â€” Public bucket link discovered",
+                "inject": "Inject #1 — Public bucket link discovered",
                 "time": "07:50",
-                "detail": "A client reports finding a public link to payroll files â€” a cloud storage bucket appears to be world-readable."
+                "detail": "A client reports finding a public link to payroll files — a cloud storage bucket appears to be world-readable."
               },
               {
-                "inject": "Inject #2 â€” Exposure scope confirmed",
+                "inject": "Inject #2 — Exposure scope confirmed",
                 "time": "08:20",
                 "detail": "PII for two clients' employees has been exposed for six weeks; access logs show downloads from unknown IPs."
               },
               {
-                "inject": "Inject #3 â€” Indexed by external scanner",
+                "inject": "Inject #3 — Indexed by external scanner",
                 "time": "09:10",
                 "detail": "An external scan service has indexed the exposed data and download logs show repeated access over the window."
               }
             ],
             "decisions": [
               {
-                "decision": "Decision A â€” Initial response",
+                "decision": "Decision A — Initial response",
                 "responses": [
                   "",
                   "",
@@ -884,7 +884,7 @@
                 ]
               },
               {
-                "decision": "Decision B â€” Impact",
+                "decision": "Decision B — Impact",
                 "responses": [
                   "",
                   "",
@@ -906,7 +906,7 @@
         {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"â€”\"}}\n**Participants:** {{participants | default:\"â€”\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Data Loss",
@@ -923,12 +923,12 @@
               "Storage configurations need a central baseline and clear ownership",
               "Notification templates must be ready before an exposure, not after"
             ],
-            "story": "A certification surveillance audit is scheduled for next week. The exercise unfolded through the following injects: At 07:50, Public bucket link discovered â€” A client reports finding a public link to payroll files â€” a cloud storage bucket appears to be world-readable. At 08:20, Exposure scope confirmed â€” PII for two clients' employees has been exposed for six weeks; access logs show downloads from unknown IPs. At 09:10, Indexed by external scanner â€” An external scan service has indexed the exposed data and download logs show repeated access over the window. The hotwash closed on a single question: How would we know a bucket was world-readable tomorrow? Who owns the cloud configuration baseline? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "A certification surveillance audit is scheduled for next week. The exercise unfolded through the following injects: At 07:50, Public bucket link discovered — A client reports finding a public link to payroll files — a cloud storage bucket appears to be world-readable. At 08:20, Exposure scope confirmed — PII for two clients' employees has been exposed for six weeks; access logs show downloads from unknown IPs. At 09:10, Indexed by external scanner — An external scan service has indexed the exposed data and download logs show repeated access over the window. The hotwash closed on a single question: How would we know a bucket was world-readable tomorrow? Who owns the cloud configuration baseline? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Add automated checks for public storage permissions (A.8.9) â€” owner: IT.",
-              "Prioritise: Review and revoke external links quarterly (A.8.3) â€” owner: InfoSec.",
-              "Prioritise: Enable DLP on storage and portals (A.8.12) â€” owner: Security operations.",
-              "Prioritise: Alert on new public links and permission changes (A.8.16) â€” owner: Security operations."
+              "Prioritise: Add automated checks for public storage permissions (A.8.9) — owner: IT.",
+              "Prioritise: Review and revoke external links quarterly (A.8.3) — owner: InfoSec.",
+              "Prioritise: Enable DLP on storage and portals (A.8.12) — owner: Security operations.",
+              "Prioritise: Alert on new public links and permission changes (A.8.16) — owner: Security operations."
             ],
             "capa": [
               {
@@ -1123,24 +1123,24 @@
             "discussion": {
               "injects": [
                 {
-                  "inject": "Inject #1 â€” Public bucket link discovered",
+                  "inject": "Inject #1 — Public bucket link discovered",
                   "time": "07:50",
-                  "detail": "A client reports finding a public link to payroll files â€” a cloud storage bucket appears to be world-readable."
+                  "detail": "A client reports finding a public link to payroll files — a cloud storage bucket appears to be world-readable."
                 },
                 {
-                  "inject": "Inject #2 â€” Exposure scope confirmed",
+                  "inject": "Inject #2 — Exposure scope confirmed",
                   "time": "08:20",
                   "detail": "PII for two clients' employees has been exposed for six weeks; access logs show downloads from unknown IPs."
                 },
                 {
-                  "inject": "Inject #3 â€” Indexed by external scanner",
+                  "inject": "Inject #3 — Indexed by external scanner",
                   "time": "09:10",
                   "detail": "An external scan service has indexed the exposed data and download logs show repeated access over the window."
                 }
               ],
               "decisions": [
                 {
-                  "decision": "Decision A â€” Initial response",
+                  "decision": "Decision A — Initial response",
                   "responses": [
                     "",
                     "",
@@ -1149,7 +1149,7 @@
                   ]
                 },
                 {
-                  "decision": "Decision B â€” Impact",
+                  "decision": "Decision B — Impact",
                   "responses": [
                     "",
                     "",
@@ -1164,7 +1164,7 @@
         {
           "name": "After-action review",
           "layout": "content",
-          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** â€” owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
           "data": {
             "actions": [
               {
@@ -1192,7 +1192,7 @@
         {
           "time": "07:50",
           "title": "Public bucket link discovered",
-          "detail": "A client reports finding a public link to payroll files â€” a cloud storage bucket appears to be world-readable."
+          "detail": "A client reports finding a public link to payroll files — a cloud storage bucket appears to be world-readable."
         },
         {
           "time": "08:20",
@@ -1243,7 +1243,7 @@
                 "Leave with an after-action list with owners and dates"
               ]
             },
-            "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+            "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
         {
@@ -1315,22 +1315,22 @@
           }
         },
         {
-          "name": "Inject #1 â€” Mass encryption detected",
+          "name": "Inject #1 — Mass encryption detected",
           "layout": "section",
-          "body": "# Inject #1 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "08:10",
             "title": "Mass encryption detected",
             "detail": "Encryption detected across the document-processing environment and file shares. A ransom note demands $600,000.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision A â€” Initial response",
+          "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A â€” Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "15 minutes",
             "pairs": [
@@ -1354,35 +1354,35 @@
           }
         },
         {
-          "name": "Inject #2 â€” Backup integrity in doubt",
+          "name": "Inject #2 — Backup integrity in doubt",
           "layout": "section",
-          "body": "# Inject #2 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "08:40",
             "title": "Backup integrity in doubt",
             "detail": "Early checks suggest the backup repository may also have been compromised during the attack.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 â€” Last good backup is 14 days old",
+          "name": "Inject #3 — Last good backup is 14 days old",
           "layout": "section",
-          "body": "# Inject #3 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "10:00",
             "title": "Last good backup is 14 days old",
             "detail": "Forensics confirm the attacker held admin access to the backup platform for nine days. The last known-good restore is 14 days old.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision B â€” Impact",
+          "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B â€” Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "20 minutes",
             "pairs": [
@@ -1451,24 +1451,24 @@
           "data": {
             "injects": [
               {
-                "inject": "Inject #1 â€” Mass encryption detected",
+                "inject": "Inject #1 — Mass encryption detected",
                 "time": "08:10",
                 "detail": "Encryption detected across the document-processing environment and file shares. A ransom note demands $600,000."
               },
               {
-                "inject": "Inject #2 â€” Backup integrity in doubt",
+                "inject": "Inject #2 — Backup integrity in doubt",
                 "time": "08:40",
                 "detail": "Early checks suggest the backup repository may also have been compromised during the attack."
               },
               {
-                "inject": "Inject #3 â€” Last good backup is 14 days old",
+                "inject": "Inject #3 — Last good backup is 14 days old",
                 "time": "10:00",
                 "detail": "Forensics confirm the attacker held admin access to the backup platform for nine days. The last known-good restore is 14 days old."
               }
             ],
             "decisions": [
               {
-                "decision": "Decision A â€” Initial response",
+                "decision": "Decision A — Initial response",
                 "responses": [
                   "",
                   "",
@@ -1477,7 +1477,7 @@
                 ]
               },
               {
-                "decision": "Decision B â€” Impact",
+                "decision": "Decision B — Impact",
                 "responses": [
                   "",
                   "",
@@ -1499,7 +1499,7 @@
         {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"â€”\"}}\n**Participants:** {{participants | default:\"â€”\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Ransomware",
@@ -1512,16 +1512,16 @@
               "Leadership made an explicit no-pay decision with documented rationale"
             ],
             "lessons": [
-              "The backup platform needs separate admin roles â€” a single admin is a single point of failure",
+              "The backup platform needs separate admin roles — a single admin is a single point of failure",
               "Restore-and-replay procedures should be tested with real month-end data",
               "Client data-loss windows should be agreed contractually, not discovered during a crisis"
             ],
-            "story": "Wednesday 08:00, with month-end invoicing for two clients in progress. The exercise unfolded through the following injects: At 08:10, Mass encryption detected â€” Encryption detected across the document-processing environment and file shares. A ransom note demands $600,000. At 08:40, Backup integrity in doubt â€” Early checks suggest the backup repository may also have been compromised during the attack. At 10:00, Last good backup is 14 days old â€” Forensics confirm the attacker held admin access to the backup platform for nine days. The last known-good restore is 14 days old. The hotwash closed on a single question: How protected is our backup platform from a compromised admin? Could we restore in a day? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Wednesday 08:00, with month-end invoicing for two clients in progress. The exercise unfolded through the following injects: At 08:10, Mass encryption detected — Encryption detected across the document-processing environment and file shares. A ransom note demands $600,000. At 08:40, Backup integrity in doubt — Early checks suggest the backup repository may also have been compromised during the attack. At 10:00, Last good backup is 14 days old — Forensics confirm the attacker held admin access to the backup platform for nine days. The last known-good restore is 14 days old. The hotwash closed on a single question: How protected is our backup platform from a compromised admin? Could we restore in a day? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Harden the backup platform with separate admin roles (A.8.2) â€” owner: InfoSec.",
-              "Prioritise: Move to immutable or offline backups (A.8.13) â€” owner: IT.",
-              "Prioritise: Document and test a replay-and-restore procedure (A.8.13) â€” owner: IT.",
-              "Prioritise: Segment file shares per client (A.8.31) â€” owner: InfoSec."
+              "Prioritise: Harden the backup platform with separate admin roles (A.8.2) — owner: InfoSec.",
+              "Prioritise: Move to immutable or offline backups (A.8.13) — owner: IT.",
+              "Prioritise: Document and test a replay-and-restore procedure (A.8.13) — owner: IT.",
+              "Prioritise: Segment file shares per client (A.8.31) — owner: InfoSec."
             ],
             "capa": [
               {
@@ -1716,24 +1716,24 @@
             "discussion": {
               "injects": [
                 {
-                  "inject": "Inject #1 â€” Mass encryption detected",
+                  "inject": "Inject #1 — Mass encryption detected",
                   "time": "08:10",
                   "detail": "Encryption detected across the document-processing environment and file shares. A ransom note demands $600,000."
                 },
                 {
-                  "inject": "Inject #2 â€” Backup integrity in doubt",
+                  "inject": "Inject #2 — Backup integrity in doubt",
                   "time": "08:40",
                   "detail": "Early checks suggest the backup repository may also have been compromised during the attack."
                 },
                 {
-                  "inject": "Inject #3 â€” Last good backup is 14 days old",
+                  "inject": "Inject #3 — Last good backup is 14 days old",
                   "time": "10:00",
                   "detail": "Forensics confirm the attacker held admin access to the backup platform for nine days. The last known-good restore is 14 days old."
                 }
               ],
               "decisions": [
                 {
-                  "decision": "Decision A â€” Initial response",
+                  "decision": "Decision A — Initial response",
                   "responses": [
                     "",
                     "",
@@ -1742,7 +1742,7 @@
                   ]
                 },
                 {
-                  "decision": "Decision B â€” Impact",
+                  "decision": "Decision B — Impact",
                   "responses": [
                     "",
                     "",
@@ -1757,7 +1757,7 @@
         {
           "name": "After-action review",
           "layout": "content",
-          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** â€” owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
           "data": {
             "actions": [
               {
@@ -1836,7 +1836,7 @@
                 "Leave with an after-action list with owners and dates"
               ]
             },
-            "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+            "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
         {
@@ -1855,7 +1855,7 @@
               "Client APIs",
               "DDoS mitigation service"
             ],
-            "setting": "Black Friday week â€” portal traffic is running at three times normal."
+            "setting": "Black Friday week — portal traffic is running at three times normal."
           }
         },
         {
@@ -1908,27 +1908,27 @@
           }
         },
         {
-          "name": "Inject #1 â€” Traffic spikes 50x",
+          "name": "Inject #1 — Traffic spikes 50x",
           "layout": "section",
-          "body": "# Inject #1 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "09:30",
             "title": "Traffic spikes 50x",
             "detail": "Portal traffic spikes 50x; load balancers saturate, the CDN is bypassed and portals begin timing out.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision A â€” Initial response",
+          "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A â€” Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "15 minutes",
             "pairs": [
               {
-                "question": "Do you engage the DDoS mitigation provider now â€” who decides? (A.5.24)",
+                "question": "Do you engage the DDoS mitigation provider now — who decides? (A.5.24)",
                 "response": ""
               },
               {
@@ -1947,35 +1947,35 @@
           }
         },
         {
-          "name": "Inject #2 â€” Second wave hits APIs",
+          "name": "Inject #2 — Second wave hits APIs",
           "layout": "section",
-          "body": "# Inject #2 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "10:05",
             "title": "Second wave hits APIs",
             "detail": "A second wave targets client APIs and the voice channel; mitigation reports a 40,000-device botnet.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 â€” Two client portals down",
+          "name": "Inject #3 — Two client portals down",
           "layout": "section",
-          "body": "# Inject #3 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "10:45",
             "title": "Two client portals down",
             "detail": "Two clients' portals are fully down. Priority decisions are needed on which services stay up.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision B â€” Impact",
+          "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B â€” Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "20 minutes",
             "pairs": [
@@ -2044,24 +2044,24 @@
           "data": {
             "injects": [
               {
-                "inject": "Inject #1 â€” Traffic spikes 50x",
+                "inject": "Inject #1 — Traffic spikes 50x",
                 "time": "09:30",
                 "detail": "Portal traffic spikes 50x; load balancers saturate, the CDN is bypassed and portals begin timing out."
               },
               {
-                "inject": "Inject #2 â€” Second wave hits APIs",
+                "inject": "Inject #2 — Second wave hits APIs",
                 "time": "10:05",
                 "detail": "A second wave targets client APIs and the voice channel; mitigation reports a 40,000-device botnet."
               },
               {
-                "inject": "Inject #3 â€” Two client portals down",
+                "inject": "Inject #3 — Two client portals down",
                 "time": "10:45",
                 "detail": "Two clients' portals are fully down. Priority decisions are needed on which services stay up."
               }
             ],
             "decisions": [
               {
-                "decision": "Decision A â€” Initial response",
+                "decision": "Decision A — Initial response",
                 "responses": [
                   "",
                   "",
@@ -2070,7 +2070,7 @@
                 ]
               },
               {
-                "decision": "Decision B â€” Impact",
+                "decision": "Decision B — Impact",
                 "responses": [
                   "",
                   "",
@@ -2086,13 +2086,13 @@
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
           "data": {
-            "text": "Could we absorb a 50x spike? What is our blackhole threshold â€” and who owns it?"
+            "text": "Could we absorb a 50x spike? What is our blackhole threshold — and who owns it?"
           }
         },
         {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"â€”\"}}\n**Participants:** {{participants | default:\"â€”\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Denial of Service",
@@ -2109,12 +2109,12 @@
               "The CDN-bypass scenario should be load-tested before peak season",
               "A 50x spike is survivable only with tested capacity and rate limits"
             ],
-            "story": "Black Friday week â€” portal traffic is running at three times normal. The exercise unfolded through the following injects: At 09:30, Traffic spikes 50x â€” Portal traffic spikes 50x; load balancers saturate, the CDN is bypassed and portals begin timing out. At 10:05, Second wave hits APIs â€” A second wave targets client APIs and the voice channel; mitigation reports a 40,000-device botnet. At 10:45, Two client portals down â€” Two clients' portals are fully down. Priority decisions are needed on which services stay up. The hotwash closed on a single question: Could we absorb a 50x spike? What is our blackhole threshold â€” and who owns it? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Black Friday week — portal traffic is running at three times normal. The exercise unfolded through the following injects: At 09:30, Traffic spikes 50x — Portal traffic spikes 50x; load balancers saturate, the CDN is bypassed and portals begin timing out. At 10:05, Second wave hits APIs — A second wave targets client APIs and the voice channel; mitigation reports a 40,000-device botnet. At 10:45, Two client portals down — Two clients' portals are fully down. Priority decisions are needed on which services stay up. The hotwash closed on a single question: Could we absorb a 50x spike? What is our blackhole threshold — and who owns it? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Pre-arrange a DDoS mitigation retainer (A.5.24) â€” owner: InfoSec.",
-              "Prioritise: Add rate-limiting and WAF rules for portals (A.8.9) â€” owner: IT.",
-              "Prioritise: Load-test portals to 3x peak (A.8.6) â€” owner: IT.",
-              "Prioritise: Stand up a client status page for incidents (A.5.20) â€” owner: Communications."
+              "Prioritise: Pre-arrange a DDoS mitigation retainer (A.5.24) — owner: InfoSec.",
+              "Prioritise: Add rate-limiting and WAF rules for portals (A.8.9) — owner: IT.",
+              "Prioritise: Load-test portals to 3x peak (A.8.6) — owner: IT.",
+              "Prioritise: Stand up a client status page for incidents (A.5.20) — owner: Communications."
             ],
             "capa": [
               {
@@ -2309,24 +2309,24 @@
             "discussion": {
               "injects": [
                 {
-                  "inject": "Inject #1 â€” Traffic spikes 50x",
+                  "inject": "Inject #1 — Traffic spikes 50x",
                   "time": "09:30",
                   "detail": "Portal traffic spikes 50x; load balancers saturate, the CDN is bypassed and portals begin timing out."
                 },
                 {
-                  "inject": "Inject #2 â€” Second wave hits APIs",
+                  "inject": "Inject #2 — Second wave hits APIs",
                   "time": "10:05",
                   "detail": "A second wave targets client APIs and the voice channel; mitigation reports a 40,000-device botnet."
                 },
                 {
-                  "inject": "Inject #3 â€” Two client portals down",
+                  "inject": "Inject #3 — Two client portals down",
                   "time": "10:45",
                   "detail": "Two clients' portals are fully down. Priority decisions are needed on which services stay up."
                 }
               ],
               "decisions": [
                 {
-                  "decision": "Decision A â€” Initial response",
+                  "decision": "Decision A — Initial response",
                   "responses": [
                     "",
                     "",
@@ -2335,7 +2335,7 @@
                   ]
                 },
                 {
-                  "decision": "Decision B â€” Impact",
+                  "decision": "Decision B — Impact",
                   "responses": [
                     "",
                     "",
@@ -2350,7 +2350,7 @@
         {
           "name": "After-action review",
           "layout": "content",
-          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** â€” owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
           "data": {
             "actions": [
               {
@@ -2429,7 +2429,7 @@
                 "Leave with an after-action list with owners and dates"
               ]
             },
-            "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+            "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
         {
@@ -2502,22 +2502,22 @@
           }
         },
         {
-          "name": "Inject #1 â€” Bulk download flagged",
+          "name": "Inject #1 — Bulk download flagged",
           "layout": "section",
-          "body": "# Inject #1 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "20:30",
             "title": "Bulk download flagged",
             "detail": "SIEM flags a large client-database download to a USB drive and proprietary scripts emailed to a personal account.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision A â€” Initial response",
+          "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A â€” Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "15 minutes",
             "pairs": [
@@ -2526,7 +2526,7 @@
                 "response": ""
               },
               {
-                "question": "What do you disable â€” access, badge, sessions? (A.8.3)",
+                "question": "What do you disable — access, badge, sessions? (A.8.3)",
                 "response": ""
               },
               {
@@ -2541,40 +2541,40 @@
           }
         },
         {
-          "name": "Inject #2 â€” Exfiltration confirmed",
+          "name": "Inject #2 — Exfiltration confirmed",
           "layout": "section",
-          "body": "# Inject #2 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "21:10",
             "title": "Exfiltration confirmed",
             "detail": "The agent's personal cloud account is found to contain client PII going back three months.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 â€” Accomplice identified",
+          "name": "Inject #3 — Accomplice identified",
           "layout": "section",
-          "body": "# Inject #3 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "08:00",
             "title": "Accomplice identified",
             "detail": "Monitoring identifies an accomplice on the same shift; the termination decision is now urgent.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision B â€” Impact",
+          "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B â€” Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "20 minutes",
             "pairs": [
               {
-                "question": "How wide is the investigation â€” the shift, the team, all clients? (A.5.25)",
+                "question": "How wide is the investigation — the shift, the team, all clients? (A.5.25)",
                 "response": ""
               },
               {
@@ -2586,7 +2586,7 @@
                 "response": ""
               },
               {
-                "question": "What people controls failed â€” screening, awareness, exit? (A.6.1, A.6.3, A.6.5)",
+                "question": "What people controls failed — screening, awareness, exit? (A.6.1, A.6.3, A.6.5)",
                 "response": ""
               }
             ]
@@ -2638,24 +2638,24 @@
           "data": {
             "injects": [
               {
-                "inject": "Inject #1 â€” Bulk download flagged",
+                "inject": "Inject #1 — Bulk download flagged",
                 "time": "20:30",
                 "detail": "SIEM flags a large client-database download to a USB drive and proprietary scripts emailed to a personal account."
               },
               {
-                "inject": "Inject #2 â€” Exfiltration confirmed",
+                "inject": "Inject #2 — Exfiltration confirmed",
                 "time": "21:10",
                 "detail": "The agent's personal cloud account is found to contain client PII going back three months."
               },
               {
-                "inject": "Inject #3 â€” Accomplice identified",
+                "inject": "Inject #3 — Accomplice identified",
                 "time": "08:00",
                 "detail": "Monitoring identifies an accomplice on the same shift; the termination decision is now urgent."
               }
             ],
             "decisions": [
               {
-                "decision": "Decision A â€” Initial response",
+                "decision": "Decision A — Initial response",
                 "responses": [
                   "",
                   "",
@@ -2664,7 +2664,7 @@
                 ]
               },
               {
-                "decision": "Decision B â€” Impact",
+                "decision": "Decision B — Impact",
                 "responses": [
                   "",
                   "",
@@ -2686,7 +2686,7 @@
         {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"â€”\"}}\n**Participants:** {{participants | default:\"â€”\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Insider Threat",
@@ -2703,12 +2703,12 @@
               "Exit and disciplinary processes need a defined evidence flow",
               "Insider-threat detection needs behavioural baselines, not just rules"
             ],
-            "story": "A senior agent is on a performance-improvement plan and faces termination on Friday. The exercise unfolded through the following injects: At 20:30, Bulk download flagged â€” SIEM flags a large client-database download to a USB drive and proprietary scripts emailed to a personal account. At 21:10, Exfiltration confirmed â€” The agent's personal cloud account is found to contain client PII going back three months. At 08:00, Accomplice identified â€” Monitoring identifies an accomplice on the same shift; the termination decision is now urgent. The hotwash closed on a single question: Would DLP catch a USB copy tomorrow? How do we spot a disgruntled insider earlier? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "A senior agent is on a performance-improvement plan and faces termination on Friday. The exercise unfolded through the following injects: At 20:30, Bulk download flagged — SIEM flags a large client-database download to a USB drive and proprietary scripts emailed to a personal account. At 21:10, Exfiltration confirmed — The agent's personal cloud account is found to contain client PII going back three months. At 08:00, Accomplice identified — Monitoring identifies an accomplice on the same shift; the termination decision is now urgent. The hotwash closed on a single question: Would DLP catch a USB copy tomorrow? How do we spot a disgruntled insider earlier? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Enable USB and email DLP policies (A.8.12) â€” owner: InfoSec.",
-              "Prioritise: Reinforce the exit and disciplinary process (A.6.5) â€” owner: HR.",
-              "Prioritise: Add insider-threat analytics to SIEM (A.8.16) â€” owner: Security operations.",
-              "Prioritise: Refresh screening for high-access roles (A.6.1) â€” owner: HR."
+              "Prioritise: Enable USB and email DLP policies (A.8.12) — owner: InfoSec.",
+              "Prioritise: Reinforce the exit and disciplinary process (A.6.5) — owner: HR.",
+              "Prioritise: Add insider-threat analytics to SIEM (A.8.16) — owner: Security operations.",
+              "Prioritise: Refresh screening for high-access roles (A.6.1) — owner: HR."
             ],
             "capa": [
               {
@@ -2903,24 +2903,24 @@
             "discussion": {
               "injects": [
                 {
-                  "inject": "Inject #1 â€” Bulk download flagged",
+                  "inject": "Inject #1 — Bulk download flagged",
                   "time": "20:30",
                   "detail": "SIEM flags a large client-database download to a USB drive and proprietary scripts emailed to a personal account."
                 },
                 {
-                  "inject": "Inject #2 â€” Exfiltration confirmed",
+                  "inject": "Inject #2 — Exfiltration confirmed",
                   "time": "21:10",
                   "detail": "The agent's personal cloud account is found to contain client PII going back three months."
                 },
                 {
-                  "inject": "Inject #3 â€” Accomplice identified",
+                  "inject": "Inject #3 — Accomplice identified",
                   "time": "08:00",
                   "detail": "Monitoring identifies an accomplice on the same shift; the termination decision is now urgent."
                 }
               ],
               "decisions": [
                 {
-                  "decision": "Decision A â€” Initial response",
+                  "decision": "Decision A — Initial response",
                   "responses": [
                     "",
                     "",
@@ -2929,7 +2929,7 @@
                   ]
                 },
                 {
-                  "decision": "Decision B â€” Impact",
+                  "decision": "Decision B — Impact",
                   "responses": [
                     "",
                     "",
@@ -2944,7 +2944,7 @@
         {
           "name": "After-action review",
           "layout": "content",
-          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** â€” owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
           "data": {
             "actions": [
               {
@@ -3023,7 +3023,7 @@
                 "Leave with an after-action list with owners and dates"
               ]
             },
-            "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+            "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
         {
@@ -3042,7 +3042,7 @@
               "VPN",
               "SIEM & UEBA"
             ],
-            "setting": "Monday 07:00 â€” OSINT monitoring flags a dark-web forum post."
+            "setting": "Monday 07:00 — OSINT monitoring flags a dark-web forum post."
           }
         },
         {
@@ -3095,22 +3095,22 @@
           }
         },
         {
-          "name": "Inject #1 â€” Credentials for sale",
+          "name": "Inject #1 — Credentials for sale",
           "layout": "section",
-          "body": "# Inject #1 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "07:00",
             "title": "Credentials for sale",
             "detail": "OSINT finds 40 employee credentials for sale on a dark-web forum, including a finance analyst with payment-data access.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision A â€” Initial response",
+          "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A â€” Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "15 minutes",
             "pairs": [
@@ -3134,35 +3134,35 @@
           }
         },
         {
-          "name": "Inject #2 â€” Passwords match SSO",
+          "name": "Inject #2 — Passwords match SSO",
           "layout": "section",
-          "body": "# Inject #2 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "07:45",
             "title": "Passwords match SSO",
             "detail": "Some listed passwords match corporate SSO. The hunt for active use begins.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 â€” Lateral movement flagged",
+          "name": "Inject #3 — Lateral movement flagged",
           "layout": "section",
-          "body": "# Inject #3 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "09:30",
             "title": "Lateral movement flagged",
             "detail": "UEBA flags lateral movement from a listed account into a client finance portal; a $50 test transfer was made and reversed.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision B â€” Impact",
+          "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B â€” Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "20 minutes",
             "pairs": [
@@ -3231,24 +3231,24 @@
           "data": {
             "injects": [
               {
-                "inject": "Inject #1 â€” Credentials for sale",
+                "inject": "Inject #1 — Credentials for sale",
                 "time": "07:00",
                 "detail": "OSINT finds 40 employee credentials for sale on a dark-web forum, including a finance analyst with payment-data access."
               },
               {
-                "inject": "Inject #2 â€” Passwords match SSO",
+                "inject": "Inject #2 — Passwords match SSO",
                 "time": "07:45",
                 "detail": "Some listed passwords match corporate SSO. The hunt for active use begins."
               },
               {
-                "inject": "Inject #3 â€” Lateral movement flagged",
+                "inject": "Inject #3 — Lateral movement flagged",
                 "time": "09:30",
                 "detail": "UEBA flags lateral movement from a listed account into a client finance portal; a $50 test transfer was made and reversed."
               }
             ],
             "decisions": [
               {
-                "decision": "Decision A â€” Initial response",
+                "decision": "Decision A — Initial response",
                 "responses": [
                   "",
                   "",
@@ -3257,7 +3257,7 @@
                 ]
               },
               {
-                "decision": "Decision B â€” Impact",
+                "decision": "Decision B — Impact",
                 "responses": [
                   "",
                   "",
@@ -3279,7 +3279,7 @@
         {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"â€”\"}}\n**Participants:** {{participants | default:\"â€”\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Compromised Credentials",
@@ -3296,12 +3296,12 @@
               "MFA must cover every external access path, including client portals",
               "Payment-integrity checks should be automated for finance portals"
             ],
-            "story": "Monday 07:00 â€” OSINT monitoring flags a dark-web forum post. The exercise unfolded through the following injects: At 07:00, Credentials for sale â€” OSINT finds 40 employee credentials for sale on a dark-web forum, including a finance analyst with payment-data access. At 07:45, Passwords match SSO â€” Some listed passwords match corporate SSO. The hunt for active use begins. At 09:30, Lateral movement flagged â€” UEBA flags lateral movement from a listed account into a client finance portal; a $50 test transfer was made and reversed. The hotwash closed on a single question: Would we notice a $50 test transfer? How fast could we reset 40 accounts? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Monday 07:00 — OSINT monitoring flags a dark-web forum post. The exercise unfolded through the following injects: At 07:00, Credentials for sale — OSINT finds 40 employee credentials for sale on a dark-web forum, including a finance analyst with payment-data access. At 07:45, Passwords match SSO — Some listed passwords match corporate SSO. The hunt for active use begins. At 09:30, Lateral movement flagged — UEBA flags lateral movement from a listed account into a client finance portal; a $50 test transfer was made and reversed. The hotwash closed on a single question: Would we notice a $50 test transfer? How fast could we reset 40 accounts? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Enforce MFA on all external access (A.8.5) â€” owner: IT.",
-              "Prioritise: Subscribe to credential-monitoring (dark web) service (A.5.24) â€” owner: InfoSec.",
-              "Prioritise: Add UEBA alerts for finance portals (A.8.16) â€” owner: Security operations.",
-              "Prioritise: Review password policy and SSO (A.8.4) â€” owner: IT."
+              "Prioritise: Enforce MFA on all external access (A.8.5) — owner: IT.",
+              "Prioritise: Subscribe to credential-monitoring (dark web) service (A.5.24) — owner: InfoSec.",
+              "Prioritise: Add UEBA alerts for finance portals (A.8.16) — owner: Security operations.",
+              "Prioritise: Review password policy and SSO (A.8.4) — owner: IT."
             ],
             "capa": [
               {
@@ -3496,24 +3496,24 @@
             "discussion": {
               "injects": [
                 {
-                  "inject": "Inject #1 â€” Credentials for sale",
+                  "inject": "Inject #1 — Credentials for sale",
                   "time": "07:00",
                   "detail": "OSINT finds 40 employee credentials for sale on a dark-web forum, including a finance analyst with payment-data access."
                 },
                 {
-                  "inject": "Inject #2 â€” Passwords match SSO",
+                  "inject": "Inject #2 — Passwords match SSO",
                   "time": "07:45",
                   "detail": "Some listed passwords match corporate SSO. The hunt for active use begins."
                 },
                 {
-                  "inject": "Inject #3 â€” Lateral movement flagged",
+                  "inject": "Inject #3 — Lateral movement flagged",
                   "time": "09:30",
                   "detail": "UEBA flags lateral movement from a listed account into a client finance portal; a $50 test transfer was made and reversed."
                 }
               ],
               "decisions": [
                 {
-                  "decision": "Decision A â€” Initial response",
+                  "decision": "Decision A — Initial response",
                   "responses": [
                     "",
                     "",
@@ -3522,7 +3522,7 @@
                   ]
                 },
                 {
-                  "decision": "Decision B â€” Impact",
+                  "decision": "Decision B — Impact",
                   "responses": [
                     "",
                     "",
@@ -3537,7 +3537,7 @@
         {
           "name": "After-action review",
           "layout": "content",
-          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** â€” owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
           "data": {
             "actions": [
               {
@@ -3616,7 +3616,7 @@
                 "Leave with an after-action list with owners and dates"
               ]
             },
-            "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+            "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
         {
@@ -3688,22 +3688,22 @@
           }
         },
         {
-          "name": "Inject #1 â€” Admin access gained",
+          "name": "Inject #1 — Admin access gained",
           "layout": "section",
-          "body": "# Inject #1 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "06:30",
             "title": "Admin access gained",
             "detail": "An attacker exploits an unpatched CRM plugin and gains admin access to the shared platform.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision A â€” Initial response",
+          "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A â€” Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "15 minutes",
             "pairs": [
@@ -3712,11 +3712,11 @@
                 "response": ""
               },
               {
-                "question": "How do you confirm the scope â€” which clients' data was touched? (A.8.15)",
+                "question": "How do you confirm the scope — which clients' data was touched? (A.8.15)",
                 "response": ""
               },
               {
-                "question": "Who is told first â€” the affected client, or all six? (A.5.20)",
+                "question": "Who is told first — the affected client, or all six? (A.5.20)",
                 "response": ""
               },
               {
@@ -3727,35 +3727,35 @@
           }
         },
         {
-          "name": "Inject #2 â€” Client data exfiltrated",
+          "name": "Inject #2 — Client data exfiltrated",
           "layout": "section",
-          "body": "# Inject #2 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "07:10",
             "title": "Client data exfiltrated",
-            "detail": "Customer data â€” names, contacts, purchase history â€” is exfiltrated for one client before the breach is detected.",
-            "prompt": "Team Response â€” Critical decision point",
+            "detail": "Customer data — names, contacts, purchase history — is exfiltrated for one client before the breach is detected.",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 â€” Second client exposed",
+          "name": "Inject #3 — Second client exposed",
           "layout": "section",
-          "body": "# Inject #3 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "09:00",
             "title": "Second client exposed",
-            "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos â€” a second client exposed.",
-            "prompt": "Team Response â€” Critical decision point",
+            "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos — a second client exposed.",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision B â€” Impact",
+          "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B â€” Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "20 minutes",
             "pairs": [
@@ -3824,24 +3824,24 @@
           "data": {
             "injects": [
               {
-                "inject": "Inject #1 â€” Admin access gained",
+                "inject": "Inject #1 — Admin access gained",
                 "time": "06:30",
                 "detail": "An attacker exploits an unpatched CRM plugin and gains admin access to the shared platform."
               },
               {
-                "inject": "Inject #2 â€” Client data exfiltrated",
+                "inject": "Inject #2 — Client data exfiltrated",
                 "time": "07:10",
-                "detail": "Customer data â€” names, contacts, purchase history â€” is exfiltrated for one client before the breach is detected."
+                "detail": "Customer data — names, contacts, purchase history — is exfiltrated for one client before the breach is detected."
               },
               {
-                "inject": "Inject #3 â€” Second client exposed",
+                "inject": "Inject #3 — Second client exposed",
                 "time": "09:00",
-                "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos â€” a second client exposed."
+                "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos — a second client exposed."
               }
             ],
             "decisions": [
               {
-                "decision": "Decision A â€” Initial response",
+                "decision": "Decision A — Initial response",
                 "responses": [
                   "",
                   "",
@@ -3850,7 +3850,7 @@
                 ]
               },
               {
-                "decision": "Decision B â€” Impact",
+                "decision": "Decision B — Impact",
                 "responses": [
                   "",
                   "",
@@ -3872,7 +3872,7 @@
         {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"â€”\"}}\n**Participants:** {{participants | default:\"â€”\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Cyberattack on CRM System",
@@ -3889,12 +3889,12 @@
               "Plugin vulnerability scanning needs a scheduled cadence",
               "A rebuild-from-clean-backup playbook should exist before it is needed"
             ],
-            "story": "Two clients have active campaign data in the shared CRM system. The exercise unfolded through the following injects: At 06:30, Admin access gained â€” An attacker exploits an unpatched CRM plugin and gains admin access to the shared platform. At 07:10, Client data exfiltrated â€” Customer data â€” names, contacts, purchase history â€” is exfiltrated for one client before the breach is detected. At 09:00, Second client exposed â€” The vendor confirms the plugin vulnerability is public; scans show movement between client data silos â€” a second client exposed. The hotwash closed on a single question: Could we run six clients on one CRM safely? What would true multi-tenancy look like? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Two clients have active campaign data in the shared CRM system. The exercise unfolded through the following injects: At 06:30, Admin access gained — An attacker exploits an unpatched CRM plugin and gains admin access to the shared platform. At 07:10, Client data exfiltrated — Customer data — names, contacts, purchase history — is exfiltrated for one client before the breach is detected. At 09:00, Second client exposed — The vendor confirms the plugin vulnerability is public; scans show movement between client data silos — a second client exposed. The hotwash closed on a single question: Could we run six clients on one CRM safely? What would true multi-tenancy look like? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Enforce client data segregation in the CRM (A.8.31) â€” owner: InfoSec.",
-              "Prioritise: Add a vulnerability-scan and patch cadence for plugins (A.8.8) â€” owner: IT.",
-              "Prioritise: Rebuild the CRM from a clean backup with config review (A.8.13, A.8.9) â€” owner: IT.",
-              "Prioritise: Create a data-exposure notification template (A.5.20) â€” owner: Client delivery."
+              "Prioritise: Enforce client data segregation in the CRM (A.8.31) — owner: InfoSec.",
+              "Prioritise: Add a vulnerability-scan and patch cadence for plugins (A.8.8) — owner: IT.",
+              "Prioritise: Rebuild the CRM from a clean backup with config review (A.8.13, A.8.9) — owner: IT.",
+              "Prioritise: Create a data-exposure notification template (A.5.20) — owner: Client delivery."
             ],
             "capa": [
               {
@@ -4089,24 +4089,24 @@
             "discussion": {
               "injects": [
                 {
-                  "inject": "Inject #1 â€” Admin access gained",
+                  "inject": "Inject #1 — Admin access gained",
                   "time": "06:30",
                   "detail": "An attacker exploits an unpatched CRM plugin and gains admin access to the shared platform."
                 },
                 {
-                  "inject": "Inject #2 â€” Client data exfiltrated",
+                  "inject": "Inject #2 — Client data exfiltrated",
                   "time": "07:10",
-                  "detail": "Customer data â€” names, contacts, purchase history â€” is exfiltrated for one client before the breach is detected."
+                  "detail": "Customer data — names, contacts, purchase history — is exfiltrated for one client before the breach is detected."
                 },
                 {
-                  "inject": "Inject #3 â€” Second client exposed",
+                  "inject": "Inject #3 — Second client exposed",
                   "time": "09:00",
-                  "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos â€” a second client exposed."
+                  "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos — a second client exposed."
                 }
               ],
               "decisions": [
                 {
-                  "decision": "Decision A â€” Initial response",
+                  "decision": "Decision A — Initial response",
                   "responses": [
                     "",
                     "",
@@ -4115,7 +4115,7 @@
                   ]
                 },
                 {
-                  "decision": "Decision B â€” Impact",
+                  "decision": "Decision B — Impact",
                   "responses": [
                     "",
                     "",
@@ -4130,7 +4130,7 @@
         {
           "name": "After-action review",
           "layout": "content",
-          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** â€” owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
           "data": {
             "actions": [
               {
@@ -4163,12 +4163,12 @@
         {
           "time": "07:10",
           "title": "Client data exfiltrated",
-          "detail": "Customer data â€” names, contacts, purchase history â€” is exfiltrated for one client before the breach is detected."
+          "detail": "Customer data — names, contacts, purchase history — is exfiltrated for one client before the breach is detected."
         },
         {
           "time": "09:00",
           "title": "Second client exposed",
-          "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos â€” a second client exposed."
+          "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos — a second client exposed."
         }
       ],
       "meta": {
@@ -4209,7 +4209,7 @@
                 "Leave with an after-action list with owners and dates"
               ]
             },
-            "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+            "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
         {
@@ -4291,22 +4291,22 @@
           }
         },
         {
-          "name": "Inject #1 â€” Global WAN loss",
+          "name": "Inject #1 — Global WAN loss",
           "layout": "section",
-          "body": "# Inject #1 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "14:20",
             "title": "Global WAN loss",
             "detail": "A backbone outage takes down the primary WAN; connectivity to client systems drops globally.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision A â€” Continuity call",
+          "name": "Decision A — Continuity call",
           "layout": "content",
-          "body": "## Decision A â€” Continuity call\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Continuity call\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "15 minutes",
             "pairs": [
@@ -4330,35 +4330,35 @@
           }
         },
         {
-          "name": "Inject #2 â€” Contact center degrading",
+          "name": "Inject #2 — Contact center degrading",
           "layout": "section",
-          "body": "# Inject #2 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "14:50",
             "title": "Contact center degrading",
             "detail": "The contact-center platform degrades as sessions fail; two clients are mid-critical-incident handling.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 â€” Backup path fails",
+          "name": "Inject #3 — Backup path fails",
           "layout": "section",
-          "body": "# Inject #3 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "15:05",
             "title": "Backup path fails",
             "detail": "The backup link also fails; the telco provider reports a regional outage affecting multiple BPOs.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision B â€” Recovery & prioritisation",
+          "name": "Decision B — Recovery & prioritisation",
           "layout": "content",
-          "body": "## Decision B â€” Recovery & prioritisation\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Recovery & prioritisation\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "20 minutes",
             "pairs": [
@@ -4427,24 +4427,24 @@
           "data": {
             "injects": [
               {
-                "inject": "Inject #1 â€” Global WAN loss",
+                "inject": "Inject #1 — Global WAN loss",
                 "time": "14:20",
                 "detail": "A backbone outage takes down the primary WAN; connectivity to client systems drops globally."
               },
               {
-                "inject": "Inject #2 â€” Contact center degrading",
+                "inject": "Inject #2 — Contact center degrading",
                 "time": "14:50",
                 "detail": "The contact-center platform degrades as sessions fail; two clients are mid-critical-incident handling."
               },
               {
-                "inject": "Inject #3 â€” Backup path fails",
+                "inject": "Inject #3 — Backup path fails",
                 "time": "15:05",
                 "detail": "The backup link also fails; the telco provider reports a regional outage affecting multiple BPOs."
               }
             ],
             "decisions": [
               {
-                "decision": "Decision A â€” Continuity call",
+                "decision": "Decision A — Continuity call",
                 "responses": [
                   "",
                   "",
@@ -4453,7 +4453,7 @@
                 ]
               },
               {
-                "decision": "Decision B â€” Recovery & prioritisation",
+                "decision": "Decision B — Recovery & prioritisation",
                 "responses": [
                   "",
                   "",
@@ -4475,7 +4475,7 @@
         {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"â€”\"}}\n**Participants:** {{participants | default:\"â€”\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Network Outage Affecting Global Connectivity",
@@ -4488,16 +4488,16 @@
               "Clients received a single, consistent status message"
             ],
             "lessons": [
-              "A single telco path is a single point of failure â€” the backup link proved inadequate",
+              "A single telco path is a single point of failure — the backup link proved inadequate",
               "Failover playbooks need live testing, not desk checks",
               "Client SLA visibility must survive a WAN outage"
             ],
-            "story": "Mid-shift Thursday. All three regions are live; two clients are mid-critical-incident handling. The exercise unfolded through the following injects: At 14:20, Global WAN loss â€” A backbone outage takes down the primary WAN; connectivity to client systems drops globally. At 14:50, Contact center degrading â€” The contact-center platform degrades as sessions fail; two clients are mid-critical-incident handling. At 15:05, Backup path fails â€” The backup link also fails; the telco provider reports a regional outage affecting multiple BPOs. The hotwash closed on a single question: Do we have a second physical path? What is our realistic RTO for the contact center? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Mid-shift Thursday. All three regions are live; two clients are mid-critical-incident handling. The exercise unfolded through the following injects: At 14:20, Global WAN loss — A backbone outage takes down the primary WAN; connectivity to client systems drops globally. At 14:50, Contact center degrading — The contact-center platform degrades as sessions fail; two clients are mid-critical-incident handling. At 15:05, Backup path fails — The backup link also fails; the telco provider reports a regional outage affecting multiple BPOs. The hotwash closed on a single question: Do we have a second physical path? What is our realistic RTO for the contact center? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Diversify WAN paths with the telco (A.5.30) â€” owner: IT.",
-              "Prioritise: Tabletop the failover playbook (A.5.29) â€” owner: Site director.",
-              "Prioritise: Add a client-visible status page (A.5.20) â€” owner: Communications.",
-              "Prioritise: Review remote-working readiness (A.6.7) â€” owner: HR."
+              "Prioritise: Diversify WAN paths with the telco (A.5.30) — owner: IT.",
+              "Prioritise: Tabletop the failover playbook (A.5.29) — owner: Site director.",
+              "Prioritise: Add a client-visible status page (A.5.20) — owner: Communications.",
+              "Prioritise: Review remote-working readiness (A.6.7) — owner: HR."
             ],
             "capa": [
               {
@@ -4692,24 +4692,24 @@
             "discussion": {
               "injects": [
                 {
-                  "inject": "Inject #1 â€” Global WAN loss",
+                  "inject": "Inject #1 — Global WAN loss",
                   "time": "14:20",
                   "detail": "A backbone outage takes down the primary WAN; connectivity to client systems drops globally."
                 },
                 {
-                  "inject": "Inject #2 â€” Contact center degrading",
+                  "inject": "Inject #2 — Contact center degrading",
                   "time": "14:50",
                   "detail": "The contact-center platform degrades as sessions fail; two clients are mid-critical-incident handling."
                 },
                 {
-                  "inject": "Inject #3 â€” Backup path fails",
+                  "inject": "Inject #3 — Backup path fails",
                   "time": "15:05",
                   "detail": "The backup link also fails; the telco provider reports a regional outage affecting multiple BPOs."
                 }
               ],
               "decisions": [
                 {
-                  "decision": "Decision A â€” Continuity call",
+                  "decision": "Decision A — Continuity call",
                   "responses": [
                     "",
                     "",
@@ -4718,7 +4718,7 @@
                   ]
                 },
                 {
-                  "decision": "Decision B â€” Recovery & prioritisation",
+                  "decision": "Decision B — Recovery & prioritisation",
                   "responses": [
                     "",
                     "",
@@ -4733,7 +4733,7 @@
         {
           "name": "After-action review",
           "layout": "content",
-          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** â€” owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
           "data": {
             "actions": [
               {
@@ -4812,7 +4812,7 @@
                 "Leave with an after-action list with owners and dates"
               ]
             },
-            "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+            "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
         {
@@ -4894,22 +4894,22 @@
           }
         },
         {
-          "name": "Inject #1 â€” Fire alarm in server room",
+          "name": "Inject #1 — Fire alarm in server room",
           "layout": "section",
-          "body": "# Inject #1 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "10:05",
             "title": "Fire alarm in server room",
             "detail": "A fire alarm sounds in the Site B server room; fire suppression activates and staff evacuate.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision A â€” Safety & continuity",
+          "name": "Decision A — Safety & continuity",
           "layout": "content",
-          "body": "## Decision A â€” Safety & continuity\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Safety & continuity\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "15 minutes",
             "pairs": [
@@ -4918,7 +4918,7 @@
                 "response": ""
               },
               {
-                "question": "Do you keep staff on site or evacuate fully â€” what is the safety decision? (A.7.2, A.7.5)",
+                "question": "Do you keep staff on site or evacuate fully — what is the safety decision? (A.7.2, A.7.5)",
                 "response": ""
               },
               {
@@ -4933,35 +4933,35 @@
           }
         },
         {
-          "name": "Inject #2 â€” Claims cluster offline",
+          "name": "Inject #2 — Claims cluster offline",
           "layout": "section",
-          "body": "# Inject #2 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "10:20",
             "title": "Claims cluster offline",
             "detail": "The claims-processing cluster goes offline during peak claims season with Site B at 90% capacity.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 â€” Site loss confirmed",
+          "name": "Inject #3 — Site loss confirmed",
           "layout": "section",
-          "body": "# Inject #3 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "12:30",
             "title": "Site loss confirmed",
             "detail": "The fire is contained but the server room is water-damaged; the cluster is down for days and the claims backlog is growing.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision B â€” Recovery & backlog",
+          "name": "Decision B — Recovery & backlog",
           "layout": "content",
-          "body": "## Decision B â€” Recovery & backlog\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Recovery & backlog\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "20 minutes",
             "pairs": [
@@ -4970,7 +4970,7 @@
                 "response": ""
               },
               {
-                "question": "What is the recovery priority order â€” systems, data, connectivity? (A.5.29)",
+                "question": "What is the recovery priority order — systems, data, connectivity? (A.5.29)",
                 "response": ""
               },
               {
@@ -5030,24 +5030,24 @@
           "data": {
             "injects": [
               {
-                "inject": "Inject #1 â€” Fire alarm in server room",
+                "inject": "Inject #1 — Fire alarm in server room",
                 "time": "10:05",
                 "detail": "A fire alarm sounds in the Site B server room; fire suppression activates and staff evacuate."
               },
               {
-                "inject": "Inject #2 â€” Claims cluster offline",
+                "inject": "Inject #2 — Claims cluster offline",
                 "time": "10:20",
                 "detail": "The claims-processing cluster goes offline during peak claims season with Site B at 90% capacity."
               },
               {
-                "inject": "Inject #3 â€” Site loss confirmed",
+                "inject": "Inject #3 — Site loss confirmed",
                 "time": "12:30",
                 "detail": "The fire is contained but the server room is water-damaged; the cluster is down for days and the claims backlog is growing."
               }
             ],
             "decisions": [
               {
-                "decision": "Decision A â€” Safety & continuity",
+                "decision": "Decision A — Safety & continuity",
                 "responses": [
                   "",
                   "",
@@ -5056,7 +5056,7 @@
                 ]
               },
               {
-                "decision": "Decision B â€” Recovery & backlog",
+                "decision": "Decision B — Recovery & backlog",
                 "responses": [
                   "",
                   "",
@@ -5078,7 +5078,7 @@
         {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"â€”\"}}\n**Participants:** {{participants | default:\"â€”\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Fire at Secondary Site During Peak Hours",
@@ -5092,15 +5092,15 @@
             ],
             "lessons": [
               "The claims cluster needs an off-site hot standby",
-              "Water damage after suppression was the bigger loss â€” protection needs review",
+              "Water damage after suppression was the bigger loss — protection needs review",
               "Site A absorption capacity was assumed, not measured"
             ],
-            "story": "Monday 10:00, peak claims season. Site B is running at 90% capacity. The exercise unfolded through the following injects: At 10:05, Fire alarm in server room â€” A fire alarm sounds in the Site B server room; fire suppression activates and staff evacuate. At 10:20, Claims cluster offline â€” The claims-processing cluster goes offline during peak claims season with Site B at 90% capacity. At 12:30, Site loss confirmed â€” The fire is contained but the server room is water-damaged; the cluster is down for days and the claims backlog is growing. The hotwash closed on a single question: How long before Site B processes return? Would Site A actually absorb the load? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Monday 10:00, peak claims season. Site B is running at 90% capacity. The exercise unfolded through the following injects: At 10:05, Fire alarm in server room — A fire alarm sounds in the Site B server room; fire suppression activates and staff evacuate. At 10:20, Claims cluster offline — The claims-processing cluster goes offline during peak claims season with Site B at 90% capacity. At 12:30, Site loss confirmed — The fire is contained but the server room is water-damaged; the cluster is down for days and the claims backlog is growing. The hotwash closed on a single question: How long before Site B processes return? Would Site A actually absorb the load? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Add off-site hot standby for the claims cluster (A.5.30) â€” owner: IT.",
-              "Prioritise: Review fire suppression and water protection (A.7.5) â€” owner: Facilities.",
-              "Prioritise: Test Site A absorption capacity (A.8.6) â€” owner: Site director.",
-              "Prioritise: Update the site BCP and contact lists (A.5.29) â€” owner: BCM."
+              "Prioritise: Add off-site hot standby for the claims cluster (A.5.30) — owner: IT.",
+              "Prioritise: Review fire suppression and water protection (A.7.5) — owner: Facilities.",
+              "Prioritise: Test Site A absorption capacity (A.8.6) — owner: Site director.",
+              "Prioritise: Update the site BCP and contact lists (A.5.29) — owner: BCM."
             ],
             "capa": [
               {
@@ -5295,24 +5295,24 @@
             "discussion": {
               "injects": [
                 {
-                  "inject": "Inject #1 â€” Fire alarm in server room",
+                  "inject": "Inject #1 — Fire alarm in server room",
                   "time": "10:05",
                   "detail": "A fire alarm sounds in the Site B server room; fire suppression activates and staff evacuate."
                 },
                 {
-                  "inject": "Inject #2 â€” Claims cluster offline",
+                  "inject": "Inject #2 — Claims cluster offline",
                   "time": "10:20",
                   "detail": "The claims-processing cluster goes offline during peak claims season with Site B at 90% capacity."
                 },
                 {
-                  "inject": "Inject #3 â€” Site loss confirmed",
+                  "inject": "Inject #3 — Site loss confirmed",
                   "time": "12:30",
                   "detail": "The fire is contained but the server room is water-damaged; the cluster is down for days and the claims backlog is growing."
                 }
               ],
               "decisions": [
                 {
-                  "decision": "Decision A â€” Safety & continuity",
+                  "decision": "Decision A — Safety & continuity",
                   "responses": [
                     "",
                     "",
@@ -5321,7 +5321,7 @@
                   ]
                 },
                 {
-                  "decision": "Decision B â€” Recovery & backlog",
+                  "decision": "Decision B — Recovery & backlog",
                   "responses": [
                     "",
                     "",
@@ -5336,7 +5336,7 @@
         {
           "name": "After-action review",
           "layout": "content",
-          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** â€” owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
           "data": {
             "actions": [
               {
@@ -5415,7 +5415,7 @@
                 "Leave with an after-action list with owners and dates"
               ]
             },
-            "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+            "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
         {
@@ -5497,27 +5497,27 @@
           }
         },
         {
-          "name": "Inject #1 â€” Regional power loss",
+          "name": "Inject #1 — Regional power loss",
           "layout": "section",
-          "body": "# Inject #1 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "15:05",
             "title": "Regional power loss",
             "detail": "A regional power outage hits HQ; the UPS engages but the backup generators fail to start.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision A â€” Battery & shutdown call",
+          "name": "Decision A — Battery & shutdown call",
           "layout": "content",
-          "body": "## Decision A â€” Battery & shutdown call\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Battery & shutdown call\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "15 minutes",
             "pairs": [
               {
-                "question": "Do you keep processing on battery while it lasts â€” what is the cutoff decision? (A.8.6, A.5.29)",
+                "question": "Do you keep processing on battery while it lasts — what is the cutoff decision? (A.8.6, A.5.29)",
                 "response": ""
               },
               {
@@ -5536,35 +5536,35 @@
           }
         },
         {
-          "name": "Inject #2 â€” Systems shutting down",
+          "name": "Inject #2 — Systems shutting down",
           "layout": "section",
-          "body": "# Inject #2 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "15:20",
             "title": "Systems shutting down",
             "detail": "Workstations and servers begin shutting down while month-end processing is underway for three clients.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 â€” Extended outage confirmed",
+          "name": "Inject #3 — Extended outage confirmed",
           "layout": "section",
-          "body": "# Inject #3 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "16:00",
             "title": "Extended outage confirmed",
             "detail": "The utility reports six or more hours without power; generators can be repaired, but not before midnight.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision B â€” Sustained operations",
+          "name": "Decision B — Sustained operations",
           "layout": "content",
-          "body": "## Decision B â€” Sustained operations\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Sustained operations\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "20 minutes",
             "pairs": [
@@ -5633,24 +5633,24 @@
           "data": {
             "injects": [
               {
-                "inject": "Inject #1 â€” Regional power loss",
+                "inject": "Inject #1 — Regional power loss",
                 "time": "15:05",
                 "detail": "A regional power outage hits HQ; the UPS engages but the backup generators fail to start."
               },
               {
-                "inject": "Inject #2 â€” Systems shutting down",
+                "inject": "Inject #2 — Systems shutting down",
                 "time": "15:20",
                 "detail": "Workstations and servers begin shutting down while month-end processing is underway for three clients."
               },
               {
-                "inject": "Inject #3 â€” Extended outage confirmed",
+                "inject": "Inject #3 — Extended outage confirmed",
                 "time": "16:00",
                 "detail": "The utility reports six or more hours without power; generators can be repaired, but not before midnight."
               }
             ],
             "decisions": [
               {
-                "decision": "Decision A â€” Battery & shutdown call",
+                "decision": "Decision A — Battery & shutdown call",
                 "responses": [
                   "",
                   "",
@@ -5659,7 +5659,7 @@
                 ]
               },
               {
-                "decision": "Decision B â€” Sustained operations",
+                "decision": "Decision B — Sustained operations",
                 "responses": [
                   "",
                   "",
@@ -5681,7 +5681,7 @@
         {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"â€”\"}}\n**Participants:** {{participants | default:\"â€”\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Complete Power Outage at HQ",
@@ -5698,12 +5698,12 @@
               "A second power feed for the HQ is worth the investment",
               "The month-end dependency on a single site needs a documented contingency"
             ],
-            "story": "Weekday 15:00, with month-end processing underway for three clients. The exercise unfolded through the following injects: At 15:05, Regional power loss â€” A regional power outage hits HQ; the UPS engages but the backup generators fail to start. At 15:20, Systems shutting down â€” Workstations and servers begin shutting down while month-end processing is underway for three clients. At 16:00, Extended outage confirmed â€” The utility reports six or more hours without power; generators can be repaired, but not before midnight. The hotwash closed on a single question: Why did the generators fail? Would a second utility feed help? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Weekday 15:00, with month-end processing underway for three clients. The exercise unfolded through the following injects: At 15:05, Regional power loss — A regional power outage hits HQ; the UPS engages but the backup generators fail to start. At 15:20, Systems shutting down — Workstations and servers begin shutting down while month-end processing is underway for three clients. At 16:00, Extended outage confirmed — The utility reports six or more hours without power; generators can be repaired, but not before midnight. The hotwash closed on a single question: Why did the generators fail? Would a second utility feed help? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Test generators under load monthly (A.7.5) â€” owner: Facilities.",
-              "Prioritise: Assess a second power feed for the HQ (A.7.5) â€” owner: Facilities.",
-              "Prioritise: Pre-position laptops and VPN kits for critical teams (A.6.7) â€” owner: IT.",
-              "Prioritise: Document the clean-shutdown runbook (A.5.24) â€” owner: Site director."
+              "Prioritise: Test generators under load monthly (A.7.5) — owner: Facilities.",
+              "Prioritise: Assess a second power feed for the HQ (A.7.5) — owner: Facilities.",
+              "Prioritise: Pre-position laptops and VPN kits for critical teams (A.6.7) — owner: IT.",
+              "Prioritise: Document the clean-shutdown runbook (A.5.24) — owner: Site director."
             ],
             "capa": [
               {
@@ -5898,24 +5898,24 @@
             "discussion": {
               "injects": [
                 {
-                  "inject": "Inject #1 â€” Regional power loss",
+                  "inject": "Inject #1 — Regional power loss",
                   "time": "15:05",
                   "detail": "A regional power outage hits HQ; the UPS engages but the backup generators fail to start."
                 },
                 {
-                  "inject": "Inject #2 â€” Systems shutting down",
+                  "inject": "Inject #2 — Systems shutting down",
                   "time": "15:20",
                   "detail": "Workstations and servers begin shutting down while month-end processing is underway for three clients."
                 },
                 {
-                  "inject": "Inject #3 â€” Extended outage confirmed",
+                  "inject": "Inject #3 — Extended outage confirmed",
                   "time": "16:00",
                   "detail": "The utility reports six or more hours without power; generators can be repaired, but not before midnight."
                 }
               ],
               "decisions": [
                 {
-                  "decision": "Decision A â€” Battery & shutdown call",
+                  "decision": "Decision A — Battery & shutdown call",
                   "responses": [
                     "",
                     "",
@@ -5924,7 +5924,7 @@
                   ]
                 },
                 {
-                  "decision": "Decision B â€” Sustained operations",
+                  "decision": "Decision B — Sustained operations",
                   "responses": [
                     "",
                     "",
@@ -5939,7 +5939,7 @@
         {
           "name": "After-action review",
           "layout": "content",
-          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** â€” owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
           "data": {
             "actions": [
               {
@@ -6018,7 +6018,7 @@
                 "Leave with an after-action list with owners and dates"
               ]
             },
-            "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+            "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
         {
@@ -6100,22 +6100,22 @@
           }
         },
         {
-          "name": "Inject #1 â€” 60% absenteeism",
+          "name": "Inject #1 — 60% absenteeism",
           "layout": "section",
-          "body": "# Inject #1 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "09:00",
             "title": "60% absenteeism",
-            "detail": "A fast-spreading illness leaves 60% of the agent workforce unavailable â€” sick, isolating or caring for family.",
-            "prompt": "Team Response â€” Critical decision point",
+            "detail": "A fast-spreading illness leaves 60% of the agent workforce unavailable — sick, isolating or caring for family.",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision A â€” Prioritisation",
+          "name": "Decision A — Prioritisation",
           "layout": "content",
-          "body": "## Decision A â€” Prioritisation\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Prioritisation\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "15 minutes",
             "pairs": [
@@ -6124,7 +6124,7 @@
                 "response": ""
               },
               {
-                "question": "Do you move agents to remote work at scale â€” and can the platform take it? (A.6.7, A.8.6)",
+                "question": "Do you move agents to remote work at scale — and can the platform take it? (A.6.7, A.8.6)",
                 "response": ""
               },
               {
@@ -6139,44 +6139,44 @@
           }
         },
         {
-          "name": "Inject #2 â€” Critical windows at risk",
+          "name": "Inject #2 — Critical windows at risk",
           "layout": "section",
-          "body": "# Inject #2 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "09:30",
             "title": "Critical windows at risk",
             "detail": "Three shifts are understaffed and two clients are on critical service windows; call queues build.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 â€” Service-credit trigger",
+          "name": "Inject #3 — Service-credit trigger",
           "layout": "section",
-          "body": "# Inject #3 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "Tue 09:00",
             "title": "Service-credit trigger",
             "detail": "Absenteeism holds at 60%; the contact center answers 30% of calls and a client triggers a service-credit clause.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision B â€” Sustained delivery",
+          "name": "Decision B — Sustained delivery",
           "layout": "content",
-          "body": "## Decision B â€” Sustained delivery\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Sustained delivery\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "20 minutes",
             "pairs": [
               {
-                "question": "How do you prioritise across all clients â€” queue, triage, pause? (A.5.29)",
+                "question": "How do you prioritise across all clients — queue, triage, pause? (A.5.29)",
                 "response": ""
               },
               {
-                "question": "What surge capacity exists â€” contractors, cross-training, other sites? (A.5.30)",
+                "question": "What surge capacity exists — contractors, cross-training, other sites? (A.5.30)",
                 "response": ""
               },
               {
@@ -6236,24 +6236,24 @@
           "data": {
             "injects": [
               {
-                "inject": "Inject #1 â€” 60% absenteeism",
+                "inject": "Inject #1 — 60% absenteeism",
                 "time": "09:00",
-                "detail": "A fast-spreading illness leaves 60% of the agent workforce unavailable â€” sick, isolating or caring for family."
+                "detail": "A fast-spreading illness leaves 60% of the agent workforce unavailable — sick, isolating or caring for family."
               },
               {
-                "inject": "Inject #2 â€” Critical windows at risk",
+                "inject": "Inject #2 — Critical windows at risk",
                 "time": "09:30",
                 "detail": "Three shifts are understaffed and two clients are on critical service windows; call queues build."
               },
               {
-                "inject": "Inject #3 â€” Service-credit trigger",
+                "inject": "Inject #3 — Service-credit trigger",
                 "time": "Tue 09:00",
                 "detail": "Absenteeism holds at 60%; the contact center answers 30% of calls and a client triggers a service-credit clause."
               }
             ],
             "decisions": [
               {
-                "decision": "Decision A â€” Prioritisation",
+                "decision": "Decision A — Prioritisation",
                 "responses": [
                   "",
                   "",
@@ -6262,7 +6262,7 @@
                 ]
               },
               {
-                "decision": "Decision B â€” Sustained delivery",
+                "decision": "Decision B — Sustained delivery",
                 "responses": [
                   "",
                   "",
@@ -6284,7 +6284,7 @@
         {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"â€”\"}}\n**Participants:** {{participants | default:\"â€”\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Geopolitic Concerns Reducing Workforce Availability",
@@ -6301,12 +6301,12 @@
               "Remote-work platform capacity needs headroom for crisis scale",
               "Health-and-safety and people controls need a crisis playbook"
             ],
-            "story": "Monday morning. A fast-spreading respiratory illness is reported across the city. The exercise unfolded through the following injects: At 09:00, 60% absenteeism â€” A fast-spreading illness leaves 60% of the agent workforce unavailable â€” sick, isolating or caring for family. At 09:30, Critical windows at risk â€” Three shifts are understaffed and two clients are on critical service windows; call queues build. At Tue 09:00, Service-credit trigger â€” Absenteeism holds at 60%; the contact center answers 30% of calls and a client triggers a service-credit clause. The hotwash closed on a single question: Could we run the top three client services at 40% staff? What is our true minimum viable staffing? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Monday morning. A fast-spreading respiratory illness is reported across the city. The exercise unfolded through the following injects: At 09:00, 60% absenteeism — A fast-spreading illness leaves 60% of the agent workforce unavailable — sick, isolating or caring for family. At 09:30, Critical windows at risk — Three shifts are understaffed and two clients are on critical service windows; call queues build. At Tue 09:00, Service-credit trigger — Absenteeism holds at 60%; the contact center answers 30% of calls and a client triggers a service-credit clause. The hotwash closed on a single question: Could we run the top three client services at 40% staff? What is our true minimum viable staffing? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Cross-train agents across clients (A.6.3) â€” owner: HR.",
-              "Prioritise: Expand remote-work capacity (A.6.7, A.8.6) â€” owner: IT.",
-              "Prioritise: Define minimum viable staffing per client (A.5.29) â€” owner: Client delivery.",
-              "Prioritise: Build a client capacity-reporting dashboard (A.5.20) â€” owner: Operations."
+              "Prioritise: Cross-train agents across clients (A.6.3) — owner: HR.",
+              "Prioritise: Expand remote-work capacity (A.6.7, A.8.6) — owner: IT.",
+              "Prioritise: Define minimum viable staffing per client (A.5.29) — owner: Client delivery.",
+              "Prioritise: Build a client capacity-reporting dashboard (A.5.20) — owner: Operations."
             ],
             "capa": [
               {
@@ -6501,24 +6501,24 @@
             "discussion": {
               "injects": [
                 {
-                  "inject": "Inject #1 â€” 60% absenteeism",
+                  "inject": "Inject #1 — 60% absenteeism",
                   "time": "09:00",
-                  "detail": "A fast-spreading illness leaves 60% of the agent workforce unavailable â€” sick, isolating or caring for family."
+                  "detail": "A fast-spreading illness leaves 60% of the agent workforce unavailable — sick, isolating or caring for family."
                 },
                 {
-                  "inject": "Inject #2 â€” Critical windows at risk",
+                  "inject": "Inject #2 — Critical windows at risk",
                   "time": "09:30",
                   "detail": "Three shifts are understaffed and two clients are on critical service windows; call queues build."
                 },
                 {
-                  "inject": "Inject #3 â€” Service-credit trigger",
+                  "inject": "Inject #3 — Service-credit trigger",
                   "time": "Tue 09:00",
                   "detail": "Absenteeism holds at 60%; the contact center answers 30% of calls and a client triggers a service-credit clause."
                 }
               ],
               "decisions": [
                 {
-                  "decision": "Decision A â€” Prioritisation",
+                  "decision": "Decision A — Prioritisation",
                   "responses": [
                     "",
                     "",
@@ -6527,7 +6527,7 @@
                   ]
                 },
                 {
-                  "decision": "Decision B â€” Sustained delivery",
+                  "decision": "Decision B — Sustained delivery",
                   "responses": [
                     "",
                     "",
@@ -6542,7 +6542,7 @@
         {
           "name": "After-action review",
           "layout": "content",
-          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** â€” owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
           "data": {
             "actions": [
               {
@@ -6570,7 +6570,7 @@
         {
           "time": "09:00",
           "title": "60% absenteeism",
-          "detail": "A fast-spreading illness leaves 60% of the agent workforce unavailable â€” sick, isolating or caring for family."
+          "detail": "A fast-spreading illness leaves 60% of the agent workforce unavailable — sick, isolating or caring for family."
         },
         {
           "time": "09:30",
@@ -7136,7 +7136,7 @@
                 "Review client notification and SLA compliance processes"
               ]
             },
-            "ground_rules": "Stay in role. No wrong answers â€” this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+            "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
         {
@@ -7207,22 +7207,22 @@
           }
         },
         {
-          "name": "Inject #1 â€” Restore fails at 62%",
+          "name": "Inject #1 — Restore fails at 62%",
           "layout": "section",
-          "body": "# Inject #1 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 1,
             "time": "09:15",
             "title": "Restore fails at 62%",
             "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision A â€” Initial response",
+          "name": "Decision A — Initial response",
           "layout": "content",
-          "body": "## Decision A â€” Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "15 minutes",
             "pairs": [
@@ -7253,35 +7253,35 @@
           }
         },
         {
-          "name": "Inject #2 â€” Silent backup gap found",
+          "name": "Inject #2 — Silent backup gap found",
           "layout": "section",
-          "body": "# Inject #2 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 2,
             "time": "09:40",
             "title": "Silent backup gap found",
             "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Inject #3 â€” RTO blown, clients impacted",
+          "name": "Inject #3 — RTO blown, clients impacted",
           "layout": "section",
-          "body": "# Inject #3 â€” {{title}}\n\n**{{time}}** â€” {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+          "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
           "data": {
             "number": 3,
             "time": "10:30",
             "title": "RTO blown, clients impacted",
             "detail": "Recovery time objective is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on hot-site failover.",
-            "prompt": "Team Response â€” Critical decision point",
+            "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
         },
         {
-          "name": "Decision B â€” Impact",
+          "name": "Decision B — Impact",
           "layout": "content",
-          "body": "## Decision B â€” Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+          "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
             "timebox": "20 minutes",
             "pairs": [
@@ -7367,24 +7367,24 @@
           "data": {
             "injects": [
               {
-                "inject": "Inject #1 â€” Restore fails at 62%",
+                "inject": "Inject #1 — Restore fails at 62%",
                 "time": "09:15",
-                "detail": "The first restore attempt of the finance portal DB fails at 62% â€” the backup set is corrupt and the restore job aborts."
+                "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts."
               },
               {
-                "inject": "Inject #2 â€” Silent backup gap found",
+                "inject": "Inject #2 — Silent backup gap found",
                 "time": "09:40",
                 "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old."
               },
               {
-                "inject": "Inject #3 â€” RTO blown, clients impacted",
+                "inject": "Inject #3 — RTO blown, clients impacted",
                 "time": "10:30",
                 "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site."
               }
             ],
             "decisions": [
               {
-                "decision": "Decision A â€” Initial response",
+                "decision": "Decision A — Initial response",
                 "responses": [
                   "",
                   "",
@@ -7393,7 +7393,7 @@
                 ]
               },
               {
-                "decision": "Decision B â€” Impact",
+                "decision": "Decision B — Impact",
                 "responses": [
                   "",
                   "",
@@ -7415,7 +7415,7 @@
         {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"â€”\"}}\n**Participants:** {{participants | default:\"â€”\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Backup & Recovery DR Test",
@@ -7428,16 +7428,16 @@
               "Clients were notified within the contractual window once the RTO was blown"
             ],
             "lessons": [
-              "Backup monitoring fired on success only â€” failure alerting is now a requirement",
+              "Backup monitoring fired on success only — failure alerting is now a requirement",
               "Restore tests must validate the restore step, not just the backup job",
               "The 4-hour RTO was never validated under realistic load"
             ],
-            "story": "Wednesday 09:00 â€” the quarterly DR test is underway: restore the client finance portal to a test environment and validate it. The test is supposed to take 4 hours. The exercise unfolded through the following injects: At 09:15, Restore fails at 62% â€” The first restore attempt of the finance portal DB fails at 62% â€” the backup set is corrupt and the restore job aborts. At 09:40, Silent backup gap found â€” Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old. At 10:30, RTO blown, clients impacted â€” Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site. The hotwash closed on a single question: Would we have noticed a silent backup failure tomorrow? How old may the last good restore point get before it becomes unacceptable? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Wednesday 09:00 — the quarterly DR test is underway: restore the client finance portal to a test environment and validate it. The test is supposed to take 4 hours. The exercise unfolded through the following injects: At 09:15, Restore fails at 62% — The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts. At 09:40, Silent backup gap found — Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old. At 10:30, RTO blown, clients impacted — Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site. The hotwash closed on a single question: Would we have noticed a silent backup failure tomorrow? How old may the last good restore point get before it becomes unacceptable? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "recommendations": [
-              "Prioritise: Alert on backup job failures, not just successes (A.8.16) â€” owner: IT.",
-              "Prioritise: Schedule quarterly restore tests that run to completion (A.8.13) â€” owner: IT.",
-              "Prioritise: Validate RTO under realistic load and document it (A.5.30) â€” owner: CISO.",
-              "Prioritise: Review client SLAs for RTO/RPO disclosure duties (A.5.20) â€” owner: Client delivery."
+              "Prioritise: Alert on backup job failures, not just successes (A.8.16) — owner: IT.",
+              "Prioritise: Schedule quarterly restore tests that run to completion (A.8.13) — owner: IT.",
+              "Prioritise: Validate RTO under realistic load and document it (A.5.30) — owner: CISO.",
+              "Prioritise: Review client SLAs for RTO/RPO disclosure duties (A.5.20) — owner: Client delivery."
             ],
             "capa": [
               {
@@ -7632,24 +7632,24 @@
             "discussion": {
               "injects": [
                 {
-                  "inject": "Inject #1 â€” Restore fails at 62%",
+                  "inject": "Inject #1 — Restore fails at 62%",
                   "time": "09:15",
-                  "detail": "The first restore attempt of the finance portal DB fails at 62% â€” the backup set is corrupt and the restore job aborts."
+                  "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts."
                 },
                 {
-                  "inject": "Inject #2 â€” Silent backup gap found",
+                  "inject": "Inject #2 — Silent backup gap found",
                   "time": "09:40",
                   "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old."
                 },
                 {
-                  "inject": "Inject #3 â€” RTO blown, clients impacted",
+                  "inject": "Inject #3 — RTO blown, clients impacted",
                   "time": "10:30",
                   "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site."
                 }
               ],
               "decisions": [
                 {
-                  "decision": "Decision A â€” Initial response",
+                  "decision": "Decision A — Initial response",
                   "responses": [
                     "",
                     "",
@@ -7658,7 +7658,7 @@
                   ]
                 },
                 {
-                  "decision": "Decision B â€” Impact",
+                  "decision": "Decision B — Impact",
                   "responses": [
                     "",
                     "",
@@ -7673,7 +7673,7 @@
         {
           "name": "After-action review",
           "layout": "content",
-          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** â€” owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+          "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
           "data": {
             "actions": [
               {
