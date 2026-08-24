@@ -6603,7 +6603,7 @@
           "data": {
             "scenario": {
               "title": "Vishing Attack",
-              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Business Operations · Intermediate · 90 minutes · Facilitated discussion"
+              "kicker": "Social engineering attack targeting IT service desk staff to obtain MFA codes"
             }
           }
         },
@@ -6612,15 +6612,12 @@
           "layout": "content",
           "body": "## {{objectives.title}}\n\n{{#each objectives.items}}\n- {{this}}\n{{/each}}\n\n**Ground rules:** {{ground_rules}}",
           "data": {
-            "objectives": {
-              "title": "Objectives & ground rules",
-              "items": [
-                "Test decision-making when service continuity is at stake",
-                "Map every decision to ISO/IEC 27001:2022 continuity and physical controls",
-                "Expose gaps in resilience plans, capacity and communication",
-                "Leave with an after-action list with owners and dates"
-              ]
-            },
+            "objectives": [
+              "Test the IT service desk verification protocol for incoming calls",
+              "Evaluate MFA code handling procedures and policy compliance",
+              "Assess incident detection and response time for social engineering attacks",
+              "Review client notification and regulatory reporting processes"
+            ],
             "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
           }
         },
@@ -6630,16 +6627,17 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "Organization providing Cust Care services"
+              "profile": "BPO organization providing IT support services to multiple clients"
             },
-            "iso_scope": "Care Team -processing services, including client payments, PII",
+            "iso_scope": "IT service desk operations with MFA enforcement, caller verification protocols, and incident response procedures",
             "systems": [
-              "Phone system (VoIP)",
-              "Email & identity",
-              "SIEM",
-              "DLP"
+              "MFA authentication platform (tokens, apps)",
+              "IT service desk telephony system",
+              "Identity and access management (IAM)",
+              "Security information and event management (SIEM)",
+              "Incident response procedures"
             ],
-            "setting": "Normal business operation, team has access to customer PII and transactions."
+            "setting": "Monday 14:10 — the IT service desk receives a call from someone claiming to be from internal IT support, requesting account verification and MFA codes for a \"critical system update.\""
           }
         },
         {
@@ -6715,27 +6713,32 @@
           }
         },
         {
-          "name": "Decision A — Contain the transfer",
+          "name": "Decision A - Contain the breach",
           "layout": "content",
-          "body": "## Decision A — Contain the transfer\n\n{{#each data.pairs}}\n> **Q{{@index1}}:** {{question | raw}}\n\n> **Team Response:** {{response}}\n{{/each}}\n\n**Timebox:** {{data.timebox}}",
+          "body": "## Decision A — Contain the breach\n\n{{#each data.pairs}}\n> **Q{{@index1}}:** {{question | raw}}\n\n> **Team Response:** {{response}}\n{{/each}}\n\n**Timebox:** {{data.timebox}}",
           "data": {
             "questions": [
-              "How do you verify the caller before acting — what is the check process? (A.5.24, A.6.3)",
-              "What evidence do you preserve from calls and systems? (A.8.15)",
-              "Which client is affected, and what is the notification trigger? (A.5.20)"
+              "How do you immediately contain the compromised MFA codes - reset all tokens, revoke sessions, disable accounts? (A.8.5, A.8.3)",
+              "Which staff members provided the MFA codes and what is the extent of potential exposure? (A.6.3, A.5.24)",
+              "How do you verify if any unauthorized access or data exfiltration occurred before detection? (A.8.15, A.8.16)",
+              "What is the notification process for affected clients and regulatory bodies? (A.5.20, A.5.25)"
             ],
             "timebox": "15 minutes",
             "pairs": [
               {
-                "question": "How do you verify the caller before acting — what is the check process? (A.5.24, A.6.3)",
+                "question": "How do you immediately contain the compromised MFA codes - reset all tokens, revoke sessions, disable accounts? (A.8.5, A.8.3)",
                 "response": ""
               },
               {
-                "question": "What evidence do you preserve from calls and systems? (A.8.15)",
+                "question": "Which staff members provided the MFA codes and what is the extent of potential exposure? (A.6.3, A.5.24)",
                 "response": ""
               },
               {
-                "question": "Which client is affected, and what is the notification trigger? (A.5.20)",
+                "question": "How do you verify if any unauthorized access or data exfiltration occurred before detection? (A.8.15, A.8.16)",
+                "response": ""
+              },
+              {
+                "question": "What is the notification process for affected clients and regulatory bodies? (A.5.20, A.5.25)",
                 "response": ""
               }
             ]
@@ -6776,27 +6779,32 @@
           }
         },
         {
-          "name": "Decision B — Prevent recurrence",
+          "name": "Decision B - Prevent recurrence",
           "layout": "content",
           "body": "## Decision B — Prevent recurrence\n\n{{#each data.pairs}}\n> **Q{{@index1}}:** {{question | raw}}\n\n> **Team Response:** {{response}}\n{{/each}}\n\n**Timebox:** {{data.timebox}}",
           "data": {
             "questions": [
-              "How do you contain the credential exposure — reset codes, tokens, sessions? (A.8.5, A.8.3)",
-              "How do you prevent recurrence — awareness, verification protocol? (A.6.3)",
-              "What are the regulatory and client reporting duties? (A.5.20, compliance)"
+              "How do you implement a verification protocol for IT support calls to prevent future spoofing? (A.6.3, A.5.24)",
+              "What MFA policy changes are needed - hardware tokens, biometric, or out-of-band verification? (A.8.5, A.8.2)",
+              "What vishing awareness training program will you deploy to all staff? (A.6.3, A.7.2)",
+              "What are the regulatory reporting obligations and timelines for this incident? (A.5.20, A.5.25)"
             ],
             "timebox": "20 minutes",
             "pairs": [
               {
-                "question": "How do you contain the credential exposure — reset codes, tokens, sessions? (A.8.5, A.8.3)",
+                "question": "How do you implement a verification protocol for IT support calls to prevent future spoofing? (A.6.3, A.5.24)",
                 "response": ""
               },
               {
-                "question": "How do you prevent recurrence — awareness, verification protocol? (A.6.3)",
+                "question": "What MFA policy changes are needed - hardware tokens, biometric, or out-of-band verification? (A.8.5, A.8.2)",
                 "response": ""
               },
               {
-                "question": "What are the regulatory and client reporting duties? (A.5.20, compliance)",
+                "question": "What vishing awareness training program will you deploy to all staff? (A.6.3, A.7.2)",
+                "response": ""
+              },
+              {
+                "question": "What are the regulatory reporting obligations and timelines for this incident? (A.5.20, A.5.25)",
                 "response": ""
               }
             ]
