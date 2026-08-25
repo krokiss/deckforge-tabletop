@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DeckForge — Presentation Builder</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236c7bff'/%3E%3Cpath d='M8 9h16v4H8zM8 17h10v4H8z' fill='%23fff' opacity='.92'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DeckForge</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236c7bff'/><text y='.9em' x='50' text-anchor='middle' font-size='70' fill='white'>D</text></svg>">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div id="app">
+  <div class="app">
 
   <!-- ======= Sidebar ======= -->
-  <aside id="sidebar">
+  <aside class="sidebar">
     <div class="brand">
-      <div class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" width="34" height="34"><rect width="32" height="32" rx="8" fill="url(#g)"/><path d="M8 9h16v4H8zM8 17h10v4H8z" fill="#fff" opacity=".93"/><defs><linearGradient id="g" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#6c7bff"/><stop offset="1" stop-color="#a06bff"/></linearGradient></defs></svg>
-      </div>
-      <div class="brand-text">
+      <svg viewBox="0 0 32 32" width="30" height="30">
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6c7bff"/><stop offset="100%" stop-color="#a06bff"/></linearGradient></defs>
+        <rect width="32" height="32" rx="8" fill="url(#g1)"/>
+        <path d="M9 9h14M9 16h10M9 23h6" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <div>
         <h1>DeckForge</h1>
         <p>Presentation builder</p>
       </div>
@@ -34,15 +36,19 @@
       <input type="file" id="file-import" accept=".json,.md,.txt,.html,.htm" hidden>
       <div class="search">
         <svg viewBox="0 0 16 16" width="13" height="13"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <input id="search" type="text" placeholder="Search decks…" spellcheck="false">
+        <input id="search" type="text" placeholder="Search decks..." spellcheck="false">
       </div>
       <div class="nav-sep"></div>
       <button id="btn-simulations" class="nav-btn" title="Scenario library">
         <svg viewBox="0 0 16 16" width="14" height="14"><rect x="2" y="2" width="5" height="5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="2" width="5" height="5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="9" width="5" height="5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="9" y="9" width="5" height="5" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
         Simulations
       </button>
-      <button id="btn-dashboard" class="nav-btn active" title="Your decks">
+      <button id="btn-dashboard" class="nav-btn active" title="Exercise dashboard">
         <svg viewBox="0 0 16 16" width="14" height="14"><path d="M2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2 6.5h12M6 12.5V6.5" stroke="currentColor" stroke-width="1.5"/></svg>
+        Dashboard
+      </button>
+      <button id="btn-decks" class="nav-btn" title="Your decks">
+        <svg viewBox="0 0 16 16" width="14" height="14"><rect x="2" y="2" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
         Decks
       </button>
     </div>
@@ -79,7 +85,7 @@
             <svg class="caret" viewBox="0 0 16 16" width="12" height="12"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div id="export-menu" class="menu" hidden>
-            <div class="menu-head">Download as…</div>
+            <div class="menu-head">Download as...</div>
             <button data-fmt="presentation" class="menu-item"><span class="badge html">HTML</span> Presentation (.html)</button>
             <button data-fmt="handout" class="menu-item"><span class="badge doc">DOC</span> Handout (.doc)</button>
             <div class="menu-sep"></div>
@@ -116,6 +122,16 @@
         <p>Select a scenario to initialize a new exercise.</p>
       </div>
       <div id="scenario-cats" class="scenario-cats"></div>
+    </section>
+
+    <!-- Dashboard - Exercise History -->
+    <section id="dashboard-view" hidden>
+      <div class="dash-head">
+        <h2>Exercise Dashboard</h2>
+        <p>Track completed exercises, view dates, participants, and download After-Action Reports.</p>
+      </div>
+      <div id="dash-stats" class="dash-stats"></div>
+      <div id="dash-history" class="dash-history"></div>
     </section>
 
     <!-- Welcome / empty state -->
@@ -160,7 +176,7 @@
         <div id="editor-wrap" class="editor-wrap">
           <pre class="editor-hl" id="editor-hl" aria-hidden="true"><code id="editor-code"></code></pre>
           <textarea id="editor" spellcheck="false" autocomplete="off"
-            placeholder="Write this slide's template here…&#10;&#10;# {{title}}&#10;&#10;{{#each points}}&#10;- {{this}}&#10;{{/each}}"></textarea>
+            placeholder="Write this slide's template here...&#10;&#10;# {{title}}&#10;&#10;{{#each points}}&#10;- {{this}}&#10;{{/each}}"></textarea>
         </div>
       </section>
 
@@ -178,7 +194,7 @@
           </button>
           <div class="seg preview-seg">
             <button id="btn-preview-mode" class="seg-btn active" title="Rendered slide preview">Preview</button>
-            <button id="btn-fill-mode" class="seg-btn" title="Type values straight into the slide — great for exercises">Fill in</button>
+            <button id="btn-fill-mode" class="seg-btn" title="Type values straight into the slide - great for exercises">Fill in</button>
           </div>
           <span id="var-count" class="var-count" title="Variables found in this slide"></span>
         </div>
@@ -188,7 +204,7 @@
           <div id="fill-wrap" hidden>
             <div class="fill-hint">
               <svg viewBox="0 0 16 16" width="13" height="13"><path d="M9 2.5l4.5 4.5L5.5 15H1v-4.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-              Click any <u>underlined blank</u> and type — values update the Data tab, exports and totals live. <code>+ Add item</code> grows each list. Perfect for exercises.
+              Click any <u>underlined blank</u> and type - values update the Data tab, exports and totals live. <code>+ Add item</code> grows each list. Perfect for exercises.
             </div>
             <div id="preview-fill" class="doc-scroll"></div>
           </div>
@@ -225,35 +241,34 @@
   <iframe id="present-frame" title="Presentation" allowfullscreen></iframe>
 </div>
 
-<!-- ======= Interactive exercise overlay ======= -->
 <!-- ======= Help modal ======= -->
 <div id="help-modal" class="modal-backdrop" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-label="Syntax guide">
     <div class="modal-head">
       <h2>Slide template syntax</h2>
-      <button id="btn-help-close" class="icon-btn" aria-label="Close">✕</button>
+      <button id="btn-help-close" class="icon-btn" aria-label="Close">&#10005;</button>
     </div>
     <div class="modal-body">
       <table class="cheat">
         <tr><td><code>{{name}}</code></td><td>Insert a value. <code>{{client.address.city}}</code> walks nested data.</td></tr>
         <tr><td><code>{{{name}}}</code> / <code>{{&amp;name}}</code></td><td>Insert without HTML escaping (raw).</td></tr>
-        <tr><td><code>{{name | filter}}</code></td><td>Apply filters, chain with <code>|</code>: <code>upper</code>, <code>lower</code>, <code>title</code>, <code>capitalize</code>, <code>trim</code>, <code>length</code>, <code>default:x</code>, <code>number</code>, <code>money</code>, <code>currency:€</code>, <code>date:%B %d, %Y</code>, <code>join:, </code>, <code>sum:amount</code>, <code>json</code>, <code>raw</code>.</td></tr>
-        <tr><td><code>{{#if field}}…{{else}}…{{/if}}</code></td><td>Conditional section. Empty / zero / false values are skipped. <code>{{#unless field}}</code> inverts.</td></tr>
-        <tr><td><code>{{#each items}}…{{/each}}</code></td><td>Repeat over a list. Inside: <code>{{this}}</code>, <code>{{@index}}</code>, <code>{{@number}}</code>, <code>{{@first}}</code>, <code>{{@last}}</code>, <code>{{@length}}</code>.</td></tr>
-        <tr><td><code>{{! hidden comment }}</code></td><td>Comment — not rendered.</td></tr>
+        <tr><td><code>{{name | filter}}</code></td><td>Apply filters, chain with <code>|</code>: <code>upper</code>, <code>lower</code>, <code>title</code>, <code>capitalize</code>, <code>trim</code>, <code>length</code>, <code>default:x</code>, <code>number</code>, <code>money</code>, <code>currency:&#8364;</code>, <code>date:%B %d, %Y</code>, <code>join:, </code>, <code>sum:amount</code>, <code>json</code>, <code>raw</code>.</td></tr>
+        <tr><td><code>{{#if field}}...{{else}}...{{/if}}</code></td><td>Conditional section. Empty / zero / false values are skipped. <code>{{#unless field}}</code> inverts.</td></tr>
+        <tr><td><code>{{#each items}}...{{/each}}</code></td><td>Repeat over a list. Inside: <code>{{this}}</code>, <code>{{@index}}</code>, <code>{{@number}}</code>, <code>{{@first}}</code>, <code>{{@last}}</code>, <code>{{@length}}</code>.</td></tr>
+        <tr><td><code>{{! hidden comment }}</code></td><td>Comment - not rendered.</td></tr>
       </table>
       <h3>Slides &amp; layouts</h3>
       <p><strong>Insert slide</strong> offers four layouts that change how a slide looks when presented:</p>
       <ul class="help-list">
-        <li><strong>Title</strong> — large centered heading + subtitle.</li>
-        <li><strong>Content</strong> — regular slide with a heading and body.</li>
-        <li><strong>Section</strong> — dark divider slide for new chapters.</li>
-        <li><strong>Exercise</strong> — content slide primed with fill-in-the-blank placeholders.</li>
-        <li><strong>Blank</strong> — an empty canvas.</li>
+        <li><strong>Title</strong> - large centered heading + subtitle.</li>
+        <li><strong>Content</strong> - regular slide with a heading and body.</li>
+        <li><strong>Section</strong> - dark divider slide for new chapters.</li>
+        <li><strong>Exercise</strong> - content slide primed with fill-in-the-blank placeholders.</li>
+        <li><strong>Blank</strong> - an empty canvas.</li>
       </ul>
-      <p>Drag slides on the strip to reorder, use the <strong>⋯</strong> menu to rename, duplicate, move or delete, and press <strong>Present</strong> to run the deck fullscreen (← → keys, <kbd>F</kbd> fullscreen, <kbd>Esc</kbd> to exit).</p>
-      <p class="tip"><strong>Fill-in preview:</strong> toggle <strong>Fill in</strong> on the Preview tab to type values straight into the slide — every <code>{{variable}}</code> becomes an underlined blank, computed values (filters) are read-only, and <code>+ Add item</code> / <code>− Last</code> manage each <code>{{#each}}</code> list. Great for classroom exercises.</p>
-      <p class="tip"><strong>Tip:</strong> dates work best as ISO strings (<code>2026-08-05</code>) — use the <code>date</code> filter to format them.</p>
+      <p>Drag slides on the strip to reorder, use the <strong>...</strong> menu to rename, duplicate, move or delete, and press <strong>Present</strong> to run the deck fullscreen (arrow keys, <kbd>F</kbd> fullscreen, <kbd>Esc</kbd> to exit).</p>
+      <p class="tip"><strong>Fill-in preview:</strong> toggle <strong>Fill in</strong> on the Preview tab to type values straight into the slide - every <code>{{variable}}</code> becomes an underlined blank, computed values (filters) are read-only, and <code>+ Add item</code> / <code>- Last</code> manage each <code>{{#each}}</code> list. Great for classroom exercises.</p>
+      <p class="tip"><strong>Tip:</strong> dates work best as ISO strings (<code>2026-08-05</code>) - use the <code>date</code> filter to format them.</p>
     </div>
   </div>
 </div>

@@ -36,7 +36,7 @@ const IDS = ['deck-name', 'deck-list', 'btn-new', 'search', 'btn-help', 'btn-hel
   'btn-import', 'file-import', 'deck-menu', 'btn-preview-mode', 'btn-fill-mode',
   'fill-wrap', 'preview-fill', 'btn-insert-slide', 'slide-strip', 'slide-menu',
   'btn-present', 'present-overlay', 'present-frame', 'btn-exit-present', 'btn-end-exercise', 'deck-bar', 'slide-count',
-  'btn-simulations', 'btn-dashboard', 'scenario-lib', 'scenario-cats', 'btn-add-inject'];
+  'btn-simulations', 'btn-dashboard', 'btn-decks', 'scenario-lib', 'scenario-cats', 'btn-add-inject'];
 for (const id of IDS) els[id.replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = document.getElementById(id);
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
@@ -152,8 +152,11 @@ function showLibrary() {
 
 function showDeckView() {
   els.scenarioLib.hidden = true;
+  const dashView = document.getElementById('dashboard-view');
+  if (dashView) dashView.hidden = true;
   els.btnSimulations.classList.remove('active');
-  els.btnDashboard.classList.add('active');
+  els.btnDashboard.classList.remove('active');
+  if (els.btnDecks) els.btnDecks.classList.add('active');
 }
 
 async function downloadAfterAction(deck) {
@@ -252,8 +255,11 @@ function showEmpty(on) {
   els.workspace.hidden = on;
   els.deckBar.hidden = on;
   els.scenarioLib.hidden = true;
+  const dashView = document.getElementById('dashboard-view');
+  if (dashView) dashView.hidden = true;
   els.btnSimulations.classList.remove('active');
   els.btnDashboard.classList.remove('active');
+  if (els.btnDecks) els.btnDecks.classList.remove('active');
   els.deckName.value = '';
   els.errPill.hidden = true;
   if (on) {
@@ -1207,6 +1213,10 @@ function closePresent() {
 async function endExercise() {
   if (els.presentOverlay.hidden) return;
   if (!confirm('End this exercise?\n\nThe After-Action Report (Word) will download automatically.')) return;
+  
+  // Capture the completion date (when End Exercise is clicked)
+  const completedDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+  
   /* Extract live exercise responses from the presentation iframe before closing */
   let liveResponses = null;
   try {
@@ -1236,6 +1246,26 @@ async function endExercise() {
     }
   } catch { /* cross-origin or iframe gone — continue without live data */ }
   closePresent();
+  
+  // Save the completed exercise to history
+  try {
+    const full = state.decks.find(d => d.id === state.deckId) || { name: state.name, slides: state.slides };
+    await api('/api/completed-exercises', {
+      method: 'POST',
+      body: JSON.stringify({
+        deckId: state.deckId,
+        name: full.name || state.name,
+        deckName: full.name || state.name,
+        completedDate: completedDate,
+        liveResponses: liveResponses,
+        slides: full.slides || state.slides,
+        category: (full.meta && full.meta.cat) || '',
+      }),
+    });
+  } catch (e) {
+    console.error('Failed to save completed exercise:', e);
+  }
+  
   try {
     const full = state.decks.find(d => d.id === state.deckId) || { name: state.name, slides: state.slides };
     const res = await fetch('/api/export', {
@@ -1248,6 +1278,7 @@ async function endExercise() {
         injects: full.injects || state.injects,
         meta: full.meta || state.meta,
         liveResponses,
+        completedDate: completedDate,
       }),
     });
     if (!res.ok) {
@@ -1258,12 +1289,12 @@ async function endExercise() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = slug(state.name) + '-after-action.doc';
+    a.download = slug(state.name) + '-after-action-' + completedDate + '.doc';
     document.body.appendChild(a);
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-    showToast('Exercise ended — After-Action Report downloaded');
+    showToast('Exercise ended on ' + completedDate + ' — After-Action Report downloaded');
   } catch (e) {
     showToast('Report download failed: ' + e.message, true);
   }
@@ -1422,11 +1453,13 @@ function bindEvents() {
 
   els.btnNew.addEventListener('click', createDeck);
   els.btnSimulations.addEventListener('click', showLibrary);
-  els.btnDashboard.addEventListener('click', () => {
-    if (state.deckId && !els.workspace.hidden) return; // already on the deck view
-    if (state.deckId) selectDeck(state.deckId);
-    else showLibrary();
-  });
+  els.btnDashboard.addEventListener('click', showDashboard);
+  if (els.btnDecks) {
+    els.btnDecks.addEventListener('click', () => {
+      if (state.deckId) selectDeck(state.deckId);
+      else showLibrary();
+    });
+  }
   els.scenarioCats.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-act]');
     if (!btn) return;
@@ -1656,6 +1689,149 @@ function bindEvents() {
 
   initGutter();
   initSlideDnd();
+  initDashboard();
+}
+
+/* ============================================================
+   Dashboard - Exercise History
+   ============================================================ */
+let completedExercises = [];
+
+async function initDashboard() {
+  await loadCompletedExercises();
+  renderDashboard();
+}
+
+async function loadCompletedExercises() {
+  try {
+    completedExercises = await api('/api/completed-exercises');
+  } catch (e) {
+    console.error('Failed to load completed exercises:', e);
+    completedExercises = [];
+  }
+}
+
+function renderDashboard() {
+  const statsEl = document.getElementById('dash-stats');
+  const historyEl = document.getElementById('dash-history');
+  if (!statsEl || !historyEl) return;
+
+  // Calculate stats
+  const totalExercises = completedExercises.length;
+  const itCount = completedExercises.filter(e => e.category === 'IT').length;
+  const boCount = completedExercises.filter(e => e.category === 'BO').length;
+  const thisMonth = completedExercises.filter(e => {
+    const d = new Date(e.completed_date);
+    const now = new Date();
+    return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+  }).length;
+
+  statsEl.innerHTML = `
+    <div class="dash-stat">
+      <div class="dash-stat-value">${totalExercises}</div>
+      <div class="dash-stat-label">Total Exercises</div>
+    </div>
+    <div class="dash-stat">
+      <div class="dash-stat-value">${itCount}</div>
+      <div class="dash-stat-label">IT Exercises</div>
+    </div>
+    <div class="dash-stat">
+      <div class="dash-stat-value">${boCount}</div>
+      <div class="dash-stat-label">Business Operations</div>
+    </div>
+    <div class="dash-stat">
+      <div class="dash-stat-value">${thisMonth}</div>
+      <div class="dash-stat-label">This Month</div>
+    </div>
+  `;
+
+  if (completedExercises.length === 0) {
+    historyEl.innerHTML = '<div class="dash-empty">No completed exercises yet. Start an exercise from the Simulations tab and click "End Exercise" to record it here.</div>';
+    return;
+  }
+
+  historyEl.innerHTML = `
+    <h3>Recent Exercise History</h3>
+    <table class="dash-table">
+      <thead>
+        <tr>
+          <th>Exercise</th>
+          <th>Category</th>
+          <th>Date Completed</th>
+          <th>Participants</th>
+          <th>AAR</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${completedExercises.map(ex => {
+          const roles = (ex.live_responses && ex.live_responses.roles) || 'Not recorded';
+          const dateStr = ex.completed_date || 'Unknown';
+          const catClass = ex.category === 'IT' ? 'it' : (ex.category === 'BO' ? 'bo' : '');
+          const catLabel = ex.category === 'IT' ? 'IT' : (ex.category === 'BO' ? 'BO' : ex.category || 'N/A');
+          return `<tr>
+            <td><strong>${esc(ex.name || 'Untitled')}</strong></td>
+            <td><span class="dash-badge ${catClass}">${esc(catLabel)}</span></td>
+            <td>${esc(dateStr)}</td>
+            <td><span class="dash-roles" title="${esc(roles)}">${esc(roles.length > 40 ? roles.substring(0, 40) + '...' : roles)}</span></td>
+            <td><button class="dash-download" onclick="downloadAARForExercise('${ex.id}')">
+              <svg viewBox="0 0 16 16" width="12" height="12"><path d="M8 2v8M4.5 7L8 10.5 11.5 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12.5h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              Download
+            </button></td>
+          </tr>`;
+        }).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+async function downloadAARForExercise(exerciseId) {
+  const exercise = completedExercises.find(e => e.id === exerciseId);
+  if (!exercise) {
+    showToast('Exercise not found', true);
+    return;
+  }
+  try {
+    const res = await fetch('/api/export', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: exercise.name || 'Exercise',
+        slides: exercise.slides || [],
+        format: 'afteraction',
+        liveResponses: exercise.live_responses || null,
+        completedDate: exercise.completed_date,
+      }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || res.statusText);
+    }
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = slug(exercise.name || 'exercise') + '-aar-' + (exercise.completed_date || 'date') + '.doc';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    showToast('AAR downloaded: ' + exercise.name);
+  } catch (e) {
+    showToast('Download failed: ' + e.message, true);
+  }
+}
+
+function showDashboard() {
+  els.scenarioCats && (els.scenarioCats.hidden = true);
+  els.scenarioLib && (els.scenarioLib.hidden = true);
+  els.workspace.hidden = true;
+  els.deckBar.hidden = true;
+  els.emptyState.hidden = true;
+  document.getElementById('dashboard-view').hidden = false;
+  els.btnSimulations.classList.remove('active');
+  els.btnDashboard.classList.add('active');
+  els.btnDecks && els.btnDecks.classList.remove('active');
+  loadCompletedExercises().then(() => renderDashboard());
 }
 
 init();

@@ -115,3 +115,25 @@ class Store:
                 _save(self.doc)
                 return True
             return False
+
+    # Completed exercises
+    def list_completed_exercises(self):
+        with _lock:
+            return self.doc.get("completed_exercises", [])
+
+    def add_completed_exercise(self, exercise_data):
+        with _lock:
+            if "completed_exercises" not in self.doc:
+                self.doc["completed_exercises"] = []
+            exercise_data["completed_at"] = _now()
+            exercise_data["id"] = uuid.uuid4().hex[:12]
+            self.doc["completed_exercises"].insert(0, exercise_data)  # newest first
+            _save(self.doc)
+            return exercise_data
+
+    def get_completed_exercise(self, exercise_id):
+        with _lock:
+            for ex in self.doc.get("completed_exercises", []):
+                if ex.get("id") == exercise_id:
+                    return dict(ex)
+            return None

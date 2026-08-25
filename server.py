@@ -690,7 +690,7 @@ def build_presentation(name, slides, injects=None, meta=None):
                         .replace("%%INJECT_JS%%", ex_js))
 
 
-def build_afteraction(name, slides, live_responses=None):
+def build_afteraction(name, slides, live_responses=None, completed_date=None):
     """Word-ready After Action Executive Summary built from the deck's summary
     slide data, following the standard executive-summary template:
     title block + control framework line, meta table, executive summary with
@@ -701,6 +701,9 @@ def build_afteraction(name, slides, live_responses=None):
 
     When *live_responses* is provided (captured from the presentation iframe),
     the roles and per-slide inject/decision responses are appended at the end.
+
+    When *completed_date* is provided (from the 'End Exercise' button), it is
+    used as the exercise date instead of auto-filling with today's date.
 
     Returns (html, None) on success or (None, error_message).
     """
@@ -740,11 +743,14 @@ def build_afteraction(name, slides, live_responses=None):
     meta = data.get("meta") if isinstance(data.get("meta"), dict) else {}
     exercise = data.get("exercise") if isinstance(data.get("exercise"), dict) else {}
     ex_name = str(exercise.get("name") or name)
-    # Auto-fill date with today's date if missing or placeholder
-    raw_date = str(exercise.get("date") or "").strip()
-    _placeholder_dates = ("", "0000-00-00", "TBD", "N/A", "n/a", "--", "TBD")
+    # Use completion date from frontend, or auto-fill with today's date
     today_str = time.strftime("%Y-%m-%d")
-    ex_date = today_str if (raw_date in _placeholder_dates or not raw_date) else raw_date
+    _placeholder_dates = ("", "0000-00-00", "TBD", "N/A", "n/a", "--", "TBD")
+    if completed_date:
+        ex_date = completed_date
+    else:
+        raw_date = str(exercise.get("date") or "").strip()
+        ex_date = today_str if (raw_date in _placeholder_dates or not raw_date) else raw_date
 
     head = ["<div class='report-head'><h1>Executive Summary</h1>"]
     head.append("<p>%s%s</p>" % (esc(ex_name), (" &middot; " + esc(ex_date)) if ex_date else ""))
@@ -1015,6 +1021,15 @@ class Handler(BaseHTTPRequestHandler):
                     self._json(200, d)
                 else:
                     self._json(404, {"error": "deck not found"})
+            elif path == "/api/completed-exercises":
+                self._json(200, store.list_completed_exercises())
+            elif path.startswith("/api/completed-exercises/"):
+                eid = path.rsplit("/", 1)[-1]
+                ex = store.get_completed_exercise(eid)
+                if ex:
+                    self._json(200, ex)
+                else:
+                    self._json(404, {"error": "exercise not found"})
             else:
                 self._json(404, {"error": "unknown endpoint"})
         else:
@@ -1081,7 +1096,7 @@ class Handler(BaseHTTPRequestHandler):
                 slides = []
             slug = re.sub(r"[^\w\- ]+", "", name).strip().replace(" ", "-") or "presentation"
             if fmt == "afteraction":
-                full, err = build_afteraction(name, slides, b.get("liveResponses"))
+                full, err = build_afteraction(name, slides, b.get("liveResponses"), b.get("completedDate"))
                 if err:
                     self._json(400, {"error": err})
                     return
@@ -1093,6 +1108,20 @@ class Handler(BaseHTTPRequestHandler):
             self._send(200, full, ctype, {
                 "Content-Disposition": "attachment; filename*=UTF-8''%s.%s" % (slug, ext)
             })
+        elif path == "/api/completed-exercises":
+            b = self._body()
+            # Save the completed exercise with its data, responses, and completion date
+            exercise_data = {
+                "deck_id": b.get("deckId"),
+                "name": b.get("name", "Untitled Exercise"),
+                "deck_name": b.get("deckName", ""),
+                "completed_date": b.get("completedDate", time.strftime("%Y-%m-%d")),
+                "live_responses": b.get("liveResponses", {}),
+                "slides": b.get("slides", []),
+                "category": b.get("category", ""),
+            }
+            result = store.add_completed_exercise(exercise_data)
+            self._json(201, result)
         else:
             self._json(404, {"error": "unknown endpoint"})
 

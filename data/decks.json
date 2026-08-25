@@ -7716,5 +7716,26 @@
       "created": "2026-08-18T00:55:18",
       "updated": "2026-08-25T00:36:23"
     }
+  ],
+  "completed_exercises": [
+    {
+      "deck_id": "test123",
+      "name": "Test Exercise",
+      "deck_name": "Test Deck",
+      "completed_date": "2026-08-26",
+      "live_responses": {
+        "roles": "Corporate Security, IT Operations",
+        "items": [
+          {
+            "title": "Inject 1",
+            "body": "Test response"
+          }
+        ]
+      },
+      "slides": [],
+      "category": "IT",
+      "completed_at": "2026-08-26T01:20:36",
+      "id": "a68aa998fdbe"
+    }
   ]
 }
