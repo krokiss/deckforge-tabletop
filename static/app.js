@@ -1207,6 +1207,34 @@ function closePresent() {
 async function endExercise() {
   if (els.presentOverlay.hidden) return;
   if (!confirm('End this exercise?\n\nThe After-Action Report (Word) will download automatically.')) return;
+  /* Extract live exercise responses from the presentation iframe before closing */
+  let liveResponses = null;
+  try {
+    const iDoc = els.presentFrame.contentDocument;
+    if (iDoc) {
+      const slides = iDoc.querySelectorAll('.slide');
+      const injLog = iDoc.querySelector('.inj-log');
+      /* Read the inj-log items (Roles, Injects, Decisions) */
+      const items = [];
+      if (injLog) {
+        injLog.querySelectorAll('.inj-log-item').forEach(el => {
+          const title = (el.querySelector('b') || {}).textContent || '';
+          const body  = (el.querySelector('.r') || {}).textContent || '';
+          items.push({ title, body });
+        });
+      }
+      /* Also read role-checkbox selections from the Roles slide */
+      let roles = '';
+      slides.forEach(s => {
+        const pick = s.querySelector('.role-pick');
+        if (pick) {
+          const saved = pick.querySelector('.inj-saved');
+          if (saved) roles = saved.textContent || '';
+        }
+      });
+      liveResponses = { roles, items };
+    }
+  } catch { /* cross-origin or iframe gone — continue without live data */ }
   closePresent();
   try {
     const full = state.decks.find(d => d.id === state.deckId) || { name: state.name, slides: state.slides };
@@ -1219,6 +1247,7 @@ async function endExercise() {
         format: 'afteraction',
         injects: full.injects || state.injects,
         meta: full.meta || state.meta,
+        liveResponses,
       }),
     });
     if (!res.ok) {

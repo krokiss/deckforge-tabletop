@@ -690,7 +690,7 @@ def build_presentation(name, slides, injects=None, meta=None):
                         .replace("%%INJECT_JS%%", ex_js))
 
 
-def build_afteraction(name, slides):
+def build_afteraction(name, slides, live_responses=None):
     """Word-ready After Action Executive Summary built from the deck's summary
     slide data, following the standard executive-summary template:
     title block + control framework line, meta table, executive summary with
@@ -698,6 +698,9 @@ def build_afteraction(name, slides):
     framework alignment, recommendations, CAPA action plan, roadmap, evidence
     pack, KPIs, and executive decisions requested. Sections with no data are
     skipped so older decks still export cleanly.
+
+    When *live_responses* is provided (captured from the presentation iframe),
+    the roles and per-slide inject/decision responses are appended at the end.
 
     Returns (html, None) on success or (None, error_message).
     """
@@ -822,6 +825,27 @@ def build_afteraction(name, slides):
 
     if rows("decisions"):
         parts.append(section("Executive Decisions Requested", bullets(rows("decisions"))))
+
+    # ── Live exercise responses captured during the presentation ──
+    if live_responses and isinstance(live_responses, dict):
+        live_html = ""
+        # Roles
+        roles_text = str(live_responses.get("roles") or "").strip()
+        if roles_text:
+            live_html += "<p><b>Participating roles:</b> %s</p>" % esc(roles_text)
+        # Per-slide inject / decision items
+        items = live_responses.get("items") or []
+        if items:
+            live_html += "<h3>Recorded team responses</h3>"
+            live_html += "<ul>"
+            for it in items:
+                title = str(it.get("title") or "").strip()
+                body = str(it.get("body") or "").strip()
+                if title or body:
+                    live_html += "<li><b>%s</b> — %s</li>" % (esc(title), esc(body))
+            live_html += "</ul>"
+        if live_html:
+            parts.append(section("Exercise Responses (Live)", live_html))
 
     footer = ""
     if meta.get("reference"):
@@ -1049,7 +1073,7 @@ class Handler(BaseHTTPRequestHandler):
                 slides = []
             slug = re.sub(r"[^\w\- ]+", "", name).strip().replace(" ", "-") or "presentation"
             if fmt == "afteraction":
-                full, err = build_afteraction(name, slides)
+                full, err = build_afteraction(name, slides, b.get("liveResponses"))
                 if err:
                     self._json(400, {"error": err})
                     return
