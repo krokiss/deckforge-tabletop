@@ -119,10 +119,15 @@ function scenarioDeckName(title) {
 function renderLibrary() {
   const cats = {};
   for (const s of SCENARIOS) (cats[s.cat] = cats[s.cat] || []).push(s);
+  // Determine which scenario card is currently selected
+  const selectedName = state.deckId ? (state.decks.find(d => d.id === state.deckId) || {}).name : '';
   els.scenarioCats.innerHTML = Object.keys(CAT_META).map((key) => {
     const meta = CAT_META[key];
-    const cards = (cats[key] || []).map((s) => `
-      <div class="scenario-card" data-title="${esc(s.title)}">
+    const cards = (cats[key] || []).map((s) => {
+      const deckName = scenarioDeckName(s.title);
+      const isActive = selectedName === deckName;
+      return `
+      <div class="scenario-card${isActive ? ' active' : ''}" data-title="${esc(s.title)}">
         <div class="sc-card-head">
           <span class="sc-icon">${meta.icon}</span>
           <span class="sc-diff ${s.diff === 'ADVANCED' ? 'advanced' : 'intermediate'}">${s.diff}</span>
@@ -134,7 +139,8 @@ function renderLibrary() {
           <button class="btn ghost small" data-act="aar" title="Download this exercise's After Action Executive Summary (.doc)">AAR ↓</button>
           <button class="btn primary small" data-act="start">Start</button>
         </div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
     return `<section class="scenario-cat ${meta.cls}">
       <div class="cat-head"><span class="cat-bar"></span><span class="cat-title">${meta.label}</span></div>
       <div class="scenario-grid">${cards}</div>
@@ -1189,8 +1195,22 @@ function slug(s) {
 }
 
 async function openPresent() {
+  // If deck is selected but not loaded, load it first
+  if (state.deckId && !state.slides.length) {
+    try {
+      const deck = await api('/api/decks/' + state.deckId);
+      state.name = deck.name;
+      state.slides = Array.isArray(deck.slides) ? deck.slides : [];
+      state.injects = Array.isArray(deck.injects) ? deck.injects : [];
+      state.meta = deck.meta || null;
+    } catch (e) {
+      showToast('Could not load deck: ' + e.message, true);
+      return;
+    }
+  }
+  
   if (!state.slides.length) {
-    showToast('Add a slide before presenting', true);
+    showToast('Select or create a deck first', true);
     return;
   }
   try {
@@ -1468,10 +1488,25 @@ function bindEvents() {
     });
   }
   els.scenarioCats.addEventListener('click', (e) => {
+    // Check if a button was clicked
     const btn = e.target.closest('[data-act]');
-    if (!btn) return;
-    const card = btn.closest('.scenario-card');
-    if (card) runScenario(btn.dataset.act, card.dataset.title);
+    if (btn) {
+      const card = btn.closest('.scenario-card');
+      if (card) runScenario(btn.dataset.act, card.dataset.title);
+      return;
+    }
+    // If clicked anywhere on the card, select the deck and highlight the card
+    const card = e.target.closest('.scenario-card');
+    if (card && card.dataset.title) {
+      const deck = state.decks.find((d) => d.name === scenarioDeckName(card.dataset.title));
+      if (deck) {
+        // Store the deck ID for Present button
+        state.deckId = deck.id;
+        // Render library to highlight the selected card
+        renderLibrary();
+        showToast('Selected: ' + card.dataset.title + ' \u2014 click Present to start');
+      }
+    }
   });
   els.btnImport.addEventListener('click', () => els.fileImport.click());
   els.fileImport.addEventListener('change', (e) => importDecks(e.target.files));

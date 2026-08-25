@@ -300,9 +300,11 @@ body {
   display: flex; flex-direction: column; gap: 10px;
   background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
   padding: 16px 16px 14px;
-  transition: border-color .15s, transform .12s, box-shadow .15s;
+  transition: border-color .15s, transform .12s, box-shadow .15s, background .15s;
+  cursor: pointer;
 }
 .scenario-card:hover { border-color: #3d4a7a; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 0, 0, .35); }
+.scenario-card.active { border-color: var(--accent); background: linear-gradient(135deg, rgba(108, 123, 255, .08), rgba(160, 107, 255, .05)); box-shadow: 0 0 0 2px rgba(108, 123, 255, .25); }
 .sc-card-head { display: flex; align-items: center; justify-content: space-between; }
 .sc-icon { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; background: var(--bg-3); border: 1px solid var(--border); color: var(--accent); }
 .sc-diff {
