@@ -639,7 +639,7 @@ INJECT_JS = r"""
   var stage = document.getElementById('stage');
   if (stage) mo.observe(stage, { childList: true });
   renderSlide(slides.indexOf(document.querySelector('.slide.active')));
-});
+})();
 </script>
 """
 
