@@ -1738,6 +1738,7 @@ function bindEvents() {
    Dashboard - Exercise History
    ============================================================ */
 let completedExercises = [];
+let selectedStatFilter = null; // null = show all, 'all', 'it', 'bo', 'month
 
 async function initDashboard() {
   await loadCompletedExercises();
@@ -1769,31 +1770,59 @@ function renderDashboard() {
   }).length;
 
   statsEl.innerHTML = `
-    <div class="dash-stat">
+    <div class="dash-stat${selectedStatFilter === 'all' || selectedStatFilter === null ? ' active' : ''}" data-stat="all">
       <div class="dash-stat-value">${totalExercises}</div>
       <div class="dash-stat-label">Total Exercises</div>
     </div>
-    <div class="dash-stat">
+    <div class="dash-stat${selectedStatFilter === 'it' ? ' active' : ''}" data-stat="it">
       <div class="dash-stat-value">${itCount}</div>
       <div class="dash-stat-label">IT Exercises</div>
     </div>
-    <div class="dash-stat">
+    <div class="dash-stat${selectedStatFilter === 'bo' ? ' active' : ''}" data-stat="bo">
       <div class="dash-stat-value">${boCount}</div>
       <div class="dash-stat-label">Business Operations</div>
     </div>
-    <div class="dash-stat">
+    <div class="dash-stat${selectedStatFilter === 'month' ? ' active' : ''}" data-stat="month">
       <div class="dash-stat-value">${thisMonth}</div>
       <div class="dash-stat-label">This Month</div>
     </div>
   `;
 
-  if (completedExercises.length === 0) {
-    historyEl.innerHTML = '<div class="dash-empty">No completed exercises yet. Start an exercise from the Simulations tab and click "End Exercise" to record it here.</div>';
+  // Add click handlers to stat cards for filtering
+  statsEl.querySelectorAll('.dash-stat').forEach(el => {
+    el.addEventListener('click', () => {
+      const stat = el.dataset.stat;
+      // Toggle filter: if clicking the same one, deselect (show all)
+      selectedStatFilter = (selectedStatFilter === stat) ? null : stat;
+      renderDashboard();
+    });
+  });
+
+  // Apply filter to exercises
+  let filtered = completedExercises;
+  if (selectedStatFilter === 'it') {
+    filtered = completedExercises.filter(e => e.category === 'IT');
+  } else if (selectedStatFilter === 'bo') {
+    filtered = completedExercises.filter(e => e.category === 'BO');
+  } else if (selectedStatFilter === 'month') {
+    const now = new Date();
+    filtered = completedExercises.filter(e => {
+      const d = new Date(e.completed_date);
+      return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+    });
+  }
+
+  const filterLabel = selectedStatFilter === 'it' ? 'IT' : selectedStatFilter === 'bo' ? 'Business Operations' : selectedStatFilter === 'month' ? 'This Month' : '';
+
+  if (filtered.length === 0) {
+    historyEl.innerHTML = filterLabel
+      ? `<div class="dash-empty">No ${filterLabel} exercises found.</div>`
+      : '<div class="dash-empty">No completed exercises yet. Start an exercise from the Simulations tab and click "End Exercise" to record it here.</div>';
     return;
   }
 
   historyEl.innerHTML = `
-    <h3>Recent Exercise History</h3>
+    <h3>${filterLabel ? filterLabel + ' — ' : ''}Exercise History (${filtered.length})</h3>
     <table class="dash-table">
       <thead>
         <tr>

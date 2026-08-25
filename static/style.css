@@ -748,8 +748,11 @@ textarea.field-input { min-height: 74px; resize: vertical; font-family: var(--mo
 }
 .dash-stat {
   background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px;
-  padding: 18px 20px; text-align: center;
+  padding: 18px 20px; text-align: center; cursor: pointer;
+  transition: border-color .15s, background .15s, box-shadow .15s, transform .12s;
 }
+.dash-stat:hover { border-color: #3d4a7a; transform: translateY(-1px); }
+.dash-stat.active { border-color: var(--accent); background: linear-gradient(135deg, rgba(108, 123, 255, .12), rgba(160, 107, 255, .08)); box-shadow: 0 0 0 2px rgba(108, 123, 255, .25); }
 .dash-stat-value { font-size: 28px; font-weight: 700; color: var(--accent); }
 .dash-stat-label { color: var(--text-2); font-size: 12.5px; margin-top: 4px; }
 .dash-history { padding: 0 32px 32px; }
