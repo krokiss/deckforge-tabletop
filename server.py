@@ -282,6 +282,9 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #0b0e15; }
   }
   window.addEventListener('resize', fit);
   document.addEventListener('keydown', function (e) {
+    // Never hijack keyboard when the user is typing in a textarea or input.
+    var t = e.target;
+    if (t && (t.tagName === 'TEXTAREA' || t.tagName === 'INPUT' || t.contentEditable === 'true')) return;
     if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
       e.preventDefault(); next();
     } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
@@ -486,30 +489,11 @@ INJECT_JS = r"""
   }
 
   function initDecisionWidget(slide, idx) {
+    // Textareas are pre-rendered in HTML by decision_widget_html().
+    // This function is now a no-op — we only mark the widget as initialized.
     var widget = slide.querySelector('.dec-widget');
     if (!widget || widget.dataset.init) return;
     widget.dataset.init = '1';
-    var questions = Array.prototype.slice.call(slide.querySelectorAll('h3'))
-      .filter(function (h) { return /^Q\d+/.test(h.textContent.trim()); });
-    var taWrap = document.createElement('div');
-    taWrap.className = 'dec-questions';
-    questions.forEach(function (h, qi) {
-      var label = document.createElement('div');
-      label.className = 'dec-q-label';
-      label.textContent = h.textContent.trim();
-      var ta = document.createElement('textarea');
-      ta.className = 'dec-q-ta';
-      ta.rows = 4;
-      ta.placeholder = 'Team response for Q' + (qi + 1) + '...';
-      ta.dataset.q = qi;
-      var qDiv = document.createElement('div');
-      qDiv.className = 'dec-q';
-      qDiv.appendChild(label);
-      qDiv.appendChild(ta);
-      taWrap.appendChild(qDiv);
-    });
-    var btn = widget.querySelector('.dec-save');
-    widget.insertBefore(taWrap, btn);
   }
 
   function renderSlide(idx) {
@@ -640,10 +624,10 @@ INJECT_JS = r"""
   });
 
   document.addEventListener('keydown', function (e) {
-    if (e.target && (e.target.tagName === 'TEXTAREA' || e.target.classList.contains('dec-q-ta'))) {
-      if (['Enter', ' ', 'PageDown', 'PageUp', 'ArrowRight', 'ArrowLeft'].indexOf(e.key) > -1) {
-        e.stopPropagation();
-      }
+    var t = e.target;
+    if (t && (t.tagName === 'TEXTAREA' || t.tagName === 'INPUT' || t.contentEditable === 'true')) {
+      e.stopImmediatePropagation();
+      e.stopPropagation();
     }
   }, true);
 
