@@ -83,19 +83,20 @@ body {
 .search input { flex: 1; background: none; border: 0; outline: 0; color: var(--text); font-size: 13px; font-family: var(--sans); }
 .search input::placeholder { color: var(--text-3); }
 
-#deck-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; min-height: 0; padding-right: 2px; }
-
-.deck-item {
-  display: flex; align-items: center; gap: 8px;
-  width: 100%; text-align: left; cursor: pointer;
+#deck-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; min-height: 0; padding-right: 2px; }.deck-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  text-align: left; cursor: pointer;
   background: transparent; border: 1px solid transparent;
   border-radius: var(--radius-sm); padding: 9px 10px;
   color: var(--text-2); font-family: var(--sans); font-size: 13.5px;
-  transition: background .14s, border-color .14s, color .14s;
+  transition: background .14s, border-color .14s, color .14s, box-shadow .14s;
   position: relative;
 }
 .deck-item:hover { background: var(--bg-3); color: var(--text); }
-.deck-item.active { background: var(--accent-soft); border-color: rgba(108, 123, 255, .35); color: var(--text); }
+.deck-item.active { background: linear-gradient(135deg, rgba(108, 123, 255, .18), rgba(160, 107, 255, .12)); border-color: rgba(108, 123, 255, .5); color: #fff; box-shadow: 0 2px 8px rgba(108, 123, 255, .2); }
 .deck-item .deck-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .deck-item .deck-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; flex-shrink: 0; }
 .deck-item .deck-date { font-size: 10.5px; color: var(--text-3); }

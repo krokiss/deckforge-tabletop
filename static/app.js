@@ -65,7 +65,9 @@ async function init() {
   applyFillModeUi();
   try {
     await reloadDecks();
-    if (state.decks.length) showLibrary();
+    // Hide deck list by default, show dashboard
+    els.deckList.hidden = true;
+    showDashboard();
   } catch (e) {
     showToast('Could not reach the server: ' + e.message, true);
   }
@@ -145,8 +147,12 @@ function showLibrary() {
   els.workspace.hidden = true;
   els.deckBar.hidden = true;
   els.scenarioLib.hidden = false;
+  const dashView = document.getElementById('dashboard-view');
+  if (dashView) dashView.hidden = true;  // Hide dashboard when showing simulations
+  els.deckList.hidden = false;  // Show deck list when viewing simulations
   els.btnSimulations.classList.add('active');
   els.btnDashboard.classList.remove('active');
+  els.btnDecks && els.btnDecks.classList.remove('active');
   renderLibrary();
 }
 
@@ -154,6 +160,7 @@ function showDeckView() {
   els.scenarioLib.hidden = true;
   const dashView = document.getElementById('dashboard-view');
   if (dashView) dashView.hidden = true;
+  els.deckList.hidden = false;  // Show deck list when viewing decks
   els.btnSimulations.classList.remove('active');
   els.btnDashboard.classList.remove('active');
   if (els.btnDecks) els.btnDecks.classList.add('active');
@@ -1822,11 +1829,11 @@ async function downloadAARForExercise(exerciseId) {
 }
 
 function showDashboard() {
-  els.scenarioCats && (els.scenarioCats.hidden = true);
   els.scenarioLib && (els.scenarioLib.hidden = true);
   els.workspace.hidden = true;
   els.deckBar.hidden = true;
   els.emptyState.hidden = true;
+  els.deckList.hidden = true;  // Hide deck list when viewing dashboard
   document.getElementById('dashboard-view').hidden = false;
   els.btnSimulations.classList.remove('active');
   els.btnDashboard.classList.add('active');
