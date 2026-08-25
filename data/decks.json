@@ -2,7 +2,7 @@
   "decks": [
     {
       "id": "8937909251e2",
-      "name": "Table Top Exercise Â· Cyber-Intrusion",
+      "name": "Table Top Exercise · Cyber-Intrusion",
       "slides": [
         {
           "name": "Title",
@@ -11,7 +11,7 @@
           "data": {
             "scenario": {
               "title": "Cyber-Intrusion",
-              "kicker": "Cyber Incident Tabletop Â· ISO/IEC 27001:2022 & ISO/IEC 27002:2022 Â· Information Technology Â· Intermediate Â· 90 minutes Â· Facilitated discussion"
+              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Intermediate · 90 minutes · Facilitated discussion"
             }
           }
         },
@@ -623,7 +623,7 @@
     },
     {
       "id": "d51189a87f6b",
-      "name": "Table Top Exercise Â· Data Loss",
+      "name": "Table Top Exercise · Data Loss",
       "slides": [
         {
           "name": "Title",
@@ -632,7 +632,7 @@
           "data": {
             "scenario": {
               "title": "Data Loss",
-              "kicker": "Cyber Incident Tabletop Â· ISO/IEC 27001:2022 & ISO/IEC 27002:2022 Â· Information Technology Â· Intermediate Â· 90 minutes Â· Facilitated discussion"
+              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Intermediate · 90 minutes · Facilitated discussion"
             }
           }
         },
@@ -1216,7 +1216,7 @@
     },
     {
       "id": "615b4eee2c50",
-      "name": "Table Top Exercise Â· Ransomware",
+      "name": "Table Top Exercise · Ransomware",
       "slides": [
         {
           "name": "Title",
@@ -1225,7 +1225,7 @@
           "data": {
             "scenario": {
               "title": "Ransomware",
-              "kicker": "Cyber Incident Tabletop Â· ISO/IEC 27001:2022 & ISO/IEC 27002:2022 Â· Information Technology Â· Advanced Â· 90 minutes Â· Facilitated discussion"
+              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Advanced · 90 minutes · Facilitated discussion"
             }
           }
         },
@@ -1809,7 +1809,7 @@
     },
     {
       "id": "d417e760334a",
-      "name": "Table Top Exercise Â· Denial of Service",
+      "name": "Table Top Exercise · Denial of Service",
       "slides": [
         {
           "name": "Title",
@@ -1818,7 +1818,7 @@
           "data": {
             "scenario": {
               "title": "Denial of Service",
-              "kicker": "Cyber Incident Tabletop Â· ISO/IEC 27001:2022 & ISO/IEC 27002:2022 Â· Information Technology Â· Intermediate Â· 90 minutes Â· Facilitated discussion"
+              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Intermediate · 90 minutes · Facilitated discussion"
             }
           }
         },
@@ -2402,7 +2402,7 @@
     },
     {
       "id": "f8c31ab99475",
-      "name": "Table Top Exercise Â· Insider Threat",
+      "name": "Table Top Exercise · Insider Threat",
       "slides": [
         {
           "name": "Title",
@@ -2411,7 +2411,7 @@
           "data": {
             "scenario": {
               "title": "Insider Threat",
-              "kicker": "Cyber Incident Tabletop Â· ISO/IEC 27001:2022 & ISO/IEC 27002:2022 Â· Information Technology Â· Advanced Â· 90 minutes Â· Facilitated discussion"
+              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Advanced · 90 minutes · Facilitated discussion"
             }
           }
         },
@@ -2996,7 +2996,7 @@
     },
     {
       "id": "5cf7d5e46621",
-      "name": "Table Top Exercise Â· Compromised Credentials",
+      "name": "Table Top Exercise · Compromised Credentials",
       "slides": [
         {
           "name": "Title",
@@ -3005,7 +3005,7 @@
           "data": {
             "scenario": {
               "title": "Compromised Credentials",
-              "kicker": "Cyber Incident Tabletop Â· ISO/IEC 27001:2022 & ISO/IEC 27002:2022 Â· Information Technology Â· Intermediate Â· 90 minutes Â· Facilitated discussion"
+              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Intermediate · 90 minutes · Facilitated discussion"
             }
           }
         },
@@ -3589,7 +3589,7 @@
     },
     {
       "id": "9a307888e2a5",
-      "name": "Table Top Exercise Â· Cyberattack on CRM System",
+      "name": "Table Top Exercise · Cyberattack on CRM System",
       "slides": [
         {
           "name": "Title",
@@ -3598,7 +3598,7 @@
           "data": {
             "scenario": {
               "title": "Cyberattack on CRM System",
-              "kicker": "Cyber Incident Tabletop Â· ISO/IEC 27001:2022 & ISO/IEC 27002:2022 Â· Information Technology Â· Advanced Â· 90 minutes Â· Facilitated discussion"
+              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Advanced · 90 minutes · Facilitated discussion"
             }
           }
         },
@@ -4182,7 +4182,7 @@
     },
     {
       "id": "161dd92145c1",
-      "name": "Table Top Exercise Â· Network Outage Affecting Global Connectivity",
+      "name": "Table Top Exercise · Network Outage Affecting Global Connectivity",
       "slides": [
         {
           "name": "Title",
@@ -4191,7 +4191,7 @@
           "data": {
             "scenario": {
               "title": "Network Outage Affecting Global Connectivity",
-              "kicker": "Cyber Incident Tabletop Â· ISO/IEC 27001:2022 & ISO/IEC 27002:2022 Â· Business Operations Â· Intermediate Â· 90 minutes Â· Facilitated discussion"
+              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Business Operations · Intermediate · 90 minutes · Facilitated discussion"
             }
           }
         },
@@ -4785,7 +4785,7 @@
     },
     {
       "id": "611e32f9831c",
-      "name": "Table Top Exercise Â· Fire at Secondary Site During Peak Hours",
+      "name": "Table Top Exercise · Fire at Secondary Site During Peak Hours",
       "slides": [
         {
           "name": "Title",
@@ -4794,7 +4794,7 @@
           "data": {
             "scenario": {
               "title": "Fire at Secondary Site During Peak Hours",
-              "kicker": "Cyber Incident Tabletop Â· ISO/IEC 27001:2022 & ISO/IEC 27002:2022 Â· Business Operations Â· Advanced Â· 90 minutes Â· Facilitated discussion"
+              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Business Operations · Advanced · 90 minutes · Facilitated discussion"
             }
           }
         },
@@ -5388,7 +5388,7 @@
     },
     {
       "id": "e7d675daca3d",
-      "name": "Table Top Exercise Â· Complete Power Outage at HQ",
+      "name": "Table Top Exercise · Complete Power Outage at HQ",
       "slides": [
         {
           "name": "Title",
@@ -5397,7 +5397,7 @@
           "data": {
             "scenario": {
               "title": "Complete Power Outage at HQ",
-              "kicker": "Cyber Incident Tabletop Â· ISO/IEC 27001:2022 & ISO/IEC 27002:2022 Â· Business Operations Â· Advanced Â· 90 minutes Â· Facilitated discussion"
+              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Business Operations · Advanced · 90 minutes · Facilitated discussion"
             }
           }
         },
@@ -5991,7 +5991,7 @@
     },
     {
       "id": "25a1db70cdea",
-      "name": "Table Top Exercise Â· Geopolitic Concerns Reducing Workforce Availability",
+      "name": "Table Top Exercise · Geopolitic Concerns Reducing Workforce Availability",
       "slides": [
         {
           "name": "Title",
@@ -6000,7 +6000,7 @@
           "data": {
             "scenario": {
               "title": "Geopolitic Concerns Reducing Workforce Availability",
-              "kicker": "Cyber Incident Tabletop Â· ISO/IEC 27001:2022 & ISO/IEC 27002:2022 Â· Business Operations Â· Advanced Â· 90 minutes Â· Facilitated discussion"
+              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Business Operations · Advanced · 90 minutes · Facilitated discussion"
             }
           }
         },
@@ -7109,7 +7109,7 @@
     },
     {
       "id": "91670dae1ed3",
-      "name": "Table Top Exercise Â· Backup & Recovery DR Test",
+      "name": "Table Top Exercise · Backup & Recovery DR Test",
       "slides": [
         {
           "name": "Title",
