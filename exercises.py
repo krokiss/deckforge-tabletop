@@ -174,7 +174,7 @@ EXERCISE_DECKS = [
                 "layout": "content",
                 "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}",
                 "data": {
-                    "exercise": {"name": "Ransomware at a BPO", "date": "2026-08-17"},
+                    "exercise": {"name": "Ransomware at a BPO", "date": ""},
                     "participants": "CISO, Client delivery, InfoSec, Service desk, Communications",
                     "highlights": [
                         "The claims environment was isolated from client shares within the first 15 minutes",
@@ -360,7 +360,7 @@ EXERCISE_DECKS = [
                 "layout": "content",
                 "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}",
                 "data": {
-                    "exercise": {"name": "Breach via Remote-Access Vendor", "date": "2026-08-17"},
+                    "exercise": {"name": "Breach via Remote-Access Vendor", "date": ""},
                     "participants": "CISO, Client delivery, Procurement, Cloud operations, DPO",
                     "highlights": [
                         "The vendor platform was suspended before the payroll run was exposed further",
@@ -546,7 +546,7 @@ EXERCISE_DECKS = [
                 "layout": "content",
                 "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}",
                 "data": {
-                    "exercise": {"name": "Insider Data Theft by an Agent", "date": "2026-08-17"},
+                    "exercise": {"name": "Insider Data Theft by an Agent", "date": ""},
                     "participants": "CISO, Client delivery, HR, DPO, IAM",
                     "highlights": [
                         "The agent's access was revoked within the hour, before the shift ended",

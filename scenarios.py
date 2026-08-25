@@ -408,7 +408,7 @@ def _build_deck(s):
         {
             "name": "After Action Executive Summary", "layout": "content",
             "body": AAR_BODY,
-            "data": {"exercise": {"name": s["title"], "date": "2026-08-17"},
+            "data": {"exercise": {"name": s["title"], "date": ""},
                      "participants": "CISO, Client delivery, InfoSec, IT, Communications",
                      "highlights": s["highlights"], "lessons": s["lessons"],
                      "story": story_summary(s),

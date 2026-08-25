@@ -289,7 +289,7 @@
           "data": {
             "exercise": {
               "name": "Cyber-Intrusion",
-              "date": "2026-03-10"
+              "date": ""
             },
             "participants": "Executive Leadership, Corporate Security, IT Operations, Compliance",
             "highlights": [
@@ -407,7 +407,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "June 16, 2026",
+              "prepared_date": "",
               "source_document": "CyberIntrusion_3_10_2026_after_action_report.docx",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -910,7 +910,7 @@
           "data": {
             "exercise": {
               "name": "Data Loss",
-              "date": "2026-08-17"
+              "date": ""
             },
             "participants": "CISO, Client delivery, InfoSec, IT, Communications",
             "highlights": [
@@ -970,7 +970,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "2026-08-17",
+              "prepared_date": "",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -1503,7 +1503,7 @@
           "data": {
             "exercise": {
               "name": "Ransomware",
-              "date": "2026-08-17"
+              "date": ""
             },
             "participants": "CISO, Client delivery, InfoSec, IT, Communications",
             "highlights": [
@@ -1563,7 +1563,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "2026-08-17",
+              "prepared_date": "",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -2096,7 +2096,7 @@
           "data": {
             "exercise": {
               "name": "Denial of Service",
-              "date": "2026-08-17"
+              "date": ""
             },
             "participants": "CISO, Client delivery, InfoSec, IT, Communications",
             "highlights": [
@@ -2156,7 +2156,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "2026-08-17",
+              "prepared_date": "",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -2690,7 +2690,7 @@
           "data": {
             "exercise": {
               "name": "Insider Threat",
-              "date": "2026-08-17"
+              "date": ""
             },
             "participants": "CISO, Client delivery, InfoSec, IT, Communications",
             "highlights": [
@@ -2750,7 +2750,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "2026-08-17",
+              "prepared_date": "",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -3283,7 +3283,7 @@
           "data": {
             "exercise": {
               "name": "Compromised Credentials",
-              "date": "2026-08-17"
+              "date": ""
             },
             "participants": "CISO, Client delivery, InfoSec, IT, Communications",
             "highlights": [
@@ -3343,7 +3343,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "2026-08-17",
+              "prepared_date": "",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -3876,7 +3876,7 @@
           "data": {
             "exercise": {
               "name": "Cyberattack on CRM System",
-              "date": "2026-08-17"
+              "date": ""
             },
             "participants": "CISO, Client delivery, InfoSec, IT, Communications",
             "highlights": [
@@ -3936,7 +3936,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "2026-08-17",
+              "prepared_date": "",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -4479,7 +4479,7 @@
           "data": {
             "exercise": {
               "name": "Network Outage Affecting Global Connectivity",
-              "date": "2026-08-17"
+              "date": ""
             },
             "participants": "CISO, Client delivery, InfoSec, IT, Communications",
             "highlights": [
@@ -4539,7 +4539,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "2026-08-17",
+              "prepared_date": "",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -5082,7 +5082,7 @@
           "data": {
             "exercise": {
               "name": "Fire at Secondary Site During Peak Hours",
-              "date": "2026-08-17"
+              "date": ""
             },
             "participants": "CISO, Client delivery, InfoSec, IT, Communications",
             "highlights": [
@@ -5142,7 +5142,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "2026-08-17",
+              "prepared_date": "",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -5685,7 +5685,7 @@
           "data": {
             "exercise": {
               "name": "Complete Power Outage at HQ",
-              "date": "2026-08-17"
+              "date": ""
             },
             "participants": "CISO, Client delivery, InfoSec, IT, Communications",
             "highlights": [
@@ -5745,7 +5745,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "2026-08-17",
+              "prepared_date": "",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -6288,7 +6288,7 @@
           "data": {
             "exercise": {
               "name": "Geopolitic Concerns Reducing Workforce Availability",
-              "date": "2026-08-17"
+              "date": ""
             },
             "participants": "CISO, Client delivery, InfoSec, IT, Communications",
             "highlights": [
@@ -6348,7 +6348,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "2026-08-17",
+              "prepared_date": "",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -6857,7 +6857,7 @@
           "data": {
             "exercise": {
               "name": "Vishing Attack",
-              "date": "2026-08-17"
+              "date": ""
             },
             "participants": "Operations Manager, Team Leaders, Customer Care Agents, IT Security, Compliance, HR",
             "highlights": [
@@ -6919,7 +6919,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "2026-08-17",
+              "prepared_date": "",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -7415,7 +7415,7 @@
           "data": {
             "exercise": {
               "name": "Backup & Recovery DR Test",
-              "date": "2026-08-17"
+              "date": ""
             },
             "participants": "Operations Manager, Team Leaders, IT Operations, Backup & Recovery Team, Compliance, Client Delivery",
             "highlights": [
@@ -7477,7 +7477,7 @@
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "2026-08-17",
+              "prepared_date": "",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",

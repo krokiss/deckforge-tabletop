@@ -740,7 +740,11 @@ def build_afteraction(name, slides, live_responses=None):
     meta = data.get("meta") if isinstance(data.get("meta"), dict) else {}
     exercise = data.get("exercise") if isinstance(data.get("exercise"), dict) else {}
     ex_name = str(exercise.get("name") or name)
-    ex_date = str(exercise.get("date") or "")
+    # Auto-fill date with today's date if missing or placeholder
+    raw_date = str(exercise.get("date") or "").strip()
+    _placeholder_dates = ("", "0000-00-00", "TBD", "N/A", "n/a", "--", "TBD")
+    today_str = time.strftime("%Y-%m-%d")
+    ex_date = today_str if (raw_date in _placeholder_dates or not raw_date) else raw_date
 
     head = ["<div class='report-head'><h1>Executive Summary</h1>"]
     head.append("<p>%s%s</p>" % (esc(ex_name), (" &middot; " + esc(ex_date)) if ex_date else ""))
@@ -751,6 +755,10 @@ def build_afteraction(name, slides, live_responses=None):
     parts = []
 
     if meta:
+        # Auto-fill prepared_date with today if missing or placeholder
+        pd_raw = str(meta.get("prepared_date") or "").strip()
+        if pd_raw in _placeholder_dates or not pd_raw:
+            meta["prepared_date"] = today_str
         meta_rows = ""
         for k, label in (("prepared_for", "Prepared for"), ("prepared_date", "Prepared date"),
                          ("source_document", "Source document"), ("status", "Status")):
