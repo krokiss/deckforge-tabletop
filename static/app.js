@@ -1274,23 +1274,36 @@ async function endExercise() {
   } catch { /* cross-origin or iframe gone — continue without live data */ }
   closePresent();
   
-  // Save the completed exercise to history
+  // Save the completed exercise to history (server + localStorage backup)
+  const full = state.decks.find(d => d.id === state.deckId) || { name: state.name, slides: state.slides };
+  const cePayload = {
+    deckId: state.deckId,
+    name: full.name || state.name,
+    deckName: full.name || state.name,
+    completedDate: completedDate,
+    liveResponses: liveResponses,
+    slides: full.slides || state.slides,
+    category: (full.meta && full.meta.cat) || '',
+  };
   try {
-    const full = state.decks.find(d => d.id === state.deckId) || { name: state.name, slides: state.slides };
-    await api('/api/completed-exercises', {
+    const result = await api('/api/completed-exercises', {
       method: 'POST',
-      body: JSON.stringify({
-        deckId: state.deckId,
-        name: full.name || state.name,
-        deckName: full.name || state.name,
-        completedDate: completedDate,
-        liveResponses: liveResponses,
-        slides: full.slides || state.slides,
-        category: (full.meta && full.meta.cat) || '',
-      }),
+      body: JSON.stringify(cePayload),
     });
+    /* Also save to localStorage as backup for ephemeral filesystems (Render free tier) */
+    const localList = _loadLocalCE();
+    localList.unshift(result);  /* server response includes id, completed_at */
+    _saveLocalCE(localList);
   } catch (e) {
-    console.error('Failed to save completed exercise:', e);
+    console.error('Failed to save to server, saving to localStorage only:', e);
+    /* Server save failed — still persist to localStorage so dashboard shows it */
+    const localList = _loadLocalCE();
+    localList.unshift({
+      id: Math.random().toString(36).substring(2, 14),
+      ...cePayload,
+      completed_at: new Date().toISOString().replace('T', ' ').substring(0, 19),
+    });
+    _saveLocalCE(localList);
   }
   
   try {
@@ -1740,6 +1753,43 @@ function bindEvents() {
 let completedExercises = [];
 let selectedStatFilter = null; // null = show all, 'all', 'it', 'bo', 'month
 
+/* ── localStorage backup for completed exercises ──
+   Ensures history survives server restarts (e.g. Render ephemeral filesystem).
+   Server is primary; localStorage is fallback & sync.
+*/
+const CE_STORAGE_KEY = 'deckforge_completed_exercises';
+
+function _loadLocalCE() {
+  try {
+    const raw = localStorage.getItem(CE_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch { return []; }
+}
+
+function _saveLocalCE(exercises) {
+  try { localStorage.setItem(CE_STORAGE_KEY, JSON.stringify(exercises)); } catch {}
+}
+
+function _syncLocalToServer(localList) {
+  /* Push any localStorage entries that the server doesn't have yet */
+  localList.forEach(ex => {
+    if (!ex.id) return;
+    /* Fire-and-forget — don't block UI */
+    api('/api/completed-exercises', {
+      method: 'POST',
+      body: JSON.stringify({
+        deckId: ex.deck_id || ex.deckId,
+        name: ex.name,
+        deckName: ex.deck_name || ex.deckName || '',
+        completedDate: ex.completed_date || ex.completedDate,
+        liveResponses: ex.live_responses || ex.liveResponses || {},
+        slides: ex.slides || [],
+        category: ex.category || '',
+      }),
+    }).catch(() => {});
+  });
+}
+
 async function initDashboard() {
   await loadCompletedExercises();
   renderDashboard();
@@ -1747,10 +1797,22 @@ async function initDashboard() {
 
 async function loadCompletedExercises() {
   try {
-    completedExercises = await api('/api/completed-exercises');
+    const serverList = await api('/api/completed-exercises');
+    const localList = _loadLocalCE();
+    /* Merge: server is primary, add any localStorage-only entries */
+    const serverIds = new Set(serverList.map(e => e.id));
+    const merged = [...serverList];
+    localList.forEach(ex => {
+      if (ex.id && !serverIds.has(ex.id)) merged.push(ex);
+    });
+    /* Sort newest first by completed_date or completed_at */
+    merged.sort((a, b) => (b.completed_date || b.completed_at || '').localeCompare(a.completed_date || a.completed_at || ''));
+    completedExercises = merged;
+    /* Sync any localStorage-only entries back to server (fire-and-forget) */
+    _syncLocalToServer(localList.filter(ex => ex.id && !serverIds.has(ex.id)));
   } catch (e) {
-    console.error('Failed to load completed exercises:', e);
-    completedExercises = [];
+    console.error('Failed to load from server, using localStorage:', e);
+    completedExercises = _loadLocalCE();
   }
 }
 
