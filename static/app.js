@@ -1251,13 +1251,25 @@ async function endExercise() {
     if (iDoc) {
       const slides = iDoc.querySelectorAll('.slide');
       const injLog = iDoc.querySelector('.inj-log');
-      /* Read the inj-log items (Roles, Injects, Decisions) */
+      /* Read the inj-log items (Roles, Injects, Decisions) — supports per-role format */
       const items = [];
       if (injLog) {
         injLog.querySelectorAll('.inj-log-item').forEach(el => {
           const title = (el.querySelector('b') || {}).textContent || '';
-          const body  = (el.querySelector('.r') || {}).textContent || '';
-          items.push({ title, body });
+          /* Check for per-role groups (role-log-group divs) */
+          const roleGroups = el.querySelectorAll('.role-log-group');
+          if (roleGroups.length) {
+            const roleMap = {};
+            roleGroups.forEach(rg => {
+              const roleName = (rg.querySelector('.rlg-role') || {}).textContent || '';
+              const roleResp = (rg.querySelector('.rlg-response') || {}).textContent || '';
+              if (roleName) roleMap[roleName] = roleResp;
+            });
+            items.push({ title, body: JSON.stringify(roleMap) });
+          } else {
+            const body = (el.querySelector('.r') || {}).textContent || '';
+            items.push({ title, body });
+          }
         });
       }
       /* Also read role-checkbox selections from the Roles slide */

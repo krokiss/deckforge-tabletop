@@ -388,12 +388,42 @@ INJECT_CSS = (
     '.inj-log .inj-log-item b{color:#00f0ff;font-family:Segoe UI,Arial,sans-serif}'
     '.inj-log .inj-log-item .r{color:#a7f3d0;display:block;margin-top:4px;white-space:pre-wrap}'
     '.inj-log .inj-log-empty{color:#8b93b8;font-style:italic}'
+    # Per-role response sections
+    '.role-section{margin-top:10px;border:1px solid rgba(108,123,255,.25);border-radius:8px;padding:10px 12px;background:rgba(108,123,255,.04)}'
+    '.role-section .role-label{font:700 13px Segoe UI,Arial,sans-serif;color:#a5b4fc;margin-bottom:4px;display:flex;align-items:center;gap:6px}'
+    '.role-section .role-label .role-dot{width:8px;height:8px;border-radius:50%;display:inline-block}'
+    '.role-section .role-ta{width:100%;box-sizing:border-box;background:#0d1220;color:#e6e9f2;'
+    'border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:8px 10px;'
+    'font:13px/1.3 Segoe UI,Arial,sans-serif;height:60px;resize:vertical}'
+    '.role-section .role-ta:focus{outline:none;border-color:#6c7bff;box-shadow:0 0 0 2px rgba(108,123,255,.15)}'
+    '.role-section .role-saved{margin-top:4px;padding:4px 8px;background:rgba(16,185,129,.08);'
+    'border:1px solid rgba(16,185,129,.25);border-radius:6px;color:#a7f3d0;white-space:pre-wrap;'
+    'font:12px/1.3 Segoe UI,Arial,sans-serif}'
+    '.role-sections-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}'
+    '.role-sections-grid.single-col{grid-template-columns:1fr}'
+    # Decision slide per-role sections
+    '.dec-role-section{margin-top:8px;padding:8px 10px;background:rgba(251,191,36,.04);'
+    'border:1px solid rgba(251,191,36,.2);border-radius:6px}'
+    '.dec-role-section .dec-role-label{font:600 12px Segoe UI,Arial,sans-serif;color:#fbbf24;margin-bottom:3px}'
+    '.dec-role-section .dec-role-ta{width:100%;box-sizing:border-box;background:#0d1220;color:#e6e9f2;'
+    'border:1px solid rgba(255,255,255,.12);border-radius:5px;padding:5px 8px;'
+    'font:12px/1.3 Segoe UI,Arial,sans-serif;height:36px;resize:none}'
+    '.dec-role-section .dec-role-ta:focus{outline:none;border-color:#fbbf24}'
+    '.dec-role-section .dec-role-saved{padding:3px 6px;background:rgba(251,191,36,.06);'
+    'border:1px solid rgba(251,191,36,.2);border-radius:5px;color:#fde68a;'
+    'white-space:pre-wrap;font:11px/1.3 Segoe UI,Arial,sans-serif}'
+    # Inject/Decision log per-role display
+    '.inj-log .role-log-group{margin:6px 0;padding:8px 10px;background:rgba(108,123,255,.06);'
+    'border:1px solid rgba(108,123,255,.15);border-radius:6px}'
+    '.inj-log .role-log-group .rlg-role{font:700 12px Segoe UI,Arial,sans-serif;color:#a5b4fc;margin-bottom:3px}'
+    '.inj-log .role-log-group .rlg-response{color:#a7f3d0;white-space:pre-wrap;font-size:12px}'
 )
 
+# Placeholder for inject widget — dynamically filled by JS based on selected roles
 INJECT_WIDGET_HTML = (
-    '<div class="inj-widget">'
-    '<div class="inj-note">Record the team\u2019s decision at this decision point.</div>'
-    '<textarea class="inj-ta" rows="10" placeholder="Record the team\u2019s decision and rationale\u2026"></textarea>'
+    '<div class="inj-widget" data-role-inject="1">'
+    '<div class="inj-note">Record each team member\u2019s response at this decision point.</div>'
+    '<div class="role-sections-grid" data-role-grid></div>'
     '<div class="inj-saved" hidden></div>'
     '<button class="inj-next">Save &amp; next inject \u2192</button>'
     '</div>'
@@ -422,11 +452,11 @@ DECISION_CSS = (
 )
 
 def decision_widget_html(pairs):
-    """Build a per-question response widget for a Decision slide.
+    """Build a per-question, per-role response widget for a Decision slide.
 
     Each pair is {question, response}; we render a labeled textarea for each
     question so the facilitator can type the team's answer during the live
-    presentation.
+    presentation. Role-specific textareas are dynamically added by JS.
     """
     if not pairs:
         return ''
@@ -434,16 +464,15 @@ def decision_widget_html(pairs):
     for i, p in enumerate(pairs or []):
         q = _html.escape(str(p.get('question') or ''), quote=True)
         q_parts.append(
-            '<div class="dec-q">'
+            '<div class="dec-q" data-qidx="%d">'
             '<div class="dec-q-label">Q%d. %s</div>'
-            '<textarea class="dec-q-ta" rows="2" data-q="%d" '
-            'placeholder="Team response for Q%d..." '
-            'autocomplete="off" spellcheck="false"></textarea>'
-            '</div>' % (i + 1, q, i, i + 1)
+            '<div class="dec-role-sections" data-dec-role-sections></div>'
+            '<div class="dec-q-saved" hidden></div>'
+            '</div>' % (i, i + 1, q)
         )
     return (
         '<div class="dec-widget" data-decision="1">'
-        '<div class="dec-note">\u26A0\uFE0F Record the team\u2019s response to each question below.</div>'
+        '<div class="dec-note">\u26A0\uFE0F Record each team member\u2019s response to each question below.</div>'
         '<div class="dec-questions">' + ''.join(q_parts) + '</div>'
         '<button class="dec-save">Save responses \u2192</button>'
         '</div>'
@@ -475,8 +504,10 @@ def role_picker_html(roles):
 INJECT_JS = r"""
 <script>
 (function () {
-  var responses = {};
-  var decResponses = {};
+  var responses = {};          // slideIdx -> role -> response (for injects)
+  var decResponses = {};       // slideIdx -> { questionIdx -> role -> response }
+  var participatingRoles = []; // set when Roles slide is confirmed
+  var roleColors = ['#6c7bff','#a06bff','#f59e0b','#10b981','#ef4444','#38bdf8','#f472b6','#84cc16'];
   var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
   var injectIdx = [];
   slides.forEach(function (s, i) { if (s.querySelector('.inj-widget')) injectIdx.push(i); });
@@ -488,25 +519,224 @@ INJECT_JS = r"""
     });
   }
 
-  function initDecisionWidget(slide, idx) {
-    // Textareas are pre-rendered in HTML by decision_widget_html().
-    // This function is now a no-op — we only mark the widget as initialized.
+  function getRoles() {
+    return participatingRoles.length ? participatingRoles : ['Team'];
+  }
+
+  function colorFor(i) { return roleColors[i % roleColors.length]; }
+
+  /* ── Build per-role textareas inside a container ──────────────────────── */
+  function buildRoleSections(container, roles, slideIdx, prefix) {
+    container.innerHTML = '';
+    roles.forEach(function (role, ri) {
+      var sec = document.createElement('div');
+      sec.className = 'role-section';
+      sec.innerHTML =
+        '<div class="role-label"><span class="role-dot" style="background:' + colorFor(ri) + '"></span>' + esc(role) + '</div>'
+        + '<textarea class="role-ta" data-role="' + esc(role) + '" data-sidx="' + slideIdx + '" '
+        + 'placeholder="Response from ' + esc(role) + '..." '
+        + 'autocomplete="off" spellcheck="false"></textarea>'
+        + '<div class="role-saved" hidden></div>';
+      container.appendChild(sec);
+    });
+    if (roles.length <= 1) container.classList.add('single-col');
+    else container.classList.remove('single-col');
+  }
+
+  /* ── Build per-role textareas for decision questions ─────────────────── */
+  function buildDecRoleSections(widget, roles, slideIdx) {
+    var questions = widget.querySelectorAll('.dec-q');
+    questions.forEach(function (qEl) {
+      var qidx = +qEl.dataset.qidx;
+      var secContainer = qEl.querySelector('[data-dec-role-sections]');
+      if (!secContainer) return;
+      secContainer.innerHTML = '';
+      roles.forEach(function (role, ri) {
+        var dsec = document.createElement('div');
+        dsec.className = 'dec-role-section';
+        dsec.innerHTML =
+          '<div class="dec-role-label" style="color:' + colorFor(ri) + '">' + esc(role) + '</div>'
+          + '<textarea class="dec-role-ta" data-role="' + esc(role) + '" data-qidx="' + qidx + '" '
+          + 'placeholder="' + esc(role) + ' response..." '
+          + 'autocomplete="off" spellcheck="false"></textarea>'
+          + '<div class="dec-role-saved" hidden></div>';
+        secContainer.appendChild(dsec);
+      });
+    });
+  }
+
+  /* ── Collect all role responses for a slide ──────────────────────────── */
+  function collectRoleResponses(slide) {
+    var result = {};
+    var tas = slide.querySelectorAll('.role-ta');
+    tas.forEach(function (ta) {
+      var role = ta.dataset.role;
+      var v = ta.value.trim();
+      if (v) result[role] = v;
+    });
+    return result;
+  }
+
+  function collectDecRoleResponses(widget) {
+    var result = {};  // { questionIdx: { role: response } }
+    var tas = widget.querySelectorAll('.dec-role-ta');
+    tas.forEach(function (ta) {
+      var role = ta.dataset.role;
+      var qidx = +ta.dataset.qidx;
+      var v = ta.value.trim();
+      if (v) {
+        if (!result[qidx]) result[qidx] = {};
+        result[qidx][role] = v;
+      }
+    });
+    return result;
+  }
+
+  /* ── Render an inject slide ──────────────────────────────────────────── */
+  function renderInjectSlide(slide, idx) {
+    var widget = slide.querySelector('.inj-widget');
+    if (!widget) return;
+    var grid = widget.querySelector('[data-role-grid]');
+    var saved = widget.querySelector('.inj-saved');
+    var btn = widget.querySelector('.inj-next');
+    var existing = responses[idx];  // role -> response object
+    if (existing && typeof existing === 'object' && Object.keys(existing).length) {
+      // Show saved per-role responses
+      if (grid) grid.style.display = 'none';
+      if (btn) btn.textContent = 'Next inject \u2192';
+      if (saved) {
+        saved.hidden = false;
+        var lines = [];
+        Object.keys(existing).forEach(function (role) {
+          lines.push(role + ': ' + existing[role]);
+        });
+        saved.textContent = lines.join('\n\n');
+      }
+    } else {
+      // Build role textareas if not yet built
+      if (grid && !grid.children.length) {
+        buildRoleSections(grid, getRoles(), idx, 'inj');
+      }
+      if (grid) grid.style.display = '';
+      if (saved) saved.hidden = true;
+      if (btn) btn.textContent = (idx === injectLast) ? 'Finish exercise \u2192' : 'Save & next inject \u2192';
+    }
+  }
+
+  /* ── Render a decision slide ─────────────────────────────────────────── */
+  function renderDecisionSlide(slide, idx) {
     var widget = slide.querySelector('.dec-widget');
     if (!widget || widget.dataset.init) return;
     widget.dataset.init = '1';
+    var dBtn = widget.querySelector('.dec-save');
+    var existing = decResponses[idx];  // { qidx: { role: response } }
+    if (existing && Object.keys(existing).length) {
+      // Show saved per-role responses
+      widget.querySelectorAll('.dec-role-ta').forEach(function (t) { t.style.display = 'none'; });
+      widget.querySelectorAll('.dec-role-label').forEach(function (l) {});
+      if (dBtn) dBtn.style.display = 'none';
+      widget.querySelectorAll('.dec-q').forEach(function (qEl) {
+        var qidx = +qEl.dataset.qidx;
+        var secContainer = qEl.querySelector('[data-dec-role-sections]');
+        var savedBox = qEl.querySelector('.dec-q-saved');
+        var qAns = existing[qidx] || {};
+        if (Object.keys(qAns).length) {
+          var lines = Object.keys(qAns).map(function (r) { return r + ': ' + qAns[r]; });
+          if (savedBox) { savedBox.hidden = false; savedBox.textContent = lines.join('\n'); }
+          if (secContainer) secContainer.style.display = 'none';
+        }
+      });
+    } else {
+      // Build role textareas for each question
+      buildDecRoleSections(widget, getRoles(), idx);
+    }
   }
 
+  /* ── Render a role-picker slide ──────────────────────────────────────── */
+  function renderRoleSlide(slide, idx) {
+    var pick = slide.querySelector('.role-pick');
+    if (!pick) return;
+    var opts = pick.querySelector('.role-opts');
+    var conf = pick.querySelector('.role-confirm');
+    var saved2 = pick.querySelector('.inj-saved');
+    if (responses[idx] != null) {
+      if (opts) opts.style.display = 'none';
+      if (conf) conf.style.display = 'none';
+      if (saved2) { saved2.hidden = false; saved2.textContent = responses[idx]; }
+    } else {
+      if (opts) opts.style.display = '';
+      if (conf) conf.style.display = '';
+      if (saved2) saved2.hidden = true;
+    }
+  }
+
+  /* ── Render the Hotwash / After-Action log ───────────────────────────── */
+  function renderLogSlide(slide) {
+    var log = slide.querySelector('.inj-log');
+    if (!log) return;
+    var hasAny = Object.keys(responses).length || Object.keys(decResponses).length;
+    if (!hasAny) {
+      log.innerHTML = '<div class="inj-log-empty">No team responses recorded yet \u2014 walk the injects and record the team\u2019s decision at each point.</div>';
+      return;
+    }
+    var html = '<h4>Recorded team responses</h4>';
+    // Inject responses (per-role)
+    Object.keys(responses).sort(function(a,b){return +a-+b;}).forEach(function (k) {
+      var s = slides[+k];
+      var title = s ? (s.getAttribute('data-name') || ('Inject ' + (+k + 1))) : ('Inject ' + (+k + 1));
+      var rMap = responses[k];
+      html += '<div class="inj-log-item"><b>' + esc(title) + '</b>';
+      if (typeof rMap === 'object') {
+        Object.keys(rMap).forEach(function (role) {
+          html += '<div class="role-log-group"><div class="rlg-role">' + esc(role) + '</div><div class="rlg-response">' + esc(rMap[role]) + '</div></div>';
+        });
+      } else {
+        html += '<span class="r">' + esc(String(rMap)) + '</span>';
+      }
+      html += '</div>';
+    });
+    // Decision responses (per-role)
+    Object.keys(decResponses).sort(function(a,b){return +a-+b;}).forEach(function (k) {
+      var s = slides[+k];
+      var title = s ? (s.getAttribute('data-name') || ('Decision ' + (+k + 1))) : ('Decision ' + (+k + 1));
+      var ans = decResponses[k];
+      html += '<div class="inj-log-item"><b>' + esc(title) + '</b>';
+      // Check if per-role: { qidx: { role: response } }
+      var firstVal = ans[Object.keys(ans)[0]];
+      if (firstVal && typeof firstVal === 'object') {
+        Object.keys(ans).sort(function(a,b){return +a-+b;}).forEach(function (qi) {
+          html += '<div style="margin:4px 0"><b style="color:#93c5fd">Q' + (+qi + 1) + '</b>';
+          var qAns = ans[qi];
+          Object.keys(qAns).forEach(function (role) {
+            html += '<div class="role-log-group"><div class="rlg-role">' + esc(role) + '</div><div class="rlg-response">' + esc(qAns[role]) + '</div></div>';
+          });
+          html += '</div>';
+        });
+      } else {
+        var text = Object.keys(ans).sort().map(function (qi) {
+          return 'Q' + (+qi + 1) + ': ' + ans[qi];
+        }).join('\n\n');
+        html += '<span class="r">' + esc(text) + '</span>';
+      }
+      html += '</div>';
+    });
+    log.innerHTML = html;
+  }
+
+  /* ── Main render dispatcher ──────────────────────────────────────────── */
   function renderSlide(idx) {
     var slide = slides[idx];
     if (!slide) return;
-    var widget = slide.querySelector('.inj-widget');
-    if (widget) {
-      var ta = widget.querySelector('.inj-ta');
-      var saved = widget.querySelector('.inj-saved');
-      var btn = widget.querySelector('.inj-next');
-      if (responses[idx] != null) {
+    if (slide.querySelector('.inj-widget[data-role-inject]')) {
+      renderInjectSlide(slide, idx);
+    } else if (slide.querySelector('.inj-widget')) {
+      // Legacy non-role inject widget (fallback)
+      var ta = slide.querySelector('.inj-ta');
+      var saved = slide.querySelector('.inj-saved');
+      var btn = slide.querySelector('.inj-next');
+      if (responses[idx]) {
         if (ta) ta.style.display = 'none';
-        if (saved) { saved.hidden = false; saved.textContent = responses[idx]; }
+        if (saved) { saved.hidden = false; saved.textContent = (typeof responses[idx] === 'object') ? JSON.stringify(responses[idx]) : responses[idx]; }
         if (btn) btn.textContent = 'Next inject \u2192';
       } else {
         if (ta) ta.style.display = '';
@@ -514,115 +744,69 @@ INJECT_JS = r"""
         if (btn) btn.textContent = (idx === injectLast) ? 'Finish exercise \u2192' : 'Save & next inject \u2192';
       }
     }
-    var dw = slide.querySelector('.dec-widget');
-    if (dw) {
-      initDecisionWidget(slide, idx);
-      var tas = dw.querySelectorAll('.dec-q-ta');
-      var savedBox = dw.querySelector('.inj-saved');
-      var dBtn = dw.querySelector('.dec-save');
-      var existing = decResponses[idx];
-      if (existing) {
-        tas.forEach(function (t) { t.style.display = 'none'; });
-        if (dBtn) dBtn.style.display = 'none';
-        var summary = '';
-        tas.forEach(function (t) {
-          var qi = +t.dataset.q;
-          var ans = existing[qi] || 'No response';
-          summary += 'Q' + (qi + 1) + ': ' + ans + '\n\n';
-        });
-        if (!savedBox) {
-          savedBox = document.createElement('div');
-          savedBox.className = 'inj-saved';
-          dw.appendChild(savedBox);
-        }
-        savedBox.hidden = false;
-        savedBox.textContent = summary.trim();
-      } else {
-        tas.forEach(function (t) { t.style.display = ''; });
-        if (dBtn) dBtn.style.display = '';
-        if (savedBox) savedBox.hidden = true;
-      }
-    }
-    var pick = slide.querySelector('.role-pick');
-    if (pick) {
-      var opts = pick.querySelector('.role-opts');
-      var conf = pick.querySelector('.role-confirm');
-      var saved2 = pick.querySelector('.inj-saved');
-      if (responses[idx] != null) {
-        if (opts) opts.style.display = 'none';
-        if (conf) conf.style.display = 'none';
-        if (saved2) { saved2.hidden = false; saved2.textContent = responses[idx]; }
-      } else {
-        if (opts) opts.style.display = '';
-        if (conf) conf.style.display = '';
-        if (saved2) saved2.hidden = true;
-      }
-    }
-    var log = slide.querySelector('.inj-log');
-    if (log) {
-      var allKeys = Object.keys(responses);
-      var decKeys = Object.keys(decResponses);
-      if (!allKeys.length && !decKeys.length) {
-        log.innerHTML = '<div class="inj-log-empty">No team responses recorded yet \u2014 walk the injects and record the team\u2019s decision at each point.</div>';
-      } else {
-        log.innerHTML = '<h4>Recorded team responses</h4>';
-        allKeys.forEach(function (k) {
-          var s = slides[+k];
-          var title = s ? (s.getAttribute('data-name') || ('Inject ' + (+k + 1))) : ('Inject ' + (+k + 1));
-          log.innerHTML += '<div class="inj-log-item"><b>' + esc(title) + '</b><span class="r">' + esc(responses[k]) + '</span></div>';
-        });
-        decKeys.forEach(function (k) {
-          var s = slides[+k];
-          var title = s ? (s.getAttribute('data-name') || ('Decision ' + (+k + 1))) : ('Decision ' + (+k + 1));
-          var ans = decResponses[k];
-          var text = Object.keys(ans).sort().map(function (qi) {
-            return 'Q' + (+qi + 1) + ': ' + ans[qi];
-          }).join('\n\n');
-          log.innerHTML += '<div class="inj-log-item"><b>' + esc(title) + '</b><span class="r">' + esc(text) + '</span></div>';
-        });
-      }
-    }
+    if (slide.querySelector('.dec-widget')) renderDecisionSlide(slide, idx);
+    renderRoleSlide(slide, idx);
+    if (slide.querySelector('.inj-log')) renderLogSlide(slide);
   }
 
+  /* ── Click handlers ──────────────────────────────────────────────────── */
   document.addEventListener('click', function (e) {
+    // Role confirm button
     var conf = e.target.closest('.role-confirm');
     if (conf) {
       var slide = conf.closest('.slide');
       var idx = slides.indexOf(slide);
       var picked = Array.prototype.slice.call(slide.querySelectorAll('.role-opt input:checked'))
         .map(function (i) { return i.value; });
+      participatingRoles = picked;
       responses[idx] = picked.length ? ('Participating roles: ' + picked.join(', ')) : 'No roles selected.';
       renderSlide(idx);
       return;
     }
+    // Decision save button — collect per-role responses
     var dBtn = e.target.closest('.dec-save');
     if (dBtn) {
       var dSlide = dBtn.closest('.slide');
       var dIdx = slides.indexOf(dSlide);
-      var tas = dSlide.querySelectorAll('.dec-q-ta');
-      var ans = {};
-      var hasAny = false;
-      tas.forEach(function (t) {
-        var v = t.value.trim();
-        ans[+t.dataset.q] = v || 'No response';
-        if (v) hasAny = true;
-      });
-      if (!hasAny) { return; }
-      decResponses[dIdx] = ans;
-      renderSlide(dIdx);
+      var decAns = collectDecRoleResponses(dSlide.querySelector('.dec-widget'));
+      if (!Object.keys(decAns).length) return;
+      decResponses[dIdx] = decAns;
+      // Also update the widget display
+      var dw = dSlide.querySelector('.dec-widget');
+      if (dw) {
+        dw.querySelectorAll('.dec-role-ta').forEach(function (t) { t.style.display = 'none'; });
+        dBtn.style.display = 'none';
+        dw.querySelectorAll('.dec-q').forEach(function (qEl) {
+          var qidx = +qEl.dataset.qidx;
+          var qAns = decAns[qidx] || {};
+          var savedBox = qEl.querySelector('.dec-q-saved');
+          var secContainer = qEl.querySelector('[data-dec-role-sections]');
+          if (Object.keys(qAns).length) {
+            var lines = Object.keys(qAns).map(function (r) { return r + ': ' + qAns[r]; });
+            if (savedBox) { savedBox.hidden = false; savedBox.textContent = lines.join('\n'); }
+            if (secContainer) secContainer.style.display = 'none';
+          }
+        });
+      }
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
       return;
     }
+    // Inject next/finish button — collect per-role responses
     var btn = e.target.closest('.inj-next');
     if (!btn) return;
     var slide = btn.closest('.slide');
     var idx = slides.indexOf(slide);
-    var ta = slide.querySelector('.inj-ta');
-    responses[idx] = (ta && ta.value.trim()) ? ta.value.trim() : 'No response recorded.';
+    var roleRes = collectRoleResponses(slide);
+    if (Object.keys(roleRes).length) {
+      responses[idx] = roleRes;
+    } else {
+      responses[idx] = { 'Team': 'No response recorded.' };
+    }
     renderSlide(idx);
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
   });
 
+  /* ── Prevent keyboard shortcuts when typing in textareas ──────────────── */
   document.addEventListener('keydown', function (e) {
     var t = e.target;
     if (t && (t.tagName === 'TEXTAREA' || t.tagName === 'INPUT' || t.contentEditable === 'true')) {
@@ -631,6 +815,7 @@ INJECT_JS = r"""
     }
   }, true);
 
+  /* ── MutationObserver to re-render on slide change ───────────────────── */
   var mo = new MutationObserver(function () {
     var active = document.querySelector('.slide.active');
     if (active) renderSlide(slides.indexOf(active));
@@ -847,17 +1032,41 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None):
         roles_text = str(live_responses.get("roles") or "").strip()
         if roles_text:
             live_html += "<p><b>Participating roles:</b> %s</p>" % esc(roles_text)
-        # Per-slide inject / decision items
+        # Per-slide inject / decision items (may contain per-role data)
         items = live_responses.get("items") or []
         if items:
             live_html += "<h3>Recorded team responses</h3>"
-            live_html += "<ul>"
             for it in items:
                 title = str(it.get("title") or "").strip()
                 body = str(it.get("body") or "").strip()
-                if title or body:
-                    live_html += "<li><b>%s</b> — %s</li>" % (esc(title), esc(body))
-            live_html += "</ul>"
+                if not title and not body:
+                    continue
+                live_html += "<h4 style='margin:10px 0 4px;color:#111827'>%s</h4>" % esc(title)
+                # Try to parse as JSON per-role map: {"Role": "response", ...}
+                try:
+                    import json as _json
+                    role_map = _json.loads(body)
+                    if isinstance(role_map, dict):
+                        live_html += "<table style='width:100%;margin:4px 0'><tr><th style='width:160px'>Role</th><th>Response</th></tr>"
+                        for role_name, role_resp in role_map.items():
+                            live_html += "<tr><td style='font-weight:600'>%s</td><td>%s</td></tr>" % (esc(role_name), esc(str(role_resp)))
+                        live_html += "</table>"
+                    else:
+                        live_html += "<p>%s</p>" % esc(body)
+                except (ValueError, TypeError):
+                    # Plain text body — also check for Q1:/Q2: style with per-role lines
+                    # Format: "Role: response\n\nRole: response"
+                    lines = body.split("\n\n")
+                    has_role_prefix = any(": " in ln for ln in lines if ln.strip())
+                    if has_role_prefix and len(lines) > 1:
+                        live_html += "<ul>"
+                        for ln in lines:
+                            ln = ln.strip()
+                            if ln:
+                                live_html += "<li>%s</li>" % esc(ln)
+                        live_html += "</ul>"
+                    else:
+                        live_html += "<p>%s</p>" % esc(body)
         if live_html:
             parts.append(section("Exercise Responses (Live)", live_html))
 
