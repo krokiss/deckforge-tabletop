@@ -760,6 +760,24 @@ INJECT_JS = r"""
         .map(function (i) { return i.value; });
       participatingRoles = picked;
       responses[idx] = picked.length ? ('Participating roles: ' + picked.join(', ')) : 'No roles selected.';
+      // Rebuild ALL inject grids with the confirmed roles
+      slides.forEach(function (s, si) {
+        var injW = s.querySelector('.inj-widget[data-role-inject]');
+        if (injW) {
+          var grid = injW.querySelector('[data-role-grid]');
+          if (grid) {
+            responses[si] = null; // clear any saved state so grid rebuilds
+            buildRoleSections(grid, getRoles(), si, 'inj');
+          }
+        }
+        // Also rebuild decision slide role sections
+        var decW = s.querySelector('.dec-widget');
+        if (decW) {
+          decW.removeAttribute('data-init'); // allow re-init
+          decResponses[si] = null; // clear any saved state
+          renderDecisionSlide(s, si);
+        }
+      });
       renderSlide(idx);
       return;
     }
