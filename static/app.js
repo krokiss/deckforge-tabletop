@@ -1313,6 +1313,7 @@ async function endExercise() {
     localList.unshift({
       id: Math.random().toString(36).substring(2, 14),
       ...cePayload,
+      completed_date: completedDate,
       completed_at: new Date().toISOString().replace('T', ' ').substring(0, 19),
     });
     _saveLocalCE(localList);
@@ -1793,7 +1794,7 @@ function _syncLocalToServer(localList) {
         deckId: ex.deck_id || ex.deckId,
         name: ex.name,
         deckName: ex.deck_name || ex.deckName || '',
-        completedDate: ex.completed_date || ex.completedDate,
+        completedDate: ex.completed_date || ex.completedDate || new Date().toISOString().split('T')[0],
         liveResponses: ex.live_responses || ex.liveResponses || {},
         slides: ex.slides || [],
         category: ex.category || '',
@@ -1817,8 +1818,8 @@ async function loadCompletedExercises() {
     localList.forEach(ex => {
       if (ex.id && !serverIds.has(ex.id)) merged.push(ex);
     });
-    /* Sort newest first by completed_date or completed_at */
-    merged.sort((a, b) => (b.completed_date || b.completed_at || '').localeCompare(a.completed_date || a.completed_at || ''));
+    /* Sort newest first by completed_date or completedDate or completed_at */
+    merged.sort((a, b) => (b.completed_date || b.completedDate || b.completed_at || '').localeCompare(a.completed_date || a.completedDate || a.completed_at || ''));
     completedExercises = merged;
     /* Sync any localStorage-only entries back to server (fire-and-forget) */
     _syncLocalToServer(localList.filter(ex => ex.id && !serverIds.has(ex.id)));
@@ -1838,7 +1839,7 @@ function renderDashboard() {
   const itCount = completedExercises.filter(e => e.category === 'IT').length;
   const boCount = completedExercises.filter(e => e.category === 'BO').length;
   const thisMonth = completedExercises.filter(e => {
-    const d = new Date(e.completed_date);
+    const d = new Date(e.completed_date || e.completedDate);
     const now = new Date();
     return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
   }).length;
@@ -1881,7 +1882,7 @@ function renderDashboard() {
   } else if (selectedStatFilter === 'month') {
     const now = new Date();
     filtered = completedExercises.filter(e => {
-      const d = new Date(e.completed_date);
+      const d = new Date(e.completed_date || e.completedDate);
       return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
     });
   }
@@ -1910,7 +1911,7 @@ function renderDashboard() {
       <tbody>
         ${completedExercises.map(ex => {
           const roles = (ex.live_responses && ex.live_responses.roles) || 'Not recorded';
-          const dateStr = ex.completed_date || 'Unknown';
+          const dateStr = ex.completed_date || ex.completedDate || 'Unknown';
           const catClass = ex.category === 'IT' ? 'it' : (ex.category === 'BO' ? 'bo' : '');
           const catLabel = ex.category === 'IT' ? 'IT' : (ex.category === 'BO' ? 'BO' : ex.category || 'N/A');
           return `<tr>
@@ -1944,7 +1945,7 @@ async function downloadAARForExercise(exerciseId) {
         slides: exercise.slides || [],
         format: 'afteraction',
         liveResponses: exercise.live_responses || null,
-        completedDate: exercise.completed_date,
+        completedDate: exercise.completed_date || exercise.completedDate,
       }),
     });
     if (!res.ok) {
@@ -1955,7 +1956,7 @@ async function downloadAARForExercise(exerciseId) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = slug(exercise.name || 'exercise') + '-aar-' + (exercise.completed_date || 'date') + '.doc';
+    a.download = slug(exercise.name || 'exercise') + '-aar-' + (exercise.completed_date || exercise.completedDate || 'date') + '.doc';
     document.body.appendChild(a);
     a.click();
     a.remove();
