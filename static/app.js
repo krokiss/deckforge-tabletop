@@ -100,11 +100,11 @@ const SCENARIOS = [
   { title: 'Compromised Credentials', cat: 'IT', diff: 'INTERMEDIATE', desc: 'Multiple user credentials leaked in dark web forum enabling lateral movement.' },
   { title: 'Cyberattack on CRM System', cat: 'IT', diff: 'ADVANCED', desc: 'CRM system used for client interactions is compromised, exposing sensitive customer data.' },
   { title: 'Backup & Recovery DR Test', cat: 'IT', diff: 'ADVANCED', desc: 'A scheduled disaster-recovery test exposes a corrupt backup set, a silent backup gap, and a blown recovery-time objective.' },
-  { title: 'Network Outage Affecting Global Connectivity', cat: 'BO', diff: 'INTERMEDIATE', desc: 'Critical network failure disrupts connectivity between BPO center and client systems globally.' },
-  { title: 'Fire at Secondary Site During Peak Hours', cat: 'BO', diff: 'ADVANCED', desc: 'Fire breaks out at secondary BPO site during peak operational hours, forcing evacuation and shutdown.' },
-  { title: 'Complete Power Outage at HQ', cat: 'BO', diff: 'ADVANCED', desc: 'Sudden power outage at primary BPO delivery center affecting all workstations and servers. Backup generators fail to start.' },
-  { title: 'Geopolitic Concerns Reducing Workforce Availability', cat: 'BO', diff: 'ADVANCED', desc: 'Sudden pandemic wave results in 60% absenteeism among BPO staff, impacting service delivery.' },
-  { title: 'Vishing Attack', cat: 'BO', diff: 'INTERMEDIATE', desc: 'Attackers impersonate executives and IT support via spoofed phone calls to harvest credentials and authorize a fraudulent wire transfer.' },
+  { title: 'Network Outage Affecting Global Connectivity', cat: 'BO', diff: 'INTERMEDIATE', desc: 'The dedicated link to the client drops mid-shift, isolating a single customer-care program.' },
+  { title: 'Fire at Secondary Site During Peak Hours', cat: 'BO', diff: 'ADVANCED', desc: 'Fire closes Site B mid-peak; the single client customer-care program loses half its delivery floor.' },
+  { title: 'Complete Power Outage at HQ', cat: 'BO', diff: 'ADVANCED', desc: 'A multi-hour power outage takes the client customer-care center offline mid peak call window.' },
+  { title: 'Geopolitic Concerns Reducing Workforce Availability', cat: 'BO', diff: 'ADVANCED', desc: 'A health crisis removes 60% of the workforce from the client customer-care program.' },
+  { title: 'Vishing Attack', cat: 'BO', diff: 'INTERMEDIATE', desc: 'Spoofed calls to the care desk harvest customer data and trigger fraudulent account changes.' },
 ];
 
 const CAT_META = {
