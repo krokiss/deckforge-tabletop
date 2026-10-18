@@ -1294,6 +1294,7 @@ async function endExercise() {
     deckName: full.name || state.name,
     completedDate: completedDate,
     liveResponses: liveResponses,
+    injects: full.injects || state.injects || [],
     slides: full.slides || state.slides,
     category: (full.meta && full.meta.cat) || '',
   };
@@ -1796,6 +1797,7 @@ function _syncLocalToServer(localList) {
         deckName: ex.deck_name || ex.deckName || '',
         completedDate: ex.completed_date || ex.completedDate || new Date().toISOString().split('T')[0],
         liveResponses: ex.live_responses || ex.liveResponses || {},
+        injects: ex.injects || [],
         slides: ex.slides || [],
         category: ex.category || '',
       }),
@@ -1945,6 +1947,7 @@ async function downloadAARForExercise(exerciseId) {
         slides: exercise.slides || [],
         format: 'afteraction',
         liveResponses: exercise.live_responses || null,
+        injects: exercise.injects || [],
         completedDate: exercise.completed_date || exercise.completedDate,
       }),
     });

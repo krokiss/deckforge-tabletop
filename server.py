@@ -893,17 +893,22 @@ def build_presentation(name, slides, injects=None, meta=None):
                         .replace("%%INJECT_JS%%", ex_js))
 
 
-def build_afteraction(name, slides, live_responses=None, completed_date=None):
+def build_afteraction(name, slides, live_responses=None, completed_date=None, injects=None):
     """Word-ready After Action Executive Summary built from the deck's summary
     slide data, following the standard executive-summary template:
     title block + control framework line, meta table, executive summary with
-    callout, readiness score, highlights, capability assessment, lessons,
+    callout, readiness score, highlights, exercise transcript (inject timeline and
+    decision points), capability assessment, lessons,
     framework alignment, recommendations, CAPA action plan, roadmap, evidence
     pack, KPIs, and executive decisions requested. Sections with no data are
     skipped so older decks still export cleanly.
 
     When *live_responses* is provided (captured from the presentation iframe),
     the roles and per-slide inject/decision responses are appended at the end.
+
+    When *injects* is provided (the deck's interactive inject timeline), it is used
+    as the transcript source for decks whose summary slide carries no discussion
+    data (the hand-written BPO decks).
 
     When *completed_date* is provided (from the 'End Exercise' button), it is
     used as the exercise date instead of auto-filling with today's date.
@@ -997,6 +1002,51 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None):
 
     if rows("highlights"):
         parts.append(section("Exercise Highlights", bullets(rows("highlights"))))
+
+    # -- Exercise transcript: inject timeline + decision points -------------
+    disc = data.get("discussion") if isinstance(data.get("discussion"), dict) else {}
+    t_inj = [r for r in (disc.get("injects") or []) if isinstance(r, dict)]
+    t_dec = [r for r in (disc.get("decisions") or []) if isinstance(r, dict)]
+    if not (t_inj or t_dec):
+        # Older decks carry the transcript on a standalone Discussion Summary slide
+        dsl = next((s for s in (slides or [])
+                    if str((s or {}).get("name") or "").strip().lower() == "discussion summary"), None)
+        sd = (dsl.get("data") or {}) if isinstance(dsl, dict) else {}
+        t_inj = [r for r in (sd.get("injects") or []) if isinstance(r, dict)]
+        t_dec = [r for r in (sd.get("decisions") or []) if isinstance(r, dict)]
+    if not t_inj and injects:
+        # Hand-written BPO decks: the interactive inject timeline is the transcript
+        t_inj = [{"inject": "Inject #%d — %s" % (i + 1, str(inj.get("title") or "").strip()),
+                  "time": str(inj.get("time") or ""), "detail": str(inj.get("detail") or "")}
+                 for i, inj in enumerate(x for x in injects if isinstance(x, dict))]
+    if not t_dec:
+        # Last resort: the deck's Decision slides keep the question set
+        for s in (slides or []):
+            nm = str((s or {}).get("name") or "")
+            if not nm.lower().startswith("decision"):
+                continue
+            sdata = s.get("data") if isinstance(s.get("data"), dict) else {}
+            resps = [str(pr.get("response") or "").strip()
+                     for pr in (sdata.get("pairs") or [])
+                     if isinstance(pr, dict) and str(pr.get("response") or "").strip()]
+            t_dec.append({"decision": nm, "responses": resps})
+    tr_parts = []
+    if t_inj:
+        tr_parts.append("<h3>Inject timeline</h3>"
+                        + table(("Inject", "Time", "Detail"), ("inject", "time", "detail"), t_inj))
+    dec_html = ""
+    for d in t_dec:
+        title = str(d.get("decision") or "").strip()
+        if not title:
+            continue
+        resps = [str(r).strip() for r in (d.get("responses") or []) if str(r or "").strip()]
+        dec_html += "<p><b>%s</b></p>" % esc(title)
+        if resps:
+            dec_html += bullets(resps)
+    if dec_html:
+        tr_parts.append("<h3>Decision points</h3>" + dec_html)
+    if tr_parts:
+        parts.append(section("Exercise Transcript", "".join(tr_parts)))
 
     if rows("capability"):
         parts.append(section("Executive Capability Assessment",
@@ -1323,7 +1373,7 @@ class Handler(BaseHTTPRequestHandler):
                 slides = []
             slug = re.sub(r"[^\w\- ]+", "", name).strip().replace(" ", "-") or "presentation"
             if fmt == "afteraction":
-                full, err = build_afteraction(name, slides, b.get("liveResponses"), b.get("completedDate"))
+                full, err = build_afteraction(name, slides, b.get("liveResponses"), b.get("completedDate"), b.get("injects"))
                 if err:
                     self._json(400, {"error": err})
                     return
@@ -1344,6 +1394,7 @@ class Handler(BaseHTTPRequestHandler):
                 "deck_name": b.get("deckName", ""),
                 "completed_date": b.get("completedDate", time.strftime("%Y-%m-%d")),
                 "live_responses": b.get("liveResponses", {}),
+                "injects": b.get("injects") or [],
                 "slides": b.get("slides", []),
                 "category": b.get("category", ""),
             }
