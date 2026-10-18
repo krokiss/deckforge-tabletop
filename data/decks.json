@@ -4218,7 +4218,7 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "ISO/IEC 27001-certified BPO operating a single client's Customer Care Program — a dedicated, 24/7 voice and chat operation with 450 seats"
+              "profile": "ISO/IEC 27001-certified BPO operating a single client's Customer Care Program — a dedicated, 24/7 inbound voice and chat operation with 450 seats"
             },
             "iso_scope": "Client Customer Care Program — inbound voice, chat and customer case handling under one client contract",
             "systems": [
@@ -4228,7 +4228,7 @@
               "Workforce management & scheduling",
               "Customer SLA dashboard"
             ],
-            "setting": "Mid-shift Thursday. The care program is live on all queues; two priority complaint escalations are open with the client."
+            "setting": "Mid-shift Thursday. The inbound care program is live on all queues; two priority complaint escalations are open with the client."
           }
         },
         {
@@ -4288,7 +4288,7 @@
             "number": 1,
             "time": "14:20",
             "title": "Dedicated link down",
-            "detail": "The dedicated link to the client's systems drops; agents can no longer see customer records and the care platform stops accepting new chats.",
+            "detail": "The dedicated link to the client's systems drops; agents can no longer see customer records and the care platform stops accepting new inbound chats.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -4312,7 +4312,7 @@
                 "response": ""
               },
               {
-                "question": "WFM — how do you re-forecast call volumes when disappointed customers call back more than usual? (A.8.6)",
+                "question": "WFM — how do you re-forecast inbound call volumes when disappointed customers keep calling in? (A.8.6)",
                 "response": ""
               }
             ],
@@ -4327,7 +4327,7 @@
             "number": 2,
             "time": "14:50",
             "title": "Backup path fails",
-            "detail": "The 4G/5G backup fails to carry care traffic. Chats time out, callbacks stall and open escalations start ageing.",
+            "detail": "The 4G/5G backup fails to carry care traffic. Inbound chats time out, abandoned-call rates climb and open escalations start ageing.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -4340,7 +4340,7 @@
             "number": 3,
             "time": "15:05",
             "title": "Regional outage confirmed",
-            "detail": "The telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; hold times climb across the care queues.",
+            "detail": "The telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; hold times climb across the inbound care queues.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -4352,7 +4352,7 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager — what is the callback and backlog-clearing plan once the link returns, and in what queue order? (A.5.29, A.8.6)",
+                "question": "Customer Care Manager — what is the inbound backlog-clearing plan — unanswered calls, queued chats, open cases — once the link returns, and in what queue order? (A.5.29, A.8.6)",
                 "response": ""
               },
               {
@@ -4364,7 +4364,7 @@
                 "response": ""
               },
               {
-                "question": "WFM — what staffing and shift changes cover the callback catch-up window? (A.5.29)",
+                "question": "WFM — what staffing and shift changes cover the inbound backlog catch-up window? (A.5.29)",
                 "response": ""
               }
             ],
@@ -4380,17 +4380,17 @@
               {
                 "inject": "Inject #1 — Dedicated link down",
                 "time": "14:20",
-                "detail": "The dedicated link to the client's systems drops; agents can no longer see customer records and the care platform stops accepting new chats."
+                "detail": "The dedicated link to the client's systems drops; agents can no longer see customer records and the care platform stops accepting new inbound chats."
               },
               {
                 "inject": "Inject #2 — Backup path fails",
                 "time": "14:50",
-                "detail": "The 4G/5G backup fails to carry care traffic. Chats time out, callbacks stall and open escalations start ageing."
+                "detail": "The 4G/5G backup fails to carry care traffic. Inbound chats time out, abandoned-call rates climb and open escalations start ageing."
               },
               {
                 "inject": "Inject #3 — Regional outage confirmed",
                 "time": "15:05",
-                "detail": "The telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; hold times climb across the care queues."
+                "detail": "The telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; hold times climb across the inbound care queues."
               }
             ],
             "decisions": [
@@ -4459,7 +4459,7 @@
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
           "data": {
-            "text": "How long could the care program run degraded? What did callers actually experience at the worst point?"
+            "text": "How long could the inbound care program run degraded? What did callers actually experience at the worst point?"
           }
         },
         {
@@ -4478,27 +4478,27 @@
               "The client received a single, consistent status message from Client Delivery"
             ],
             "lessons": [
-              "A single dedicated link is a single point of failure for customer care",
+              "A single dedicated link is a single point of failure for inbound customer care",
               "Call-handling scripts for degraded service need live testing, not desk checks",
               "Customer visibility must survive a connectivity outage"
             ],
-            "story": "Mid-shift Thursday. The care program is live on all queues; two priority complaint escalations are open with the client. The exercise unfolded through the following injects: At 14:20, Dedicated link down — The dedicated link to the client's systems drops; agents can no longer see customer records and the care platform stops accepting new chats. At 14:50, Backup path fails — The 4G/5G backup fails to carry care traffic. Chats time out, callbacks stall and open escalations start ageing. At 15:05, Regional outage confirmed — The telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; hold times climb across the care queues. The hotwash closed on a single question: How long could the care program run degraded? What did callers actually experience at the worst point? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Mid-shift Thursday. The inbound care program is live on all queues; two priority complaint escalations are open with the client. The exercise unfolded through the following injects: At 14:20, Dedicated link down — The dedicated link to the client's systems drops; agents can no longer see customer records and the care platform stops accepting new inbound chats. At 14:50, Backup path fails — The 4G/5G backup fails to carry care traffic. Inbound chats time out, abandoned-call rates climb and open escalations start ageing. At 15:05, Regional outage confirmed — The telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; hold times climb across the inbound care queues. The hotwash closed on a single question: How long could the inbound care program run degraded? What did callers actually experience at the worst point? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "discussion": {
               "injects": [
                 {
                   "inject": "Inject #1 — Dedicated link down",
                   "time": "14:20",
-                  "detail": "The dedicated link to the client's systems drops; agents can no longer see customer records and the care platform stops accepting new chats."
+                  "detail": "The dedicated link to the client's systems drops; agents can no longer see customer records and the care platform stops accepting new inbound chats."
                 },
                 {
                   "inject": "Inject #2 — Backup path fails",
                   "time": "14:50",
-                  "detail": "The 4G/5G backup fails to carry care traffic. Chats time out, callbacks stall and open escalations start ageing."
+                  "detail": "The 4G/5G backup fails to carry care traffic. Inbound chats time out, abandoned-call rates climb and open escalations start ageing."
                 },
                 {
                   "inject": "Inject #3 — Regional outage confirmed",
                   "time": "15:05",
-                  "detail": "The telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; hold times climb across the care queues."
+                  "detail": "The telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; hold times climb across the inbound care queues."
                 }
               ],
               "decisions": [
@@ -4574,7 +4574,7 @@
               "framework": "SOC 2 (Availability criteria) | ISO 22301-aligned continuity practices | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
               "reference": "AICPA 2017 Trust Services Criteria; ISO 22301 business continuity guidance; ISO/IEC 27001:2022 and ISO/IEC 27002:2022 continuity and operational controls (A.5.24, A.5.29, A.5.30, A.8.6)."
             },
-            "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: customer communication, care-queue prioritisation and team coordination. Expected gaps to verify: minimum-viable-staffing decisions, callback and backlog recovery speed, alternate care arrangements, SLA/credit handling and audit-ready continuity documentation.",
+            "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: customer communication, care-queue prioritisation and team coordination. Expected gaps to verify: minimum-viable-staffing decisions, unanswered-call and backlog recovery speed, alternate care arrangements, SLA/credit handling and audit-ready continuity documentation.",
             "score": {
               "score": "To be scored",
               "rating": "To be rated",
@@ -4600,7 +4600,7 @@
               {
                 "domain": "Service Recovery & Resumption",
                 "score": "To be scored",
-                "assessment": "Assess queue resumption order, callback backlog clearance and verification before returning to normal service from the exercise transcript."
+                "assessment": "Assess queue resumption order, unanswered-call backlog clearance and verification before returning to normal service from the exercise transcript."
               },
               {
                 "domain": "Governance, Lessons Learned & CAPA",
@@ -4622,7 +4622,7 @@
                 "iso": "6.1, 6.2, 6.3, 6.7"
               },
               {
-                "theme": "Care capacity: answer times, queue prioritisation, callback backlog recovery",
+                "theme": "Care capacity: inbound answer times, queue prioritisation, unanswered-call backlog recovery",
                 "soc2": "A1.2, A1.3, CC7",
                 "tisax": "Operational capacity and service continuity",
                 "iso": "8.6, 8.14, 5.29"
@@ -4666,7 +4666,7 @@
                 "target": "≥ 90% of contracted target"
               },
               {
-                "kpi": "Customer callbacks completed from the disruption backlog",
+                "kpi": "Unanswered inbound calls cleared from the disruption backlog",
                 "target": "within 48 hours of recovery"
               },
               {
@@ -4704,7 +4704,7 @@
               "Care continuity plan versions, trigger records and the time-stamped decision log.",
               "Customer notification log: who was told, when, by whom and against which SLA clause.",
               "Care workforce evidence: attendance records, rosters, redeployment decisions and shift changes.",
-              "Care capacity evidence: call and chat volumes, answer times, abandonment and callback backlog tracking.",
+              "Care capacity evidence: inbound call and chat volumes, answer times, abandonment and unanswered-call backlog tracking.",
               "Continuity-drill records: alternate care arrangements, remote work, results and gaps.",
               "Recovery and improvement evidence: SLA reconciliation, customer reporting, RCA, CAPA closure and management review."
             ],
@@ -4715,7 +4715,7 @@
               },
               {
                 "period": "30–90 days",
-                "milestones": "Run care continuity and remote-work drills; test callback and backlog-recovery playbooks; cross-train teams on priority care queues; agree SLA relief protocols with key clients."
+                "milestones": "Run care continuity and remote-work drills; test inbound backlog-recovery playbooks; cross-train teams on priority inbound queues; agree SLA relief protocols with key clients."
               },
               {
                 "period": "90–180 days",
@@ -4755,22 +4755,22 @@
         {
           "time": "14:20",
           "title": "Dedicated link down",
-          "detail": "The dedicated link to the client's systems drops; agents can no longer see customer records and the care platform stops accepting new chats."
+          "detail": "The dedicated link to the client's systems drops; agents can no longer see customer records and the care platform stops accepting new inbound chats."
         },
         {
           "time": "14:50",
           "title": "Backup path fails",
-          "detail": "The 4G/5G backup fails to carry care traffic. Chats time out, callbacks stall and open escalations start ageing."
+          "detail": "The 4G/5G backup fails to carry care traffic. Inbound chats time out, abandoned-call rates climb and open escalations start ageing."
         },
         {
           "time": "15:05",
           "title": "Regional outage confirmed",
-          "detail": "The telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; hold times climb across the care queues."
+          "detail": "The telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; hold times climb across the inbound care queues."
         }
       ],
       "meta": {
         "title": "Network Outage Affecting Global Connectivity",
-        "desc": "The dedicated link to the client drops mid-shift, isolating a single customer-care program.",
+        "desc": "The dedicated link to the client drops mid-shift, isolating a single inbound customer-care program.",
         "cat": "BUSINESS OPERATIONS",
         "diff": "INTERMEDIATE"
       },
@@ -4815,7 +4815,7 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "ISO/IEC 27001-certified BPO delivering a client Customer Care Program from two sites; Site B runs half the care queues at 90% capacity"
+              "profile": "ISO/IEC 27001-certified BPO delivering a client Customer Care Program from two sites; Site B runs half the inbound care queues at 90% capacity"
             },
             "iso_scope": "Client Customer Care Program — inbound voice, chat and customer case handling under one client contract",
             "systems": [
@@ -4825,7 +4825,7 @@
               "Workforce management & scheduling",
               "Customer SLA dashboard"
             ],
-            "setting": "Monday 10:00, peak call season. Site B is dedicated to the client program and running at 90% capacity."
+            "setting": "Monday 10:00, peak inbound call season. Site B is dedicated to the client program and running at 90% capacity."
           }
         },
         {
@@ -4885,7 +4885,7 @@
             "number": 1,
             "time": "10:05",
             "title": "Fire alarm at Site B",
-            "detail": "A fire alarm sounds in the Site B server room; suppression activates and the care floor evacuates. Calls to the Site B queues go unanswered.",
+            "detail": "A fire alarm sounds in the Site B server room; suppression activates and the care floor evacuates. Calls to the Site B inbound queues go unanswered.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -4901,7 +4901,7 @@
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — which care queues move to Site A today, and which are suspended? (A.5.29)",
+                "question": "Care Operations Lead — which inbound care queues move to Site A today, and which are suspended? (A.5.29)",
                 "response": ""
               },
               {
@@ -4924,7 +4924,7 @@
             "number": 2,
             "time": "10:20",
             "title": "Care queues unreachable",
-            "detail": "Site A cannot see or answer the Site B care queues. Answer times blow through the client's SLA and chats pile up.",
+            "detail": "Site A cannot see or answer the Site B inbound care queues. Answer times blow through the client's SLA and inbound chats pile up.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -4937,7 +4937,7 @@
             "number": 3,
             "time": "12:30",
             "title": "Site loss confirmed",
-            "detail": "The fire is contained but Site B is unusable for days. The unanswered-call and callback backlog is growing and the client asks for a recovery timeline.",
+            "detail": "The fire is contained but Site B is unusable for days. The unanswered-call and pending-case backlog is growing and the client asks for a recovery timeline.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -4949,11 +4949,11 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager — how is the unanswered-call and callback backlog triaged and worked down across sites? (A.5.29, A.8.6)",
+                "question": "Customer Care Manager — how is the unanswered-call and pending-chat backlog triaged and worked down across sites? (A.5.29, A.8.6)",
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — what capacity at Site A is reallocated to care queues, and which outbound work is deferred? (A.8.6)",
+                "question": "Care Operations Lead — how is Site A capacity allocated across the inbound queues — emergency and complaint lines first? (A.8.6)",
                 "response": ""
               },
               {
@@ -4977,17 +4977,17 @@
               {
                 "inject": "Inject #1 — Fire alarm at Site B",
                 "time": "10:05",
-                "detail": "A fire alarm sounds in the Site B server room; suppression activates and the care floor evacuates. Calls to the Site B queues go unanswered."
+                "detail": "A fire alarm sounds in the Site B server room; suppression activates and the care floor evacuates. Calls to the Site B inbound queues go unanswered."
               },
               {
                 "inject": "Inject #2 — Care queues unreachable",
                 "time": "10:20",
-                "detail": "Site A cannot see or answer the Site B care queues. Answer times blow through the client's SLA and chats pile up."
+                "detail": "Site A cannot see or answer the Site B inbound care queues. Answer times blow through the client's SLA and inbound chats pile up."
               },
               {
                 "inject": "Inject #3 — Site loss confirmed",
                 "time": "12:30",
-                "detail": "The fire is contained but Site B is unusable for days. The unanswered-call and callback backlog is growing and the client asks for a recovery timeline."
+                "detail": "The fire is contained but Site B is unusable for days. The unanswered-call and pending-case backlog is growing and the client asks for a recovery timeline."
               }
             ],
             "decisions": [
@@ -5056,7 +5056,7 @@
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
           "data": {
-            "text": "Could Site A absorb the full care volume tomorrow morning? What is our real answer rate without Site B?"
+            "text": "Could Site A absorb the full inbound call volume tomorrow morning? What is our real inbound answer rate without Site B?"
           }
         },
         {
@@ -5075,27 +5075,27 @@
               "The client received a turnaround estimate backed by a real capacity number"
             ],
             "lessons": [
-              "Site A absorption capacity for the care program was assumed, not measured",
+              "Site A absorption capacity for the inbound program was assumed, not measured",
               "Care-queue overflow needs an alternate-site arrangement, not just a backup",
               "Staff accountability after evacuation must be a rehearsed routine"
             ],
-            "story": "Monday 10:00, peak call season. Site B is dedicated to the client program and running at 90% capacity. The exercise unfolded through the following injects: At 10:05, Fire alarm at Site B — A fire alarm sounds in the Site B server room; suppression activates and the care floor evacuates. Calls to the Site B queues go unanswered. At 10:20, Care queues unreachable — Site A cannot see or answer the Site B care queues. Answer times blow through the client's SLA and chats pile up. At 12:30, Site loss confirmed — The fire is contained but Site B is unusable for days. The unanswered-call and callback backlog is growing and the client asks for a recovery timeline. The hotwash closed on a single question: Could Site A absorb the full care volume tomorrow morning? What is our real answer rate without Site B? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Monday 10:00, peak inbound call season. Site B is dedicated to the client program and running at 90% capacity. The exercise unfolded through the following injects: At 10:05, Fire alarm at Site B — A fire alarm sounds in the Site B server room; suppression activates and the care floor evacuates. Calls to the Site B inbound queues go unanswered. At 10:20, Care queues unreachable — Site A cannot see or answer the Site B inbound care queues. Answer times blow through the client's SLA and inbound chats pile up. At 12:30, Site loss confirmed — The fire is contained but Site B is unusable for days. The unanswered-call and pending-case backlog is growing and the client asks for a recovery timeline. The hotwash closed on a single question: Could Site A absorb the full inbound call volume tomorrow morning? What is our real inbound answer rate without Site B? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "discussion": {
               "injects": [
                 {
                   "inject": "Inject #1 — Fire alarm at Site B",
                   "time": "10:05",
-                  "detail": "A fire alarm sounds in the Site B server room; suppression activates and the care floor evacuates. Calls to the Site B queues go unanswered."
+                  "detail": "A fire alarm sounds in the Site B server room; suppression activates and the care floor evacuates. Calls to the Site B inbound queues go unanswered."
                 },
                 {
                   "inject": "Inject #2 — Care queues unreachable",
                   "time": "10:20",
-                  "detail": "Site A cannot see or answer the Site B care queues. Answer times blow through the client's SLA and chats pile up."
+                  "detail": "Site A cannot see or answer the Site B inbound care queues. Answer times blow through the client's SLA and inbound chats pile up."
                 },
                 {
                   "inject": "Inject #3 — Site loss confirmed",
                   "time": "12:30",
-                  "detail": "The fire is contained but Site B is unusable for days. The unanswered-call and callback backlog is growing and the client asks for a recovery timeline."
+                  "detail": "The fire is contained but Site B is unusable for days. The unanswered-call and pending-case backlog is growing and the client asks for a recovery timeline."
                 }
               ],
               "decisions": [
@@ -5122,7 +5122,7 @@
             "recommendations": [
               "Prioritise: Measure and publish Site A care capacity (A.8.6) — owner: Care Operations Lead.",
               "Prioritise: Stand up an alternate-site runbook for the care platform (A.5.30) — owner: Operations.",
-              "Prioritise: Agree a callback backlog-triage protocol with the client (A.5.20) — owner: Client Delivery.",
+              "Prioritise: Agree an unanswered-call backlog-triage protocol with the client (A.5.20) — owner: Client Delivery.",
               "Prioritise: Rehearse evacuation accountability on every shift (A.5.29) — owner: Team Leaders."
             ],
             "capa": [
@@ -5145,7 +5145,7 @@
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
               {
-                "item": "Agree a callback backlog-triage protocol with the client (A.5.20)",
+                "item": "Agree an unanswered-call backlog-triage protocol with the client (A.5.20)",
                 "type": "Corrective",
                 "owner": "Client Delivery",
                 "due": "30 days",
@@ -5171,7 +5171,7 @@
               "framework": "SOC 2 (Availability criteria) | ISO 22301-aligned continuity practices | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
               "reference": "AICPA 2017 Trust Services Criteria; ISO 22301 business continuity guidance; ISO/IEC 27001:2022 and ISO/IEC 27002:2022 continuity and operational controls (A.5.24, A.5.29, A.5.30, A.8.6)."
             },
-            "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: customer communication, care-queue prioritisation and team coordination. Expected gaps to verify: minimum-viable-staffing decisions, callback and backlog recovery speed, alternate care arrangements, SLA/credit handling and audit-ready continuity documentation.",
+            "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: customer communication, care-queue prioritisation and team coordination. Expected gaps to verify: minimum-viable-staffing decisions, unanswered-call and backlog recovery speed, alternate care arrangements, SLA/credit handling and audit-ready continuity documentation.",
             "score": {
               "score": "To be scored",
               "rating": "To be rated",
@@ -5197,7 +5197,7 @@
               {
                 "domain": "Service Recovery & Resumption",
                 "score": "To be scored",
-                "assessment": "Assess queue resumption order, callback backlog clearance and verification before returning to normal service from the exercise transcript."
+                "assessment": "Assess queue resumption order, unanswered-call backlog clearance and verification before returning to normal service from the exercise transcript."
               },
               {
                 "domain": "Governance, Lessons Learned & CAPA",
@@ -5219,7 +5219,7 @@
                 "iso": "6.1, 6.2, 6.3, 6.7"
               },
               {
-                "theme": "Care capacity: answer times, queue prioritisation, callback backlog recovery",
+                "theme": "Care capacity: inbound answer times, queue prioritisation, unanswered-call backlog recovery",
                 "soc2": "A1.2, A1.3, CC7",
                 "tisax": "Operational capacity and service continuity",
                 "iso": "8.6, 8.14, 5.29"
@@ -5263,7 +5263,7 @@
                 "target": "≥ 90% of contracted target"
               },
               {
-                "kpi": "Customer callbacks completed from the disruption backlog",
+                "kpi": "Unanswered inbound calls cleared from the disruption backlog",
                 "target": "within 48 hours of recovery"
               },
               {
@@ -5301,7 +5301,7 @@
               "Care continuity plan versions, trigger records and the time-stamped decision log.",
               "Customer notification log: who was told, when, by whom and against which SLA clause.",
               "Care workforce evidence: attendance records, rosters, redeployment decisions and shift changes.",
-              "Care capacity evidence: call and chat volumes, answer times, abandonment and callback backlog tracking.",
+              "Care capacity evidence: inbound call and chat volumes, answer times, abandonment and unanswered-call backlog tracking.",
               "Continuity-drill records: alternate care arrangements, remote work, results and gaps.",
               "Recovery and improvement evidence: SLA reconciliation, customer reporting, RCA, CAPA closure and management review."
             ],
@@ -5312,7 +5312,7 @@
               },
               {
                 "period": "30–90 days",
-                "milestones": "Run care continuity and remote-work drills; test callback and backlog-recovery playbooks; cross-train teams on priority care queues; agree SLA relief protocols with key clients."
+                "milestones": "Run care continuity and remote-work drills; test inbound backlog-recovery playbooks; cross-train teams on priority inbound queues; agree SLA relief protocols with key clients."
               },
               {
                 "period": "90–180 days",
@@ -5336,7 +5336,7 @@
                 "owner": "Operations"
               },
               {
-                "item": "Agree a callback backlog-triage protocol with the client (A.5.20)",
+                "item": "Agree an unanswered-call backlog-triage protocol with the client (A.5.20)",
                 "owner": "Client Delivery"
               },
               {
@@ -5352,22 +5352,22 @@
         {
           "time": "10:05",
           "title": "Fire alarm at Site B",
-          "detail": "A fire alarm sounds in the Site B server room; suppression activates and the care floor evacuates. Calls to the Site B queues go unanswered."
+          "detail": "A fire alarm sounds in the Site B server room; suppression activates and the care floor evacuates. Calls to the Site B inbound queues go unanswered."
         },
         {
           "time": "10:20",
           "title": "Care queues unreachable",
-          "detail": "Site A cannot see or answer the Site B care queues. Answer times blow through the client's SLA and chats pile up."
+          "detail": "Site A cannot see or answer the Site B inbound care queues. Answer times blow through the client's SLA and inbound chats pile up."
         },
         {
           "time": "12:30",
           "title": "Site loss confirmed",
-          "detail": "The fire is contained but Site B is unusable for days. The unanswered-call and callback backlog is growing and the client asks for a recovery timeline."
+          "detail": "The fire is contained but Site B is unusable for days. The unanswered-call and pending-case backlog is growing and the client asks for a recovery timeline."
         }
       ],
       "meta": {
         "title": "Fire at Secondary Site During Peak Hours",
-        "desc": "Fire closes Site B mid-peak; the single client customer-care program loses half its delivery floor.",
+        "desc": "Fire closes Site B mid-peak; the single client inbound customer-care program loses half its delivery floor.",
         "cat": "BUSINESS OPERATIONS",
         "diff": "ADVANCED"
       },
@@ -5412,7 +5412,7 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "ISO/IEC 27001-certified BPO running a client Customer Care Program from a single HQ delivery center with 900 seats"
+              "profile": "ISO/IEC 27001-certified BPO running a client inbound Customer Care Program from a single HQ delivery center with 900 seats"
             },
             "iso_scope": "Client Customer Care Program — inbound voice, chat and customer case handling under one client contract",
             "systems": [
@@ -5422,7 +5422,7 @@
               "Customer SLA dashboard",
               "Peak call-window calendar"
             ],
-            "setting": "Weekday 15:00, with the client's billing-cycle announcement driving peak call volumes and three outbound care waves scheduled before close."
+            "setting": "Weekday 15:00, with the client's billing-cycle announcement driving peak inbound call volumes into the close of day."
           }
         },
         {
@@ -5494,7 +5494,7 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager — which care channels are critical enough to keep running — emergency and complaint lines first — and which are suspended? (A.5.29)",
+                "question": "Customer Care Manager — which inbound care channels are critical enough to keep running — emergency and complaint lines first — and which are suspended? (A.5.29)",
                 "response": ""
               },
               {
@@ -5521,7 +5521,7 @@
             "number": 2,
             "time": "15:20",
             "title": "Floor shutting down",
-            "detail": "Workstations and telephony shut down mid-call; customers are disconnected and 100% of care agents are losing their systems.",
+            "detail": "Workstations and telephony shut down mid-call; inbound customers are disconnected and 100% of care agents are losing their systems.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -5534,7 +5534,7 @@
             "number": 3,
             "time": "16:00",
             "title": "Extended outage confirmed",
-            "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The care SLA is at risk.",
+            "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The inbound care SLA is at risk.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -5546,7 +5546,7 @@
           "data": {
             "pairs": [
               {
-                "question": "WFM — what staffing and scheduling changes sustain customer care through a multi-hour outage? (A.5.29, A.8.6)",
+                "question": "WFM — what staffing and scheduling changes sustain inbound customer care through a multi-hour outage? (A.5.29, A.8.6)",
                 "response": ""
               },
               {
@@ -5554,7 +5554,7 @@
                 "response": ""
               },
               {
-                "question": "Customer Care Manager — what is the order for resuming suspended care queues once the site reopens? (A.5.29)",
+                "question": "Customer Care Manager — what is the order for resuming suspended inbound care queues once the site reopens? (A.5.29)",
                 "response": ""
               },
               {
@@ -5579,12 +5579,12 @@
               {
                 "inject": "Inject #2 — Floor shutting down",
                 "time": "15:20",
-                "detail": "Workstations and telephony shut down mid-call; customers are disconnected and 100% of care agents are losing their systems."
+                "detail": "Workstations and telephony shut down mid-call; inbound customers are disconnected and 100% of care agents are losing their systems."
               },
               {
                 "inject": "Inject #3 — Extended outage confirmed",
                 "time": "16:00",
-                "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The care SLA is at risk."
+                "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The inbound care SLA is at risk."
               }
             ],
             "decisions": [
@@ -5653,7 +5653,7 @@
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
           "data": {
-            "text": "Would our customer care service have survived an outage lasting 25% of the operating day? Where does the answer-time SLA break first?"
+            "text": "Would our inbound customer care service have survived an outage lasting 25% of the operating day? Where does the inbound answer-time SLA break first?"
           }
         },
         {
@@ -5672,11 +5672,11 @@
               "The client knew the revised timeline before the SLA was breached"
             ],
             "lessons": [
-              "The care program's dependency on HQ needs a documented contingency",
+              "The inbound care program's dependency on HQ needs a documented contingency",
               "Fallback work arrangements must be tested at real care scale",
               "Release-or-hold decisions for the floor need a pre-agreed script"
             ],
-            "story": "Weekday 15:00, with the client's billing-cycle announcement driving peak call volumes and three outbound care waves scheduled before close. The exercise unfolded through the following injects: At 15:05, Regional power loss — A regional outage hits HQ; the UPS carries the floor briefly but the backup generators fail to start. At 15:20, Floor shutting down — Workstations and telephony shut down mid-call; customers are disconnected and 100% of care agents are losing their systems. At 16:00, Extended outage confirmed — The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The care SLA is at risk. The hotwash closed on a single question: Would our customer care service have survived an outage lasting 25% of the operating day? Where does the answer-time SLA break first? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Weekday 15:00, with the client's billing-cycle announcement driving peak inbound call volumes into the close of day. The exercise unfolded through the following injects: At 15:05, Regional power loss — A regional outage hits HQ; the UPS carries the floor briefly but the backup generators fail to start. At 15:20, Floor shutting down — Workstations and telephony shut down mid-call; inbound customers are disconnected and 100% of care agents are losing their systems. At 16:00, Extended outage confirmed — The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The inbound care SLA is at risk. The hotwash closed on a single question: Would our inbound customer care service have survived an outage lasting 25% of the operating day? Where does the inbound answer-time SLA break first? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "discussion": {
               "injects": [
                 {
@@ -5687,12 +5687,12 @@
                 {
                   "inject": "Inject #2 — Floor shutting down",
                   "time": "15:20",
-                  "detail": "Workstations and telephony shut down mid-call; customers are disconnected and 100% of care agents are losing their systems."
+                  "detail": "Workstations and telephony shut down mid-call; inbound customers are disconnected and 100% of care agents are losing their systems."
                 },
                 {
                   "inject": "Inject #3 — Extended outage confirmed",
                   "time": "16:00",
-                  "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The care SLA is at risk."
+                  "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The inbound care SLA is at risk."
                 }
               ],
               "decisions": [
@@ -5768,7 +5768,7 @@
               "framework": "SOC 2 (Availability criteria) | ISO 22301-aligned continuity practices | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
               "reference": "AICPA 2017 Trust Services Criteria; ISO 22301 business continuity guidance; ISO/IEC 27001:2022 and ISO/IEC 27002:2022 continuity and operational controls (A.5.24, A.5.29, A.5.30, A.8.6)."
             },
-            "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: customer communication, care-queue prioritisation and team coordination. Expected gaps to verify: minimum-viable-staffing decisions, callback and backlog recovery speed, alternate care arrangements, SLA/credit handling and audit-ready continuity documentation.",
+            "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: customer communication, care-queue prioritisation and team coordination. Expected gaps to verify: minimum-viable-staffing decisions, unanswered-call and backlog recovery speed, alternate care arrangements, SLA/credit handling and audit-ready continuity documentation.",
             "score": {
               "score": "To be scored",
               "rating": "To be rated",
@@ -5794,7 +5794,7 @@
               {
                 "domain": "Service Recovery & Resumption",
                 "score": "To be scored",
-                "assessment": "Assess queue resumption order, callback backlog clearance and verification before returning to normal service from the exercise transcript."
+                "assessment": "Assess queue resumption order, unanswered-call backlog clearance and verification before returning to normal service from the exercise transcript."
               },
               {
                 "domain": "Governance, Lessons Learned & CAPA",
@@ -5816,7 +5816,7 @@
                 "iso": "6.1, 6.2, 6.3, 6.7"
               },
               {
-                "theme": "Care capacity: answer times, queue prioritisation, callback backlog recovery",
+                "theme": "Care capacity: inbound answer times, queue prioritisation, unanswered-call backlog recovery",
                 "soc2": "A1.2, A1.3, CC7",
                 "tisax": "Operational capacity and service continuity",
                 "iso": "8.6, 8.14, 5.29"
@@ -5860,7 +5860,7 @@
                 "target": "≥ 90% of contracted target"
               },
               {
-                "kpi": "Customer callbacks completed from the disruption backlog",
+                "kpi": "Unanswered inbound calls cleared from the disruption backlog",
                 "target": "within 48 hours of recovery"
               },
               {
@@ -5898,7 +5898,7 @@
               "Care continuity plan versions, trigger records and the time-stamped decision log.",
               "Customer notification log: who was told, when, by whom and against which SLA clause.",
               "Care workforce evidence: attendance records, rosters, redeployment decisions and shift changes.",
-              "Care capacity evidence: call and chat volumes, answer times, abandonment and callback backlog tracking.",
+              "Care capacity evidence: inbound call and chat volumes, answer times, abandonment and unanswered-call backlog tracking.",
               "Continuity-drill records: alternate care arrangements, remote work, results and gaps.",
               "Recovery and improvement evidence: SLA reconciliation, customer reporting, RCA, CAPA closure and management review."
             ],
@@ -5909,7 +5909,7 @@
               },
               {
                 "period": "30–90 days",
-                "milestones": "Run care continuity and remote-work drills; test callback and backlog-recovery playbooks; cross-train teams on priority care queues; agree SLA relief protocols with key clients."
+                "milestones": "Run care continuity and remote-work drills; test inbound backlog-recovery playbooks; cross-train teams on priority inbound queues; agree SLA relief protocols with key clients."
               },
               {
                 "period": "90–180 days",
@@ -5954,17 +5954,17 @@
         {
           "time": "15:20",
           "title": "Floor shutting down",
-          "detail": "Workstations and telephony shut down mid-call; customers are disconnected and 100% of care agents are losing their systems."
+          "detail": "Workstations and telephony shut down mid-call; inbound customers are disconnected and 100% of care agents are losing their systems."
         },
         {
           "time": "16:00",
           "title": "Extended outage confirmed",
-          "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The care SLA is at risk."
+          "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The inbound care SLA is at risk."
         }
       ],
       "meta": {
         "title": "Complete Power Outage at HQ",
-        "desc": "A multi-hour power outage takes the client customer-care center offline mid peak call window.",
+        "desc": "A multi-hour power outage takes the client inbound customer-care center offline mid peak inbound call window.",
         "cat": "BUSINESS OPERATIONS",
         "diff": "ADVANCED"
       },
@@ -6009,7 +6009,7 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "ISO/IEC 27001-certified BPO running a client Customer Care Program with a 2,000-agent dedicated team"
+              "profile": "ISO/IEC 27001-certified BPO running a client Customer Care Program with a 2,000-agent dedicated inbound team"
             },
             "iso_scope": "Client Customer Care Program — inbound voice, chat and customer case handling under one client contract",
             "systems": [
@@ -6019,7 +6019,7 @@
               "Absence & attendance tracking",
               "Cross-training matrix"
             ],
-            "setting": "Monday morning. A fast-spreading respiratory illness is reported across the city; the care program team is calling in sick shift by shift."
+            "setting": "Monday morning. A fast-spreading respiratory illness is reported across the city; the inbound care program team is calling in sick shift by shift."
           }
         },
         {
@@ -6079,7 +6079,7 @@
             "number": 1,
             "time": "09:00",
             "title": "60% absenteeism",
-            "detail": "60% of the care program workforce is unavailable — sick, isolating or caring for family. Every shift runs at 40% of planned headcount.",
+            "detail": "60% of the care program workforce is unavailable — sick, isolating or caring for family. Every inbound shift runs at 40% of planned headcount.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -6091,11 +6091,11 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager — which care queues receive the staff that reported in? (A.5.29)",
+                "question": "Customer Care Manager — which inbound care queues receive the staff that reported in? (A.5.29)",
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — do you redeploy agents across queues, or protect the emergency and complaint lines? (A.5.29, A.8.6)",
+                "question": "Care Operations Lead — do you redeploy agents across the inbound queues, or protect the emergency and complaint lines? (A.5.29, A.8.6)",
                 "response": ""
               },
               {
@@ -6118,7 +6118,7 @@
             "number": 2,
             "time": "09:30",
             "title": "Critical windows at risk",
-            "detail": "Answer-time commitments and 50% of the day's outbound care waves are at risk; call queues build and the client asks for status.",
+            "detail": "Answer-time commitments on the inbound voice and chat queues are at risk; abandoned-call rates climb and the client asks for status.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -6131,7 +6131,7 @@
             "number": 3,
             "time": "Tue 09:00",
             "title": "Service-credit trigger",
-            "detail": "Absenteeism holds at 60%; the program answers 30% of calls and the client triggers a service-credit clause.",
+            "detail": "Absenteeism holds at 60%; the program answers 30% of inbound calls and the client triggers a service-credit clause.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -6143,7 +6143,7 @@
           "data": {
             "pairs": [
               {
-                "question": "Team Leader — how do you triage care work — queue callbacks, defer outbound waves, pause non-essential queues? (A.5.29)",
+                "question": "Team Leader — how do you triage inbound care work — emergency and complaint lines first, non-essential inbound queues paused? (A.5.29)",
                 "response": ""
               },
               {
@@ -6151,7 +6151,7 @@
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — how is SLA impact tracked and reported to the client per care queue? (A.5.20)",
+                "question": "Care Operations Lead — how is SLA impact tracked and reported to the client per inbound care queue? (A.5.20)",
                 "response": ""
               },
               {
@@ -6171,17 +6171,17 @@
               {
                 "inject": "Inject #1 — 60% absenteeism",
                 "time": "09:00",
-                "detail": "60% of the care program workforce is unavailable — sick, isolating or caring for family. Every shift runs at 40% of planned headcount."
+                "detail": "60% of the care program workforce is unavailable — sick, isolating or caring for family. Every inbound shift runs at 40% of planned headcount."
               },
               {
                 "inject": "Inject #2 — Critical windows at risk",
                 "time": "09:30",
-                "detail": "Answer-time commitments and 50% of the day's outbound care waves are at risk; call queues build and the client asks for status."
+                "detail": "Answer-time commitments on the inbound voice and chat queues are at risk; abandoned-call rates climb and the client asks for status."
               },
               {
                 "inject": "Inject #3 — Service-credit trigger",
                 "time": "Tue 09:00",
-                "detail": "Absenteeism holds at 60%; the program answers 30% of calls and the client triggers a service-credit clause."
+                "detail": "Absenteeism holds at 60%; the program answers 30% of inbound calls and the client triggers a service-credit clause."
               }
             ],
             "decisions": [
@@ -6250,7 +6250,7 @@
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
           "data": {
-            "text": "Could the care program run at 40% staffing? What is our true minimum viable staffing per care queue?"
+            "text": "Could the inbound care program run at 40% staffing? What is our true minimum viable staffing per inbound queue?"
           }
         },
         {
@@ -6264,32 +6264,32 @@
             },
             "participants": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
             "highlights": [
-              "Care queues were prioritised and the capacity message reached the client within hours",
+              "Inbound care queues were prioritised and the capacity message reached the client within hours",
               "Cross-training absorbed part of the absenteeism shock on day one",
               "SLA impact was tracked and reported per queue, not in aggregate"
             ],
             "lessons": [
-              "Minimum viable staffing per care queue should be defined in advance",
+              "Minimum viable staffing per inbound care queue should be defined in advance",
               "The cross-training matrix was thinner than the BCP assumed",
               "Workload limits for remaining care staff need active enforcement"
             ],
-            "story": "Monday morning. A fast-spreading respiratory illness is reported across the city; the care program team is calling in sick shift by shift. The exercise unfolded through the following injects: At 09:00, 60% absenteeism — 60% of the care program workforce is unavailable — sick, isolating or caring for family. Every shift runs at 40% of planned headcount. At 09:30, Critical windows at risk — Answer-time commitments and 50% of the day's outbound care waves are at risk; call queues build and the client asks for status. At Tue 09:00, Service-credit trigger — Absenteeism holds at 60%; the program answers 30% of calls and the client triggers a service-credit clause. The hotwash closed on a single question: Could the care program run at 40% staffing? What is our true minimum viable staffing per care queue? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Monday morning. A fast-spreading respiratory illness is reported across the city; the inbound care program team is calling in sick shift by shift. The exercise unfolded through the following injects: At 09:00, 60% absenteeism — 60% of the care program workforce is unavailable — sick, isolating or caring for family. Every inbound shift runs at 40% of planned headcount. At 09:30, Critical windows at risk — Answer-time commitments on the inbound voice and chat queues are at risk; abandoned-call rates climb and the client asks for status. At Tue 09:00, Service-credit trigger — Absenteeism holds at 60%; the program answers 30% of inbound calls and the client triggers a service-credit clause. The hotwash closed on a single question: Could the inbound care program run at 40% staffing? What is our true minimum viable staffing per inbound queue? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "discussion": {
               "injects": [
                 {
                   "inject": "Inject #1 — 60% absenteeism",
                   "time": "09:00",
-                  "detail": "60% of the care program workforce is unavailable — sick, isolating or caring for family. Every shift runs at 40% of planned headcount."
+                  "detail": "60% of the care program workforce is unavailable — sick, isolating or caring for family. Every inbound shift runs at 40% of planned headcount."
                 },
                 {
                   "inject": "Inject #2 — Critical windows at risk",
                   "time": "09:30",
-                  "detail": "Answer-time commitments and 50% of the day's outbound care waves are at risk; call queues build and the client asks for status."
+                  "detail": "Answer-time commitments on the inbound voice and chat queues are at risk; abandoned-call rates climb and the client asks for status."
                 },
                 {
                   "inject": "Inject #3 — Service-credit trigger",
                   "time": "Tue 09:00",
-                  "detail": "Absenteeism holds at 60%; the program answers 30% of calls and the client triggers a service-credit clause."
+                  "detail": "Absenteeism holds at 60%; the program answers 30% of inbound calls and the client triggers a service-credit clause."
                 }
               ],
               "decisions": [
@@ -6314,14 +6314,14 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Define minimum viable staffing per care queue (A.5.29) — owner: Customer Care Manager.",
+              "Prioritise: Define minimum viable staffing per inbound care queue (A.5.29) — owner: Customer Care Manager.",
               "Prioritise: Expand the cross-training matrix across care channels (A.6.3) — owner: Team Leaders.",
               "Prioritise: Build the customer capacity-reporting routine (A.5.20) — owner: Client Delivery.",
               "Prioritise: Set enforced workload limits for crisis shifts (A.5.29) — owner: WFM."
             ],
             "capa": [
               {
-                "item": "Define minimum viable staffing per care queue (A.5.29)",
+                "item": "Define minimum viable staffing per inbound care queue (A.5.29)",
                 "type": "Corrective",
                 "owner": "Customer Care Manager",
                 "due": "30 days",
@@ -6365,7 +6365,7 @@
               "framework": "SOC 2 (Availability criteria) | ISO 22301-aligned continuity practices | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
               "reference": "AICPA 2017 Trust Services Criteria; ISO 22301 business continuity guidance; ISO/IEC 27001:2022 and ISO/IEC 27002:2022 continuity and operational controls (A.5.24, A.5.29, A.5.30, A.8.6)."
             },
-            "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: customer communication, care-queue prioritisation and team coordination. Expected gaps to verify: minimum-viable-staffing decisions, callback and backlog recovery speed, alternate care arrangements, SLA/credit handling and audit-ready continuity documentation.",
+            "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: customer communication, care-queue prioritisation and team coordination. Expected gaps to verify: minimum-viable-staffing decisions, unanswered-call and backlog recovery speed, alternate care arrangements, SLA/credit handling and audit-ready continuity documentation.",
             "score": {
               "score": "To be scored",
               "rating": "To be rated",
@@ -6391,7 +6391,7 @@
               {
                 "domain": "Service Recovery & Resumption",
                 "score": "To be scored",
-                "assessment": "Assess queue resumption order, callback backlog clearance and verification before returning to normal service from the exercise transcript."
+                "assessment": "Assess queue resumption order, unanswered-call backlog clearance and verification before returning to normal service from the exercise transcript."
               },
               {
                 "domain": "Governance, Lessons Learned & CAPA",
@@ -6413,7 +6413,7 @@
                 "iso": "6.1, 6.2, 6.3, 6.7"
               },
               {
-                "theme": "Care capacity: answer times, queue prioritisation, callback backlog recovery",
+                "theme": "Care capacity: inbound answer times, queue prioritisation, unanswered-call backlog recovery",
                 "soc2": "A1.2, A1.3, CC7",
                 "tisax": "Operational capacity and service continuity",
                 "iso": "8.6, 8.14, 5.29"
@@ -6457,7 +6457,7 @@
                 "target": "≥ 90% of contracted target"
               },
               {
-                "kpi": "Customer callbacks completed from the disruption backlog",
+                "kpi": "Unanswered inbound calls cleared from the disruption backlog",
                 "target": "within 48 hours of recovery"
               },
               {
@@ -6495,7 +6495,7 @@
               "Care continuity plan versions, trigger records and the time-stamped decision log.",
               "Customer notification log: who was told, when, by whom and against which SLA clause.",
               "Care workforce evidence: attendance records, rosters, redeployment decisions and shift changes.",
-              "Care capacity evidence: call and chat volumes, answer times, abandonment and callback backlog tracking.",
+              "Care capacity evidence: inbound call and chat volumes, answer times, abandonment and unanswered-call backlog tracking.",
               "Continuity-drill records: alternate care arrangements, remote work, results and gaps.",
               "Recovery and improvement evidence: SLA reconciliation, customer reporting, RCA, CAPA closure and management review."
             ],
@@ -6506,7 +6506,7 @@
               },
               {
                 "period": "30–90 days",
-                "milestones": "Run care continuity and remote-work drills; test callback and backlog-recovery playbooks; cross-train teams on priority care queues; agree SLA relief protocols with key clients."
+                "milestones": "Run care continuity and remote-work drills; test inbound backlog-recovery playbooks; cross-train teams on priority inbound queues; agree SLA relief protocols with key clients."
               },
               {
                 "period": "90–180 days",
@@ -6522,7 +6522,7 @@
           "data": {
             "actions": [
               {
-                "item": "Define minimum viable staffing per care queue (A.5.29)",
+                "item": "Define minimum viable staffing per inbound care queue (A.5.29)",
                 "owner": "Customer Care Manager"
               },
               {
@@ -6546,22 +6546,22 @@
         {
           "time": "09:00",
           "title": "60% absenteeism",
-          "detail": "60% of the care program workforce is unavailable — sick, isolating or caring for family. Every shift runs at 40% of planned headcount."
+          "detail": "60% of the care program workforce is unavailable — sick, isolating or caring for family. Every inbound shift runs at 40% of planned headcount."
         },
         {
           "time": "09:30",
           "title": "Critical windows at risk",
-          "detail": "Answer-time commitments and 50% of the day's outbound care waves are at risk; call queues build and the client asks for status."
+          "detail": "Answer-time commitments on the inbound voice and chat queues are at risk; abandoned-call rates climb and the client asks for status."
         },
         {
           "time": "Tue 09:00",
           "title": "Service-credit trigger",
-          "detail": "Absenteeism holds at 60%; the program answers 30% of calls and the client triggers a service-credit clause."
+          "detail": "Absenteeism holds at 60%; the program answers 30% of inbound calls and the client triggers a service-credit clause."
         }
       ],
       "meta": {
         "title": "Geopolitic Concerns Reducing Workforce Availability",
-        "desc": "A health crisis removes 60% of the workforce from the client customer-care program.",
+        "desc": "A health crisis removes 60% of the workforce from the client inbound customer-care program.",
         "cat": "BUSINESS OPERATIONS",
         "diff": "ADVANCED"
       },
@@ -6611,12 +6611,12 @@
             "iso_scope": "Client Customer Care Program — inbound voice, chat and customer account servicing under one client contract",
             "systems": [
               "Customer care desk (voice & chat)",
-              "Account change & call-back verification workflow",
+              "Account change & customer verification workflow",
               "Case management & knowledge base",
               "Care quality monitoring",
               "Workforce management & scheduling"
             ],
-            "setting": "Thursday afternoon. The care desk is handling a high volume of account-change requests ahead of the client's billing date."
+            "setting": "Thursday afternoon. The care desk is handling a high volume of inbound account-change requests ahead of the client's billing date."
           }
         },
         {
@@ -6740,7 +6740,7 @@
           "data": {
             "pairs": [
               {
-                "question": "Care Operations Lead — what identity-verification and call-back controls now apply to every customer account interaction? (A.5.24, A.5.25)",
+                "question": "Care Operations Lead — what identity-verification controls now apply to every inbound customer account interaction? (A.5.24, A.5.25)",
                 "response": ""
               },
               {
@@ -6847,7 +6847,7 @@
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
           "data": {
-            "text": "Would our care desk challenge a call like that today? What is the identity-verification ritual on every account change?"
+            "text": "Would our care desk challenge a call like that today? What is the customer identity-verification ritual on every account change?"
           }
         },
         {
@@ -6867,10 +6867,10 @@
             ],
             "lessons": [
               "Account changes need dual verification — a single agent's judgement is too easy to spoof",
-              "Call-back verification must be a desk ritual, not a guideline",
+              "Customer verification must be a desk ritual, not a guideline",
               "Fraud-awareness briefings must reach the care desk, not just the floor"
             ],
-            "story": "Thursday afternoon. The care desk is handling a high volume of account-change requests ahead of the client's billing date. The exercise unfolded through the following injects: At 14:10, Spoofed calls — Care agents receive calls from 'the client's fraud team' and 'internal support' asking them to bypass identity checks and update customer accounts urgently. At 14:35, Accounts changed — 3% of customer accounts are changed and fraudulent withdrawals equal to 30% of the day's payment value are initiated before anyone flags the calls as suspicious. At 15:00, Fraud confirmed — Customers report account takeovers and the fraud is confirmed. A further 15% of care agents admit they received similar calls today. The hotwash closed on a single question: Would our care desk challenge a call like that today? What is the identity-verification ritual on every account change? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Thursday afternoon. The care desk is handling a high volume of inbound account-change requests ahead of the client's billing date. The exercise unfolded through the following injects: At 14:10, Spoofed calls — Care agents receive calls from 'the client's fraud team' and 'internal support' asking them to bypass identity checks and update customer accounts urgently. At 14:35, Accounts changed — 3% of customer accounts are changed and fraudulent withdrawals equal to 30% of the day's payment value are initiated before anyone flags the calls as suspicious. At 15:00, Fraud confirmed — Customers report account takeovers and the fraud is confirmed. A further 15% of care agents admit they received similar calls today. The hotwash closed on a single question: Would our care desk challenge a call like that today? What is the customer identity-verification ritual on every account change? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
             "discussion": {
               "injects": [
                 {
@@ -6912,7 +6912,7 @@
             },
             "recommendations": [
               "Prioritise: Introduce dual verification for customer account changes (A.5.24) — owner: Customer Care Manager.",
-              "Prioritise: Add a call-back verification ritual to the care runbook (A.6.3) — owner: Team Leaders.",
+              "Prioritise: Add a customer-verification ritual to the care runbook (A.6.3) — owner: Team Leaders.",
               "Prioritise: Write the pause-and-resume procedure into the BCP (A.5.29) — owner: Operations.",
               "Prioritise: Brief the care desk and the client on the new controls (A.5.20) — owner: Client Delivery."
             ],
@@ -6927,7 +6927,7 @@
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
               {
-                "item": "Add a call-back verification ritual to the care runbook (A.6.3)",
+                "item": "Add a customer-verification ritual to the care runbook (A.6.3)",
                 "type": "Corrective",
                 "owner": "Team Leaders",
                 "due": "30 days",
@@ -6962,7 +6962,7 @@
               "framework": "SOC 2 (Availability criteria) | ISO 22301-aligned continuity practices | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
               "reference": "AICPA 2017 Trust Services Criteria; ISO 22301 business continuity guidance; ISO/IEC 27001:2022 and ISO/IEC 27002:2022 continuity and operational controls (A.5.24, A.5.29, A.5.30, A.8.6)."
             },
-            "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: customer communication, care-queue prioritisation and team coordination. Expected gaps to verify: minimum-viable-staffing decisions, callback and backlog recovery speed, alternate care arrangements, SLA/credit handling and audit-ready continuity documentation.",
+            "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: customer communication, care-queue prioritisation and team coordination. Expected gaps to verify: minimum-viable-staffing decisions, unanswered-call and backlog recovery speed, alternate care arrangements, SLA/credit handling and audit-ready continuity documentation.",
             "score": {
               "score": "To be scored",
               "rating": "To be rated",
@@ -6988,7 +6988,7 @@
               {
                 "domain": "Service Recovery & Resumption",
                 "score": "To be scored",
-                "assessment": "Assess queue resumption order, callback backlog clearance and verification before returning to normal service from the exercise transcript."
+                "assessment": "Assess queue resumption order, unanswered-call backlog clearance and verification before returning to normal service from the exercise transcript."
               },
               {
                 "domain": "Governance, Lessons Learned & CAPA",
@@ -7010,7 +7010,7 @@
                 "iso": "6.1, 6.2, 6.3, 6.7"
               },
               {
-                "theme": "Care capacity: answer times, queue prioritisation, callback backlog recovery",
+                "theme": "Care capacity: inbound answer times, queue prioritisation, unanswered-call backlog recovery",
                 "soc2": "A1.2, A1.3, CC7",
                 "tisax": "Operational capacity and service continuity",
                 "iso": "8.6, 8.14, 5.29"
@@ -7054,7 +7054,7 @@
                 "target": "≥ 90% of contracted target"
               },
               {
-                "kpi": "Customer callbacks completed from the disruption backlog",
+                "kpi": "Unanswered inbound calls cleared from the disruption backlog",
                 "target": "within 48 hours of recovery"
               },
               {
@@ -7092,7 +7092,7 @@
               "Care continuity plan versions, trigger records and the time-stamped decision log.",
               "Customer notification log: who was told, when, by whom and against which SLA clause.",
               "Care workforce evidence: attendance records, rosters, redeployment decisions and shift changes.",
-              "Care capacity evidence: call and chat volumes, answer times, abandonment and callback backlog tracking.",
+              "Care capacity evidence: inbound call and chat volumes, answer times, abandonment and unanswered-call backlog tracking.",
               "Continuity-drill records: alternate care arrangements, remote work, results and gaps.",
               "Recovery and improvement evidence: SLA reconciliation, customer reporting, RCA, CAPA closure and management review."
             ],
@@ -7103,7 +7103,7 @@
               },
               {
                 "period": "30–90 days",
-                "milestones": "Run care continuity and remote-work drills; test callback and backlog-recovery playbooks; cross-train teams on priority care queues; agree SLA relief protocols with key clients."
+                "milestones": "Run care continuity and remote-work drills; test inbound backlog-recovery playbooks; cross-train teams on priority inbound queues; agree SLA relief protocols with key clients."
               },
               {
                 "period": "90–180 days",
@@ -7123,7 +7123,7 @@
                 "owner": "Customer Care Manager"
               },
               {
-                "item": "Add a call-back verification ritual to the care runbook (A.6.3)",
+                "item": "Add a customer-verification ritual to the care runbook (A.6.3)",
                 "owner": "Team Leaders"
               },
               {
@@ -7158,7 +7158,7 @@
       ],
       "meta": {
         "title": "Vishing Attack",
-        "desc": "Spoofed calls to the care desk harvest customer data and trigger fraudulent account changes.",
+        "desc": "Spoofed inbound calls to the care desk harvest customer data and trigger fraudulent account changes.",
         "cat": "BUSINESS OPERATIONS",
         "diff": "INTERMEDIATE"
       },

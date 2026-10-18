@@ -134,7 +134,7 @@ BPO_FRAMEWORK_ALIGNMENT = [
      "soc2": "CC1, A1.2",
      "tisax": "Personnel security and operational availability",
      "iso": "6.1, 6.2, 6.3, 6.7"},
-    {"theme": "Care capacity: answer times, queue prioritisation, callback backlog recovery",
+    {"theme": "Care capacity: inbound answer times, queue prioritisation, unanswered-call backlog recovery",
      "soc2": "A1.2, A1.3, CC7",
      "tisax": "Operational capacity and service continuity",
      "iso": "8.6, 8.14, 5.29"},
@@ -160,7 +160,7 @@ BPO_KPIS = [
     {"kpi": "Time to activate the continuity plan after a care-service disruption", "target": "< 15 minutes"},
     {"kpi": "Priority care queues kept live (emergency and complaint lines)", "target": "\u2265 90% of priority queues"},
     {"kpi": "Calls answered within the agreed service level during the disruption", "target": "\u2265 90% of contracted target"},
-    {"kpi": "Customer callbacks completed from the disruption backlog", "target": "within 48 hours of recovery"},
+    {"kpi": "Unanswered inbound calls cleared from the disruption backlog", "target": "within 48 hours of recovery"},
     {"kpi": "Customer notifications issued within the agreed window", "target": "100% of triggered cases"},
     {"kpi": "Staffing coverage against minimum viable care staffing", "target": "\u2265 95% of plan"},
     {"kpi": "Customer SLA adherence during and after the disruption", "target": "\u2265 95% of contracted targets"},
@@ -180,7 +180,7 @@ BPO_EVIDENCE_PACK = [
     "Care continuity plan versions, trigger records and the time-stamped decision log.",
     "Customer notification log: who was told, when, by whom and against which SLA clause.",
     "Care workforce evidence: attendance records, rosters, redeployment decisions and shift changes.",
-    "Care capacity evidence: call and chat volumes, answer times, abandonment and callback backlog tracking.",
+    "Care capacity evidence: inbound call and chat volumes, answer times, abandonment and unanswered-call backlog tracking.",
     "Continuity-drill records: alternate care arrangements, remote work, results and gaps.",
     "Recovery and improvement evidence: SLA reconciliation, customer reporting, RCA, CAPA closure and management review.",
 ]
@@ -189,7 +189,7 @@ BPO_ROADMAP = [
     {"period": "0\u201330 days",
      "milestones": "Assign care continuity owners; publish the customer-notification matrix; define minimum viable staffing per care queue; confirm alternate care arrangements and remote capacity."},
     {"period": "30\u201390 days",
-     "milestones": "Run care continuity and remote-work drills; test callback and backlog-recovery playbooks; cross-train teams on priority care queues; agree SLA relief protocols with key clients."},
+     "milestones": "Run care continuity and remote-work drills; test inbound backlog-recovery playbooks; cross-train teams on priority inbound queues; agree SLA relief protocols with key clients."},
     {"period": "90\u2013180 days",
      "milestones": "Run the follow-up customer-care continuity tabletop; close CAPA evidence; embed continuity tests in the operating rhythm; update control narratives and evidence repository."},
 ]
@@ -202,7 +202,7 @@ BPO_CAPABILITY_DEFAULT = [
     {"domain": "Care Workforce & Capacity Management", "score": "To be scored",
      "assessment": "Assess staffing decisions, redeployment, shift changes and care-queue prioritisation from the exercise transcript."},
     {"domain": "Service Recovery & Resumption", "score": "To be scored",
-     "assessment": "Assess queue resumption order, callback backlog clearance and verification before returning to normal service from the exercise transcript."},
+     "assessment": "Assess queue resumption order, unanswered-call backlog clearance and verification before returning to normal service from the exercise transcript."},
     {"domain": "Governance, Lessons Learned & CAPA", "score": "To be scored",
      "assessment": "Assess follow-up ownership, evidence capture and CAPA closure discipline from the exercise transcript."},
 ]
@@ -210,7 +210,7 @@ BPO_CAPABILITY_DEFAULT = [
 BPO_ASSESSMENT_DEFAULT = (
     "The team should complete scoring from the exercise transcript. Expected strengths to verify: "
     "customer communication, care-queue prioritisation and team coordination. Expected gaps to verify: "
-    "minimum-viable-staffing decisions, callback and backlog recovery speed, alternate care arrangements, "
+    "minimum-viable-staffing decisions, unanswered-call and backlog recovery speed, alternate care arrangements, "
     "SLA/credit handling and audit-ready continuity documentation."
 )
 
@@ -1017,40 +1017,41 @@ SCENARIOS = [
     },
     # ------------------------- BUSINESS OPERATIONS ------------------------- #
     # Each BO scenario focuses on ONE client program under BPO operations,
-    # with customer care as the main business process: every inject, decision
-    # and hotwash concerns care queues, callers and customer SLAs, and every
-    # question is addressed to the Customer Care Manager, Care Operations
-    # Leads or Team Leaders running that program.
+    # with the INBOUND customer-care process as the only business process in
+    # scope: every inject, decision and hotwash concerns the inbound voice,
+    # chat and case queues — callers, answer times and customer SLAs — and
+    # every question is addressed to the Customer Care Manager, Care
+    # Operations Leads or Team Leaders running that program.
     {
         "title": "Network Outage Affecting Global Connectivity", "category": BO, "difficulty": "INTERMEDIATE",
-        "description": "The dedicated link to the client drops mid-shift, isolating a single customer-care program.",
+        "description": "The dedicated link to the client drops mid-shift, isolating a single inbound customer-care program.",
 
-        "profile": "ISO/IEC 27001-certified BPO operating a single client's Customer Care Program \u2014 a dedicated, 24/7 voice and chat operation with 450 seats",
+        "profile": "ISO/IEC 27001-certified BPO operating a single client's Customer Care Program \u2014 a dedicated, 24/7 inbound voice and chat operation with 450 seats",
         "iso_scope": "Client Customer Care Program \u2014 inbound voice, chat and customer case handling under one client contract",
         "systems": ["Dedicated link & client VPN", "Customer care platform (voice & chat)", "Case management & knowledge base", "Workforce management & scheduling", "Customer SLA dashboard"],
-        "setting": "Mid-shift Thursday. The care program is live on all queues; two priority complaint escalations are open with the client.",
+        "setting": "Mid-shift Thursday. The inbound care program is live on all queues; two priority complaint escalations are open with the client.",
         "injects": [
-            {"time": "14:20", "title": "Dedicated link down", "detail": "The dedicated link to the client's systems drops; agents can no longer see customer records and the care platform stops accepting new chats."},
-            {"time": "14:50", "title": "Backup path fails", "detail": "The 4G/5G backup fails to carry care traffic. Chats time out, callbacks stall and open escalations start ageing."},
-            {"time": "15:05", "title": "Regional outage confirmed", "detail": "The telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; hold times climb across the care queues."},
+            {"time": "14:20", "title": "Dedicated link down", "detail": "The dedicated link to the client's systems drops; agents can no longer see customer records and the care platform stops accepting new inbound chats."},
+            {"time": "14:50", "title": "Backup path fails", "detail": "The 4G/5G backup fails to carry care traffic. Inbound chats time out, abandoned-call rates climb and open escalations start ageing."},
+            {"time": "15:05", "title": "Regional outage confirmed", "detail": "The telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; hold times climb across the inbound care queues."},
         ],
-        "inject1": "14:20 \u2014 the dedicated link to the client's systems drops. Agents cannot reach customer records; the care platform stops accepting new chats.",
+        "inject1": "14:20 \u2014 the dedicated link to the client's systems drops. Agents cannot reach customer records; the care platform stops accepting new inbound chats.",
         "inject1_name": "Dedicated link down",
         "decision_a_name": "Continuity call",
         "q1": [
             "Customer Care Manager \u2014 who declares a continuity event for the care program, and who triggers the BCP? (A.5.24, A.5.29)",
             "Care Operations Lead \u2014 which care queues stay live at degraded service \u2014 emergency and complaint lines first \u2014 and which are paused? (A.5.29)",
             "Team Leader \u2014 what do agents tell callers right now, and how do you keep the floor productive while customers wait? (A.5.24, A.6.7)",
-            "WFM \u2014 how do you re-forecast call volumes when disappointed customers call back more than usual? (A.8.6)",
+            "WFM \u2014 how do you re-forecast inbound call volumes when disappointed customers keep calling in? (A.8.6)",
         ],
-        "inject2": "15:05 \u2014 the telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; unanswered calls and chats are building across the care program.",
+        "inject2": "15:05 \u2014 the telco confirms a regional outage with no ETA. The client calls about its open escalations, just 5% of the case queue; unanswered inbound calls and chats are building across the care program.",
         "inject2_name": "Regional outage confirmed",
         "decision_b_name": "Recovery & prioritisation",
         "q2": [
-            "Customer Care Manager \u2014 what is the callback and backlog-clearing plan once the link returns, and in what queue order? (A.5.29, A.8.6)",
+            "Customer Care Manager \u2014 what is the inbound backlog-clearing plan \u2014 unanswered calls, queued chats, open cases \u2014 once the link returns, and in what queue order? (A.5.29, A.8.6)",
             "Care Operations Lead \u2014 what service-level relief or credits do we offer the client, and who authorises it? (A.5.20)",
             "Client Delivery Manager \u2014 what timeline do we commit to the client for restored answer times, and how is progress reported? (A.5.20)",
-            "WFM \u2014 what staffing and shift changes cover the callback catch-up window? (A.5.29)",
+            "WFM \u2014 what staffing and shift changes cover the inbound backlog catch-up window? (A.5.29)",
         ],
         "clause_map": [
             {"decision": "Declare continuity event", "control": "A.5.29 \u00b7 Continuity planning", "guidance": "Trigger the tested BCP (27002 \u00a75.29)"},
@@ -1060,14 +1061,14 @@ SCENARIOS = [
             {"decision": "Continuity readiness", "control": "A.5.30 \u00b7 ICT readiness", "guidance": "Tested continuity arrangements (27002 \u00a75.30)"},
             {"decision": "Lessons learned", "control": "A.5.27 \u00b7 Learning from incidents", "guidance": "Improve the continuity plan (27002 \u00a75.27)"},
         ],
-        "hotwash": "How long could the care program run degraded? What did callers actually experience at the worst point?",
+        "hotwash": "How long could the inbound care program run degraded? What did callers actually experience at the worst point?",
         "highlights": [
             "The continuity plan was triggered within 15 minutes of the link dropping",
             "Callers got clear hold messaging while customer records were unreachable",
             "The client received a single, consistent status message from Client Delivery",
         ],
         "lessons": [
-            "A single dedicated link is a single point of failure for customer care",
+            "A single dedicated link is a single point of failure for inbound customer care",
             "Call-handling scripts for degraded service need live testing, not desk checks",
             "Customer visibility must survive a connectivity outage",
         ],
@@ -1081,32 +1082,32 @@ SCENARIOS = [
     },
     {
         "title": "Fire at Secondary Site During Peak Hours", "category": BO, "difficulty": "ADVANCED",
-        "description": "Fire closes Site B mid-peak; the single client customer-care program loses half its delivery floor.",
+        "description": "Fire closes Site B mid-peak; the single client inbound customer-care program loses half its delivery floor.",
 
-        "profile": "ISO/IEC 27001-certified BPO delivering a client Customer Care Program from two sites; Site B runs half the care queues at 90% capacity",
+        "profile": "ISO/IEC 27001-certified BPO delivering a client Customer Care Program from two sites; Site B runs half the inbound care queues at 90% capacity",
         "iso_scope": "Client Customer Care Program \u2014 inbound voice, chat and customer case handling under one client contract",
         "systems": ["Customer care platform (voice & chat)", "Care queue routing & overflow", "Site A / Site B seating & telephony", "Workforce management & scheduling", "Customer SLA dashboard"],
-        "setting": "Monday 10:00, peak call season. Site B is dedicated to the client program and running at 90% capacity.",
+        "setting": "Monday 10:00, peak inbound call season. Site B is dedicated to the client program and running at 90% capacity.",
         "injects": [
-            {"time": "10:05", "title": "Fire alarm at Site B", "detail": "A fire alarm sounds in the Site B server room; suppression activates and the care floor evacuates. Calls to the Site B queues go unanswered."},
-            {"time": "10:20", "title": "Care queues unreachable", "detail": "Site A cannot see or answer the Site B care queues. Answer times blow through the client's SLA and chats pile up."},
-            {"time": "12:30", "title": "Site loss confirmed", "detail": "The fire is contained but Site B is unusable for days. The unanswered-call and callback backlog is growing and the client asks for a recovery timeline."},
+            {"time": "10:05", "title": "Fire alarm at Site B", "detail": "A fire alarm sounds in the Site B server room; suppression activates and the care floor evacuates. Calls to the Site B inbound queues go unanswered."},
+            {"time": "10:20", "title": "Care queues unreachable", "detail": "Site A cannot see or answer the Site B inbound care queues. Answer times blow through the client's SLA and inbound chats pile up."},
+            {"time": "12:30", "title": "Site loss confirmed", "detail": "The fire is contained but Site B is unusable for days. The unanswered-call and pending-case backlog is growing and the client asks for a recovery timeline."},
         ],
-        "inject1": "10:05 \u2014 a fire alarm sounds in the Site B server room. Suppression activates, the care floor evacuates and calls to the Site B queues go unanswered.",
+        "inject1": "10:05 \u2014 a fire alarm sounds in the Site B server room. Suppression activates, the care floor evacuates and calls to the Site B inbound queues go unanswered.",
         "inject1_name": "Fire alarm at Site B",
         "decision_a_name": "Safety & continuity",
         "q1": [
             "Customer Care Manager \u2014 who declares a site-loss continuity event for the care program, and what is their authority? (A.5.24, A.5.29)",
-            "Care Operations Lead \u2014 which care queues move to Site A today, and which are suspended? (A.5.29)",
+            "Care Operations Lead \u2014 which inbound care queues move to Site A today, and which are suspended? (A.5.29)",
             "Team Leader \u2014 how do you account for every evacuated care agent and redeploy the ones Site A can take? (A.5.29, A.6.7)",
             "Client Delivery Manager \u2014 what is the notification sequence to the client, and who owns each message? (A.5.20)",
         ],
-        "inject2": "12:30 \u2014 Site B is unusable for days. The unanswered-call and callback backlog is growing through peak season and the client wants a recovery timeline today.",
+        "inject2": "12:30 \u2014 Site B is unusable for days. The unanswered-call and pending-case backlog is growing through peak season and the client wants a recovery timeline today.",
         "inject2_name": "Site loss confirmed",
         "decision_b_name": "Recovery & backlog",
         "q2": [
-            "Customer Care Manager \u2014 how is the unanswered-call and callback backlog triaged and worked down across sites? (A.5.29, A.8.6)",
-            "Care Operations Lead \u2014 what capacity at Site A is reallocated to care queues, and which outbound work is deferred? (A.8.6)",
+            "Customer Care Manager \u2014 how is the unanswered-call and pending-chat backlog triaged and worked down across sites? (A.5.29, A.8.6)",
+            "Care Operations Lead \u2014 how is Site A capacity allocated across the inbound queues \u2014 emergency and complaint lines first? (A.8.6)",
             "Client Delivery Manager \u2014 what turnaround and service-credit position do we give the client? (A.5.20)",
             "Customer Care Manager \u2014 what is the plan and timeline to resume the Site B care operation? (A.5.29, A.5.30)",
         ],
@@ -1118,54 +1119,54 @@ SCENARIOS = [
             {"decision": "Workforce redeployment", "control": "A.6.7 \u00b7 Remote working", "guidance": "Redeploy care agents safely (27002 \u00a76.7)"},
             {"decision": "Lessons learned", "control": "A.5.27 \u00b7 Learning from incidents", "guidance": "Improve site resilience (27002 \u00a75.27)"},
         ],
-        "hotwash": "Could Site A absorb the full care volume tomorrow morning? What is our real answer rate without Site B?",
+        "hotwash": "Could Site A absorb the full inbound call volume tomorrow morning? What is our real inbound answer rate without Site B?",
         "highlights": [
             "The site was evacuated safely with every care agent accounted for",
             "Care queues were redistributed to Site A by end of day",
             "The client received a turnaround estimate backed by a real capacity number",
         ],
         "lessons": [
-            "Site A absorption capacity for the care program was assumed, not measured",
+            "Site A absorption capacity for the inbound program was assumed, not measured",
             "Care-queue overflow needs an alternate-site arrangement, not just a backup",
             "Staff accountability after evacuation must be a rehearsed routine",
         ],
         "actions": [
             {"item": "Measure and publish Site A care capacity (A.8.6)", "owner": "Care Operations Lead"},
             {"item": "Stand up an alternate-site runbook for the care platform (A.5.30)", "owner": "Operations"},
-            {"item": "Agree a callback backlog-triage protocol with the client (A.5.20)", "owner": "Client Delivery"},
+            {"item": "Agree an unanswered-call backlog-triage protocol with the client (A.5.20)", "owner": "Client Delivery"},
             {"item": "Rehearse evacuation accountability on every shift (A.5.29)", "owner": "Team Leaders"},
         ],
         "next_step": "Site recovery plan review within 10 working days; care absorption test next month.",
     },
     {
         "title": "Complete Power Outage at HQ", "category": BO, "difficulty": "ADVANCED",
-        "description": "A multi-hour power outage takes the client customer-care center offline mid peak call window.",
+        "description": "A multi-hour power outage takes the client inbound customer-care center offline mid peak inbound call window.",
 
-        "profile": "ISO/IEC 27001-certified BPO running a client Customer Care Program from a single HQ delivery center with 900 seats",
+        "profile": "ISO/IEC 27001-certified BPO running a client inbound Customer Care Program from a single HQ delivery center with 900 seats",
         "iso_scope": "Client Customer Care Program \u2014 inbound voice, chat and customer case handling under one client contract",
         "systems": ["Care agent desktops & telephony (HQ)", "Customer care platform (voice & chat)", "Workforce management & scheduling", "Customer SLA dashboard", "Peak call-window calendar"],
-        "setting": "Weekday 15:00, with the client's billing-cycle announcement driving peak call volumes and three outbound care waves scheduled before close.",
+        "setting": "Weekday 15:00, with the client's billing-cycle announcement driving peak inbound call volumes into the close of day.",
         "injects": [
             {"time": "15:05", "title": "Regional power loss", "detail": "A regional outage hits HQ; the UPS carries the floor briefly but the backup generators fail to start."},
-            {"time": "15:20", "title": "Floor shutting down", "detail": "Workstations and telephony shut down mid-call; customers are disconnected and 100% of care agents are losing their systems."},
-            {"time": "16:00", "title": "Extended outage confirmed", "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The care SLA is at risk."},
+            {"time": "15:20", "title": "Floor shutting down", "detail": "Workstations and telephony shut down mid-call; inbound customers are disconnected and 100% of care agents are losing their systems."},
+            {"time": "16:00", "title": "Extended outage confirmed", "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The inbound care SLA is at risk."},
         ],
         "inject1": "15:05 \u2014 a regional power outage hits HQ. The UPS engages, but the backup generators fail to start and the care floor begins to shut down.",
         "inject1_name": "Regional power loss",
         "decision_a_name": "Continuity triage",
         "q1": [
-            "Customer Care Manager \u2014 which care channels are critical enough to keep running \u2014 emergency and complaint lines first \u2014 and which are suspended? (A.5.29)",
+            "Customer Care Manager \u2014 which inbound care channels are critical enough to keep running \u2014 emergency and complaint lines first \u2014 and which are suspended? (A.5.29)",
             "Customer Care Manager \u2014 who has authority to suspend care queues and to inform the client? (A.5.24, A.5.20)",
             "Team Leader \u2014 what is the floor plan for your care team right now \u2014 redeploy, release, or hold? (A.6.7, A.5.29)",
             "Care Operations Lead \u2014 how are in-flight calls and open chats handed over so no customer is dropped mid-interaction? (A.5.29)",
         ],
-        "inject2": "16:00 \u2014 the utility confirms power out for 25% of the operating day; generators repair after midnight. Deferred care volume piles up with the answer-time SLA immovable.",
+        "inject2": "16:00 \u2014 the utility confirms power out for 25% of the operating day; generators repair after midnight. Deferred inbound calls and chats pile up with the answer-time SLA immovable.",
         "inject2_name": "Extended outage confirmed",
         "decision_b_name": "Sustained operations",
         "q2": [
-            "WFM \u2014 what staffing and scheduling changes sustain customer care through a multi-hour outage? (A.5.29, A.8.6)",
+            "WFM \u2014 what staffing and scheduling changes sustain inbound customer care through a multi-hour outage? (A.5.29, A.8.6)",
             "Client Delivery Manager \u2014 which care commitments and SLA deadlines move, and how are the renegotiations handled? (A.5.20)",
-            "Customer Care Manager \u2014 what is the order for resuming suspended care queues once the site reopens? (A.5.29)",
+            "Customer Care Manager \u2014 what is the order for resuming suspended inbound care queues once the site reopens? (A.5.29)",
             "Care Operations Lead \u2014 how is service-level progress reported to the client during the extended outage? (A.5.20)",
         ],
         "clause_map": [
@@ -1176,14 +1177,14 @@ SCENARIOS = [
             {"decision": "Queue resumption order", "control": "A.8.6 \u00b7 Capacity management", "guidance": "Bring care queues back safely (27002 \u00a78.6)"},
             {"decision": "Lessons learned", "control": "A.5.27 \u00b7 Learning from incidents", "guidance": "Improve power resilience (27002 \u00a75.27)"},
         ],
-        "hotwash": "Would our customer care service have survived an outage lasting 25% of the operating day? Where does the answer-time SLA break first?",
+        "hotwash": "Would our inbound customer care service have survived an outage lasting 25% of the operating day? Where does the inbound answer-time SLA break first?",
         "highlights": [
             "Triage was completed before the floor went dark, protecting in-flight customer interactions",
             "Emergency and complaint lines continued through the fallback arrangement",
             "The client knew the revised timeline before the SLA was breached",
         ],
         "lessons": [
-            "The care program's dependency on HQ needs a documented contingency",
+            "The inbound care program's dependency on HQ needs a documented contingency",
             "Fallback work arrangements must be tested at real care scale",
             "Release-or-hold decisions for the floor need a pre-agreed script",
         ],
@@ -1197,33 +1198,33 @@ SCENARIOS = [
     },
     {
         "title": "Geopolitic Concerns Reducing Workforce Availability", "category": BO, "difficulty": "ADVANCED",
-        "description": "A health crisis removes 60% of the workforce from the client customer-care program.",
+        "description": "A health crisis removes 60% of the workforce from the client inbound customer-care program.",
 
-        "profile": "ISO/IEC 27001-certified BPO running a client Customer Care Program with a 2,000-agent dedicated team",
+        "profile": "ISO/IEC 27001-certified BPO running a client Customer Care Program with a 2,000-agent dedicated inbound team",
         "iso_scope": "Client Customer Care Program \u2014 inbound voice, chat and customer case handling under one client contract",
         "systems": ["Care queues (voice & chat)", "Workforce management & scheduling", "Customer SLA dashboard", "Absence & attendance tracking", "Cross-training matrix"],
-        "setting": "Monday morning. A fast-spreading respiratory illness is reported across the city; the care program team is calling in sick shift by shift.",
+        "setting": "Monday morning. A fast-spreading respiratory illness is reported across the city; the inbound care program team is calling in sick shift by shift.",
         "injects": [
-            {"time": "09:00", "title": "60% absenteeism", "detail": "60% of the care program workforce is unavailable \u2014 sick, isolating or caring for family. Every shift runs at 40% of planned headcount."},
-            {"time": "09:30", "title": "Critical windows at risk", "detail": "Answer-time commitments and 50% of the day's outbound care waves are at risk; call queues build and the client asks for status."},
-            {"time": "Tue 09:00", "title": "Service-credit trigger", "detail": "Absenteeism holds at 60%; the program answers 30% of calls and the client triggers a service-credit clause."},
+            {"time": "09:00", "title": "60% absenteeism", "detail": "60% of the care program workforce is unavailable \u2014 sick, isolating or caring for family. Every inbound shift runs at 40% of planned headcount."},
+            {"time": "09:30", "title": "Critical windows at risk", "detail": "Answer-time commitments on the inbound voice and chat queues are at risk; abandoned-call rates climb and the client asks for status."},
+            {"time": "Tue 09:00", "title": "Service-credit trigger", "detail": "Absenteeism holds at 60%; the program answers 30% of inbound calls and the client triggers a service-credit clause."},
         ],
-        "inject1": "By 09:00, 60% of the care program workforce is unavailable \u2014 sick, isolating or caring for family. Every shift runs at 40% of planned headcount and the answer-time commitments are at risk.",
+        "inject1": "By 09:00, 60% of the care program workforce is unavailable \u2014 sick, isolating or caring for family. Every inbound shift runs at 40% of planned headcount and the answer-time commitments are at risk.",
         "inject1_name": "Mass absenteeism",
         "decision_a_name": "Prioritisation",
         "q1": [
-            "Customer Care Manager \u2014 which care queues receive the staff that reported in? (A.5.29)",
-            "Care Operations Lead \u2014 do you redeploy agents across queues, or protect the emergency and complaint lines? (A.5.29, A.8.6)",
+            "Customer Care Manager \u2014 which inbound care queues receive the staff that reported in? (A.5.29)",
+            "Care Operations Lead \u2014 do you redeploy agents across the inbound queues, or protect the emergency and complaint lines? (A.5.29, A.8.6)",
             "Client Delivery Manager \u2014 what capacity message goes to the client, and when? (A.5.20)",
             "WFM \u2014 how do you forecast day-by-day availability and set minimum staffing per care queue? (A.5.29)",
         ],
-        "inject2": "Tuesday \u2014 absenteeism holds at 60%. The program answers 30% of calls and the client triggers a service-credit clause in the contract.",
+        "inject2": "Tuesday \u2014 absenteeism holds at 60%. The program answers 30% of inbound calls and the client triggers a service-credit clause in the contract.",
         "inject2_name": "Service-credit trigger",
         "decision_b_name": "Sustained delivery",
         "q2": [
-            "Team Leader \u2014 how do you triage care work \u2014 queue callbacks, defer outbound waves, pause non-essential queues? (A.5.29)",
+            "Team Leader \u2014 how do you triage inbound care work \u2014 emergency and complaint lines first, non-essential inbound queues paused? (A.5.29)",
             "Customer Care Manager \u2014 what surge capacity exists \u2014 contractors, cross-trained agents, overtime, other sites? (A.5.30, A.8.6)",
-            "Care Operations Lead \u2014 how is SLA impact tracked and reported to the client per care queue? (A.5.20)",
+            "Care Operations Lead \u2014 how is SLA impact tracked and reported to the client per inbound care queue? (A.5.20)",
             "WFM \u2014 what workload limits and shift patterns keep the remaining care staff sustainable? (A.5.29)",
         ],
         "clause_map": [
@@ -1234,19 +1235,19 @@ SCENARIOS = [
             {"decision": "Workforce wellbeing", "control": "A.6.1 / A.6.7 \u00b7 People controls", "guidance": "People controls during crisis (27002 \u00a76.1, \u00a76.7)"},
             {"decision": "Lessons learned", "control": "A.5.27 \u00b7 Learning from incidents", "guidance": "Improve workforce resilience (27002 \u00a75.27)"},
         ],
-        "hotwash": "Could the care program run at 40% staffing? What is our true minimum viable staffing per care queue?",
+        "hotwash": "Could the inbound care program run at 40% staffing? What is our true minimum viable staffing per inbound queue?",
         "highlights": [
-            "Care queues were prioritised and the capacity message reached the client within hours",
+            "Inbound care queues were prioritised and the capacity message reached the client within hours",
             "Cross-training absorbed part of the absenteeism shock on day one",
             "SLA impact was tracked and reported per queue, not in aggregate",
         ],
         "lessons": [
-            "Minimum viable staffing per care queue should be defined in advance",
+            "Minimum viable staffing per inbound care queue should be defined in advance",
             "The cross-training matrix was thinner than the BCP assumed",
             "Workload limits for remaining care staff need active enforcement",
         ],
         "actions": [
-            {"item": "Define minimum viable staffing per care queue (A.5.29)", "owner": "Customer Care Manager"},
+            {"item": "Define minimum viable staffing per inbound care queue (A.5.29)", "owner": "Customer Care Manager"},
             {"item": "Expand the cross-training matrix across care channels (A.6.3)", "owner": "Team Leaders"},
             {"item": "Build the customer capacity-reporting routine (A.5.20)", "owner": "Client Delivery"},
             {"item": "Set enforced workload limits for crisis shifts (A.5.29)", "owner": "WFM"},
@@ -1255,12 +1256,12 @@ SCENARIOS = [
     },
     {
         "title": "Vishing Attack", "category": BO, "difficulty": "INTERMEDIATE",
-        "description": "Spoofed calls to the care desk harvest customer data and trigger fraudulent account changes.",
+        "description": "Spoofed inbound calls to the care desk harvest customer data and trigger fraudulent account changes.",
 
         "profile": "ISO/IEC 27001-certified BPO running a client Customer Care Program \u2014 inbound voice and chat care with account servicing under one client contract",
         "iso_scope": "Client Customer Care Program \u2014 inbound voice, chat and customer account servicing under one client contract",
-        "systems": ["Customer care desk (voice & chat)", "Account change & call-back verification workflow", "Case management & knowledge base", "Care quality monitoring", "Workforce management & scheduling"],
-        "setting": "Thursday afternoon. The care desk is handling a high volume of account-change requests ahead of the client's billing date.",
+        "systems": ["Customer care desk (voice & chat)", "Account change & customer verification workflow", "Case management & knowledge base", "Care quality monitoring", "Workforce management & scheduling"],
+        "setting": "Thursday afternoon. The care desk is handling a high volume of inbound account-change requests ahead of the client's billing date.",
         "injects": [
             {"time": "14:10", "title": "Spoofed calls", "detail": "Care agents receive calls from 'the client's fraud team' and 'internal support' asking them to bypass identity checks and update customer accounts urgently."},
             {"time": "14:35", "title": "Accounts changed", "detail": "3% of customer accounts are changed and fraudulent withdrawals equal to 30% of the day's payment value are initiated before anyone flags the calls as suspicious."},
@@ -1279,7 +1280,7 @@ SCENARIOS = [
         "inject2_name": "Fraud confirmed",
         "decision_b_name": "Prevent recurrence",
         "q2": [
-            "Care Operations Lead \u2014 what identity-verification and call-back controls now apply to every customer account interaction? (A.5.24, A.5.25)",
+            "Care Operations Lead \u2014 what identity-verification controls now apply to every inbound customer account interaction? (A.5.24, A.5.25)",
             "Customer Care Manager \u2014 how is account servicing resumed, and who signs off? (A.5.29)",
             "Client Delivery Manager \u2014 which customer and regulatory notifications are required, and who owns them? (A.5.20)",
             "Team Leader \u2014 what briefing does the care desk get before the next shift? (A.6.3)",
@@ -1292,7 +1293,7 @@ SCENARIOS = [
             {"decision": "Customer & regulator notice", "control": "A.5.20 \u00b7 Supplier agreements", "guidance": "Notification duties (27002 \u00a75.20)"},
             {"decision": "Care desk awareness", "control": "A.6.3 \u00b7 Awareness", "guidance": "Fraud-awareness briefing (27002 \u00a76.3)"},
         ],
-        "hotwash": "Would our care desk challenge a call like that today? What is the identity-verification ritual on every account change?",
+        "hotwash": "Would our care desk challenge a call like that today? What is the customer identity-verification ritual on every account change?",
         "highlights": [
             "Account servicing was paused before the second fraudulent change could complete",
             "Affected customers were identified and notified within the hour",
@@ -1300,12 +1301,12 @@ SCENARIOS = [
         ],
         "lessons": [
             "Account changes need dual verification \u2014 a single agent's judgement is too easy to spoof",
-            "Call-back verification must be a desk ritual, not a guideline",
+            "Customer verification must be a desk ritual, not a guideline",
             "Fraud-awareness briefings must reach the care desk, not just the floor",
         ],
         "actions": [
             {"item": "Introduce dual verification for customer account changes (A.5.24)", "owner": "Customer Care Manager"},
-            {"item": "Add a call-back verification ritual to the care runbook (A.6.3)", "owner": "Team Leaders"},
+            {"item": "Add a customer-verification ritual to the care runbook (A.6.3)", "owner": "Team Leaders"},
             {"item": "Write the pause-and-resume procedure into the BCP (A.5.29)", "owner": "Operations"},
             {"item": "Brief the care desk and the client on the new controls (A.5.20)", "owner": "Client Delivery"},
         ],
