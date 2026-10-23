@@ -694,4 +694,84 @@ def _normalize(deck):
     return deck
 
 
-EXERCISE_DECKS = [_enrich_aar(_normalize(d)) for d in EXERCISE_DECKS + SCENARIO_DECKS]
+# --------------------------------------------------------------------------- #
+# Standard facilitator slides extracted from the TTX facilitator deck:        #
+#   • Rules of Engagement — opening slide, shown right after the title.       #
+#   • Post-Exercise Discussion & Next Steps — closing slide; its button       #
+#     triggers generation of the After-Action Report + Executive Summary.     #
+# _add_standard_slides() adds both to every exercise deck (idempotent).       #
+# --------------------------------------------------------------------------- #
+_RULES_OF_ENGAGEMENT = [
+    "Tabletop Exercises are NOT \u201cPass\u201d or \u201cFail\u201d activities.",
+    "Treat the exercise scenarios as real events and assume that normal "
+    "operational procedures and resources are in place.",
+    "There is no need to name specific cybersecurity technologies \u2014 "
+    "focus on the processes for incident response.",
+    "All participants are encouraged to actively engage and contribute to discussions.",
+    "Approach the scenarios with a problem-solving mindset.",
+    "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+    "Actively participate in the evaluation process at the end of the exercise "
+    "to identify \u201cLessons Learned\u201d.",
+]
+
+_POST_EXERCISE_DISCUSSION = [
+    "What went well during the exercise?",
+    "What didn\u2019t go well?",
+    "Did the exercise reveal any gaps in training or knowledge?",
+    "What were the key lessons learned?",
+    "What improvements or changes should be made to response plans and procedures?",
+]
+
+_NEXT_STEPS = [
+    "Identify key strengths and opportunities for improvement of the Incident "
+    "Response Plan and processes.",
+    "Generate a TTX Exercise Assessment Report.",
+    "The final report will be provided to Access Services for review.",
+]
+
+
+def _rules_of_engagement_slide():
+    return {
+        "name": "Rules of Engagement",
+        "layout": "content",
+        "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+        "data": {"rules": list(_RULES_OF_ENGAGEMENT)},
+    }
+
+
+def _closing_slide():
+    return {
+        "name": "Post-Exercise Discussion & Next Steps",
+        "layout": "content",
+        "body": ("## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n"
+                 "### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}"),
+        "data": {"discussion": list(_POST_EXERCISE_DISCUSSION),
+                 "next_steps": list(_NEXT_STEPS)},
+    }
+
+
+def _add_standard_slides(deck):
+    """Insert the Rules of Engagement slide after the title and the
+    Post-Exercise Discussion & Next Steps closing slide just before the
+    After Action Executive Summary slide. Idempotent; leaves other slides,
+    injects and meta untouched."""
+    slides = list(deck.get("slides") or [])
+    names = [s.get("name", "") for s in slides]
+
+    if "Rules of Engagement" not in names:
+        idx = 1 if slides and slides[0].get("name") == "Title" else 0
+        slides.insert(idx, _rules_of_engagement_slide())
+
+    if "Post-Exercise Discussion & Next Steps" not in names:
+        pos = next((i for i, s in enumerate(slides)
+                    if (s.get("name") or "").startswith("After Action Executive")),
+                   len(slides))
+        slides.insert(pos, _closing_slide())
+
+    out = dict(deck)
+    out["slides"] = slides
+    return out
+
+
+EXERCISE_DECKS = [_add_standard_slides(_enrich_aar(_normalize(d)))
+                  for d in EXERCISE_DECKS + SCENARIO_DECKS]

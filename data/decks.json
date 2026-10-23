@@ -16,6 +16,22 @@
           }
         },
         {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
+          }
+        },
+        {
           "name": "Objectives & ground rules",
           "layout": "content",
           "body": "## {{objectives.title}}\n\n{{#each objectives.items}}\n- {{this}}\n{{/each}}\n\n**Ground rules:** {{ground_rules}}",
@@ -118,7 +134,6 @@
           "layout": "content",
           "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "15 minutes",
             "pairs": [
               {
                 "question": "Who leads the response, and what is the escalation trigger? (A.5.24)",
@@ -136,7 +151,8 @@
                 "question": "Which clients are told today, and what does the contract require? (A.5.20)",
                 "response": ""
               }
-            ]
+            ],
+            "timebox": "15 minutes"
           }
         },
         {
@@ -170,7 +186,6 @@
           "layout": "content",
           "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "20 minutes",
             "pairs": [
               {
                 "question": "How do you isolate the client environments from each other? (A.8.31)",
@@ -188,46 +203,8 @@
                 "question": "What breach-notification duties apply to the finance data? (A.5.24, compliance)",
                 "response": ""
               }
-            ]
-          }
-        },
-        {
-          "name": "ISO/IEC 27001 clause map",
-          "layout": "content",
-          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
-          "data": {
-            "clause_map": [
-              {
-                "decision": "Isolate VPN & domain",
-                "control": "A.8.2 - Privileged access rights",
-                "guidance": "Restrict and review admin access (27002 Section 8.2)"
-              },
-              {
-                "decision": "Revoke shadow accounts",
-                "control": "A.8.3 - Access restriction",
-                "guidance": "Remove unauthorised access (27002 Section 8.3)"
-              },
-              {
-                "decision": "Preserve evidence",
-                "control": "A.5.28 - Evidence collection",
-                "guidance": "Chain of custody despite disabled logs (27002 Section 5.28)"
-              },
-              {
-                "decision": "Client notification",
-                "control": "A.5.20 - Supplier agreements",
-                "guidance": "Contractual notification terms (27002 Section 5.20)"
-              },
-              {
-                "decision": "Restore logging & monitoring",
-                "control": "A.8.15 / A.8.16 - Logging & monitoring",
-                "guidance": "Rebuild a trustworthy audit trail (27002 Section 8.15â€“8.16)"
-              },
-              {
-                "decision": "Lessons learned",
-                "control": "A.5.27 / A.5.28 - Learning & evidence",
-                "guidance": "Improve controls from the incident (27002 Section 5.27â€“5.28)"
-              }
-            ]
+            ],
+            "timebox": "20 minutes"
           }
         },
         {
@@ -275,6 +252,45 @@
           }
         },
         {
+          "name": "ISO/IEC 27001 clause map",
+          "layout": "content",
+          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
+          "data": {
+            "clause_map": [
+              {
+                "decision": "Isolate VPN & domain",
+                "control": "A.8.2 · Privileged access rights",
+                "guidance": "Restrict and review admin access (27002 §8.2)"
+              },
+              {
+                "decision": "Revoke shadow accounts",
+                "control": "A.8.3 · Access restriction",
+                "guidance": "Remove unauthorised access (27002 §8.3)"
+              },
+              {
+                "decision": "Preserve evidence",
+                "control": "A.5.28 · Evidence collection",
+                "guidance": "Chain of custody despite disabled logs (27002 §5.28)"
+              },
+              {
+                "decision": "Client notification",
+                "control": "A.5.20 · Supplier agreements",
+                "guidance": "Contractual notification terms (27002 §5.20)"
+              },
+              {
+                "decision": "Restore logging & monitoring",
+                "control": "A.8.15 / A.8.16 · Logging & monitoring",
+                "guidance": "Rebuild a trustworthy audit trail (27002 §8.15–8.16)"
+              },
+              {
+                "decision": "Lessons learned",
+                "control": "A.5.27 / A.5.28 · Learning & evidence",
+                "guidance": "Improve controls from the incident (27002 §5.27–5.28)"
+              }
+            ]
+          }
+        },
+        {
           "name": "Hotwash",
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
@@ -283,136 +299,170 @@
           }
         },
         {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Cyber-Intrusion",
               "date": ""
             },
-            "participants": "Executive Leadership, Corporate Security, IT Operations, Compliance",
+            "participants": "CISO, Client delivery, InfoSec, IT, Communications",
             "highlights": [
-              "Initial indicators included suspicious VPN authentication, abnormal IP ranges, anomalous Active Directory changes, lateral movement, credential theft indicators, and suspected backdoor creation.",
-              "Corporate Security initiated team notification, leadership escalation, war-room coordination, and a secondary communication channel for critical actions.",
-              "The team isolated the affected VPN environment, quarantined suspicious Active Directory accounts, segregated potentially infected devices, and revoked active Azure remote sessions.",
-              "The Network Team blocked known external command-and-control IP addresses and continued outbound traffic anomaly monitoring.",
-              "SMEs initiated broad threat hunting, endpoint analysis, memory-dump review, file integrity monitoring, and log correlation across elevated-privilege systems.",
-              "Potential data exfiltration was investigated through server/database scoping, cloud storage engagement, legal review, identification of staging files, and frozen storage snapshots for evidence preservation.",
-              "Unauthorized scheduled tasks, registry/startup persistence, suspicious services, malware samples, and possible insider involvement were identified and escalated for deeper investigation.",
-              "Recovery closure was not fully demonstrated in the transcript; the next exercise should require explicit eradication validation, credential rotation completion, service restoration criteria, and post-incident lessons learned."
+              "Shadow admin accounts were identified and revoked within the first hour",
+              "Logging-disabled events were traced through vendor and domain logs",
+              "Client finance portals were isolated from the domain before the close window"
             ],
             "lessons": [
-              "Identity is the blast radius. VPN and Active Directory compromise can become enterprise-wide quickly. Containment must include remote session revocation, privileged access review, service account protection, and rapid credential rotation playbooks.",
-              "Containment should begin before perfect certainty. The team acted decisively in many areas, but the initial posture of waiting for more understanding should be replaced with pre-approved containment thresholds for high-confidence compromise indicators.",
-              "Exfiltration response requires a decision matrix. Potential cloud-storage exfiltration and staged compressed archives require predefined data-classification, legal, privacy, customer notification, and regulator-notification triggers.",
-              "Persistence removal requires layered validation. Scheduled tasks, registry changes, startup scripts, suspicious services, and malware samples indicate that one containment action is not enough. Reconnect decisions should require evidence-based eradication validation.",
-              "Insider-threat handling must be evidence-safe. The suspected insider case requires coordination among Corporate Security, Legal, HR, and Compliance with privacy-aware interviews, access suspension, evidence preservation, and a documented chain of custody.",
-              "Audit readiness is evidence, not intent. SOC 2, TISAX AL3, and ISO readiness depends on repeatable procedures, decision logs, monitoring evidence, approvals, test results, training records, and CAPA closure artifacts."
+              "Disabled-logging events need a dedicated alert, not a post-mortem finding",
+              "Privileged access review should cover service accounts, not just people",
+              "The finance-close window needs a pre-agreed isolation plan"
             ],
-            "story": "The March 10, 2026 cyber-intrusion exercise tested the organization's ability to respond to an identity-driven intrusion involving suspicious VPN authentication, Active Directory privilege abuse, lateral movement, command-and-control activity, potential data exfiltration, persistence mechanisms, and a possible insider threat. The original scorecard was blank/placeholder-based; this executive summary uses the exercise transcript and observed response decisions as the basis for an evidence-based executive assessment.",
+            "story": "Tuesday 08:30, with the quarterly finance close underway for two clients. The exercise unfolded through the following injects: At 08:15, VPN anomaly detected — VPN login anomaly detected from unusual IP address outside business hours. At 08:30, New admin accounts created — New admin accounts created on domain controllers by unauthorized user. At 08:45, Logs disabled on DC — Logs disabled on domain controller, forensic evidence at risk. The hotwash closed on a single question: How fast could we detect a shadow admin? What would a clean AD baseline look like tomorrow? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — VPN anomaly detected",
+                  "time": "08:15",
+                  "detail": "VPN login anomaly detected from unusual IP address outside business hours."
+                },
+                {
+                  "inject": "Inject #2 — New admin accounts created",
+                  "time": "08:30",
+                  "detail": "New admin accounts created on domain controllers by unauthorized user."
+                },
+                {
+                  "inject": "Inject #3 — Logs disabled on DC",
+                  "time": "08:45",
+                  "detail": "Logs disabled on domain controller, forensic evidence at risk."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            },
             "recommendations": [
-              "Establish identity-containment playbooks for VPN, Azure, AD, and privileged accounts. Pre-approve thresholds for session revocation, conditional access lockdown, emergency MFA enforcement, admin/service account rotation, and high-risk account suspension.",
-              "Implement privileged-access and service-account hardening. Move administrators and service accounts into a PAM/JIT model, alert on new privileged group membership, require phishing-resistant MFA for administrators, and maintain an emergency credential rotation runbook.",
-              "Enhance AD, VPN, and egress detection engineering. Tune SIEM/EDR detections for impossible travel, brute-force success after failures, new accounts without attributes, unusual group changes, C2 patterns, large outbound transfers, and cloud-storage exfiltration.",
-              "Formalize exfiltration and breach-notification decisioning. Create a data-impact decision matrix involving Security, Legal, Privacy, Compliance, and business owners; include data classification, affected subjects, contractual notices, regulators, and law-enforcement/insurance escalation.",
-              "Strengthen forensic evidence handling and insider-threat procedures. Standardize chain-of-custody, device imaging, memory capture, storage snapshots, log preservation, HR/legal interview coordination, and access-suspension criteria.",
-              "Require clean-recovery gates before reconnecting systems. Define eradication validation for persistence, malware, registry changes, scheduled tasks, unauthorized services, credentials, and IOC re-scan results before restoring normal operations.",
-              "Build an audit-ready evidence pack after every tabletop and real incident. Capture decision logs, tickets, SIEM searches, firewall changes, EDR actions, account-disable evidence, legal decisions, RCA, CAPA owners, due dates, validation test results, and management approval."
+              "Prioritise: Roll out PAM for all admin access (A.8.2) — owner: CISO.",
+              "Prioritise: Alert on logging-disabled events (A.8.15) — owner: Security operations.",
+              "Prioritise: Enforce MFA on the VPN (A.8.5) — owner: IT.",
+              "Prioritise: Rebaseline AD accounts and configuration (A.8.9) — owner: IT."
             ],
             "capa": [
               {
-                "item": "CAPA-01 Identity containment and credential rotation",
-                "target": "Immediate: 0-30 days",
-                "owner": "Corporate Security + IT Network + IT Server",
-                "framework_focus": "SOC 2 CC6/CC7; TISAX IAM; ISO 5.15-5.18, 8.2, 8.5",
-                "evidence": "Approved playbook; test evidence; time to revoke sessions under 15 minutes; privileged rotation procedure exercised."
+                "item": "Roll out PAM for all admin access (A.8.2)",
+                "type": "Corrective",
+                "owner": "CISO",
+                "due": "30 days",
+                "target": "0–30 days",
+                "framework_focus": "ISO/IEC 27001:2022 A.8.2",
+                "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
               {
-                "item": "CAPA-02 AD and privileged access monitoring",
-                "target": "30-90 days",
-                "owner": "IT Server + Corporate Security",
-                "framework_focus": "SOC 2 CC6/CC7; TISAX access control; ISO 8.15, 8.16",
-                "evidence": "SIEM alerts for privileged group changes, orphan accounts, no-attribute users, unusual admin activity; weekly review evidence."
+                "item": "Alert on logging-disabled events (A.8.15)",
+                "type": "Preventive",
+                "owner": "Security operations",
+                "due": "30 days",
+                "target": "0–30 days",
+                "framework_focus": "ISO/IEC 27001:2022 A.8.15",
+                "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               },
               {
-                "item": "CAPA-03 Exfiltration detection and cloud-storage response",
-                "target": "30-90 days",
-                "owner": "Corporate Security + Legal + Compliance",
-                "framework_focus": "SOC 2 C1/P; TISAX data protection; ISO 5.12-5.14, 5.31, 5.34",
-                "evidence": "DLP/CASB rules; cloud provider escalation runbook; data impact matrix; notification decision log template."
+                "item": "Enforce MFA on the VPN (A.8.5)",
+                "type": "Corrective",
+                "owner": "IT",
+                "due": "30 days",
+                "target": "0–30 days",
+                "framework_focus": "ISO/IEC 27001:2022 A.8.5",
+                "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
               {
-                "item": "CAPA-04 Forensic and insider-threat evidence procedure",
-                "target": "Immediate: 0-60 days",
-                "owner": "Corporate Security + Legal + HR",
-                "framework_focus": "SOC 2 CC7/CC9; TISAX incident evidence; ISO 5.24, 5.26, 5.28",
-                "evidence": "Chain-of-custody template; forensic snapshot checklist; interview protocol; evidence retention requirements."
-              },
-              {
-                "item": "CAPA-05 Persistence eradication and clean-recovery gates",
-                "target": "30-120 days",
-                "owner": "Corporate Security + IT Desktop + IT Server",
-                "framework_focus": "SOC 2 CC7/A1; TISAX incident/BCM; ISO 8.7, 8.8, 8.9, 8.13",
-                "evidence": "Reconnect checklist; IOC re-scan evidence; registry/scheduled task/service validation; backup/restore verification."
-              },
-              {
-                "item": "CAPA-06 Incident communications and executive reporting",
-                "target": "Immediate: 0-30 days",
-                "owner": "Corporate Security + Service Desk + Executive Leadership",
-                "framework_focus": "SOC 2 CC2/CC7; TISAX incident mgmt; ISO 5.24-5.27, 5.37",
-                "evidence": "War-room RACI; secure comms list; service-desk scripts; stakeholder cadence; executive decision templates."
-              },
-              {
-                "item": "CAPA-07 Tabletop validation and audit evidence package",
-                "target": "90-180 days",
-                "owner": "Compliance + Corporate Security",
-                "framework_focus": "SOC 2 CC4/CC5; TISAX AL3 evidence; ISO Clauses 9/10",
-                "evidence": "Follow-up exercise score >= 22/25; CAPA closure review; management review minutes; evidence pack ready for audit sampling."
-              }
-            ],
-            "executive_assessment": "The response was materially stronger than the placeholder score indicates. The team demonstrated effective containment, leadership notification, legal engagement, threat hunting, and forensic preservation. The main gaps are credential-rotation decisiveness, formal evidence handling, exfiltration notification criteria, recovery validation, and audit-ready documentation needed for SOC 2, TISAX AL3, and ISO control verification.",
-            "score": {
-              "score": "17/25 (68%)",
-              "rating": "Moderately Effective",
-              "risk": "High until CAPA closure",
-              "priority": "Identity, exfiltration, persistence, recovery evidence"
-            },
-            "capability": [
-              {
-                "domain": "Detection and Triage",
-                "score": "3/5",
-                "assessment": "Effective initial recognition and war-room activation, but no explicit severity classification, incident commander, scribe, or time-stamped decision log was documented."
-              },
-              {
-                "domain": "Containment and Eradication",
-                "score": "4/5",
-                "assessment": "Strong VPN isolation, AD quarantine, Azure session revocation, C2 blocking, malware quarantine, and persistence removal. Credential rotation was deferred and should be pre-planned."
-              },
-              {
-                "domain": "Investigation and Forensics",
-                "score": "4/5",
-                "assessment": "Strong threat hunting, device quarantine, memory/file/log analysis, exfiltration scoping, and storage snapshotting. Chain-of-custody and evidence-retention procedures should be formalized."
-              },
-              {
-                "domain": "Communication and Coordination",
-                "score": "4/5",
-                "assessment": "Leadership, Corporate Security, Legal, Network, and SMEs were engaged. Stakeholder update cadence, legal notification thresholds, and service-desk scripts should be standardized."
-              },
-              {
-                "domain": "Recovery and Lessons Learned",
-                "score": "2/5",
-                "assessment": "Recovery validation, clean re-entry criteria, privileged credential rotation completion, RCA ownership, and lessons-learned closure were not fully evidenced."
+                "item": "Rebaseline AD accounts and configuration (A.8.9)",
+                "type": "Corrective",
+                "owner": "IT",
+                "due": "30 days",
+                "target": "0–30 days",
+                "framework_focus": "ISO/IEC 27001:2022 A.8.9",
+                "evidence": "Implementation evidence, validation test result and owner sign-off."
               }
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "",
-              "source_document": "CyberIntrusion_3_10_2026_after_action_report.docx",
+              "prepared_date": "2026-08-17",
+              "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
               "reference": "AICPA 2017 Trust Services Criteria with revised points of focus (2022); ENX/VDA TISAX Participant Handbook v2.8 and ISA 6.0.3; ISO/IEC 27001:2022; ISO/IEC 27002:2022."
             },
+            "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: containment, escalation, evidence preservation and coordination. Expected gaps to verify: credential-rotation decisiveness, formal evidence handling, notification criteria, recovery validation and audit-ready documentation.",
+            "score": {
+              "score": "To be scored",
+              "rating": "To be rated",
+              "risk": "High until CAPA closure",
+              "priority": "To be confirmed after scoring"
+            },
+            "capability": [
+              {
+                "domain": "Detection and Triage",
+                "score": "To be scored",
+                "assessment": "Record initial recognition, severity classification, incident commander, scribe and time-stamped decision log from the exercise transcript."
+              },
+              {
+                "domain": "Containment and Eradication",
+                "score": "To be scored",
+                "assessment": "Assess isolation, session revocation, account disablement, blocking and persistence removal from the exercise transcript."
+              },
+              {
+                "domain": "Investigation and Forensics",
+                "score": "To be scored",
+                "assessment": "Assess threat hunting, evidence preservation and chain of custody from the exercise transcript."
+              },
+              {
+                "domain": "Communication and Coordination",
+                "score": "To be scored",
+                "assessment": "Assess stakeholder cadence, legal notification thresholds and service-desk scripts from the exercise transcript."
+              },
+              {
+                "domain": "Recovery and Lessons Learned",
+                "score": "To be scored",
+                "assessment": "Assess recovery validation, credential rotation completion and lessons-learned closure from the exercise transcript."
+              }
+            ],
             "framework_alignment": [
               {
                 "theme": "Governance, roles, escalation, secure communications",
@@ -422,7 +472,7 @@
               },
               {
                 "theme": "Identity, privileged access, rogue account disablement, remote access",
-                "soc2": "CC6.1â€“CC6.8, CC7.2â€“CC7.4",
+                "soc2": "CC6.1–CC6.8, CC7.2–CC7.4",
                 "tisax": "Identity and access management, privileged access, remote access control",
                 "iso": "5.15, 5.16, 5.17, 5.18, 8.2, 8.3, 8.5"
               },
@@ -476,11 +526,11 @@
               },
               {
                 "kpi": "Coverage of critical AD/VPN logs into SIEM",
-                "target": "â‰¥ 95% of in-scope assets"
+                "target": "≥ 95% of in-scope assets"
               },
               {
                 "kpi": "Percentage of privileged accounts under MFA/PAM/JIT control",
-                "target": "â‰¥ 98%"
+                "target": "≥ 98%"
               },
               {
                 "kpi": "Time to complete initial data-exfiltration impact assessment",
@@ -488,11 +538,11 @@
               },
               {
                 "kpi": "CAPA closure by committed date",
-                "target": "â‰¥ 90% on time"
+                "target": "≥ 90% on time"
               },
               {
                 "kpi": "Follow-up tabletop exercise score",
-                "target": "â‰¥ 22/25"
+                "target": "≥ 22/25"
               }
             ],
             "decisions": [
@@ -511,57 +561,18 @@
             ],
             "roadmap": [
               {
-                "period": "0â€“30 days",
+                "period": "0–30 days",
                 "milestones": "Assign owners; publish war-room RACI; approve containment thresholds; update legal/privacy notification matrix; complete privileged-account inventory; implement priority SIEM alerts."
               },
               {
-                "period": "30â€“90 days",
+                "period": "30–90 days",
                 "milestones": "Deploy or tune PAM/JIT controls; complete detection engineering; exercise exfiltration response; execute forensic evidence tabletop."
               },
               {
-                "period": "90â€“180 days",
+                "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ],
-            "discussion": {
-              "injects": [
-                {
-                  "inject": "Inject #1 — VPN anomaly detected",
-                  "time": "08:15",
-                  "detail": "VPN login anomaly detected from unusual IP address outside business hours."
-                },
-                {
-                  "inject": "Inject #2 — New admin accounts created",
-                  "time": "08:30",
-                  "detail": "New admin accounts created on domain controllers by unauthorized user."
-                },
-                {
-                  "inject": "Inject #3 — Logs disabled on DC",
-                  "time": "08:45",
-                  "detail": "Logs disabled on domain controller, forensic evidence at risk."
-                }
-              ],
-              "decisions": [
-                {
-                  "decision": "Decision A — Initial response",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "decision": "Decision B — Impact",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                }
-              ]
-            }
+            ]
           }
         },
         {
@@ -585,13 +596,9 @@
               {
                 "item": "Rebaseline AD accounts and configuration (A.8.9)",
                 "owner": "IT"
-              },
-              {
-                "item": "Pre-agree a client-isolation and notification plan for the finance close (A.5.20)",
-                "owner": "Client delivery"
               }
             ],
-            "next_step": "Incident review within 5 working days; AD controls into the internal audit programme; finance-close isolation plan owned by Client delivery."
+            "next_step": "Incident review within 5 working days; AD controls into the internal audit programme."
           }
         }
       ],
@@ -634,6 +641,22 @@
               "title": "Data Loss",
               "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Intermediate · 90 minutes · Facilitated discussion"
             }
+          }
+        },
+        {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
           }
         },
         {
@@ -739,7 +762,6 @@
           "layout": "content",
           "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "15 minutes",
             "pairs": [
               {
                 "question": "Do you take the bucket offline and revoke the link immediately? (A.8.3, A.8.12)",
@@ -757,7 +779,8 @@
                 "question": "Which clients are told, and what does the contract require? (A.5.20)",
                 "response": ""
               }
-            ]
+            ],
+            "timebox": "15 minutes"
           }
         },
         {
@@ -791,7 +814,6 @@
           "layout": "content",
           "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "20 minutes",
             "pairs": [
               {
                 "question": "What are the notification duties — clients, regulators? (A.5.20, compliance)",
@@ -809,46 +831,8 @@
                 "question": "What other storage and link configurations need review? (A.8.9)",
                 "response": ""
               }
-            ]
-          }
-        },
-        {
-          "name": "ISO/IEC 27001 clause map",
-          "layout": "content",
-          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
-          "data": {
-            "clause_map": [
-              {
-                "decision": "Take the bucket offline",
-                "control": "A.8.3 - Access restriction",
-                "guidance": "Restrict access to authorised users (27002 Section 8.3)"
-              },
-              {
-                "decision": "Preserve evidence",
-                "control": "A.8.15 - Logging",
-                "guidance": "Capture access logs before changes (27002 Section 8.15)"
-              },
-              {
-                "decision": "Fix configuration",
-                "control": "A.8.9 - Configuration management",
-                "guidance": "Secure baseline for storage (27002 Section 8.9)"
-              },
-              {
-                "decision": "Client notification",
-                "control": "A.5.20 - Supplier agreements",
-                "guidance": "Contractual reporting duties (27002 Section 5.20)"
-              },
-              {
-                "decision": "DLP & monitoring",
-                "control": "A.8.12 / A.8.16 - Data leakage prevention & monitoring",
-                "guidance": "Detect future exposure (27002 Section 8.12, Section 8.16)"
-              },
-              {
-                "decision": "Lessons learned",
-                "control": "A.5.27 - Learning from incidents",
-                "guidance": "Feed findings into the ISMS (27002 Section 5.27)"
-              }
-            ]
+            ],
+            "timebox": "20 minutes"
           }
         },
         {
@@ -896,6 +880,45 @@
           }
         },
         {
+          "name": "ISO/IEC 27001 clause map",
+          "layout": "content",
+          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
+          "data": {
+            "clause_map": [
+              {
+                "decision": "Take the bucket offline",
+                "control": "A.8.3 · Access restriction",
+                "guidance": "Restrict access to authorised users (27002 §8.3)"
+              },
+              {
+                "decision": "Preserve evidence",
+                "control": "A.8.15 · Logging",
+                "guidance": "Capture access logs before changes (27002 §8.15)"
+              },
+              {
+                "decision": "Fix configuration",
+                "control": "A.8.9 · Configuration management",
+                "guidance": "Secure baseline for storage (27002 §8.9)"
+              },
+              {
+                "decision": "Client notification",
+                "control": "A.5.20 · Supplier agreements",
+                "guidance": "Contractual reporting duties (27002 §5.20)"
+              },
+              {
+                "decision": "DLP & monitoring",
+                "control": "A.8.12 / A.8.16 · Data leakage prevention & monitoring",
+                "guidance": "Detect future exposure (27002 §8.12, §8.16)"
+              },
+              {
+                "decision": "Lessons learned",
+                "control": "A.5.27 · Learning from incidents",
+                "guidance": "Feed findings into the ISMS (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
           "name": "Hotwash",
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
@@ -904,9 +927,28 @@
           }
         },
         {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Data Loss",
@@ -924,6 +966,45 @@
               "Notification templates must be ready before an exposure, not after"
             ],
             "story": "A certification surveillance audit is scheduled for next week. The exercise unfolded through the following injects: At 07:50, Public bucket link discovered — A client reports finding a public link to payroll files — a cloud storage bucket appears to be world-readable. At 08:20, Exposure scope confirmed — PII for two clients' employees has been exposed for six weeks; access logs show downloads from unknown IPs. At 09:10, Indexed by external scanner — An external scan service has indexed the exposed data and download logs show repeated access over the window. The hotwash closed on a single question: How would we know a bucket was world-readable tomorrow? Who owns the cloud configuration baseline? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Public bucket link discovered",
+                  "time": "07:50",
+                  "detail": "A client reports finding a public link to payroll files — a cloud storage bucket appears to be world-readable."
+                },
+                {
+                  "inject": "Inject #2 — Exposure scope confirmed",
+                  "time": "08:20",
+                  "detail": "PII for two clients' employees has been exposed for six weeks; access logs show downloads from unknown IPs."
+                },
+                {
+                  "inject": "Inject #3 — Indexed by external scanner",
+                  "time": "09:10",
+                  "detail": "An external scan service has indexed the exposed data and download logs show repeated access over the window."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            },
             "recommendations": [
               "Prioritise: Add automated checks for public storage permissions (A.8.9) — owner: IT.",
               "Prioritise: Review and revoke external links quarterly (A.8.3) — owner: InfoSec.",
@@ -936,7 +1017,7 @@
                 "type": "Corrective",
                 "owner": "IT",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.9",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
@@ -954,7 +1035,7 @@
                 "type": "Corrective",
                 "owner": "Security operations",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.12",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
@@ -963,14 +1044,14 @@
                 "type": "Preventive",
                 "owner": "Security operations",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.16",
                 "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               }
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "",
+              "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -1019,7 +1100,7 @@
               },
               {
                 "theme": "Identity, privileged access, rogue account disablement, remote access",
-                "soc2": "CC6.1â€“CC6.8, CC7.2â€“CC7.4",
+                "soc2": "CC6.1–CC6.8, CC7.2–CC7.4",
                 "tisax": "Identity and access management, privileged access, remote access control",
                 "iso": "5.15, 5.16, 5.17, 5.18, 8.2, 8.3, 8.5"
               },
@@ -1073,11 +1154,11 @@
               },
               {
                 "kpi": "Coverage of critical AD/VPN logs into SIEM",
-                "target": "â‰¥ 95% of in-scope assets"
+                "target": "≥ 95% of in-scope assets"
               },
               {
                 "kpi": "Percentage of privileged accounts under MFA/PAM/JIT control",
-                "target": "â‰¥ 98%"
+                "target": "≥ 98%"
               },
               {
                 "kpi": "Time to complete initial data-exfiltration impact assessment",
@@ -1085,11 +1166,11 @@
               },
               {
                 "kpi": "CAPA closure by committed date",
-                "target": "â‰¥ 90% on time"
+                "target": "≥ 90% on time"
               },
               {
                 "kpi": "Follow-up tabletop exercise score",
-                "target": "â‰¥ 22/25"
+                "target": "≥ 22/25"
               }
             ],
             "decisions": [
@@ -1108,57 +1189,18 @@
             ],
             "roadmap": [
               {
-                "period": "0â€“30 days",
+                "period": "0–30 days",
                 "milestones": "Assign owners; publish war-room RACI; approve containment thresholds; update legal/privacy notification matrix; complete privileged-account inventory; implement priority SIEM alerts."
               },
               {
-                "period": "30â€“90 days",
+                "period": "30–90 days",
                 "milestones": "Deploy or tune PAM/JIT controls; complete detection engineering; exercise exfiltration response; execute forensic evidence tabletop."
               },
               {
-                "period": "90â€“180 days",
+                "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ],
-            "discussion": {
-              "injects": [
-                {
-                  "inject": "Inject #1 — Public bucket link discovered",
-                  "time": "07:50",
-                  "detail": "A client reports finding a public link to payroll files — a cloud storage bucket appears to be world-readable."
-                },
-                {
-                  "inject": "Inject #2 — Exposure scope confirmed",
-                  "time": "08:20",
-                  "detail": "PII for two clients' employees has been exposed for six weeks; access logs show downloads from unknown IPs."
-                },
-                {
-                  "inject": "Inject #3 — Indexed by external scanner",
-                  "time": "09:10",
-                  "detail": "An external scan service has indexed the exposed data and download logs show repeated access over the window."
-                }
-              ],
-              "decisions": [
-                {
-                  "decision": "Decision A — Initial response",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "decision": "Decision B — Impact",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                }
-              ]
-            }
+            ]
           }
         },
         {
@@ -1227,6 +1269,22 @@
               "title": "Ransomware",
               "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Advanced · 90 minutes · Facilitated discussion"
             }
+          }
+        },
+        {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
           }
         },
         {
@@ -1332,7 +1390,6 @@
           "layout": "content",
           "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "15 minutes",
             "pairs": [
               {
                 "question": "Do you disconnect systems from the network now? (A.8.31)",
@@ -1350,7 +1407,8 @@
                 "question": "Which clients are affected, and what is the notification trigger? (A.5.20)",
                 "response": ""
               }
-            ]
+            ],
+            "timebox": "15 minutes"
           }
         },
         {
@@ -1384,7 +1442,6 @@
           "layout": "content",
           "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "20 minutes",
             "pairs": [
               {
                 "question": "Do you restore 14-day-old data and replay changes, or pay? What is the trade-off? (A.8.13, A.5.25)",
@@ -1402,46 +1459,8 @@
                 "question": "What regulatory duties apply to the encrypted client data? (A.5.24, compliance)",
                 "response": ""
               }
-            ]
-          }
-        },
-        {
-          "name": "ISO/IEC 27001 clause map",
-          "layout": "content",
-          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
-          "data": {
-            "clause_map": [
-              {
-                "decision": "Isolate & contain",
-                "control": "A.8.31 - Separation of environments",
-                "guidance": "Cut off the spread (27002 Section 8.31)"
-              },
-              {
-                "decision": "Verify backups",
-                "control": "A.8.13 - Information backup",
-                "guidance": "Test and validate restore points (27002 Section 8.13)"
-              },
-              {
-                "decision": "Ransom decision",
-                "control": "A.5.25 - Incident assessment",
-                "guidance": "Leadership decision and authority (27002 Section 5.25)"
-              },
-              {
-                "decision": "Rebuild cleanly",
-                "control": "A.8.9 / A.8.31 - Configuration & separation",
-                "guidance": "Recovery without reintroducing the attacker (27002 Section 8.9, Section 8.31)"
-              },
-              {
-                "decision": "Client communication",
-                "control": "A.5.20 - Supplier agreements",
-                "guidance": "Data-loss and SLA terms (27002 Section 5.20)"
-              },
-              {
-                "decision": "Lessons learned",
-                "control": "A.5.27 / A.5.28 - Learning & evidence",
-                "guidance": "Evidence and improvement (27002 Section 5.27â€“5.28)"
-              }
-            ]
+            ],
+            "timebox": "20 minutes"
           }
         },
         {
@@ -1489,6 +1508,45 @@
           }
         },
         {
+          "name": "ISO/IEC 27001 clause map",
+          "layout": "content",
+          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
+          "data": {
+            "clause_map": [
+              {
+                "decision": "Isolate & contain",
+                "control": "A.8.31 · Separation of environments",
+                "guidance": "Cut off the spread (27002 §8.31)"
+              },
+              {
+                "decision": "Verify backups",
+                "control": "A.8.13 · Information backup",
+                "guidance": "Test and validate restore points (27002 §8.13)"
+              },
+              {
+                "decision": "Ransom decision",
+                "control": "A.5.25 · Incident assessment",
+                "guidance": "Leadership decision and authority (27002 §5.25)"
+              },
+              {
+                "decision": "Rebuild cleanly",
+                "control": "A.8.9 / A.8.31 · Configuration & separation",
+                "guidance": "Recovery without reintroducing the attacker (27002 §8.9, §8.31)"
+              },
+              {
+                "decision": "Client communication",
+                "control": "A.5.20 · Supplier agreements",
+                "guidance": "Data-loss and SLA terms (27002 §5.20)"
+              },
+              {
+                "decision": "Lessons learned",
+                "control": "A.5.27 / A.5.28 · Learning & evidence",
+                "guidance": "Evidence and improvement (27002 §5.27–5.28)"
+              }
+            ]
+          }
+        },
+        {
           "name": "Hotwash",
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
@@ -1497,9 +1555,28 @@
           }
         },
         {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Ransomware",
@@ -1517,6 +1594,45 @@
               "Client data-loss windows should be agreed contractually, not discovered during a crisis"
             ],
             "story": "Wednesday 08:00, with month-end invoicing for two clients in progress. The exercise unfolded through the following injects: At 08:10, Mass encryption detected — Encryption detected across the document-processing environment and file shares. A ransom note demands $600,000. At 08:40, Backup integrity in doubt — Early checks suggest the backup repository may also have been compromised during the attack. At 10:00, Last good backup is 14 days old — Forensics confirm the attacker held admin access to the backup platform for nine days. The last known-good restore is 14 days old. The hotwash closed on a single question: How protected is our backup platform from a compromised admin? Could we restore in a day? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Mass encryption detected",
+                  "time": "08:10",
+                  "detail": "Encryption detected across the document-processing environment and file shares. A ransom note demands $600,000."
+                },
+                {
+                  "inject": "Inject #2 — Backup integrity in doubt",
+                  "time": "08:40",
+                  "detail": "Early checks suggest the backup repository may also have been compromised during the attack."
+                },
+                {
+                  "inject": "Inject #3 — Last good backup is 14 days old",
+                  "time": "10:00",
+                  "detail": "Forensics confirm the attacker held admin access to the backup platform for nine days. The last known-good restore is 14 days old."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            },
             "recommendations": [
               "Prioritise: Harden the backup platform with separate admin roles (A.8.2) — owner: InfoSec.",
               "Prioritise: Move to immutable or offline backups (A.8.13) — owner: IT.",
@@ -1529,7 +1645,7 @@
                 "type": "Preventive",
                 "owner": "InfoSec",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.2",
                 "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               },
@@ -1538,7 +1654,7 @@
                 "type": "Corrective",
                 "owner": "IT",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.13",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
@@ -1547,7 +1663,7 @@
                 "type": "Preventive",
                 "owner": "IT",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.13",
                 "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               },
@@ -1556,14 +1672,14 @@
                 "type": "Preventive",
                 "owner": "InfoSec",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.31",
                 "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               }
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "",
+              "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -1612,7 +1728,7 @@
               },
               {
                 "theme": "Identity, privileged access, rogue account disablement, remote access",
-                "soc2": "CC6.1â€“CC6.8, CC7.2â€“CC7.4",
+                "soc2": "CC6.1–CC6.8, CC7.2–CC7.4",
                 "tisax": "Identity and access management, privileged access, remote access control",
                 "iso": "5.15, 5.16, 5.17, 5.18, 8.2, 8.3, 8.5"
               },
@@ -1666,11 +1782,11 @@
               },
               {
                 "kpi": "Coverage of critical AD/VPN logs into SIEM",
-                "target": "â‰¥ 95% of in-scope assets"
+                "target": "≥ 95% of in-scope assets"
               },
               {
                 "kpi": "Percentage of privileged accounts under MFA/PAM/JIT control",
-                "target": "â‰¥ 98%"
+                "target": "≥ 98%"
               },
               {
                 "kpi": "Time to complete initial data-exfiltration impact assessment",
@@ -1678,11 +1794,11 @@
               },
               {
                 "kpi": "CAPA closure by committed date",
-                "target": "â‰¥ 90% on time"
+                "target": "≥ 90% on time"
               },
               {
                 "kpi": "Follow-up tabletop exercise score",
-                "target": "â‰¥ 22/25"
+                "target": "≥ 22/25"
               }
             ],
             "decisions": [
@@ -1701,57 +1817,18 @@
             ],
             "roadmap": [
               {
-                "period": "0â€“30 days",
+                "period": "0–30 days",
                 "milestones": "Assign owners; publish war-room RACI; approve containment thresholds; update legal/privacy notification matrix; complete privileged-account inventory; implement priority SIEM alerts."
               },
               {
-                "period": "30â€“90 days",
+                "period": "30–90 days",
                 "milestones": "Deploy or tune PAM/JIT controls; complete detection engineering; exercise exfiltration response; execute forensic evidence tabletop."
               },
               {
-                "period": "90â€“180 days",
+                "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ],
-            "discussion": {
-              "injects": [
-                {
-                  "inject": "Inject #1 — Mass encryption detected",
-                  "time": "08:10",
-                  "detail": "Encryption detected across the document-processing environment and file shares. A ransom note demands $600,000."
-                },
-                {
-                  "inject": "Inject #2 — Backup integrity in doubt",
-                  "time": "08:40",
-                  "detail": "Early checks suggest the backup repository may also have been compromised during the attack."
-                },
-                {
-                  "inject": "Inject #3 — Last good backup is 14 days old",
-                  "time": "10:00",
-                  "detail": "Forensics confirm the attacker held admin access to the backup platform for nine days. The last known-good restore is 14 days old."
-                }
-              ],
-              "decisions": [
-                {
-                  "decision": "Decision A — Initial response",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "decision": "Decision B — Impact",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                }
-              ]
-            }
+            ]
           }
         },
         {
@@ -1820,6 +1897,22 @@
               "title": "Denial of Service",
               "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Intermediate · 90 minutes · Facilitated discussion"
             }
+          }
+        },
+        {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
           }
         },
         {
@@ -1925,7 +2018,6 @@
           "layout": "content",
           "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "15 minutes",
             "pairs": [
               {
                 "question": "Do you engage the DDoS mitigation provider now — who decides? (A.5.24)",
@@ -1943,7 +2035,8 @@
                 "question": "What evidence do you preserve for attribution? (A.8.15, A.5.28)",
                 "response": ""
               }
-            ]
+            ],
+            "timebox": "15 minutes"
           }
         },
         {
@@ -1977,7 +2070,6 @@
           "layout": "content",
           "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "20 minutes",
             "pairs": [
               {
                 "question": "How do you prioritise which portals and APIs stay up? (A.5.29)",
@@ -1995,46 +2087,8 @@
                 "question": "When and how do you restore full service without re-exposing? (A.8.9)",
                 "response": ""
               }
-            ]
-          }
-        },
-        {
-          "name": "ISO/IEC 27001 clause map",
-          "layout": "content",
-          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
-          "data": {
-            "clause_map": [
-              {
-                "decision": "Engage mitigation",
-                "control": "A.5.24 - Incident management planning",
-                "guidance": "Pre-agreed response (27002 Section 5.24)"
-              },
-              {
-                "decision": "Capacity & thresholds",
-                "control": "A.8.6 - Capacity management",
-                "guidance": "Sizing and limits (27002 Section 8.6)"
-              },
-              {
-                "decision": "Preserve evidence",
-                "control": "A.5.28 / A.8.15 - Evidence & logging",
-                "guidance": "Logs for attribution (27002 Section 5.28, Section 8.15)"
-              },
-              {
-                "decision": "Client communication",
-                "control": "A.5.20 - Supplier agreements",
-                "guidance": "Outage and SLA terms (27002 Section 5.20)"
-              },
-              {
-                "decision": "Continuity of service",
-                "control": "A.5.29 - Continuity planning",
-                "guidance": "Keep priority services up (27002 Section 5.29)"
-              },
-              {
-                "decision": "Lessons learned",
-                "control": "A.5.27 - Learning from incidents",
-                "guidance": "Harden the edge (27002 Section 5.27)"
-              }
-            ]
+            ],
+            "timebox": "20 minutes"
           }
         },
         {
@@ -2082,6 +2136,45 @@
           }
         },
         {
+          "name": "ISO/IEC 27001 clause map",
+          "layout": "content",
+          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
+          "data": {
+            "clause_map": [
+              {
+                "decision": "Engage mitigation",
+                "control": "A.5.24 · Incident management planning",
+                "guidance": "Pre-agreed response (27002 §5.24)"
+              },
+              {
+                "decision": "Capacity & thresholds",
+                "control": "A.8.6 · Capacity management",
+                "guidance": "Sizing and limits (27002 §8.6)"
+              },
+              {
+                "decision": "Preserve evidence",
+                "control": "A.5.28 / A.8.15 · Evidence & logging",
+                "guidance": "Logs for attribution (27002 §5.28, §8.15)"
+              },
+              {
+                "decision": "Client communication",
+                "control": "A.5.20 · Supplier agreements",
+                "guidance": "Outage and SLA terms (27002 §5.20)"
+              },
+              {
+                "decision": "Continuity of service",
+                "control": "A.5.29 · Continuity planning",
+                "guidance": "Keep priority services up (27002 §5.29)"
+              },
+              {
+                "decision": "Lessons learned",
+                "control": "A.5.27 · Learning from incidents",
+                "guidance": "Harden the edge (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
           "name": "Hotwash",
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
@@ -2090,9 +2183,28 @@
           }
         },
         {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Denial of Service",
@@ -2110,6 +2222,45 @@
               "A 50x spike is survivable only with tested capacity and rate limits"
             ],
             "story": "Black Friday week — portal traffic is running at three times normal. The exercise unfolded through the following injects: At 09:30, Traffic spikes 50x — Portal traffic spikes 50x; load balancers saturate, the CDN is bypassed and portals begin timing out. At 10:05, Second wave hits APIs — A second wave targets client APIs and the voice channel; mitigation reports a 40,000-device botnet. At 10:45, Two client portals down — Two clients' portals are fully down. Priority decisions are needed on which services stay up. The hotwash closed on a single question: Could we absorb a 50x spike? What is our blackhole threshold — and who owns it? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Traffic spikes 50x",
+                  "time": "09:30",
+                  "detail": "Portal traffic spikes 50x; load balancers saturate, the CDN is bypassed and portals begin timing out."
+                },
+                {
+                  "inject": "Inject #2 — Second wave hits APIs",
+                  "time": "10:05",
+                  "detail": "A second wave targets client APIs and the voice channel; mitigation reports a 40,000-device botnet."
+                },
+                {
+                  "inject": "Inject #3 — Two client portals down",
+                  "time": "10:45",
+                  "detail": "Two clients' portals are fully down. Priority decisions are needed on which services stay up."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            },
             "recommendations": [
               "Prioritise: Pre-arrange a DDoS mitigation retainer (A.5.24) — owner: InfoSec.",
               "Prioritise: Add rate-limiting and WAF rules for portals (A.8.9) — owner: IT.",
@@ -2122,7 +2273,7 @@
                 "type": "Corrective",
                 "owner": "InfoSec",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.24",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
@@ -2131,7 +2282,7 @@
                 "type": "Corrective",
                 "owner": "IT",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.9",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
@@ -2140,7 +2291,7 @@
                 "type": "Preventive",
                 "owner": "IT",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.6",
                 "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               },
@@ -2149,14 +2300,14 @@
                 "type": "Corrective",
                 "owner": "Communications",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               }
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "",
+              "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -2205,7 +2356,7 @@
               },
               {
                 "theme": "Identity, privileged access, rogue account disablement, remote access",
-                "soc2": "CC6.1â€“CC6.8, CC7.2â€“CC7.4",
+                "soc2": "CC6.1–CC6.8, CC7.2–CC7.4",
                 "tisax": "Identity and access management, privileged access, remote access control",
                 "iso": "5.15, 5.16, 5.17, 5.18, 8.2, 8.3, 8.5"
               },
@@ -2259,11 +2410,11 @@
               },
               {
                 "kpi": "Coverage of critical AD/VPN logs into SIEM",
-                "target": "â‰¥ 95% of in-scope assets"
+                "target": "≥ 95% of in-scope assets"
               },
               {
                 "kpi": "Percentage of privileged accounts under MFA/PAM/JIT control",
-                "target": "â‰¥ 98%"
+                "target": "≥ 98%"
               },
               {
                 "kpi": "Time to complete initial data-exfiltration impact assessment",
@@ -2271,11 +2422,11 @@
               },
               {
                 "kpi": "CAPA closure by committed date",
-                "target": "â‰¥ 90% on time"
+                "target": "≥ 90% on time"
               },
               {
                 "kpi": "Follow-up tabletop exercise score",
-                "target": "â‰¥ 22/25"
+                "target": "≥ 22/25"
               }
             ],
             "decisions": [
@@ -2294,57 +2445,18 @@
             ],
             "roadmap": [
               {
-                "period": "0â€“30 days",
+                "period": "0–30 days",
                 "milestones": "Assign owners; publish war-room RACI; approve containment thresholds; update legal/privacy notification matrix; complete privileged-account inventory; implement priority SIEM alerts."
               },
               {
-                "period": "30â€“90 days",
+                "period": "30–90 days",
                 "milestones": "Deploy or tune PAM/JIT controls; complete detection engineering; exercise exfiltration response; execute forensic evidence tabletop."
               },
               {
-                "period": "90â€“180 days",
+                "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ],
-            "discussion": {
-              "injects": [
-                {
-                  "inject": "Inject #1 — Traffic spikes 50x",
-                  "time": "09:30",
-                  "detail": "Portal traffic spikes 50x; load balancers saturate, the CDN is bypassed and portals begin timing out."
-                },
-                {
-                  "inject": "Inject #2 — Second wave hits APIs",
-                  "time": "10:05",
-                  "detail": "A second wave targets client APIs and the voice channel; mitigation reports a 40,000-device botnet."
-                },
-                {
-                  "inject": "Inject #3 — Two client portals down",
-                  "time": "10:45",
-                  "detail": "Two clients' portals are fully down. Priority decisions are needed on which services stay up."
-                }
-              ],
-              "decisions": [
-                {
-                  "decision": "Decision A — Initial response",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "decision": "Decision B — Impact",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                }
-              ]
-            }
+            ]
           }
         },
         {
@@ -2413,6 +2525,22 @@
               "title": "Insider Threat",
               "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Advanced · 90 minutes · Facilitated discussion"
             }
+          }
+        },
+        {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
           }
         },
         {
@@ -2519,7 +2647,6 @@
           "layout": "content",
           "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "15 minutes",
             "pairs": [
               {
                 "question": "Do you confront the employee now, or continue monitoring? Who decides? (A.5.25, A.6.5)",
@@ -2537,7 +2664,8 @@
                 "question": "Which clients are affected, and what is the notification trigger? (A.5.20)",
                 "response": ""
               }
-            ]
+            ],
+            "timebox": "15 minutes"
           }
         },
         {
@@ -2571,7 +2699,6 @@
           "layout": "content",
           "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "20 minutes",
             "pairs": [
               {
                 "question": "How wide is the investigation — the shift, the team, all clients? (A.5.25)",
@@ -2589,46 +2716,8 @@
                 "question": "What people controls failed — screening, awareness, exit? (A.6.1, A.6.3, A.6.5)",
                 "response": ""
               }
-            ]
-          }
-        },
-        {
-          "name": "ISO/IEC 27001 clause map",
-          "layout": "content",
-          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
-          "data": {
-            "clause_map": [
-              {
-                "decision": "Disable access",
-                "control": "A.8.3 / A.6.5 - Access restriction & termination",
-                "guidance": "Cut access decisively (27002 Section 8.3, Section 6.5)"
-              },
-              {
-                "decision": "Preserve evidence",
-                "control": "A.5.28 - Evidence collection",
-                "guidance": "HR & legal chain of custody (27002 Section 5.28)"
-              },
-              {
-                "decision": "DLP coverage",
-                "control": "A.8.12 - Data leakage prevention",
-                "guidance": "Detect USB and web egress (27002 Section 8.12)"
-              },
-              {
-                "decision": "Monitor activity",
-                "control": "A.8.16 - Monitoring activities",
-                "guidance": "Watch for accomplices (27002 Section 8.16)"
-              },
-              {
-                "decision": "Client notification",
-                "control": "A.5.20 - Supplier agreements",
-                "guidance": "Contractual reporting (27002 Section 5.20)"
-              },
-              {
-                "decision": "Screening & awareness",
-                "control": "A.6.1 / A.6.3 - People controls",
-                "guidance": "Screen and train the workforce (27002 Section 6.1, Section 6.3)"
-              }
-            ]
+            ],
+            "timebox": "20 minutes"
           }
         },
         {
@@ -2676,6 +2765,45 @@
           }
         },
         {
+          "name": "ISO/IEC 27001 clause map",
+          "layout": "content",
+          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
+          "data": {
+            "clause_map": [
+              {
+                "decision": "Disable access",
+                "control": "A.8.3 / A.6.5 · Access restriction & termination",
+                "guidance": "Cut access decisively (27002 §8.3, §6.5)"
+              },
+              {
+                "decision": "Preserve evidence",
+                "control": "A.5.28 · Evidence collection",
+                "guidance": "HR & legal chain of custody (27002 §5.28)"
+              },
+              {
+                "decision": "DLP coverage",
+                "control": "A.8.12 · Data leakage prevention",
+                "guidance": "Detect USB and web egress (27002 §8.12)"
+              },
+              {
+                "decision": "Monitor activity",
+                "control": "A.8.16 · Monitoring activities",
+                "guidance": "Watch for accomplices (27002 §8.16)"
+              },
+              {
+                "decision": "Client notification",
+                "control": "A.5.20 · Supplier agreements",
+                "guidance": "Contractual reporting (27002 §5.20)"
+              },
+              {
+                "decision": "Screening & awareness",
+                "control": "A.6.1 / A.6.3 · People controls",
+                "guidance": "Screen and train the workforce (27002 §6.1, §6.3)"
+              }
+            ]
+          }
+        },
+        {
           "name": "Hotwash",
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
@@ -2684,9 +2812,28 @@
           }
         },
         {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Insider Threat",
@@ -2704,6 +2851,45 @@
               "Insider-threat detection needs behavioural baselines, not just rules"
             ],
             "story": "A senior agent is on a performance-improvement plan and faces termination on Friday. The exercise unfolded through the following injects: At 20:30, Bulk download flagged — SIEM flags a large client-database download to a USB drive and proprietary scripts emailed to a personal account. At 21:10, Exfiltration confirmed — The agent's personal cloud account is found to contain client PII going back three months. At 08:00, Accomplice identified — Monitoring identifies an accomplice on the same shift; the termination decision is now urgent. The hotwash closed on a single question: Would DLP catch a USB copy tomorrow? How do we spot a disgruntled insider earlier? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Bulk download flagged",
+                  "time": "20:30",
+                  "detail": "SIEM flags a large client-database download to a USB drive and proprietary scripts emailed to a personal account."
+                },
+                {
+                  "inject": "Inject #2 — Exfiltration confirmed",
+                  "time": "21:10",
+                  "detail": "The agent's personal cloud account is found to contain client PII going back three months."
+                },
+                {
+                  "inject": "Inject #3 — Accomplice identified",
+                  "time": "08:00",
+                  "detail": "Monitoring identifies an accomplice on the same shift; the termination decision is now urgent."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            },
             "recommendations": [
               "Prioritise: Enable USB and email DLP policies (A.8.12) — owner: InfoSec.",
               "Prioritise: Reinforce the exit and disciplinary process (A.6.5) — owner: HR.",
@@ -2716,7 +2902,7 @@
                 "type": "Corrective",
                 "owner": "InfoSec",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.12",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
@@ -2725,7 +2911,7 @@
                 "type": "Corrective",
                 "owner": "HR",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.6.5",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
@@ -2734,7 +2920,7 @@
                 "type": "Corrective",
                 "owner": "Security operations",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.16",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
@@ -2743,14 +2929,14 @@
                 "type": "Corrective",
                 "owner": "HR",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.6.1",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               }
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "",
+              "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -2799,7 +2985,7 @@
               },
               {
                 "theme": "Identity, privileged access, rogue account disablement, remote access",
-                "soc2": "CC6.1â€“CC6.8, CC7.2â€“CC7.4",
+                "soc2": "CC6.1–CC6.8, CC7.2–CC7.4",
                 "tisax": "Identity and access management, privileged access, remote access control",
                 "iso": "5.15, 5.16, 5.17, 5.18, 8.2, 8.3, 8.5"
               },
@@ -2853,11 +3039,11 @@
               },
               {
                 "kpi": "Coverage of critical AD/VPN logs into SIEM",
-                "target": "â‰¥ 95% of in-scope assets"
+                "target": "≥ 95% of in-scope assets"
               },
               {
                 "kpi": "Percentage of privileged accounts under MFA/PAM/JIT control",
-                "target": "â‰¥ 98%"
+                "target": "≥ 98%"
               },
               {
                 "kpi": "Time to complete initial data-exfiltration impact assessment",
@@ -2865,11 +3051,11 @@
               },
               {
                 "kpi": "CAPA closure by committed date",
-                "target": "â‰¥ 90% on time"
+                "target": "≥ 90% on time"
               },
               {
                 "kpi": "Follow-up tabletop exercise score",
-                "target": "â‰¥ 22/25"
+                "target": "≥ 22/25"
               }
             ],
             "decisions": [
@@ -2888,57 +3074,18 @@
             ],
             "roadmap": [
               {
-                "period": "0â€“30 days",
+                "period": "0–30 days",
                 "milestones": "Assign owners; publish war-room RACI; approve containment thresholds; update legal/privacy notification matrix; complete privileged-account inventory; implement priority SIEM alerts."
               },
               {
-                "period": "30â€“90 days",
+                "period": "30–90 days",
                 "milestones": "Deploy or tune PAM/JIT controls; complete detection engineering; exercise exfiltration response; execute forensic evidence tabletop."
               },
               {
-                "period": "90â€“180 days",
+                "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ],
-            "discussion": {
-              "injects": [
-                {
-                  "inject": "Inject #1 — Bulk download flagged",
-                  "time": "20:30",
-                  "detail": "SIEM flags a large client-database download to a USB drive and proprietary scripts emailed to a personal account."
-                },
-                {
-                  "inject": "Inject #2 — Exfiltration confirmed",
-                  "time": "21:10",
-                  "detail": "The agent's personal cloud account is found to contain client PII going back three months."
-                },
-                {
-                  "inject": "Inject #3 — Accomplice identified",
-                  "time": "08:00",
-                  "detail": "Monitoring identifies an accomplice on the same shift; the termination decision is now urgent."
-                }
-              ],
-              "decisions": [
-                {
-                  "decision": "Decision A — Initial response",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "decision": "Decision B — Impact",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                }
-              ]
-            }
+            ]
           }
         },
         {
@@ -3007,6 +3154,22 @@
               "title": "Compromised Credentials",
               "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Intermediate · 90 minutes · Facilitated discussion"
             }
+          }
+        },
+        {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
           }
         },
         {
@@ -3112,7 +3275,6 @@
           "layout": "content",
           "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "15 minutes",
             "pairs": [
               {
                 "question": "Do you reset passwords first, or hunt for active use? (A.8.4, A.8.5)",
@@ -3130,7 +3292,8 @@
                 "question": "Do you force MFA everywhere immediately? (A.8.5)",
                 "response": ""
               }
-            ]
+            ],
+            "timebox": "15 minutes"
           }
         },
         {
@@ -3164,7 +3327,6 @@
           "layout": "content",
           "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "20 minutes",
             "pairs": [
               {
                 "question": "How do you contain the lateral movement now? (A.8.31, A.8.3)",
@@ -3182,46 +3344,8 @@
                 "question": "What notification duties exist for the affected client? (A.5.20)",
                 "response": ""
               }
-            ]
-          }
-        },
-        {
-          "name": "ISO/IEC 27001 clause map",
-          "layout": "content",
-          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
-          "data": {
-            "clause_map": [
-              {
-                "decision": "Reset credentials",
-                "control": "A.8.4 / A.8.5 - Secure authentication",
-                "guidance": "Enforce MFA and password reset (27002 Section 8.4â€“8.5)"
-              },
-              {
-                "decision": "Detect active use",
-                "control": "A.8.16 - Monitoring activities",
-                "guidance": "UEBA and session analysis (27002 Section 8.16)"
-              },
-              {
-                "decision": "Contain lateral movement",
-                "control": "A.8.31 - Separation of environments",
-                "guidance": "Isolate compromised paths (27002 Section 8.31)"
-              },
-              {
-                "decision": "Engage forensics",
-                "control": "A.5.24 / A.5.28 - Incident response & evidence",
-                "guidance": "Structured response and evidence (27002 Section 5.24, Section 5.28)"
-              },
-              {
-                "decision": "Client notification",
-                "control": "A.5.20 - Supplier agreements",
-                "guidance": "Contractual reporting (27002 Section 5.20)"
-              },
-              {
-                "decision": "Lessons learned",
-                "control": "A.5.27 - Learning from incidents",
-                "guidance": "Improve identity controls (27002 Section 5.27)"
-              }
-            ]
+            ],
+            "timebox": "20 minutes"
           }
         },
         {
@@ -3269,6 +3393,45 @@
           }
         },
         {
+          "name": "ISO/IEC 27001 clause map",
+          "layout": "content",
+          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
+          "data": {
+            "clause_map": [
+              {
+                "decision": "Reset credentials",
+                "control": "A.8.4 / A.8.5 · Secure authentication",
+                "guidance": "Enforce MFA and password reset (27002 §8.4–8.5)"
+              },
+              {
+                "decision": "Detect active use",
+                "control": "A.8.16 · Monitoring activities",
+                "guidance": "UEBA and session analysis (27002 §8.16)"
+              },
+              {
+                "decision": "Contain lateral movement",
+                "control": "A.8.31 · Separation of environments",
+                "guidance": "Isolate compromised paths (27002 §8.31)"
+              },
+              {
+                "decision": "Engage forensics",
+                "control": "A.5.24 / A.5.28 · Incident response & evidence",
+                "guidance": "Structured response and evidence (27002 §5.24, §5.28)"
+              },
+              {
+                "decision": "Client notification",
+                "control": "A.5.20 · Supplier agreements",
+                "guidance": "Contractual reporting (27002 §5.20)"
+              },
+              {
+                "decision": "Lessons learned",
+                "control": "A.5.27 · Learning from incidents",
+                "guidance": "Improve identity controls (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
           "name": "Hotwash",
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
@@ -3277,9 +3440,28 @@
           }
         },
         {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Compromised Credentials",
@@ -3297,6 +3479,45 @@
               "Payment-integrity checks should be automated for finance portals"
             ],
             "story": "Monday 07:00 — OSINT monitoring flags a dark-web forum post. The exercise unfolded through the following injects: At 07:00, Credentials for sale — OSINT finds 40 employee credentials for sale on a dark-web forum, including a finance analyst with payment-data access. At 07:45, Passwords match SSO — Some listed passwords match corporate SSO. The hunt for active use begins. At 09:30, Lateral movement flagged — UEBA flags lateral movement from a listed account into a client finance portal; a $50 test transfer was made and reversed. The hotwash closed on a single question: Would we notice a $50 test transfer? How fast could we reset 40 accounts? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Credentials for sale",
+                  "time": "07:00",
+                  "detail": "OSINT finds 40 employee credentials for sale on a dark-web forum, including a finance analyst with payment-data access."
+                },
+                {
+                  "inject": "Inject #2 — Passwords match SSO",
+                  "time": "07:45",
+                  "detail": "Some listed passwords match corporate SSO. The hunt for active use begins."
+                },
+                {
+                  "inject": "Inject #3 — Lateral movement flagged",
+                  "time": "09:30",
+                  "detail": "UEBA flags lateral movement from a listed account into a client finance portal; a $50 test transfer was made and reversed."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            },
             "recommendations": [
               "Prioritise: Enforce MFA on all external access (A.8.5) — owner: IT.",
               "Prioritise: Subscribe to credential-monitoring (dark web) service (A.5.24) — owner: InfoSec.",
@@ -3309,7 +3530,7 @@
                 "type": "Corrective",
                 "owner": "IT",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.5",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
@@ -3318,7 +3539,7 @@
                 "type": "Preventive",
                 "owner": "InfoSec",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 dark web",
                 "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               },
@@ -3327,7 +3548,7 @@
                 "type": "Preventive",
                 "owner": "Security operations",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.16",
                 "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               },
@@ -3336,14 +3557,14 @@
                 "type": "Preventive",
                 "owner": "IT",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.4",
                 "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               }
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "",
+              "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -3392,7 +3613,7 @@
               },
               {
                 "theme": "Identity, privileged access, rogue account disablement, remote access",
-                "soc2": "CC6.1â€“CC6.8, CC7.2â€“CC7.4",
+                "soc2": "CC6.1–CC6.8, CC7.2–CC7.4",
                 "tisax": "Identity and access management, privileged access, remote access control",
                 "iso": "5.15, 5.16, 5.17, 5.18, 8.2, 8.3, 8.5"
               },
@@ -3446,11 +3667,11 @@
               },
               {
                 "kpi": "Coverage of critical AD/VPN logs into SIEM",
-                "target": "â‰¥ 95% of in-scope assets"
+                "target": "≥ 95% of in-scope assets"
               },
               {
                 "kpi": "Percentage of privileged accounts under MFA/PAM/JIT control",
-                "target": "â‰¥ 98%"
+                "target": "≥ 98%"
               },
               {
                 "kpi": "Time to complete initial data-exfiltration impact assessment",
@@ -3458,11 +3679,11 @@
               },
               {
                 "kpi": "CAPA closure by committed date",
-                "target": "â‰¥ 90% on time"
+                "target": "≥ 90% on time"
               },
               {
                 "kpi": "Follow-up tabletop exercise score",
-                "target": "â‰¥ 22/25"
+                "target": "≥ 22/25"
               }
             ],
             "decisions": [
@@ -3481,57 +3702,18 @@
             ],
             "roadmap": [
               {
-                "period": "0â€“30 days",
+                "period": "0–30 days",
                 "milestones": "Assign owners; publish war-room RACI; approve containment thresholds; update legal/privacy notification matrix; complete privileged-account inventory; implement priority SIEM alerts."
               },
               {
-                "period": "30â€“90 days",
+                "period": "30–90 days",
                 "milestones": "Deploy or tune PAM/JIT controls; complete detection engineering; exercise exfiltration response; execute forensic evidence tabletop."
               },
               {
-                "period": "90â€“180 days",
+                "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ],
-            "discussion": {
-              "injects": [
-                {
-                  "inject": "Inject #1 — Credentials for sale",
-                  "time": "07:00",
-                  "detail": "OSINT finds 40 employee credentials for sale on a dark-web forum, including a finance analyst with payment-data access."
-                },
-                {
-                  "inject": "Inject #2 — Passwords match SSO",
-                  "time": "07:45",
-                  "detail": "Some listed passwords match corporate SSO. The hunt for active use begins."
-                },
-                {
-                  "inject": "Inject #3 — Lateral movement flagged",
-                  "time": "09:30",
-                  "detail": "UEBA flags lateral movement from a listed account into a client finance portal; a $50 test transfer was made and reversed."
-                }
-              ],
-              "decisions": [
-                {
-                  "decision": "Decision A — Initial response",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "decision": "Decision B — Impact",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                }
-              ]
-            }
+            ]
           }
         },
         {
@@ -3600,6 +3782,22 @@
               "title": "Cyberattack on CRM System",
               "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Advanced · 90 minutes · Facilitated discussion"
             }
+          }
+        },
+        {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
           }
         },
         {
@@ -3705,7 +3903,6 @@
           "layout": "content",
           "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "15 minutes",
             "pairs": [
               {
                 "question": "Do you take the CRM offline now? What is the impact on client interactions? (A.5.25)",
@@ -3723,7 +3920,8 @@
                 "question": "How do you preserve evidence on the shared platform? (A.5.28)",
                 "response": ""
               }
-            ]
+            ],
+            "timebox": "15 minutes"
           }
         },
         {
@@ -3757,7 +3955,6 @@
           "layout": "content",
           "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "20 minutes",
             "pairs": [
               {
                 "question": "How do you segregate the client data silos going forward? (A.8.31)",
@@ -3775,46 +3972,8 @@
                 "question": "How do you patch and validate the plugin ecosystem? (A.8.8)",
                 "response": ""
               }
-            ]
-          }
-        },
-        {
-          "name": "ISO/IEC 27001 clause map",
-          "layout": "content",
-          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
-          "data": {
-            "clause_map": [
-              {
-                "decision": "Isolate the CRM",
-                "control": "A.8.31 - Separation of environments",
-                "guidance": "Contain the shared platform (27002 Section 8.31)"
-              },
-              {
-                "decision": "Determine scope",
-                "control": "A.8.15 - Logging",
-                "guidance": "Trace access across silos (27002 Section 8.15)"
-              },
-              {
-                "decision": "Patch the vulnerability",
-                "control": "A.8.8 - Vulnerability management",
-                "guidance": "Remediate the plugin (27002 Section 8.8)"
-              },
-              {
-                "decision": "Rebuild cleanly",
-                "control": "A.8.13 / A.8.9 - Backup & configuration",
-                "guidance": "Restore from known-good (27002 Section 8.13, Section 8.9)"
-              },
-              {
-                "decision": "Client notification",
-                "control": "A.5.20 - Supplier agreements",
-                "guidance": "Data-exposure reporting (27002 Section 5.20)"
-              },
-              {
-                "decision": "Lessons learned",
-                "control": "A.5.27 - Learning from incidents",
-                "guidance": "Improve platform controls (27002 Section 5.27)"
-              }
-            ]
+            ],
+            "timebox": "20 minutes"
           }
         },
         {
@@ -3862,6 +4021,45 @@
           }
         },
         {
+          "name": "ISO/IEC 27001 clause map",
+          "layout": "content",
+          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
+          "data": {
+            "clause_map": [
+              {
+                "decision": "Isolate the CRM",
+                "control": "A.8.31 · Separation of environments",
+                "guidance": "Contain the shared platform (27002 §8.31)"
+              },
+              {
+                "decision": "Determine scope",
+                "control": "A.8.15 · Logging",
+                "guidance": "Trace access across silos (27002 §8.15)"
+              },
+              {
+                "decision": "Patch the vulnerability",
+                "control": "A.8.8 · Vulnerability management",
+                "guidance": "Remediate the plugin (27002 §8.8)"
+              },
+              {
+                "decision": "Rebuild cleanly",
+                "control": "A.8.13 / A.8.9 · Backup & configuration",
+                "guidance": "Restore from known-good (27002 §8.13, §8.9)"
+              },
+              {
+                "decision": "Client notification",
+                "control": "A.5.20 · Supplier agreements",
+                "guidance": "Data-exposure reporting (27002 §5.20)"
+              },
+              {
+                "decision": "Lessons learned",
+                "control": "A.5.27 · Learning from incidents",
+                "guidance": "Improve platform controls (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
           "name": "Hotwash",
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
@@ -3870,9 +4068,28 @@
           }
         },
         {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Cyberattack on CRM System",
@@ -3890,6 +4107,45 @@
               "A rebuild-from-clean-backup playbook should exist before it is needed"
             ],
             "story": "Two clients have active campaign data in the shared CRM system. The exercise unfolded through the following injects: At 06:30, Admin access gained — An attacker exploits an unpatched CRM plugin and gains admin access to the shared platform. At 07:10, Client data exfiltrated — Customer data — names, contacts, purchase history — is exfiltrated for one client before the breach is detected. At 09:00, Second client exposed — The vendor confirms the plugin vulnerability is public; scans show movement between client data silos — a second client exposed. The hotwash closed on a single question: Could we run six clients on one CRM safely? What would true multi-tenancy look like? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Admin access gained",
+                  "time": "06:30",
+                  "detail": "An attacker exploits an unpatched CRM plugin and gains admin access to the shared platform."
+                },
+                {
+                  "inject": "Inject #2 — Client data exfiltrated",
+                  "time": "07:10",
+                  "detail": "Customer data — names, contacts, purchase history — is exfiltrated for one client before the breach is detected."
+                },
+                {
+                  "inject": "Inject #3 — Second client exposed",
+                  "time": "09:00",
+                  "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos — a second client exposed."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            },
             "recommendations": [
               "Prioritise: Enforce client data segregation in the CRM (A.8.31) — owner: InfoSec.",
               "Prioritise: Add a vulnerability-scan and patch cadence for plugins (A.8.8) — owner: IT.",
@@ -3902,7 +4158,7 @@
                 "type": "Corrective",
                 "owner": "InfoSec",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.31",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
@@ -3911,7 +4167,7 @@
                 "type": "Corrective",
                 "owner": "IT",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.8",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               },
@@ -3920,7 +4176,7 @@
                 "type": "Preventive",
                 "owner": "IT",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.13, A.8.9",
                 "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               },
@@ -3929,14 +4185,14 @@
                 "type": "Corrective",
                 "owner": "Client delivery",
                 "due": "30 days",
-                "target": "0â€“30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
                 "evidence": "Implementation evidence, validation test result and owner sign-off."
               }
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "",
+              "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -3985,7 +4241,7 @@
               },
               {
                 "theme": "Identity, privileged access, rogue account disablement, remote access",
-                "soc2": "CC6.1â€“CC6.8, CC7.2â€“CC7.4",
+                "soc2": "CC6.1–CC6.8, CC7.2–CC7.4",
                 "tisax": "Identity and access management, privileged access, remote access control",
                 "iso": "5.15, 5.16, 5.17, 5.18, 8.2, 8.3, 8.5"
               },
@@ -4039,11 +4295,11 @@
               },
               {
                 "kpi": "Coverage of critical AD/VPN logs into SIEM",
-                "target": "â‰¥ 95% of in-scope assets"
+                "target": "≥ 95% of in-scope assets"
               },
               {
                 "kpi": "Percentage of privileged accounts under MFA/PAM/JIT control",
-                "target": "â‰¥ 98%"
+                "target": "≥ 98%"
               },
               {
                 "kpi": "Time to complete initial data-exfiltration impact assessment",
@@ -4051,11 +4307,11 @@
               },
               {
                 "kpi": "CAPA closure by committed date",
-                "target": "â‰¥ 90% on time"
+                "target": "≥ 90% on time"
               },
               {
                 "kpi": "Follow-up tabletop exercise score",
-                "target": "â‰¥ 22/25"
+                "target": "≥ 22/25"
               }
             ],
             "decisions": [
@@ -4074,57 +4330,18 @@
             ],
             "roadmap": [
               {
-                "period": "0â€“30 days",
+                "period": "0–30 days",
                 "milestones": "Assign owners; publish war-room RACI; approve containment thresholds; update legal/privacy notification matrix; complete privileged-account inventory; implement priority SIEM alerts."
               },
               {
-                "period": "30â€“90 days",
+                "period": "30–90 days",
                 "milestones": "Deploy or tune PAM/JIT controls; complete detection engineering; exercise exfiltration response; execute forensic evidence tabletop."
               },
               {
-                "period": "90â€“180 days",
+                "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ],
-            "discussion": {
-              "injects": [
-                {
-                  "inject": "Inject #1 — Admin access gained",
-                  "time": "06:30",
-                  "detail": "An attacker exploits an unpatched CRM plugin and gains admin access to the shared platform."
-                },
-                {
-                  "inject": "Inject #2 — Client data exfiltrated",
-                  "time": "07:10",
-                  "detail": "Customer data — names, contacts, purchase history — is exfiltrated for one client before the breach is detected."
-                },
-                {
-                  "inject": "Inject #3 — Second client exposed",
-                  "time": "09:00",
-                  "detail": "The vendor confirms the plugin vulnerability is public; scans show movement between client data silos — a second client exposed."
-                }
-              ],
-              "decisions": [
-                {
-                  "decision": "Decision A — Initial response",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "decision": "Decision B — Impact",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                }
-              ]
-            }
+            ]
           }
         },
         {
@@ -4193,6 +4410,22 @@
               "title": "Network Outage Affecting Global Connectivity",
               "kicker": "Business Continuity Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Business Operations · Intermediate · 90 minutes · Facilitated discussion"
             }
+          }
+        },
+        {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
           }
         },
         {
@@ -4460,6 +4693,25 @@
           "body": "# Hotwash\n\n{{text}}",
           "data": {
             "text": "How long could the inbound care program run degraded? What did callers actually experience at the worst point?"
+          }
+        },
+        {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
           }
         },
         {
@@ -4793,6 +5045,22 @@
           }
         },
         {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
+          }
+        },
+        {
           "name": "Objectives & ground rules",
           "layout": "content",
           "body": "## {{objectives.title}}\n\n{{#each objectives.items}}\n- {{this}}\n{{/each}}\n\n**Ground rules:** {{ground_rules}}",
@@ -5057,6 +5325,25 @@
           "body": "# Hotwash\n\n{{text}}",
           "data": {
             "text": "Could Site A absorb the full inbound call volume tomorrow morning? What is our real inbound answer rate without Site B?"
+          }
+        },
+        {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
           }
         },
         {
@@ -5390,6 +5677,22 @@
           }
         },
         {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
+          }
+        },
+        {
           "name": "Objectives & ground rules",
           "layout": "content",
           "body": "## {{objectives.title}}\n\n{{#each objectives.items}}\n- {{this}}\n{{/each}}\n\n**Ground rules:** {{ground_rules}}",
@@ -5654,6 +5957,25 @@
           "body": "# Hotwash\n\n{{text}}",
           "data": {
             "text": "Would our inbound customer care service have survived an outage lasting 25% of the operating day? Where does the inbound answer-time SLA break first?"
+          }
+        },
+        {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
           }
         },
         {
@@ -5987,6 +6309,22 @@
           }
         },
         {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
+          }
+        },
+        {
           "name": "Objectives & ground rules",
           "layout": "content",
           "body": "## {{objectives.title}}\n\n{{#each objectives.items}}\n- {{this}}\n{{/each}}\n\n**Ground rules:** {{ground_rules}}",
@@ -6251,6 +6589,25 @@
           "body": "# Hotwash\n\n{{text}}",
           "data": {
             "text": "Could the inbound care program run at 40% staffing? What is our true minimum viable staffing per inbound queue?"
+          }
+        },
+        {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
           }
         },
         {
@@ -6584,6 +6941,22 @@
           }
         },
         {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
+          }
+        },
+        {
           "name": "Objectives & ground rules",
           "layout": "content",
           "body": "## {{objectives.title}}\n\n{{#each objectives.items}}\n- {{this}}\n{{/each}}\n\n**Ground rules:** {{ground_rules}}",
@@ -6848,6 +7221,25 @@
           "body": "# Hotwash\n\n{{text}}",
           "data": {
             "text": "Would our care desk challenge a call like that today? What is the customer identity-verification ritual on every account change?"
+          }
+        },
+        {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
           }
         },
         {
@@ -7176,8 +7568,24 @@
           "data": {
             "scenario": {
               "title": "Backup & Recovery DR Test",
-              "kicker": "Disaster recovery test exposing backup integrity issues and RTO failure"
+              "kicker": "Cyber Incident Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Information Technology · Advanced · 90 minutes · Facilitated discussion"
             }
+          }
+        },
+        {
+          "name": "Rules of Engagement",
+          "layout": "content",
+          "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "rules": [
+              "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+              "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+              "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+              "All participants are encouraged to actively engage and contribute to discussions.",
+              "Approach the scenarios with a problem-solving mindset.",
+              "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+              "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+            ]
           }
         },
         {
@@ -7188,10 +7596,10 @@
             "objectives": {
               "title": "Objectives & ground rules",
               "items": [
-                "Test the DR team's ability to respond to backup failures during a restore test",
-                "Evaluate backup monitoring and alerting effectiveness",
-                "Assess incident declaration and escalation procedures",
-                "Review client notification and SLA compliance processes"
+                "Test detection and response when client data is at stake",
+                "Map every decision to an ISO/IEC 27001:2022 Annex A control",
+                "Expose gaps in monitoring, access and segmentation",
+                "Leave with an after-action list with owners and dates"
               ]
             },
             "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
@@ -7203,16 +7611,17 @@
           "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
           "data": {
             "company": {
-              "profile": "Organization providing customer care services for clients"
+              "profile": "ISO/IEC 27001-certified BPO running finance & accounting services for 9 clients"
             },
-            "iso_scope": "Client services with nightly backups, quarterly restore tests and a stated agreed upon RTO",
+            "iso_scope": "Finance & accounting services with nightly backups, quarterly restore tests and a stated 4-hour RTO",
             "systems": [
-              "Backup platform (nightly full + incremental)",
+              "Backup platform (Veeam, nightly full + incremental)",
+              "Client finance portal DB",
               "File shares (client PII)",
               "Monitoring / alerting",
               "DR runbook & RTO targets"
             ],
-            "setting": "Wednesday 09:00 — the quarterly DR test is underway: restore the client portal to a test environment and validate it."
+            "setting": "Wednesday 09:00 — the quarterly DR test is underway: restore the client finance portal to a test environment and validate it. The test is supposed to take 4 hours."
           }
         },
         {
@@ -7272,7 +7681,7 @@
             "number": 1,
             "time": "09:15",
             "title": "Restore fails at 62%",
-            "detail": "The first restore attempt of the portal DB fails at 62% — the backup set is corrupt and the restore job aborts.",
+            "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -7282,7 +7691,6 @@
           "layout": "content",
           "body": "## Decision A — Initial response\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "15 minutes",
             "pairs": [
               {
                 "question": "Is this still a test, or do you declare a real incident? Who makes that call? (A.5.24, A.5.25)",
@@ -7295,15 +7703,13 @@
               {
                 "question": "What is your restore path from the last known-good point — and how do you prove it? (A.8.13, A.8.15)",
                 "response": ""
+              },
+              {
+                "question": "Who in the room knows what the client SLAs actually guarantee on RTO? (A.5.20)",
+                "response": ""
               }
             ],
-            "inject_context": "Inject #1: Restore fails at 62% (09:15) — Backup set is corrupt, restore job aborts",
-            "questions": [
-              "Is this still a test, or do you declare a real incident? Who makes that call? (A.5.24, A.5.25)",
-              "Do you quarantine the corrupt backup set to stop it being reused? (A.8.13)",
-              "What is your restore path from the last known-good point — and how do you prove it? (A.8.13, A.8.15)",
-              "Who in the room knows what the client SLAs actually guarantee on recovery time? (A.5.20)"
-            ]
+            "timebox": "15 minutes"
           }
         },
         {
@@ -7314,7 +7720,7 @@
             "number": 2,
             "time": "09:40",
             "title": "Silent backup gap found",
-            "detail": "Backup jobs for the portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old.",
+            "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -7327,7 +7733,7 @@
             "number": 3,
             "time": "10:30",
             "title": "RTO blown, clients impacted",
-            "detail": "Recovery time objective is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on hot-site failover.",
+            "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site.",
             "prompt": "Team Response — Critical decision point",
             "observation": ""
           }
@@ -7337,7 +7743,6 @@
           "layout": "content",
           "body": "## Decision B — Impact\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
           "data": {
-            "timebox": "20 minutes",
             "pairs": [
               {
                 "question": "Do you restore from the 14-day-old point, and what data do you lose? (A.8.13)",
@@ -7356,62 +7761,7 @@
                 "response": ""
               }
             ],
-            "inject_context": "Inject #3: RTO blown, clients impacted (10:30) — Recovery time objective exceeded, two clients affected",
-            "questions": [
-              "Do you restore from the 14-day-old point, and what data do you lose? (A.8.13)",
-              "How do you validate the restored environment is clean and complete? (A.8.15, A.8.9)",
-              "Do you invoke the hot site / alternate facility for capacity? (A.8.14, A.5.30)",
-              "Which clients are told — and does the contract require disclosure of the test failure? (A.5.20)"
-            ]
-          }
-        },
-        {
-          "name": "ISO/IEC 27001 clause map",
-          "layout": "content",
-          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
-          "data": {
-            "clause_map": [
-              {
-                "decision": "Quarantine the corrupt set",
-                "control": "A.8.13 - Information backup",
-                "guidance": "Protect and verify backup integrity (27002 Section 8.13)"
-              },
-              {
-                "decision": "Declare a real incident",
-                "control": "A.5.24 / A.5.25 - Incident response",
-                "guidance": "Escalate and assess the DR-test failure (27002 Section 5.24â€“5.25)"
-              },
-              {
-                "decision": "Restore from last known-good",
-                "control": "A.8.13 - Information backup",
-                "guidance": "Restore to a clean environment, verify integrity (27002 Section 8.13)"
-              },
-              {
-                "decision": "Invoke hot site / alternate facility",
-                "control": "A.8.14 - Redundancy of processing facilities",
-                "guidance": "Maintain redundant capacity for recovery (27002 Section 8.14)"
-              },
-              {
-                "decision": "Fix backup alerting",
-                "control": "A.8.16 - Monitoring activities",
-                "guidance": "Alert on failures, not just successes (27002 Section 8.16)"
-              },
-              {
-                "decision": "Validate capacity & RTO",
-                "control": "A.5.30 - ICT readiness",
-                "guidance": "Test continuity arrangements under load (27002 Section 5.30)"
-              },
-              {
-                "decision": "Client notification",
-                "control": "A.5.20 - Supplier agreements",
-                "guidance": "Contractual disclosure of service impact (27002 Section 5.20)"
-              },
-              {
-                "decision": "Lessons learned",
-                "control": "A.5.27 - Learning from incidents",
-                "guidance": "Feed DR-test findings into the ISMS (27002 Section 5.27)"
-              }
-            ]
+            "timebox": "20 minutes"
           }
         },
         {
@@ -7423,17 +7773,17 @@
               {
                 "inject": "Inject #1 — Restore fails at 62%",
                 "time": "09:15",
-                "detail": "The first restore attempt of the portal DB fails at 62% — the backup set is corrupt and the restore job aborts."
+                "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts."
               },
               {
                 "inject": "Inject #2 — Silent backup gap found",
                 "time": "09:40",
-                "detail": "Backup jobs for the portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old."
+                "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old."
               },
               {
                 "inject": "Inject #3 — RTO blown, clients impacted",
                 "time": "10:30",
-                "detail": "Recovery time objective is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site."
+                "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site."
               }
             ],
             "decisions": [
@@ -7459,6 +7809,55 @@
           }
         },
         {
+          "name": "ISO/IEC 27001 clause map",
+          "layout": "content",
+          "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
+          "data": {
+            "clause_map": [
+              {
+                "decision": "Quarantine the corrupt set",
+                "control": "A.8.13 · Information backup",
+                "guidance": "Protect and verify backup integrity (27002 §8.13)"
+              },
+              {
+                "decision": "Declare a real incident",
+                "control": "A.5.24 / A.5.25 · Incident response",
+                "guidance": "Escalate and assess the DR-test failure (27002 §5.24–5.25)"
+              },
+              {
+                "decision": "Restore from last known-good",
+                "control": "A.8.13 · Information backup",
+                "guidance": "Restore to a clean environment, verify integrity (27002 §8.13)"
+              },
+              {
+                "decision": "Invoke hot site / alternate facility",
+                "control": "A.8.14 · Redundancy of processing facilities",
+                "guidance": "Maintain redundant capacity for recovery (27002 §8.14)"
+              },
+              {
+                "decision": "Fix backup alerting",
+                "control": "A.8.16 · Monitoring activities",
+                "guidance": "Alert on failures, not just successes (27002 §8.16)"
+              },
+              {
+                "decision": "Validate capacity & RTO",
+                "control": "A.5.30 · ICT readiness",
+                "guidance": "Test continuity arrangements under load (27002 §5.30)"
+              },
+              {
+                "decision": "Client notification",
+                "control": "A.5.20 · Supplier agreements",
+                "guidance": "Contractual disclosure of service impact (27002 §5.20)"
+              },
+              {
+                "decision": "Lessons learned",
+                "control": "A.5.27 · Learning from incidents",
+                "guidance": "Feed DR-test findings into the ISMS (27002 §5.27)"
+              }
+            ]
+          }
+        },
+        {
           "name": "Hotwash",
           "layout": "section",
           "body": "# Hotwash\n\n{{text}}",
@@ -7467,75 +7866,131 @@
           }
         },
         {
+          "name": "Post-Exercise Discussion & Next Steps",
+          "layout": "content",
+          "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+          "data": {
+            "discussion": [
+              "What went well during the exercise?",
+              "What didn’t go well?",
+              "Did the exercise reveal any gaps in training or knowledge?",
+              "What were the key lessons learned?",
+              "What improvements or changes should be made to response plans and procedures?"
+            ],
+            "next_steps": [
+              "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+              "Generate a TTX Exercise Assessment Report.",
+              "The final report will be provided to Access Services for review."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
-          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+          "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
           "data": {
             "exercise": {
               "name": "Backup & Recovery DR Test",
               "date": ""
             },
-            "participants": "Operations Manager, Team Leaders, IT Operations, Backup & Recovery Team, Compliance, Client Delivery",
+            "participants": "CISO, Client delivery, InfoSec, IT, Communications",
             "highlights": [
-              "The corrupt backup was identified during a scheduled DR test, not a real outage",
-              "Silent backup failures went undetected for 6 days due to missing failure alerts",
-              "The last known-good restore point was 14 days old, exceeding acceptable data loss",
-              "Clients were notified within the contractual window once the RTO was exceeded"
+              "The corrupt backup was found during a scheduled test, not during a real outage",
+              "The last known-good restore point was confirmed before any destructive action",
+              "Clients were notified within the contractual window once the RTO was blown"
             ],
             "lessons": [
-              "Backup monitoring must alert on failures, not just successes",
+              "Backup monitoring fired on success only — failure alerting is now a requirement",
               "Restore tests must validate the restore step, not just the backup job",
-              "Backup job health should be verified daily, not just during quarterly tests",
-              "RTO and RPO should be validated under realistic load conditions"
+              "The 4-hour RTO was never validated under realistic load"
             ],
-            "story": "The exercise unfolded through the following injects: At 09:15, Restore fails at 62% — The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts. At 09:40, Silent backup gap found — Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old. At 10:30, RTO blown, clients impacted — Recovery time objective is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on hot-site failover. The hotwash closed on a single question: Do we really know our backup status? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "story": "Wednesday 09:00 — the quarterly DR test is underway: restore the client finance portal to a test environment and validate it. The test is supposed to take 4 hours. The exercise unfolded through the following injects: At 09:15, Restore fails at 62% — The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts. At 09:40, Silent backup gap found — Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old. At 10:30, RTO blown, clients impacted — Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site. The hotwash closed on a single question: Would we have noticed a silent backup failure tomorrow? How old may the last good restore point get before it becomes unacceptable? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+            "discussion": {
+              "injects": [
+                {
+                  "inject": "Inject #1 — Restore fails at 62%",
+                  "time": "09:15",
+                  "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts."
+                },
+                {
+                  "inject": "Inject #2 — Silent backup gap found",
+                  "time": "09:40",
+                  "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old."
+                },
+                {
+                  "inject": "Inject #3 — RTO blown, clients impacted",
+                  "time": "10:30",
+                  "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site."
+                }
+              ],
+              "decisions": [
+                {
+                  "decision": "Decision A — Initial response",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                },
+                {
+                  "decision": "Decision B — Impact",
+                  "responses": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            },
             "recommendations": [
-              "Prioritise: Implement backup failure alerting and daily health checks (A.8.16) — owner: IT Operations",
-              "Prioritise: Schedule restore tests that validate full recovery, not just backup completion (A.8.13) — owner: Backup Team",
-              "Prioritise: Establish backup job monitoring dashboard with real-time alerts (A.8.15) — owner: IT Operations",
-              "Prioritise: Document and test RTO/RPO under realistic load conditions (A.8.14) — owner: DR Team"
+              "Prioritise: Alert on backup job failures, not just successes (A.8.16) — owner: IT.",
+              "Prioritise: Schedule quarterly restore tests that run to completion (A.8.13) — owner: IT.",
+              "Prioritise: Validate RTO under realistic load and document it (A.5.30) — owner: CISO.",
+              "Prioritise: Review client SLAs for RTO/RPO disclosure duties (A.5.20) — owner: Client delivery."
             ],
             "capa": [
               {
-                "item": "Implement backup failure alerting and daily health checks (A.8.16)",
-                "type": "Corrective",
-                "owner": "IT Operations",
+                "item": "Alert on backup job failures, not just successes (A.8.16)",
+                "type": "Preventive",
+                "owner": "IT",
                 "due": "30 days",
-                "target": "0-30 days",
+                "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.16",
-                "evidence": "Alert configuration, test alerts, and daily check procedures"
+                "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               },
               {
-                "item": "Schedule restore tests that validate full recovery (A.8.13)",
-                "type": "Corrective",
-                "owner": "Backup Team",
-                "due": "30 days",
-                "target": "0-30 days",
+                "item": "Schedule quarterly restore tests that run to completion (A.8.13)",
+                "type": "Preventive",
+                "owner": "IT",
+                "due": "Quarterly",
+                "target": "Quarterly / recurring",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.13",
-                "evidence": "Test procedures, completion records, and validation results"
+                "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               },
               {
-                "item": "Establish backup job monitoring dashboard with real-time alerts (A.8.15)",
+                "item": "Validate RTO under realistic load and document it (A.5.30)",
                 "type": "Preventive",
-                "owner": "IT Operations",
+                "owner": "CISO",
                 "due": "30 days",
-                "target": "0-30 days",
-                "framework_focus": "ISO/IEC 27001:2022 A.8.15",
-                "evidence": "Dashboard screenshots, alert configuration, and test results"
+                "target": "0–30 days",
+                "framework_focus": "ISO/IEC 27001:2022 A.5.30",
+                "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               },
               {
-                "item": "Document and test RTO/RPO under realistic load (A.8.14)",
+                "item": "Review client SLAs for RTO/RPO disclosure duties (A.5.20)",
                 "type": "Preventive",
-                "owner": "DR Team",
+                "owner": "Client delivery",
                 "due": "30 days",
-                "target": "0-30 days",
-                "framework_focus": "ISO/IEC 27001:2022 A.8.14",
-                "evidence": "RTO/RPO documentation, load test results, and validation report"
+                "target": "0–30 days",
+                "framework_focus": "ISO/IEC 27001:2022 A.5.20",
+                "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
               }
             ],
             "meta": {
               "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
-              "prepared_date": "",
+              "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
               "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
@@ -7584,7 +8039,7 @@
               },
               {
                 "theme": "Identity, privileged access, rogue account disablement, remote access",
-                "soc2": "CC6.1â€“CC6.8, CC7.2â€“CC7.4",
+                "soc2": "CC6.1–CC6.8, CC7.2–CC7.4",
                 "tisax": "Identity and access management, privileged access, remote access control",
                 "iso": "5.15, 5.16, 5.17, 5.18, 8.2, 8.3, 8.5"
               },
@@ -7621,104 +8076,70 @@
             ],
             "kpis": [
               {
-                "kpi": "Backup job failure detection time",
-                "target": "< 1 hour"
+                "kpi": "Mean time to triage high-severity identity incident",
+                "target": "< 15 minutes"
               },
               {
-                "kpi": "Time to identify corrupt backup set",
-                "target": "During scheduled test"
+                "kpi": "Time to revoke all active remote sessions for compromised scope",
+                "target": "< 15 minutes after declaration"
               },
               {
-                "kpi": "Time to validate restore from last known-good point",
-                "target": "< 2 hours"
+                "kpi": "Time to disable confirmed rogue or suspicious privileged accounts",
+                "target": "< 30 minutes"
               },
               {
-                "kpi": "Time to complete client notification",
-                "target": "Within contractual window"
+                "kpi": "Time to complete privileged credential rotation plan",
+                "target": "< 24 hours for highest-risk credentials"
               },
               {
-                "kpi": "Backup health check completion rate",
-                "target": "100% daily"
+                "kpi": "Coverage of critical AD/VPN logs into SIEM",
+                "target": "≥ 95% of in-scope assets"
               },
               {
-                "kpi": "Restore test completion rate",
-                "target": "100% quarterly"
+                "kpi": "Percentage of privileged accounts under MFA/PAM/JIT control",
+                "target": "≥ 98%"
+              },
+              {
+                "kpi": "Time to complete initial data-exfiltration impact assessment",
+                "target": "< 24 hours"
               },
               {
                 "kpi": "CAPA closure by committed date",
-                "target": ">= 90% on time"
+                "target": "≥ 90% on time"
               },
               {
-                "kpi": "Follow-up DR test score",
-                "target": ">= 22/25"
+                "kpi": "Follow-up tabletop exercise score",
+                "target": "≥ 22/25"
               }
             ],
             "decisions": [
-              "Approve immediate implementation of backup failure alerting and daily health checks.",
-              "Require quarterly restore tests to validate full recovery, not just backup completion.",
-              "Establish a backup monitoring dashboard with real-time visibility for IT operations.",
-              "Require a follow-up DR test within 90 days to validate improvements."
+              "Approve a funded remediation program for identity containment, privileged access hardening, exfiltration monitoring, and forensic readiness.",
+              "Designate a single executive owner for CAPA governance and monthly reporting until all high-priority items are closed and validated.",
+              "Direct Corporate Security, Legal, HR, Compliance, and IT to finalize breach-notification and insider-threat decision matrices within 30 days.",
+              "Require a follow-up tabletop exercise within 180 days using the same scoring model and evidence pack requirements."
             ],
             "evidence": [
-              "DR test declaration, restore attempt logs, and failure evidence.",
-              "Backup job history, failure alerts (or lack thereof), and monitoring gaps.",
-              "Restore validation results, data integrity checks, and RTO measurement.",
-              "Client notification records, escalation matrix, and contractual obligations.",
-              "Recovery and improvement evidence: backup health checks, monitoring dashboard, and CAPA closure."
+              "Incident declaration, severity classification, commander assignment, scribe notes, and time-stamped decision log.",
+              "Isolation, session revocation, account disablement, privileged access review, and credential rotation evidence.",
+              "SIEM/EDR queries, IOC lists, block rules, firewall approvals, threat-hunting notes, malware analysis, and eradication evidence.",
+              "Impact assessment, data classification, DLP/CASB alerts, provider notes, legal/privacy decision logs, and notification determinations.",
+              "Forensic and insider evidence: device recall, images, storage snapshots, chain of custody, HR/legal coordination, and closure rationale.",
+              "Recovery and improvement evidence: clean-reconnect approvals, backup/restore validation, persistence re-scan, RCA, CAPA closure, and management review."
             ],
             "roadmap": [
               {
-                "period": "0â€“30 days",
+                "period": "0–30 days",
                 "milestones": "Assign owners; publish war-room RACI; approve containment thresholds; update legal/privacy notification matrix; complete privileged-account inventory; implement priority SIEM alerts."
               },
               {
-                "period": "30â€“90 days",
+                "period": "30–90 days",
                 "milestones": "Deploy or tune PAM/JIT controls; complete detection engineering; exercise exfiltration response; execute forensic evidence tabletop."
               },
               {
-                "period": "90â€“180 days",
+                "period": "90–180 days",
                 "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
               }
-            ],
-            "discussion": {
-              "injects": [
-                {
-                  "inject": "Inject #1 — Restore fails at 62%",
-                  "time": "09:15",
-                  "detail": "The first restore attempt of the finance portal DB fails at 62% — the backup set is corrupt and the restore job aborts."
-                },
-                {
-                  "inject": "Inject #2 — Silent backup gap found",
-                  "time": "09:40",
-                  "detail": "Backup jobs for the finance portal silently failed for 6 days. No alert fired. The last known-good restore point is 14 days old."
-                },
-                {
-                  "inject": "Inject #3 — RTO blown, clients impacted",
-                  "time": "10:30",
-                  "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site."
-                }
-              ],
-              "decisions": [
-                {
-                  "decision": "Decision A — Initial response",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                },
-                {
-                  "decision": "Decision B — Impact",
-                  "responses": [
-                    "",
-                    "",
-                    "",
-                    ""
-                  ]
-                }
-              ]
-            }
+            ]
           }
         },
         {
@@ -7762,7 +8183,7 @@
         {
           "time": "10:30",
           "title": "RTO blown, clients impacted",
-          "detail": "Recovery time objective is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on hot-site failover."
+          "detail": "Recovery time objective (4h) is exceeded. Two clients' month-end batches cannot be produced; a decision is needed on declaring a disaster and invoking the hot site."
         }
       ],
       "meta": {

@@ -1728,6 +1728,9 @@ function bindEvents() {
 
   window.addEventListener('message', (e) => {
     if (e.data && e.data.type === 'deckforge:exit') closePresent();
+    /* Closing slide's "Generate AAR & Executive Summary" button ends the
+       exercise, saving it to history and downloading the report. */
+    if (e.data && e.data.type === 'deckforge:end-exercise') endExercise();
   });
 
   // Fullscreen the whole present overlay (Exit button included), so a

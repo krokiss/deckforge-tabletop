@@ -480,6 +480,34 @@ def decision_widget_html(pairs):
 
 INJECT_LOG_HTML = '<div class="inj-log"></div>'
 
+# Closing slide widget: a prominent button that ends the exercise and triggers
+# generation of the After-Action Report + Executive Summary. Posts a message to
+# the host app (which owns the export/download logic) via the same bridge the
+# Exit/Fullscreen controls already use.
+CLOSING_WIDGET_HTML = (
+    '<div class="closing-widget">'
+    '<div class="closing-note">Wrap up the post-exercise discussion, then generate '
+    'the After-Action Report and Executive Summary.</div>'
+    '<button class="closing-btn" id="closing-generate" '
+    'onclick="try{if(window.parent&&window.parent!==window){window.parent.postMessage({type:\'deckforge:end-exercise\'},\'*\')}else{alert(\'Open this exercise in the DeckForge app to generate the report.\')}}catch(e){}">'
+    'Generate AAR &amp; Executive Summary \u2192</button>'
+    '<div class="closing-hint">The report downloads automatically when the exercise ends.</div>'
+    '</div>'
+)
+
+CLOSING_CSS = (
+    '.closing-widget{margin-top:26px;border-top:2px solid rgba(16,185,129,.5);'
+    'padding-top:18px;text-align:center}'
+    '.closing-widget .closing-note{color:#a7f3d0;font:italic 17px/1.4 Segoe UI,Arial,sans-serif;'
+    'margin:0 auto 16px;max-width:720px}'
+    '.closing-widget .closing-btn{background:#10b981;color:#052e16;border:0;border-radius:10px;'
+    'padding:16px 34px;font:700 20px Segoe UI,Arial,sans-serif;cursor:pointer;'
+    'box-shadow:0 6px 20px rgba(16,185,129,.35);letter-spacing:.3px}'
+    '.closing-widget .closing-btn:hover{background:#059669}'
+    '.closing-widget .closing-btn:disabled{background:#374151;color:#9ca3af;cursor:default;box-shadow:none}'
+    '.closing-widget .closing-hint{color:#8b93b8;font:14px Segoe UI,Arial,sans-serif;margin-top:12px}'
+)
+
 
 def role_picker_html(roles):
     """Checkbox grid letting the team select which roles participate."""
@@ -852,6 +880,7 @@ INJECT_JS = r"""
 def build_presentation(name, slides, injects=None, meta=None):
     parts = []
     has_inject_ui = False
+    has_closing = False
     for i, s in enumerate(slides or []):
         layout = (s.get("layout") or "content").strip().lower()
         if layout not in LAYOUTS:
@@ -872,7 +901,12 @@ def build_presentation(name, slides, injects=None, meta=None):
         elif sname_raw == "Hotwash" or sname_raw.startswith("After Action Executive"):
             slide_html += INJECT_LOG_HTML
             has_inject_ui = True
+        if sname_raw == "Post-Exercise Discussion & Next Steps":
+            slide_html += CLOSING_WIDGET_HTML
+            has_closing = True
         extra = ' roles' if sname_raw == 'Roles' else ''
+        if sname_raw == "Post-Exercise Discussion & Next Steps":
+            extra += ' closing-slide'
         if sname_raw.startswith('Decision'):
             extra += ' dec-slide'
         data_h = ''
@@ -886,6 +920,8 @@ def build_presentation(name, slides, injects=None, meta=None):
     if has_inject_ui or injects:
         ex_css = INJECT_CSS + DECISION_CSS
         ex_js = INJECT_JS
+    if has_closing:
+        ex_css += CLOSING_CSS
     return (PRESENT_PAGE.replace("%%TITLE%%", _html.escape(name))
                         .replace("%%SLIDES%%", body)
                         .replace("%%INJECT_CSS%%", ex_css)
