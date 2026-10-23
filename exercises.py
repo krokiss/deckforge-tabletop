@@ -726,7 +726,7 @@ _NEXT_STEPS = [
     "Identify key strengths and opportunities for improvement of the Incident "
     "Response Plan and processes.",
     "Generate a TTX Exercise Assessment Report.",
-    "The final report will be provided to Access Services for review.",
+    "The final report will be provided for review.",
 ]
 
 
