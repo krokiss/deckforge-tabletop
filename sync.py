@@ -10,12 +10,13 @@ Keeps four targets in step:
 
 Commands
 --------
-  status     show drift across local / backup / git   (read-only, default)
+  status     show drift across local / backup / git + JS syntax check   (read-only, default)
   pull       git pull --ff-only, then mirror local -> backup
   backup     mirror local source files -> backup
   zip        rebuild the dated transfer zip in the backup folder
   push       commit local changes and push to origin (this is what deploys
-             Render), then align the backup's git history
+             Render), then align the backup's git history. node --check runs first, so a
+             JS syntax error blocks the push
   sync       pull + backup + push — the full upstream/downstream pass
 
 Flags
@@ -35,6 +36,7 @@ import argparse
 import datetime
 import hashlib
 import os
+import shutil
 import subprocess
 import sys
 import time
@@ -54,6 +56,10 @@ SKIP_FILES = {"desktop-v2.db", "desktop-v2.db-shm", "desktop-v2.db-wal"}
 
 # How old (seconds) a file pair must be before we trust mtime comparison.
 SKEW = 2.0
+
+# JS files that must pass `node --check` before status reports its verdict
+# and before push will commit (see check_js).
+JS_CHECK_FILES = ("static/app.js",)
 
 
 def backup_root(args):
@@ -141,6 +147,64 @@ def mirror(root_src, root_dst, dry_run):
     return copied, same
 
 
+def find_node():
+    """Locate the node executable: PATH first, then the user-local install."""
+    exe = shutil.which("node")
+    if exe:
+        return exe
+    if os.name == "nt":
+        local = os.environ.get("LOCALAPPDATA", "")
+        cand = os.path.join(local, "Programs", "nodejs", "node.exe")
+        if local and os.path.isfile(cand):
+            return cand
+    return None
+
+
+def check_js():
+    """Syntax-check JS_CHECK_FILES with `node --check`.
+
+    Returns (state, detail): "pass", "fail" or "skip", plus a display
+    string (the node error output on failure). A missing node skips the
+    check rather than blocking the sync.
+    """
+    node = find_node()
+    if not node:
+        return "skip", "SKIPPED — node not found (install Node.js to enable)"
+    ver = subprocess.run([node, "--version"], capture_output=True,
+                         text=True, encoding="utf-8", errors="replace")
+    version = (ver.stdout or "").strip() or "?"
+    problems = []
+    for rel in JS_CHECK_FILES:
+        path = os.path.join(ROOT, rel)
+        if not os.path.isfile(path):
+            problems.append("%s: file missing" % rel)
+            continue
+        res = subprocess.run([node, "--check", rel], cwd=ROOT,
+                             capture_output=True,
+                             text=True, encoding="utf-8", errors="replace")
+        if res.returncode != 0:
+            out = (res.stderr or "").strip() or (res.stdout or "").strip() \
+                or "syntax error (no output)"
+            # node resolves the arg to an absolute path — show it repo-relative
+            out = out.replace(ROOT + os.sep, "").replace(ROOT + "/", "")
+            out = out.replace("\\", "/")
+            problems.append("%s\n%s" % (rel, out))
+    if problems:
+        return "fail", "\n".join(problems)
+    return "pass", "PASS — %s (node %s)" % (", ".join(JS_CHECK_FILES), version)
+
+
+def report_js_check(fail_heading):
+    """Run check_js() and print one verdict block; True when safe to sync."""
+    state, detail = check_js()
+    if state == "fail":
+        print(fail_heading)
+        print("    %s" % detail.replace("\n", "\n    "))
+        return False
+    print("  js check: %s" % detail)
+    return True
+
+
 def cmd_status(args):
     bkp = backup_root(args)
     print("== local (git) ==")
@@ -163,6 +227,8 @@ def cmd_status(args):
             print("  vs origin/main: (fetch failed — offline?)")
     except RuntimeError as exc:
         print("  %s" % exc)
+
+    report_js_check("  js check: FAIL")
 
     print("== backup ==")
     print("  path: %s" % bkp)
@@ -249,6 +315,9 @@ def cmd_backup(args):
 def cmd_push(args):
     bkp = backup_root(args)
     print("== push (upstream: local -> git -> Render) ==")
+    if not report_js_check("  js check FAILED — fix static/app.js before "
+                           "pushing:"):
+        return 1
     dirty = git(["status", "--porcelain"]).stdout.splitlines()
     if not dirty:
         print("  nothing to commit — local already clean")
