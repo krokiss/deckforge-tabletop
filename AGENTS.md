@@ -50,8 +50,8 @@ SKIPPED (warning) and the push proceeds.
 
 ## Environment notes
 
-- Node.js (v26.12.1, latest release; npm 11.20.0 — upgraded from v24
-  LTS on 2026-10-28) is installed user-locally at
+- Node.js (v24 LTS, v24.22.1; npm 11.19.1 — briefly moved to v26.12.1
+  then reverted the same day, 2026-10-28) is installed user-locally at
   `%LOCALAPPDATA%\Programs\nodejs` and on the user PATH; `sync.py`
   falls back to that location when PATH does not resolve node.
 - The workspace's physical path lives under
