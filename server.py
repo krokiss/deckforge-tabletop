@@ -20,6 +20,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlsplit
 
 import renderer
+from scenarios import map_owner
 from store import Store
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -548,7 +549,16 @@ INJECT_JS = r"""
   }
 
   function getRoles() {
-    return participatingRoles.length ? participatingRoles : ['Team'];
+    if (participatingRoles.length) return participatingRoles;
+    /* Before confirmation, only the roles listed on the Roles slide picker may
+       appear — never an invented label. 'Team' only if there is no picker. */
+    var box = document.querySelector('.role-pick .role-opts');
+    if (box) {
+      var all = Array.prototype.slice.call(box.querySelectorAll('.role-opt input'))
+        .map(function (i) { return i.value; }).filter(Boolean);
+      if (all.length) return all;
+    }
+    return ['Team'];
   }
 
   function colorFor(i) { return roleColors[i % roleColors.length]; }
@@ -969,7 +979,7 @@ POLICY_EXEC_REPORTING = [
 POLICY_ROLES_VALIDATION = [
     "Decision authority follows the policy matrix: operational decisions within approved "
     "risk appetite; high/very-high risk, material client impact or regulatory exposure "
-    "escalated to the CIO and the S.A.F.E. Audit & Risk Committee (\u00a74).",
+    "escalated to executive governance and the S.A.F.E. Audit & Risk Committee (\u00a74).",
     "Incident declaration, severity classification, escalation and closure roles were "
     "exercised against the decision authority matrix (\u00a77).",
     "Each listed role's concerns were exercised through the injects and decision points \u2014 "
@@ -992,12 +1002,12 @@ POLICY_REGULATORY = [
     "or destruction of regulated/sensitive data, payment card compromise, personal-data "
     "exposure, significant operational disruption and contractual thresholds.",
     "Regulatory notification within 72 hours of incident confirmation where GDPR or similar "
-    "applies; Executive Leadership reporting within 24 hours for High or Critical incidents "
+    "applies; executive governance reporting within 24 hours for High or Critical incidents "
     "(\u00a79.2.8).",
-    "Engage Legal Counsel immediately when thresholds are met; the Data Protection Officer "
-    "reviews and approves any personal-data breach notification (\u00a79.1, \u00a79.3).",
+    "Engage the legal function immediately when thresholds are met; the data-protection "
+    "function reviews and approves any personal-data breach notification (\u00a79.1, \u00a79.3).",
     "Customer and partner communication must be factual, non-speculative, approved by Legal "
-    "and Executive Leadership, and issued from pre-approved templates (\u00a79.5).",
+    "and executive governance, and issued from pre-approved templates (\u00a79.5).",
     "Payment card data: compromise is automatically High or Critical, acquiring bank and "
     "payment brands notified immediately, PCI-approved forensic investigator engaged where "
     "required (\u00a79.4).",
@@ -1042,16 +1052,13 @@ POLICY_LESSONS_DEFAULT = [
 ]
 
 POLICY_EXEC_REVIEW = [
-    {"step": "Exercise outcomes reviewed (\u00a710.5.12)",
-     "role": "Exercise facilitator / preparer", "name": "", "date": ""},
-    {"step": "Executive review of test outcomes (\u00a710.5.12)",
-     "role": "Executive sponsor", "name": "", "date": ""},
-    {"step": "Report accepted and retained as policy evidence (\u00a710.5.15)",
-     "role": "Director Information Security (policy owner)", "name": "", "date": ""},
+    {"step": "Exercise outcomes reviewed (\u00a710.5.12)", "name": "", "date": ""},
+    {"step": "Executive review of test outcomes (\u00a710.5.12)", "name": "", "date": ""},
+    {"step": "Report accepted and retained as policy evidence (\u00a710.5.15)", "name": "", "date": ""},
 ]
 
 POLICY_DISTRIBUTION = (
-    "Executive Leadership; S.A.F.E. Audit & Risk Committee; ISMS governance record "
+    "Executive governance; S.A.F.E. Audit & Risk Committee; ISMS governance record "
     "(SEC-POL-033 \u00a710.5.14, \u00a79.7.2).")
 
 POLICY_RETENTION = (
@@ -1136,9 +1143,24 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
     systems = [str(x) for x in (bg.get("systems") or []) if str(x).strip()]
     role_rows = [r for r in (_slide_data("Roles", exact=True).get("roles") or [])
                  if isinstance(r, dict) and (r.get("role") or r.get("owner"))]
-    participants = str(data.get("participants") or "").strip()
 
-    meta = data.get("meta") if isinstance(data.get("meta"), dict) else {}
+    # Roles listed on the Roles slide — the only role names allowed anywhere
+    # in this report. When the exercise recorded a selection, only the selected
+    # listed roles are named; otherwise all listed roles are shown.
+    listed_roles = [str(r.get("role") or "").strip() for r in role_rows if r.get("role")]
+    _selected = []
+    if live_responses and isinstance(live_responses, dict):
+        _raw = str(live_responses.get("roles") or "").strip()
+        if _raw and not _raw.lower().startswith("no roles"):
+            _selected = [x.strip()
+                         for x in _raw.replace("Participating roles:", "").split(",") if x.strip()]
+    _selected = [x for x in _selected if x in listed_roles]
+    if listed_roles:
+        participants = ", ".join(_selected or listed_roles)
+    else:
+        participants = str(data.get("participants") or "").strip()
+
+    meta = dict(data.get("meta")) if isinstance(data.get("meta"), dict) else {}
     exercise = data.get("exercise") if isinstance(data.get("exercise"), dict) else {}
     ex_name = str(exercise.get("name") or name)
     # Use completion date from frontend, or auto-fill with today's date
@@ -1164,6 +1186,9 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
         pd_raw = str(meta.get("prepared_date") or "").strip()
         if pd_raw in _placeholder_dates or not pd_raw:
             meta["prepared_date"] = today_str
+        if listed_roles:
+            # audience must also be roles from the Roles slide (selected if recorded)
+            meta["prepared_for"] = participants
         meta_rows = ""
         for k, label in (("prepared_for", "Prepared for"), ("prepared_date", "Prepared date"),
                          ("source_document", "Source document"), ("status", "Status")):
@@ -1313,8 +1338,8 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
     parts.append(section("Regulatory Impact Assessment (§8.6.6 / §9)",
                          bullets(reg or POLICY_REGULATORY)
                          + "<p class='aar-note'>Notification determinations follow a documented "
-                           "risk assessment; Legal Counsel and the DPO are engaged when the §9.1 "
-                           "thresholds are met.</p>"))
+                           "risk assessment; the legal and data-protection functions are engaged "
+                           "when the §9.1 thresholds are met.</p>"))
 
     recs = rows("recommendations")
     parts.append(section("Priority Recommendations (§8.6.7)",
@@ -1347,6 +1372,9 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
               "Applicability.</p>"))
 
     capa = rows("capa")
+    if capa and listed_roles:
+        capa = [dict(r, owner=map_owner(r.get("owner"), listed_roles))
+                if isinstance(r, dict) else r for r in capa]
     if capa:
         if any(isinstance(r, dict) and r.get("target") for r in capa):
             capa_html = table(("Action", "Target", "Owner", "Framework Focus", "Evidence / Success Metric"),
@@ -1380,8 +1408,8 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
     rev_raw = data.get("exec_review")
     rev_rows = [r for r in rev_raw if isinstance(r, dict)] if isinstance(rev_raw, list) else []
     parts.append(section("Executive Review & Record Retention (§10.5.12, §10.5.14–10.5.15)",
-                         table(("Step", "Role", "Name", "Date"),
-                               ("step", "role", "name", "date"), rev_rows or POLICY_EXEC_REVIEW)
+                         table(("Step", "Name", "Date"),
+                               ("step", "name", "date"), rev_rows or POLICY_EXEC_REVIEW)
                          + "<p><b>Distribution:</b> %s</p>" % esc(POLICY_DISTRIBUTION)
                          + "<p><b>Retention:</b> %s</p>" % esc(POLICY_RETENTION)))
 
@@ -1390,6 +1418,10 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
         live_html = ""
         # Roles
         roles_text = str(live_responses.get("roles") or "").strip()
+        if roles_text and listed_roles and not roles_text.lower().startswith("no roles"):
+            _sel = [x.strip() for x in roles_text.replace("Participating roles:", "").split(",") if x.strip()]
+            _sel = [x for x in _sel if x in listed_roles]
+            roles_text = ("Participating roles: " + ", ".join(_sel)) if _sel else ""
         if roles_text:
             live_html += "<p><b>Participating roles:</b> %s</p>" % esc(roles_text)
         # Per-slide inject / decision items (may contain per-role data)

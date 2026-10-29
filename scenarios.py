@@ -225,7 +225,7 @@ BPO_META_DEFAULT = {
 }
 
 _BPO_AAR = {
-    "participants": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+    # "participants" is derived per deck from its Roles slide in _build_deck.
     "meta": BPO_META_DEFAULT,
     "assessment": BPO_ASSESSMENT_DEFAULT,
     "score": AAR_SCORE_DEFAULT,
@@ -238,7 +238,7 @@ _BPO_AAR = {
 }
 
 _IT_AAR = {
-    "participants": "CISO, Client delivery, InfoSec, IT, Communications",
+    # "participants" is derived per deck from its Roles slide in _build_deck.
     "meta": AAR_META_DEFAULT,
     "assessment": AAR_ASSESSMENT_DEFAULT,
     "score": AAR_SCORE_DEFAULT,
@@ -319,6 +319,125 @@ AAR_BODY = (
 _PREVENTIVE_WORDS = ("alert", "monitor", "review", "validate", "plan", "test", "schedule",
                      "audit", "training", "awareness", "prevent", "detect", "document",
                      "tune", "segment", "separate", "re-test", "retest", "assessment")
+
+
+# --------------------------------------------------------------------------- #
+# Role mapping: every role-like value (CAPA / after-action owners, action      #
+# owners, participant strings) must resolve to a role listed on the deck's     #
+# Roles slide. Aliases are the shorthand forms used in older decks; the        #
+# fallback list covers aliases whose natural target is not listed on a deck    #
+# (e.g. "Client delivery" on an IT deck).                                      #
+# --------------------------------------------------------------------------- #
+_OWNER_ALIASES = {
+    "ciso": "Corporate Security",
+    "infosec": "Corporate Security",
+    "security operations": "Corporate Security",
+    "security ops": "Corporate Security",
+    "security": "Corporate Security",
+    "iam": "Corporate Security",
+    "it": "IT Server & System Team",
+    "infra": "IT Server & System Team",
+    "infrastructure": "IT Server & System Team",
+    "cloud operations": "IT Server & System Team",
+    "service desk": "IT Desktop Team",
+    "communications": "Marketing",
+    "marketing": "Marketing",
+    "hr": "Human Resources",
+    "human resources": "Human Resources",
+    "procurement": "Compliance",
+    "dpo": "Compliance",
+    "legal": "Compliance",
+    "compliance": "Compliance",
+    "client delivery": "Client Delivery / Account Manager",
+    "client delivery / account manager": "Client Delivery / Account Manager",
+    "operations": "Care Operations Leads",
+    "care operations lead": "Care Operations Leads",
+    "care operations": "Care Operations Leads",
+    "customer care manager": "Customer Care Manager & Director",
+    "customer care managers": "Customer Care Manager & Director",
+    "operations director": "Customer Care Manager & Director",
+    "wfm": "Workforce Management",
+    "workforce management": "Workforce Management",
+    "team leaders": "Team Leaders",
+    "qa": "Quality & Training",
+    "quality & training": "Quality & Training",
+    "executive sponsor": "Executive Sponsor",
+    "executive leadership": "Executive Leadership",
+}
+
+_OWNER_FALLBACK = {
+    "client delivery": ["Compliance", "Marketing"],
+    "operations": ["Customer Care Manager & Director"],
+    "it": ["Executive Sponsor", "Executive Leadership"],
+}
+
+
+def map_owner(owner, listed):
+    """Resolve *owner* to a role that appears in *listed* (the deck's Roles
+    slide). Returns the matched listed role verbatim, or the original value
+    when nothing matches (so information is never silently dropped)."""
+    o = str(owner or "").strip()
+    listed = [str(l).strip() for l in (listed or []) if str(l).strip()]
+    if not o or not listed:
+        return o
+    low = {l.lower(): l for l in listed}
+    if o.lower() in low:
+        return low[o.lower()]
+    for l in listed:                       # substring match either way
+        if l.lower() in o.lower() or o.lower() in l.lower():
+            return l
+    canon = _OWNER_ALIASES.get(o.lower())
+    if canon:
+        if canon.lower() in low:
+            return low[canon.lower()]
+        for alt in _OWNER_FALLBACK.get(o.lower(), []):
+            if alt.lower() in low:
+                return low[alt.lower()]
+        kw = canon.split()[0].lower()      # first word of the canonical name
+        for l in listed:
+            if kw in l.lower():
+                return l
+    for word in re.split(r"\W+", o.lower()):   # last resort: keyword from owner
+        if len(word) > 3:
+            for l in listed:
+                if word in l.lower():
+                    return l
+    return o
+
+
+def normalize_question_callouts(questions, listed):
+    """Decision questions often open with a short role callout
+    ("WFM — …", "Care Operations Lead — …"). Rewrite any callout that
+    resolves to a listed role so it matches the Roles slide name exactly.
+    Non-role prefixes (ordinary question text) are left untouched."""
+    out = []
+    for q in questions or []:
+        q = str(q)
+        m = re.match(r"^([A-Za-z][A-Za-z &/]{0,31}?)\s+[\u2014\u2013-]\s+", q)
+        if m:
+            prefix = m.group(1).strip()
+            resolved = map_owner(prefix, listed)
+            if resolved and resolved != prefix and resolved in [str(l) for l in listed]:
+                q = resolved + q[m.end(1):]
+        out.append(q)
+    return out
+
+
+def sanitize_actions(actions, listed):
+    """Return actions with every owner mapped to a listed role."""
+    return [dict(a, owner=map_owner(a.get("owner"), listed))
+            if isinstance(a, dict) else a
+            for a in (actions or [])]
+
+
+def roles_of(deck):
+    """The deck's listed roles, read from its Roles slide."""
+    for sl in deck.get("slides") or []:
+        if (sl.get("name") or "") == "Roles":
+            return [str((r or {}).get("role") or "").strip()
+                    for r in ((sl.get("data") or {}).get("roles") or [])
+                    if isinstance(r, dict) and str((r or {}).get("role") or "").strip()]
+    return []
 
 
 def capa_rows(actions):
@@ -456,6 +575,12 @@ def inject_slides(injs):
 def _build_deck(s):
     cat = s["category"]
     aar = _aar(cat)
+    # Roles listed on this deck's Roles slide — the single source of truth for
+    # participant names and action/CAPA owners in the AAR and executive report.
+    listed = [str(r.get("role") or "").strip()
+              for r in (s.get("roles") or _DEFAULT_ROLES[cat]) if isinstance(r, dict)]
+    listed = [x for x in listed if x]
+    actions = sanitize_actions(s.get("actions") or [], listed)
     da = s.get("decision_a_name", "Initial response")
     db = s.get("decision_b_name", "Impact")
     injs = inject_slides(s.get("injects"))
@@ -497,7 +622,8 @@ def _build_deck(s):
     if injs:
         slides.append(injs[0])
     # Decision A with response fields (paired questions+responses)
-    q1_pairs = [{"question": q, "response": ""} for q in s["q1"]]
+    q1_pairs = [{"question": q, "response": ""}
+                for q in normalize_question_callouts(s["q1"], listed)]
     slides.append({
         "name": "Decision A — " + da, "layout": "content",
         "body": "## Decision A — %s\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}" % da,
@@ -508,7 +634,8 @@ def _build_deck(s):
     if len(injs) > 2:
         slides.append(injs[2])
     # Decision B with response fields (paired questions+responses)
-    q2_pairs = [{"question": q, "response": ""} for q in s["q2"]]
+    q2_pairs = [{"question": q, "response": ""}
+                for q in normalize_question_callouts(s["q2"], listed)]
     slides.append({
         "name": "Decision B — " + db, "layout": "content",
         "body": "## Decision B — %s\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}" % db,
@@ -547,14 +674,14 @@ def _build_deck(s):
             "name": "After Action Executive Summary", "layout": "content",
             "body": AAR_BODY,
             "data": {"exercise": {"name": s["title"], "date": ""},
-                     "participants": aar["participants"],
+                     "participants": ", ".join(listed),
                      "highlights": s["highlights"], "lessons": s["lessons"],
                      "story": story_summary(s),
                      "discussion": {"injects": [{"inject": "Inject #%d — %s" % (i+1, inj.get("title","")), "time": inj.get("time",""), "detail": inj.get("detail","")} for i, inj in enumerate(s.get("injects") or [])],
                                      "decisions": [{"decision": "Decision A — " + da, "responses": ["" for _ in s["q1"]]}, {"decision": "Decision B — " + db, "responses": ["" for _ in s["q2"]]}]},
-                     "recommendations": recommendations_from_actions(s.get("actions") or []),
-                     "capa": capa_rows(s.get("actions") or []),
-                     "meta": dict(aar["meta"]),
+                     "recommendations": recommendations_from_actions(actions),
+                     "capa": capa_rows(actions),
+                     "meta": dict(aar["meta"], prepared_for=", ".join(listed)),
                      "executive_assessment": aar["assessment"],
                      "score": dict(aar["score"]),
                      "capability": [dict(r) for r in aar["capability"]],
@@ -567,7 +694,7 @@ def _build_deck(s):
         {
             "name": "After-action review", "layout": "content",
             "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
-            "data": {"actions": s["actions"], "next_step": s["next_step"]},
+            "data": {"actions": actions, "next_step": s["next_step"]},
         },
     ]
     return {
@@ -814,7 +941,7 @@ SCENARIOS = [
         "q1": [
             "Do you confront the employee now, or continue monitoring? Who decides? (A.5.25, A.6.5)",
             "What do you disable — access, badge, sessions? (A.8.3)",
-            "How do you preserve evidence for HR and legal? (A.5.28, A.8.15)",
+            "How do you preserve evidence for Human Resources and Compliance? (A.5.28, A.8.15)",
             "Which clients are affected, and what is the notification trigger? (A.5.20)",
         ],
         "inject2": "Thursday — the agent's personal cloud account is found to contain client PII going back three months, and an accomplice on the same shift is identified.",

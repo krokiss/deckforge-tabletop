@@ -16,7 +16,8 @@ from scenarios import (AAR_ASSESSMENT_DEFAULT, AAR_BODY, AAR_CAPABILITY_DEFAULT,
                        AAR_DECISIONS_REQUESTED, AAR_EVIDENCE_PACK, AAR_FRAMEWORK_ALIGNMENT,
                        AAR_KPIS, AAR_META_DEFAULT, AAR_ROADMAP, AAR_SCORE_DEFAULT,
                        SCENARIO_DECKS, capa_rows, deck_story, inject_slides,
-                       recommendations_from_actions)
+                       normalize_question_callouts, recommendations_from_actions,
+                       roles_of, sanitize_actions)
 
 EXERCISE_DECKS = [
     # ------------------------------------------------------------------ #
@@ -175,7 +176,6 @@ EXERCISE_DECKS = [
                 "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}",
                 "data": {
                     "exercise": {"name": "Ransomware at a BPO", "date": ""},
-                    "participants": "CISO, Client delivery, InfoSec, Service desk, Communications",
                     "highlights": [
                         "The claims environment was isolated from client shares within the first 15 minutes",
                         "All nine clients were briefed with a single, consistent message",
@@ -361,7 +361,6 @@ EXERCISE_DECKS = [
                 "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}",
                 "data": {
                     "exercise": {"name": "Breach via Remote-Access Vendor", "date": ""},
-                    "participants": "CISO, Client delivery, Procurement, Cloud operations, DPO",
                     "highlights": [
                         "The vendor platform was suspended before the payroll run was exposed further",
                         "Both affected clients were notified with the exposure window and scope",
@@ -547,7 +546,6 @@ EXERCISE_DECKS = [
                 "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}",
                 "data": {
                     "exercise": {"name": "Insider Data Theft by an Agent", "date": ""},
-                    "participants": "CISO, Client delivery, HR, DPO, IAM",
                     "highlights": [
                         "The agent's access was revoked within the hour, before the shift ended",
                         "Evidence was preserved with a forensic chain of custody",
@@ -628,11 +626,44 @@ _BPO_META = {
 
 def _enrich_aar(deck):
     """Add the summary, recommendations and CAPA register to a
-    deck's After Action Executive Summary slide, synthesised from the deck's
-    own slides. Scenario decks already carry these fields (built from their
-    specs) — this fills the hand-written BPO decks and upgrades the template."""
+deck's After Action Executive Summary slide, synthesised from the deck's
+own slides. Scenario decks already carry these fields (built from their
+specs) — this fills the hand-written BPO decks and upgrades the template.
+
+Role handling: participant names and action/CAPA owners come only from the
+deck's Roles slide — every owner is passed through sanitize_actions() and the
+Participants line is rewritten from the listed roles, so the AAR and the
+executive report never name a role that is not on the Roles slide."""
+    listed = roles_of(deck)
     out = []
     for s in deck.get("slides") or []:
+        if listed and s.get("name", "").startswith("Decision"):
+            sd = s.get("data") or {}
+            touched = False
+            if isinstance(sd.get("questions"), list):
+                nq = normalize_question_callouts(sd["questions"], listed)
+                if nq != sd["questions"]:
+                    sd = dict(sd, questions=nq)
+                    touched = True
+            if isinstance(sd.get("pairs"), list):
+                pairs = []
+                for p in sd["pairs"]:
+                    if isinstance(p, dict):
+                        n = normalize_question_callouts([p.get("question") or ""], listed)[0]
+                        if n != p.get("question"):
+                            p = dict(p, question=n)
+                            touched = True
+                    pairs.append(p)
+                if touched:
+                    sd = dict(sd, pairs=pairs)
+            if touched:
+                s = dict(s, data=sd)
+        if s.get("name", "") == "After-action review" and listed:
+            rd = dict(s.get("data") or {})
+            acts = sanitize_actions(rd.get("actions") or [], listed)
+            if acts:
+                rd["actions"] = acts
+                s = dict(s, data=rd)
         if s.get("name", "").startswith("After Action Executive"):
             s = dict(s)
             d = dict(s.get("data") or {})
@@ -644,12 +675,17 @@ def _enrich_aar(deck):
                 if sl.get("name", "") == "After-action review":
                     actions = (sl.get("data") or {}).get("actions") or []
                     break
+            actions = sanitize_actions(actions, listed)
             if not d.get("recommendations"):
                 d["recommendations"] = recommendations_from_actions(actions)
             if not d.get("capa"):
                 d["capa"] = capa_rows(actions)
+            if listed:
+                d["participants"] = ", ".join(listed)
             if not d.get("meta"):
                 d["meta"] = dict(AAR_META_DEFAULT)
+            if listed and isinstance(d.get("meta"), dict):
+                d["meta"]["prepared_for"] = ", ".join(listed)
             if not d.get("executive_assessment"):
                 d["executive_assessment"] = AAR_ASSESSMENT_DEFAULT
             if not d.get("score"):
@@ -796,10 +832,10 @@ def policy_guidance_slide():
             ],
             "clocks": [
                 "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-                "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-                "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+                "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+                "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
                 "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-                "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+                "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
                 "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
                 "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7).",
             ],

@@ -81,10 +81,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -393,7 +393,7 @@
               "name": "Cyber-Intrusion",
               "date": ""
             },
-            "participants": "CISO, Client delivery, InfoSec, IT, Communications",
+            "participants": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
             "highlights": [
               "Shadow admin accounts were identified and revoked within the first hour",
               "Logging-disabled events were traced through vendor and domain logs",
@@ -445,16 +445,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Roll out PAM for all admin access (A.8.2) — owner: CISO.",
-              "Prioritise: Alert on logging-disabled events (A.8.15) — owner: Security operations.",
-              "Prioritise: Enforce MFA on the VPN (A.8.5) — owner: IT.",
-              "Prioritise: Rebaseline AD accounts and configuration (A.8.9) — owner: IT."
+              "Prioritise: Roll out PAM for all admin access (A.8.2) — owner: Corporate Security.",
+              "Prioritise: Alert on logging-disabled events (A.8.15) — owner: Corporate Security.",
+              "Prioritise: Enforce MFA on the VPN (A.8.5) — owner: Corporate Security.",
+              "Prioritise: Rebaseline AD accounts and configuration (A.8.9) — owner: Corporate Security."
             ],
             "capa": [
               {
                 "item": "Roll out PAM for all admin access (A.8.2)",
                 "type": "Corrective",
-                "owner": "CISO",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.2",
@@ -463,7 +463,7 @@
               {
                 "item": "Alert on logging-disabled events (A.8.15)",
                 "type": "Preventive",
-                "owner": "Security operations",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.15",
@@ -472,7 +472,7 @@
               {
                 "item": "Enforce MFA on the VPN (A.8.5)",
                 "type": "Corrective",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.5",
@@ -481,7 +481,7 @@
               {
                 "item": "Rebaseline AD accounts and configuration (A.8.9)",
                 "type": "Corrective",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.9",
@@ -489,7 +489,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
+              "prepared_for": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
@@ -650,19 +650,19 @@
             "actions": [
               {
                 "item": "Roll out PAM for all admin access (A.8.2)",
-                "owner": "CISO"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Alert on logging-disabled events (A.8.15)",
-                "owner": "Security operations"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Enforce MFA on the VPN (A.8.5)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Rebaseline AD accounts and configuration (A.8.9)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               }
             ],
             "next_step": "Incident review within 5 working days; AD controls into the internal audit programme."
@@ -776,10 +776,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -1088,7 +1088,7 @@
               "name": "Data Loss",
               "date": ""
             },
-            "participants": "CISO, Client delivery, InfoSec, IT, Communications",
+            "participants": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
             "highlights": [
               "The misconfigured bucket was identified and taken offline the same day",
               "Access logs were preserved before permissions were changed",
@@ -1140,16 +1140,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Add automated checks for public storage permissions (A.8.9) — owner: IT.",
-              "Prioritise: Review and revoke external links quarterly (A.8.3) — owner: InfoSec.",
-              "Prioritise: Enable DLP on storage and portals (A.8.12) — owner: Security operations.",
-              "Prioritise: Alert on new public links and permission changes (A.8.16) — owner: Security operations."
+              "Prioritise: Add automated checks for public storage permissions (A.8.9) — owner: Corporate Security.",
+              "Prioritise: Review and revoke external links quarterly (A.8.3) — owner: Corporate Security.",
+              "Prioritise: Enable DLP on storage and portals (A.8.12) — owner: Corporate Security.",
+              "Prioritise: Alert on new public links and permission changes (A.8.16) — owner: Corporate Security."
             ],
             "capa": [
               {
                 "item": "Add automated checks for public storage permissions (A.8.9)",
                 "type": "Corrective",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.9",
@@ -1158,7 +1158,7 @@
               {
                 "item": "Review and revoke external links quarterly (A.8.3)",
                 "type": "Preventive",
-                "owner": "InfoSec",
+                "owner": "Corporate Security",
                 "due": "Quarterly",
                 "target": "Quarterly / recurring",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.3",
@@ -1167,7 +1167,7 @@
               {
                 "item": "Enable DLP on storage and portals (A.8.12)",
                 "type": "Corrective",
-                "owner": "Security operations",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.12",
@@ -1176,7 +1176,7 @@
               {
                 "item": "Alert on new public links and permission changes (A.8.16)",
                 "type": "Preventive",
-                "owner": "Security operations",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.16",
@@ -1184,7 +1184,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
+              "prepared_for": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
@@ -1345,19 +1345,19 @@
             "actions": [
               {
                 "item": "Add automated checks for public storage permissions (A.8.9)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Review and revoke external links quarterly (A.8.3)",
-                "owner": "InfoSec"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Enable DLP on storage and portals (A.8.12)",
-                "owner": "Security operations"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Alert on new public links and permission changes (A.8.16)",
-                "owner": "Security operations"
+                "owner": "Corporate Security"
               }
             ],
             "next_step": "Cloud security review within 10 working days; storage config checks into ISMS audits."
@@ -1471,10 +1471,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -1783,7 +1783,7 @@
               "name": "Ransomware",
               "date": ""
             },
-            "participants": "CISO, Client delivery, InfoSec, IT, Communications",
+            "participants": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
             "highlights": [
               "Systems were disconnected from the network before encryption could spread further",
               "Backup integrity was proven before any restore decision was made",
@@ -1835,16 +1835,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Harden the backup platform with separate admin roles (A.8.2) — owner: InfoSec.",
-              "Prioritise: Move to immutable or offline backups (A.8.13) — owner: IT.",
-              "Prioritise: Document and test a replay-and-restore procedure (A.8.13) — owner: IT.",
-              "Prioritise: Segment file shares per client (A.8.31) — owner: InfoSec."
+              "Prioritise: Harden the backup platform with separate admin roles (A.8.2) — owner: Corporate Security.",
+              "Prioritise: Move to immutable or offline backups (A.8.13) — owner: Corporate Security.",
+              "Prioritise: Document and test a replay-and-restore procedure (A.8.13) — owner: Corporate Security.",
+              "Prioritise: Segment file shares per client (A.8.31) — owner: Corporate Security."
             ],
             "capa": [
               {
                 "item": "Harden the backup platform with separate admin roles (A.8.2)",
                 "type": "Preventive",
-                "owner": "InfoSec",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.2",
@@ -1853,7 +1853,7 @@
               {
                 "item": "Move to immutable or offline backups (A.8.13)",
                 "type": "Corrective",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.13",
@@ -1862,7 +1862,7 @@
               {
                 "item": "Document and test a replay-and-restore procedure (A.8.13)",
                 "type": "Preventive",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.13",
@@ -1871,7 +1871,7 @@
               {
                 "item": "Segment file shares per client (A.8.31)",
                 "type": "Preventive",
-                "owner": "InfoSec",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.31",
@@ -1879,7 +1879,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
+              "prepared_for": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
@@ -2040,19 +2040,19 @@
             "actions": [
               {
                 "item": "Harden the backup platform with separate admin roles (A.8.2)",
-                "owner": "InfoSec"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Move to immutable or offline backups (A.8.13)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Document and test a replay-and-restore procedure (A.8.13)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Segment file shares per client (A.8.31)",
-                "owner": "InfoSec"
+                "owner": "Corporate Security"
               }
             ],
             "next_step": "Backup-resilience review within 10 working days; full restore test this quarter."
@@ -2166,10 +2166,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -2478,7 +2478,7 @@
               "name": "Denial of Service",
               "date": ""
             },
-            "participants": "CISO, Client delivery, InfoSec, IT, Communications",
+            "participants": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
             "highlights": [
               "The DDoS mitigation provider was engaged within the first hour",
               "Priority portals and APIs were kept online through both waves",
@@ -2530,16 +2530,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Pre-arrange a DDoS mitigation retainer (A.5.24) — owner: InfoSec.",
-              "Prioritise: Add rate-limiting and WAF rules for portals (A.8.9) — owner: IT.",
-              "Prioritise: Load-test portals to 3x peak (A.8.6) — owner: IT.",
-              "Prioritise: Stand up a client status page for incidents (A.5.20) — owner: Communications."
+              "Prioritise: Pre-arrange a DDoS mitigation retainer (A.5.24) — owner: Corporate Security.",
+              "Prioritise: Add rate-limiting and WAF rules for portals (A.8.9) — owner: Corporate Security.",
+              "Prioritise: Load-test portals to 3x peak (A.8.6) — owner: Corporate Security.",
+              "Prioritise: Stand up a client status page for incidents (A.5.20) — owner: Marketing."
             ],
             "capa": [
               {
                 "item": "Pre-arrange a DDoS mitigation retainer (A.5.24)",
                 "type": "Corrective",
-                "owner": "InfoSec",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.24",
@@ -2548,7 +2548,7 @@
               {
                 "item": "Add rate-limiting and WAF rules for portals (A.8.9)",
                 "type": "Corrective",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.9",
@@ -2557,7 +2557,7 @@
               {
                 "item": "Load-test portals to 3x peak (A.8.6)",
                 "type": "Preventive",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.6",
@@ -2566,7 +2566,7 @@
               {
                 "item": "Stand up a client status page for incidents (A.5.20)",
                 "type": "Corrective",
-                "owner": "Communications",
+                "owner": "Marketing",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -2574,7 +2574,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
+              "prepared_for": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
@@ -2735,19 +2735,19 @@
             "actions": [
               {
                 "item": "Pre-arrange a DDoS mitigation retainer (A.5.24)",
-                "owner": "InfoSec"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Add rate-limiting and WAF rules for portals (A.8.9)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Load-test portals to 3x peak (A.8.6)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Stand up a client status page for incidents (A.5.20)",
-                "owner": "Communications"
+                "owner": "Marketing"
               }
             ],
             "next_step": "Edge-capacity review within 10 working days; DDoS tabletop next quarter."
@@ -2861,10 +2861,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -2992,7 +2992,7 @@
                 "response": ""
               },
               {
-                "question": "How do you preserve evidence for HR and legal? (A.5.28, A.8.15)",
+                "question": "How do you preserve evidence for Human Resources and Compliance? (A.5.28, A.8.15)",
                 "response": ""
               },
               {
@@ -3174,7 +3174,7 @@
               "name": "Insider Threat",
               "date": ""
             },
-            "participants": "CISO, Client delivery, InfoSec, IT, Communications",
+            "participants": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
             "highlights": [
               "The insider's access was disabled within the hour, before the shift ended",
               "Evidence was preserved with HR and legal chain of custody",
@@ -3226,16 +3226,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Enable USB and email DLP policies (A.8.12) — owner: InfoSec.",
-              "Prioritise: Reinforce the exit and disciplinary process (A.6.5) — owner: HR.",
-              "Prioritise: Add insider-threat analytics to SIEM (A.8.16) — owner: Security operations.",
-              "Prioritise: Refresh screening for high-access roles (A.6.1) — owner: HR."
+              "Prioritise: Enable USB and email DLP policies (A.8.12) — owner: Corporate Security.",
+              "Prioritise: Reinforce the exit and disciplinary process (A.6.5) — owner: Human Resources.",
+              "Prioritise: Add insider-threat analytics to SIEM (A.8.16) — owner: Corporate Security.",
+              "Prioritise: Refresh screening for high-access roles (A.6.1) — owner: Human Resources."
             ],
             "capa": [
               {
                 "item": "Enable USB and email DLP policies (A.8.12)",
                 "type": "Corrective",
-                "owner": "InfoSec",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.12",
@@ -3244,7 +3244,7 @@
               {
                 "item": "Reinforce the exit and disciplinary process (A.6.5)",
                 "type": "Corrective",
-                "owner": "HR",
+                "owner": "Human Resources",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.6.5",
@@ -3253,7 +3253,7 @@
               {
                 "item": "Add insider-threat analytics to SIEM (A.8.16)",
                 "type": "Corrective",
-                "owner": "Security operations",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.16",
@@ -3262,7 +3262,7 @@
               {
                 "item": "Refresh screening for high-access roles (A.6.1)",
                 "type": "Corrective",
-                "owner": "HR",
+                "owner": "Human Resources",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.6.1",
@@ -3270,7 +3270,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
+              "prepared_for": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
@@ -3431,19 +3431,19 @@
             "actions": [
               {
                 "item": "Enable USB and email DLP policies (A.8.12)",
-                "owner": "InfoSec"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Reinforce the exit and disciplinary process (A.6.5)",
-                "owner": "HR"
+                "owner": "Human Resources"
               },
               {
                 "item": "Add insider-threat analytics to SIEM (A.8.16)",
-                "owner": "Security operations"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Refresh screening for high-access roles (A.6.1)",
-                "owner": "HR"
+                "owner": "Human Resources"
               }
             ],
             "next_step": "People-controls review within 10 working days; DLP gap list into the ISMS risk register."
@@ -3557,10 +3557,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -3869,7 +3869,7 @@
               "name": "Compromised Credentials",
               "date": ""
             },
-            "participants": "CISO, Client delivery, InfoSec, IT, Communications",
+            "participants": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
             "highlights": [
               "All 40 leaked accounts were reset and MFA enforced the same day",
               "UEBA flagged lateral movement within hours of the alert",
@@ -3921,16 +3921,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Enforce MFA on all external access (A.8.5) — owner: IT.",
-              "Prioritise: Subscribe to credential-monitoring (dark web) service (A.5.24) — owner: InfoSec.",
-              "Prioritise: Add UEBA alerts for finance portals (A.8.16) — owner: Security operations.",
-              "Prioritise: Review password policy and SSO (A.8.4) — owner: IT."
+              "Prioritise: Enforce MFA on all external access (A.8.5) — owner: Corporate Security.",
+              "Prioritise: Subscribe to credential-monitoring (dark web) service (A.5.24) — owner: Corporate Security.",
+              "Prioritise: Add UEBA alerts for finance portals (A.8.16) — owner: Corporate Security.",
+              "Prioritise: Review password policy and SSO (A.8.4) — owner: Corporate Security."
             ],
             "capa": [
               {
                 "item": "Enforce MFA on all external access (A.8.5)",
                 "type": "Corrective",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.5",
@@ -3939,7 +3939,7 @@
               {
                 "item": "Subscribe to credential-monitoring (dark web) service (A.5.24)",
                 "type": "Preventive",
-                "owner": "InfoSec",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 dark web",
@@ -3948,7 +3948,7 @@
               {
                 "item": "Add UEBA alerts for finance portals (A.8.16)",
                 "type": "Preventive",
-                "owner": "Security operations",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.16",
@@ -3957,7 +3957,7 @@
               {
                 "item": "Review password policy and SSO (A.8.4)",
                 "type": "Preventive",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.4",
@@ -3965,7 +3965,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
+              "prepared_for": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
@@ -4126,19 +4126,19 @@
             "actions": [
               {
                 "item": "Enforce MFA on all external access (A.8.5)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Subscribe to credential-monitoring (dark web) service (A.5.24)",
-                "owner": "InfoSec"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Add UEBA alerts for finance portals (A.8.16)",
-                "owner": "Security operations"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Review password policy and SSO (A.8.4)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               }
             ],
             "next_step": "Identity-controls review within 5 working days; MFA coverage audit this month."
@@ -4252,10 +4252,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -4564,7 +4564,7 @@
               "name": "Cyberattack on CRM System",
               "date": ""
             },
-            "participants": "CISO, Client delivery, InfoSec, IT, Communications",
+            "participants": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
             "highlights": [
               "The shared CRM was isolated before the attacker could move further between silos",
               "The vulnerable plugin was patched and validated with the vendor",
@@ -4616,16 +4616,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Enforce client data segregation in the CRM (A.8.31) — owner: InfoSec.",
-              "Prioritise: Add a vulnerability-scan and patch cadence for plugins (A.8.8) — owner: IT.",
-              "Prioritise: Rebuild the CRM from a clean backup with config review (A.8.13, A.8.9) — owner: IT.",
-              "Prioritise: Create a data-exposure notification template (A.5.20) — owner: Client delivery."
+              "Prioritise: Enforce client data segregation in the CRM (A.8.31) — owner: Corporate Security.",
+              "Prioritise: Add a vulnerability-scan and patch cadence for plugins (A.8.8) — owner: Corporate Security.",
+              "Prioritise: Rebuild the CRM from a clean backup with config review (A.8.13, A.8.9) — owner: Corporate Security.",
+              "Prioritise: Create a data-exposure notification template (A.5.20) — owner: Compliance."
             ],
             "capa": [
               {
                 "item": "Enforce client data segregation in the CRM (A.8.31)",
                 "type": "Corrective",
-                "owner": "InfoSec",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.31",
@@ -4634,7 +4634,7 @@
               {
                 "item": "Add a vulnerability-scan and patch cadence for plugins (A.8.8)",
                 "type": "Corrective",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.8",
@@ -4643,7 +4643,7 @@
               {
                 "item": "Rebuild the CRM from a clean backup with config review (A.8.13, A.8.9)",
                 "type": "Preventive",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.13, A.8.9",
@@ -4652,7 +4652,7 @@
               {
                 "item": "Create a data-exposure notification template (A.5.20)",
                 "type": "Corrective",
-                "owner": "Client delivery",
+                "owner": "Compliance",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -4660,7 +4660,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
+              "prepared_for": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
@@ -4821,19 +4821,19 @@
             "actions": [
               {
                 "item": "Enforce client data segregation in the CRM (A.8.31)",
-                "owner": "InfoSec"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Add a vulnerability-scan and patch cadence for plugins (A.8.8)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Rebuild the CRM from a clean backup with config review (A.8.13, A.8.9)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Create a data-exposure notification template (A.5.20)",
-                "owner": "Client delivery"
+                "owner": "Compliance"
               }
             ],
             "next_step": "CRM platform review within 10 working days; multi-tenancy assessment this quarter."
@@ -4947,10 +4947,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -5069,19 +5069,19 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager — who declares a continuity event for the care program, and who triggers the BCP? (A.5.24, A.5.29)",
+                "question": "Customer Care Manager & Director — who declares a continuity event for the care program, and who triggers the BCP? (A.5.24, A.5.29)",
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — which care queues stay live at degraded service — emergency and complaint lines first — and which are paused? (A.5.29)",
+                "question": "Care Operations Leads — which care queues stay live at degraded service — emergency and complaint lines first — and which are paused? (A.5.29)",
                 "response": ""
               },
               {
-                "question": "Team Leader — what do agents tell callers right now, and how do you keep the floor productive while customers wait? (A.5.24, A.6.7)",
+                "question": "Team Leaders — what do agents tell callers right now, and how do you keep the floor productive while customers wait? (A.5.24, A.6.7)",
                 "response": ""
               },
               {
-                "question": "WFM — how do you re-forecast inbound call volumes when disappointed customers keep calling in? (A.8.6)",
+                "question": "Workforce Management — how do you re-forecast inbound call volumes when disappointed customers keep calling in? (A.8.6)",
                 "response": ""
               }
             ],
@@ -5121,19 +5121,19 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager — what is the inbound backlog-clearing plan — unanswered calls, queued chats, open cases — once the link returns, and in what queue order? (A.5.29, A.8.6)",
+                "question": "Customer Care Manager & Director — what is the inbound backlog-clearing plan — unanswered calls, queued chats, open cases — once the link returns, and in what queue order? (A.5.29, A.8.6)",
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — what service-level relief or credits do we offer the client, and who authorises it? (A.5.20)",
+                "question": "Care Operations Leads — what service-level relief or credits do we offer the client, and who authorises it? (A.5.20)",
                 "response": ""
               },
               {
-                "question": "Client Delivery Manager — what timeline do we commit to the client for restored answer times, and how is progress reported? (A.5.20)",
+                "question": "Client Delivery / Account Manager — what timeline do we commit to the client for restored answer times, and how is progress reported? (A.5.20)",
                 "response": ""
               },
               {
-                "question": "WFM — what staffing and shift changes cover the inbound backlog catch-up window? (A.5.29)",
+                "question": "Workforce Management — what staffing and shift changes cover the inbound backlog catch-up window? (A.5.29)",
                 "response": ""
               }
             ],
@@ -5259,7 +5259,7 @@
               "name": "Network Outage Affecting Global Connectivity",
               "date": ""
             },
-            "participants": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+            "participants": "Customer Care Manager & Director, Care Operations Leads, Team Leaders, Workforce Management, Client Delivery / Account Manager, Quality & Training, Human Resources, Executive Sponsor",
             "highlights": [
               "The continuity plan was triggered within 15 minutes of the link dropping",
               "Callers got clear hold messaging while customer records were unreachable",
@@ -5311,16 +5311,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Diversify the WAN paths with the telco (A.5.30) — owner: Operations.",
-              "Prioritise: Tabletop the care continuity playbook (A.5.29) — owner: Customer Care Manager.",
-              "Prioritise: Add a customer-visible status update routine (A.5.20) — owner: Client Delivery.",
+              "Prioritise: Diversify the WAN paths with the telco (A.5.30) — owner: Care Operations Leads.",
+              "Prioritise: Tabletop the care continuity playbook (A.5.29) — owner: Customer Care Manager & Director.",
+              "Prioritise: Add a customer-visible status update routine (A.5.20) — owner: Client Delivery / Account Manager.",
               "Prioritise: Rehearse degraded call-handling scripts on the floor (A.6.3) — owner: Team Leaders."
             ],
             "capa": [
               {
                 "item": "Diversify the WAN paths with the telco (A.5.30)",
                 "type": "Corrective",
-                "owner": "Operations",
+                "owner": "Care Operations Leads",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.30",
@@ -5329,7 +5329,7 @@
               {
                 "item": "Tabletop the care continuity playbook (A.5.29)",
                 "type": "Corrective",
-                "owner": "Customer Care Manager",
+                "owner": "Customer Care Manager & Director",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.29",
@@ -5338,7 +5338,7 @@
               {
                 "item": "Add a customer-visible status update routine (A.5.20)",
                 "type": "Corrective",
-                "owner": "Client Delivery",
+                "owner": "Client Delivery / Account Manager",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -5355,7 +5355,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+              "prepared_for": "Customer Care Manager & Director, Care Operations Leads, Team Leaders, Workforce Management, Client Delivery / Account Manager, Quality & Training, Human Resources, Executive Sponsor",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -5520,15 +5520,15 @@
             "actions": [
               {
                 "item": "Diversify the WAN paths with the telco (A.5.30)",
-                "owner": "Operations"
+                "owner": "Care Operations Leads"
               },
               {
                 "item": "Tabletop the care continuity playbook (A.5.29)",
-                "owner": "Customer Care Manager"
+                "owner": "Customer Care Manager & Director"
               },
               {
                 "item": "Add a customer-visible status update routine (A.5.20)",
-                "owner": "Client Delivery"
+                "owner": "Client Delivery / Account Manager"
               },
               {
                 "item": "Rehearse degraded call-handling scripts on the floor (A.6.3)",
@@ -5646,10 +5646,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -5768,19 +5768,19 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager — who declares a site-loss continuity event for the care program, and what is their authority? (A.5.24, A.5.29)",
+                "question": "Customer Care Manager & Director — who declares a site-loss continuity event for the care program, and what is their authority? (A.5.24, A.5.29)",
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — which inbound care queues move to Site A today, and which are suspended? (A.5.29)",
+                "question": "Care Operations Leads — which inbound care queues move to Site A today, and which are suspended? (A.5.29)",
                 "response": ""
               },
               {
-                "question": "Team Leader — how do you account for every evacuated care agent and redeploy the ones Site A can take? (A.5.29, A.6.7)",
+                "question": "Team Leaders — how do you account for every evacuated care agent and redeploy the ones Site A can take? (A.5.29, A.6.7)",
                 "response": ""
               },
               {
-                "question": "Client Delivery Manager — what is the notification sequence to the client, and who owns each message? (A.5.20)",
+                "question": "Client Delivery / Account Manager — what is the notification sequence to the client, and who owns each message? (A.5.20)",
                 "response": ""
               }
             ],
@@ -5820,19 +5820,19 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager — how is the unanswered-call and pending-chat backlog triaged and worked down across sites? (A.5.29, A.8.6)",
+                "question": "Customer Care Manager & Director — how is the unanswered-call and pending-chat backlog triaged and worked down across sites? (A.5.29, A.8.6)",
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — how is Site A capacity allocated across the inbound queues — emergency and complaint lines first? (A.8.6)",
+                "question": "Care Operations Leads — how is Site A capacity allocated across the inbound queues — emergency and complaint lines first? (A.8.6)",
                 "response": ""
               },
               {
-                "question": "Client Delivery Manager — what turnaround and service-credit position do we give the client? (A.5.20)",
+                "question": "Client Delivery / Account Manager — what turnaround and service-credit position do we give the client? (A.5.20)",
                 "response": ""
               },
               {
-                "question": "Customer Care Manager — what is the plan and timeline to resume the Site B care operation? (A.5.29, A.5.30)",
+                "question": "Customer Care Manager & Director — what is the plan and timeline to resume the Site B care operation? (A.5.29, A.5.30)",
                 "response": ""
               }
             ],
@@ -5958,7 +5958,7 @@
               "name": "Fire at Secondary Site During Peak Hours",
               "date": ""
             },
-            "participants": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+            "participants": "Customer Care Manager & Director, Care Operations Leads, Team Leaders, Workforce Management, Client Delivery / Account Manager, Quality & Training, Human Resources, Executive Sponsor",
             "highlights": [
               "The site was evacuated safely with every care agent accounted for",
               "Care queues were redistributed to Site A by end of day",
@@ -6010,16 +6010,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Measure and publish Site A care capacity (A.8.6) — owner: Care Operations Lead.",
-              "Prioritise: Stand up an alternate-site runbook for the care platform (A.5.30) — owner: Operations.",
-              "Prioritise: Agree an unanswered-call backlog-triage protocol with the client (A.5.20) — owner: Client Delivery.",
+              "Prioritise: Measure and publish Site A care capacity (A.8.6) — owner: Care Operations Leads.",
+              "Prioritise: Stand up an alternate-site runbook for the care platform (A.5.30) — owner: Care Operations Leads.",
+              "Prioritise: Agree an unanswered-call backlog-triage protocol with the client (A.5.20) — owner: Client Delivery / Account Manager.",
               "Prioritise: Rehearse evacuation accountability on every shift (A.5.29) — owner: Team Leaders."
             ],
             "capa": [
               {
                 "item": "Measure and publish Site A care capacity (A.8.6)",
                 "type": "Corrective",
-                "owner": "Care Operations Lead",
+                "owner": "Care Operations Leads",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.6",
@@ -6028,7 +6028,7 @@
               {
                 "item": "Stand up an alternate-site runbook for the care platform (A.5.30)",
                 "type": "Corrective",
-                "owner": "Operations",
+                "owner": "Care Operations Leads",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.30",
@@ -6037,7 +6037,7 @@
               {
                 "item": "Agree an unanswered-call backlog-triage protocol with the client (A.5.20)",
                 "type": "Corrective",
-                "owner": "Client Delivery",
+                "owner": "Client Delivery / Account Manager",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -6054,7 +6054,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+              "prepared_for": "Customer Care Manager & Director, Care Operations Leads, Team Leaders, Workforce Management, Client Delivery / Account Manager, Quality & Training, Human Resources, Executive Sponsor",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -6219,15 +6219,15 @@
             "actions": [
               {
                 "item": "Measure and publish Site A care capacity (A.8.6)",
-                "owner": "Care Operations Lead"
+                "owner": "Care Operations Leads"
               },
               {
                 "item": "Stand up an alternate-site runbook for the care platform (A.5.30)",
-                "owner": "Operations"
+                "owner": "Care Operations Leads"
               },
               {
                 "item": "Agree an unanswered-call backlog-triage protocol with the client (A.5.20)",
-                "owner": "Client Delivery"
+                "owner": "Client Delivery / Account Manager"
               },
               {
                 "item": "Rehearse evacuation accountability on every shift (A.5.29)",
@@ -6345,10 +6345,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -6467,19 +6467,19 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager — which inbound care channels are critical enough to keep running — emergency and complaint lines first — and which are suspended? (A.5.29)",
+                "question": "Customer Care Manager & Director — which inbound care channels are critical enough to keep running — emergency and complaint lines first — and which are suspended? (A.5.29)",
                 "response": ""
               },
               {
-                "question": "Customer Care Manager — who has authority to suspend care queues and to inform the client? (A.5.24, A.5.20)",
+                "question": "Customer Care Manager & Director — who has authority to suspend care queues and to inform the client? (A.5.24, A.5.20)",
                 "response": ""
               },
               {
-                "question": "Team Leader — what is the floor plan for your care team right now — redeploy, release, or hold? (A.6.7, A.5.29)",
+                "question": "Team Leaders — what is the floor plan for your care team right now — redeploy, release, or hold? (A.6.7, A.5.29)",
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — how are in-flight calls and open chats handed over so no customer is dropped mid-interaction? (A.5.29)",
+                "question": "Care Operations Leads — how are in-flight calls and open chats handed over so no customer is dropped mid-interaction? (A.5.29)",
                 "response": ""
               }
             ],
@@ -6519,19 +6519,19 @@
           "data": {
             "pairs": [
               {
-                "question": "WFM — what staffing and scheduling changes sustain inbound customer care through a multi-hour outage? (A.5.29, A.8.6)",
+                "question": "Workforce Management — what staffing and scheduling changes sustain inbound customer care through a multi-hour outage? (A.5.29, A.8.6)",
                 "response": ""
               },
               {
-                "question": "Client Delivery Manager — which care commitments and SLA deadlines move, and how are the renegotiations handled? (A.5.20)",
+                "question": "Client Delivery / Account Manager — which care commitments and SLA deadlines move, and how are the renegotiations handled? (A.5.20)",
                 "response": ""
               },
               {
-                "question": "Customer Care Manager — what is the order for resuming suspended inbound care queues once the site reopens? (A.5.29)",
+                "question": "Customer Care Manager & Director — what is the order for resuming suspended inbound care queues once the site reopens? (A.5.29)",
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — how is service-level progress reported to the client during the extended outage? (A.5.20)",
+                "question": "Care Operations Leads — how is service-level progress reported to the client during the extended outage? (A.5.20)",
                 "response": ""
               }
             ],
@@ -6657,7 +6657,7 @@
               "name": "Complete Power Outage at HQ",
               "date": ""
             },
-            "participants": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+            "participants": "Customer Care Manager & Director, Care Operations Leads, Team Leaders, Workforce Management, Client Delivery / Account Manager, Quality & Training, Human Resources, Executive Sponsor",
             "highlights": [
               "Triage was completed before the floor went dark, protecting in-flight customer interactions",
               "Emergency and complaint lines continued through the fallback arrangement",
@@ -6709,16 +6709,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Document the care continuity contingency for HQ (A.5.29) — owner: Customer Care Manager.",
-              "Prioritise: Test fallback care work at full program scale (A.6.7) — owner: Operations.",
-              "Prioritise: Agree SLA relief terms with the client in advance (A.5.20) — owner: Client Delivery.",
+              "Prioritise: Document the care continuity contingency for HQ (A.5.29) — owner: Customer Care Manager & Director.",
+              "Prioritise: Test fallback care work at full program scale (A.6.7) — owner: Care Operations Leads.",
+              "Prioritise: Agree SLA relief terms with the client in advance (A.5.20) — owner: Client Delivery / Account Manager.",
               "Prioritise: Write the floor release-or-hold script into the BCP (A.5.24) — owner: Team Leaders."
             ],
             "capa": [
               {
                 "item": "Document the care continuity contingency for HQ (A.5.29)",
                 "type": "Preventive",
-                "owner": "Customer Care Manager",
+                "owner": "Customer Care Manager & Director",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.29",
@@ -6727,7 +6727,7 @@
               {
                 "item": "Test fallback care work at full program scale (A.6.7)",
                 "type": "Preventive",
-                "owner": "Operations",
+                "owner": "Care Operations Leads",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.6.7",
@@ -6736,7 +6736,7 @@
               {
                 "item": "Agree SLA relief terms with the client in advance (A.5.20)",
                 "type": "Corrective",
-                "owner": "Client Delivery",
+                "owner": "Client Delivery / Account Manager",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -6753,7 +6753,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+              "prepared_for": "Customer Care Manager & Director, Care Operations Leads, Team Leaders, Workforce Management, Client Delivery / Account Manager, Quality & Training, Human Resources, Executive Sponsor",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -6918,15 +6918,15 @@
             "actions": [
               {
                 "item": "Document the care continuity contingency for HQ (A.5.29)",
-                "owner": "Customer Care Manager"
+                "owner": "Customer Care Manager & Director"
               },
               {
                 "item": "Test fallback care work at full program scale (A.6.7)",
-                "owner": "Operations"
+                "owner": "Care Operations Leads"
               },
               {
                 "item": "Agree SLA relief terms with the client in advance (A.5.20)",
-                "owner": "Client Delivery"
+                "owner": "Client Delivery / Account Manager"
               },
               {
                 "item": "Write the floor release-or-hold script into the BCP (A.5.24)",
@@ -7044,10 +7044,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -7166,19 +7166,19 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager — which inbound care queues receive the staff that reported in? (A.5.29)",
+                "question": "Customer Care Manager & Director — which inbound care queues receive the staff that reported in? (A.5.29)",
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — do you redeploy agents across the inbound queues, or protect the emergency and complaint lines? (A.5.29, A.8.6)",
+                "question": "Care Operations Leads — do you redeploy agents across the inbound queues, or protect the emergency and complaint lines? (A.5.29, A.8.6)",
                 "response": ""
               },
               {
-                "question": "Client Delivery Manager — what capacity message goes to the client, and when? (A.5.20)",
+                "question": "Client Delivery / Account Manager — what capacity message goes to the client, and when? (A.5.20)",
                 "response": ""
               },
               {
-                "question": "WFM — how do you forecast day-by-day availability and set minimum staffing per care queue? (A.5.29)",
+                "question": "Workforce Management — how do you forecast day-by-day availability and set minimum staffing per care queue? (A.5.29)",
                 "response": ""
               }
             ],
@@ -7218,19 +7218,19 @@
           "data": {
             "pairs": [
               {
-                "question": "Team Leader — how do you triage inbound care work — emergency and complaint lines first, non-essential inbound queues paused? (A.5.29)",
+                "question": "Team Leaders — how do you triage inbound care work — emergency and complaint lines first, non-essential inbound queues paused? (A.5.29)",
                 "response": ""
               },
               {
-                "question": "Customer Care Manager — what surge capacity exists — contractors, cross-trained agents, overtime, other sites? (A.5.30, A.8.6)",
+                "question": "Customer Care Manager & Director — what surge capacity exists — contractors, cross-trained agents, overtime, other sites? (A.5.30, A.8.6)",
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — how is SLA impact tracked and reported to the client per inbound care queue? (A.5.20)",
+                "question": "Care Operations Leads — how is SLA impact tracked and reported to the client per inbound care queue? (A.5.20)",
                 "response": ""
               },
               {
-                "question": "WFM — what workload limits and shift patterns keep the remaining care staff sustainable? (A.5.29)",
+                "question": "Workforce Management — what workload limits and shift patterns keep the remaining care staff sustainable? (A.5.29)",
                 "response": ""
               }
             ],
@@ -7356,7 +7356,7 @@
               "name": "Geopolitic Concerns Reducing Workforce Availability",
               "date": ""
             },
-            "participants": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+            "participants": "Customer Care Manager & Director, Care Operations Leads, Team Leaders, Workforce Management, Client Delivery / Account Manager, Quality & Training, Human Resources, Executive Sponsor",
             "highlights": [
               "Inbound care queues were prioritised and the capacity message reached the client within hours",
               "Cross-training absorbed part of the absenteeism shock on day one",
@@ -7408,16 +7408,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Define minimum viable staffing per inbound care queue (A.5.29) — owner: Customer Care Manager.",
+              "Prioritise: Define minimum viable staffing per inbound care queue (A.5.29) — owner: Customer Care Manager & Director.",
               "Prioritise: Expand the cross-training matrix across care channels (A.6.3) — owner: Team Leaders.",
-              "Prioritise: Build the customer capacity-reporting routine (A.5.20) — owner: Client Delivery.",
-              "Prioritise: Set enforced workload limits for crisis shifts (A.5.29) — owner: WFM."
+              "Prioritise: Build the customer capacity-reporting routine (A.5.20) — owner: Client Delivery / Account Manager.",
+              "Prioritise: Set enforced workload limits for crisis shifts (A.5.29) — owner: Workforce Management."
             ],
             "capa": [
               {
                 "item": "Define minimum viable staffing per inbound care queue (A.5.29)",
                 "type": "Corrective",
-                "owner": "Customer Care Manager",
+                "owner": "Customer Care Manager & Director",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.29",
@@ -7435,7 +7435,7 @@
               {
                 "item": "Build the customer capacity-reporting routine (A.5.20)",
                 "type": "Corrective",
-                "owner": "Client Delivery",
+                "owner": "Client Delivery / Account Manager",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -7444,7 +7444,7 @@
               {
                 "item": "Set enforced workload limits for crisis shifts (A.5.29)",
                 "type": "Corrective",
-                "owner": "WFM",
+                "owner": "Workforce Management",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.29",
@@ -7452,7 +7452,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+              "prepared_for": "Customer Care Manager & Director, Care Operations Leads, Team Leaders, Workforce Management, Client Delivery / Account Manager, Quality & Training, Human Resources, Executive Sponsor",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -7617,7 +7617,7 @@
             "actions": [
               {
                 "item": "Define minimum viable staffing per inbound care queue (A.5.29)",
-                "owner": "Customer Care Manager"
+                "owner": "Customer Care Manager & Director"
               },
               {
                 "item": "Expand the cross-training matrix across care channels (A.6.3)",
@@ -7625,11 +7625,11 @@
               },
               {
                 "item": "Build the customer capacity-reporting routine (A.5.20)",
-                "owner": "Client Delivery"
+                "owner": "Client Delivery / Account Manager"
               },
               {
                 "item": "Set enforced workload limits for crisis shifts (A.5.29)",
-                "owner": "WFM"
+                "owner": "Workforce Management"
               }
             ],
             "next_step": "Workforce-resilience plan within 10 working days; minimum care staffing reviewed with the client."
@@ -7743,10 +7743,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -7865,19 +7865,19 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager — do you suspend account servicing on the care desk immediately, and who authorises that call? (A.5.24, A.5.25)",
+                "question": "Customer Care Manager & Director — do you suspend account servicing on the care desk immediately, and who authorises that call? (A.5.24, A.5.25)",
                 "response": ""
               },
               {
-                "question": "Care Operations Lead — which customer accounts and queues are affected, and what is the customer impact? (A.5.20)",
+                "question": "Care Operations Leads — which customer accounts and queues are affected, and what is the customer impact? (A.5.20)",
                 "response": ""
               },
               {
-                "question": "Customer Care Manager — what is the escalation path — care leadership, client contacts, fraud team? (A.5.24)",
+                "question": "Customer Care Manager & Director — what is the escalation path — care leadership, client contacts, fraud team? (A.5.24)",
                 "response": ""
               },
               {
-                "question": "Team Leader — how do you keep the care desk answering calls for unaffected work while changes are paused? (A.5.29, A.5.30)",
+                "question": "Team Leaders — how do you keep the care desk answering calls for unaffected work while changes are paused? (A.5.29, A.5.30)",
                 "response": ""
               }
             ],
@@ -7917,19 +7917,19 @@
           "data": {
             "pairs": [
               {
-                "question": "Care Operations Lead — what identity-verification controls now apply to every inbound customer account interaction? (A.5.24, A.5.25)",
+                "question": "Care Operations Leads — what identity-verification controls now apply to every inbound customer account interaction? (A.5.24, A.5.25)",
                 "response": ""
               },
               {
-                "question": "Customer Care Manager — how is account servicing resumed, and who signs off? (A.5.29)",
+                "question": "Customer Care Manager & Director — how is account servicing resumed, and who signs off? (A.5.29)",
                 "response": ""
               },
               {
-                "question": "Client Delivery Manager — which customer and regulatory notifications are required, and who owns them? (A.5.20)",
+                "question": "Client Delivery / Account Manager — which customer and regulatory notifications are required, and who owns them? (A.5.20)",
                 "response": ""
               },
               {
-                "question": "Team Leader — what briefing does the care desk get before the next shift? (A.6.3)",
+                "question": "Team Leaders — what briefing does the care desk get before the next shift? (A.6.3)",
                 "response": ""
               }
             ],
@@ -8055,7 +8055,7 @@
               "name": "Vishing Attack",
               "date": ""
             },
-            "participants": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+            "participants": "Customer Care Manager & Director, Care Operations Leads, Team Leaders, Workforce Management, Client Delivery / Account Manager, Quality & Training, Human Resources, Executive Sponsor",
             "highlights": [
               "Account servicing was paused before the second fraudulent change could complete",
               "Affected customers were identified and notified within the hour",
@@ -8107,16 +8107,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Introduce dual verification for customer account changes (A.5.24) — owner: Customer Care Manager.",
+              "Prioritise: Introduce dual verification for customer account changes (A.5.24) — owner: Customer Care Manager & Director.",
               "Prioritise: Add a customer-verification ritual to the care runbook (A.6.3) — owner: Team Leaders.",
-              "Prioritise: Write the pause-and-resume procedure into the BCP (A.5.29) — owner: Operations.",
-              "Prioritise: Brief the care desk and the client on the new controls (A.5.20) — owner: Client Delivery."
+              "Prioritise: Write the pause-and-resume procedure into the BCP (A.5.29) — owner: Care Operations Leads.",
+              "Prioritise: Brief the care desk and the client on the new controls (A.5.20) — owner: Client Delivery / Account Manager."
             ],
             "capa": [
               {
                 "item": "Introduce dual verification for customer account changes (A.5.24)",
                 "type": "Corrective",
-                "owner": "Customer Care Manager",
+                "owner": "Customer Care Manager & Director",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.24",
@@ -8134,7 +8134,7 @@
               {
                 "item": "Write the pause-and-resume procedure into the BCP (A.5.29)",
                 "type": "Corrective",
-                "owner": "Operations",
+                "owner": "Care Operations Leads",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.29",
@@ -8143,7 +8143,7 @@
               {
                 "item": "Brief the care desk and the client on the new controls (A.5.20)",
                 "type": "Corrective",
-                "owner": "Client Delivery",
+                "owner": "Client Delivery / Account Manager",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -8151,7 +8151,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+              "prepared_for": "Customer Care Manager & Director, Care Operations Leads, Team Leaders, Workforce Management, Client Delivery / Account Manager, Quality & Training, Human Resources, Executive Sponsor",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -8316,7 +8316,7 @@
             "actions": [
               {
                 "item": "Introduce dual verification for customer account changes (A.5.24)",
-                "owner": "Customer Care Manager"
+                "owner": "Customer Care Manager & Director"
               },
               {
                 "item": "Add a customer-verification ritual to the care runbook (A.6.3)",
@@ -8324,11 +8324,11 @@
               },
               {
                 "item": "Write the pause-and-resume procedure into the BCP (A.5.29)",
-                "owner": "Operations"
+                "owner": "Care Operations Leads"
               },
               {
                 "item": "Brief the care desk and the client on the new controls (A.5.20)",
-                "owner": "Client Delivery"
+                "owner": "Client Delivery / Account Manager"
               }
             ],
             "next_step": "Verification-controls review within 5 working days; care desk briefing refreshed this month."
@@ -8442,10 +8442,10 @@
             ],
             "clocks": [
               "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
-              "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
-              "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+              "High or Critical incidents: formal security-governance review within 24 hours (§7.3.5).",
+              "Executive governance reporting within 24 hours for High or Critical incidents (§9.2.8).",
               "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
-              "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+              "Escalate high/very-high risk, material client impact or regulatory exposure to executive governance and the S.A.F.E. Audit & Risk Committee (§4).",
               "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
               "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7)."
             ],
@@ -8764,7 +8764,7 @@
               "name": "Backup & Recovery DR Test",
               "date": ""
             },
-            "participants": "CISO, Client delivery, InfoSec, IT, Communications",
+            "participants": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
             "highlights": [
               "The corrupt backup was found during a scheduled test, not during a real outage",
               "The last known-good restore point was confirmed before any destructive action",
@@ -8816,16 +8816,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Alert on backup job failures, not just successes (A.8.16) — owner: IT.",
-              "Prioritise: Schedule quarterly restore tests that run to completion (A.8.13) — owner: IT.",
-              "Prioritise: Validate RTO under realistic load and document it (A.5.30) — owner: CISO.",
-              "Prioritise: Review client SLAs for RTO/RPO disclosure duties (A.5.20) — owner: Client delivery."
+              "Prioritise: Alert on backup job failures, not just successes (A.8.16) — owner: Corporate Security.",
+              "Prioritise: Schedule quarterly restore tests that run to completion (A.8.13) — owner: Corporate Security.",
+              "Prioritise: Validate RTO under realistic load and document it (A.5.30) — owner: Corporate Security.",
+              "Prioritise: Review client SLAs for RTO/RPO disclosure duties (A.5.20) — owner: Compliance."
             ],
             "capa": [
               {
                 "item": "Alert on backup job failures, not just successes (A.8.16)",
                 "type": "Preventive",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.16",
@@ -8834,7 +8834,7 @@
               {
                 "item": "Schedule quarterly restore tests that run to completion (A.8.13)",
                 "type": "Preventive",
-                "owner": "IT",
+                "owner": "Corporate Security",
                 "due": "Quarterly",
                 "target": "Quarterly / recurring",
                 "framework_focus": "ISO/IEC 27001:2022 A.8.13",
@@ -8843,7 +8843,7 @@
               {
                 "item": "Validate RTO under realistic load and document it (A.5.30)",
                 "type": "Preventive",
-                "owner": "CISO",
+                "owner": "Corporate Security",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.30",
@@ -8852,7 +8852,7 @@
               {
                 "item": "Review client SLAs for RTO/RPO disclosure duties (A.5.20)",
                 "type": "Preventive",
-                "owner": "Client delivery",
+                "owner": "Compliance",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -8860,7 +8860,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
+              "prepared_for": "Corporate Security, IT Server & System Team, IT Desktop Team, IT Network Team, Compliance, Human Resources, Marketing, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
@@ -9021,19 +9021,19 @@
             "actions": [
               {
                 "item": "Alert on backup job failures, not just successes (A.8.16)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Schedule quarterly restore tests that run to completion (A.8.13)",
-                "owner": "IT"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Validate RTO under realistic load and document it (A.5.30)",
-                "owner": "CISO"
+                "owner": "Corporate Security"
               },
               {
                 "item": "Review client SLAs for RTO/RPO disclosure duties (A.5.20)",
-                "owner": "Client delivery"
+                "owner": "Compliance"
               }
             ],
             "next_step": "Backup & DR remediation review within 5 working days; restore-test cadence into the ISMS audit programme."
