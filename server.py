@@ -929,15 +929,151 @@ def build_presentation(name, slides, injects=None, meta=None):
                         .replace("%%INJECT_JS%%", ex_js))
 
 
+# ---------------------------------------------------------------------------
+# SEC-POL-033 — Incident Management, Forensics & Business Continuity (Rev. 01)
+# Report procedure for the After-Action Report / Executive Summary export:
+#   \u00a78.6   required contents of the formal report (8.6.1\u20138.6.8)
+#   \u00a79.7   executive reporting content (9.7.5\u20139.7.10)
+#   \u00a710.5  exercise report requirements — objectives & scope, roles and
+#         decision validation, control gaps, corrective-action tracking,
+#         executive review, distribution and retention
+# Deck data may override any of these; the values below are the fallback so
+# older decks still export policy-conformant reports without re-seeding.
+# ---------------------------------------------------------------------------
+POLICY_BASIS = (
+    "Formal exercise report prepared under SEC-POL-033 \u2014 Incident Management, "
+    "Forensics & Business Continuity (Rev. 01) \u00a710.5.13; required contents per "
+    "\u00a78.6 (investigation report) and executive reporting content per \u00a79.7.")
+
+POLICY_EXEC_REPORTING = [
+    {"item": "Impact assessment",
+     "finding": "To be confirmed from the exercise transcript: services, clients and "
+                "processes affected by the scenario."},
+    {"item": "Financial exposure",
+     "finding": "To be quantified from the decision log: recovery cost, downtime, "
+                "service credits and any contractual penalties."},
+    {"item": "Regulatory risk",
+     "finding": "Notification obligations assessed against the \u00a79.1 trigger criteria; "
+                "the 72-hour regulatory clock starts at incident confirmation."},
+    {"item": "Customer impact",
+     "finding": "Clients affected, services degraded, communications issued and SLA "
+                "relief considered."},
+    {"item": "Containment status",
+     "finding": "Containment actions taken and time-to-contain recorded against the "
+                "declared response SLOs."},
+    {"item": "Remediation plan",
+     "finding": "The CAPA register below carries owners and defined remediation "
+                "timelines (\u00a710.5.11)."},
+]
+
+POLICY_ROLES_VALIDATION = [
+    "Decision authority follows the policy matrix: operational decisions within approved "
+    "risk appetite; high/very-high risk, material client impact or regulatory exposure "
+    "escalated to the CIO and the S.A.F.E. Audit & Risk Committee (\u00a74).",
+    "Incident declaration, severity classification, escalation and closure roles were "
+    "exercised against the decision authority matrix (\u00a77).",
+    "Each listed role's concerns were exercised through the injects and decision points \u2014 "
+    "validate against the recorded responses in this report (\u00a710.5.9).",
+]
+
+POLICY_ROOT_CAUSE_DEFAULT = (
+    "To be determined through Root Cause Analysis (\u00a77.7.1) after the exercise. The "
+    "tabletop discussion itself does not assert a cause: record the confirmed root cause, "
+    "contributing factors and the control failures that allowed the scenario to progress, "
+    "then feed them into the CAPA register below.")
+
+POLICY_SCOPE_DEFAULT = (
+    "Scope of affected systems and data is to be confirmed against the exercise transcript "
+    "and the scenario background: identify affected systems, data categories, record "
+    "volumes and client-facing services (\u00a78.6.4).")
+
+POLICY_REGULATORY = [
+    "Assess notification triggers against \u00a79.1: unauthorised access, disclosure, alteration "
+    "or destruction of regulated/sensitive data, payment card compromise, personal-data "
+    "exposure, significant operational disruption and contractual thresholds.",
+    "Regulatory notification within 72 hours of incident confirmation where GDPR or similar "
+    "applies; Executive Leadership reporting within 24 hours for High or Critical incidents "
+    "(\u00a79.2.8).",
+    "Engage Legal Counsel immediately when thresholds are met; the Data Protection Officer "
+    "reviews and approves any personal-data breach notification (\u00a79.1, \u00a79.3).",
+    "Customer and partner communication must be factual, non-speculative, approved by Legal "
+    "and Executive Leadership, and issued from pre-approved templates (\u00a79.5).",
+    "Payment card data: compromise is automatically High or Critical, acquiring bank and "
+    "payment brands notified immediately, PCI-approved forensic investigator engaged where "
+    "required (\u00a79.4).",
+    "No public disclosure, media engagement or public statement without legal review, "
+    "executive approval and a coordinated communications strategy (\u00a79.8).",
+]
+
+POLICY_CONTROL_GAPS = [
+    "Detection & classification: were reporting channels, the central incident log and "
+    "severity classification exercised as written? (\u00a77.2\u20137.3)",
+    "Containment & eradication: did containment choices preserve evidence, and were "
+    "eradication steps verifiable? (\u00a77.4\u20137.5)",
+    "Recovery & continuity: were RTO/RPO targets and the BCP activation trigger understood "
+    "and applied? (\u00a77.6, \u00a710)",
+    "Notification & escalation: did the team apply the 24-hour executive and 72-hour "
+    "regulatory clocks and the escalation thresholds? (\u00a74, \u00a79.2.8)",
+    "Evidence & records: were chain-of-custody and time-stamped decision records captured "
+    "as audit evidence? (\u00a78.3, \u00a714)",
+    "Any capability domain left \u2018To be scored\u2019 above remains an open control gap until "
+    "validated.",
+]
+
+POLICY_EVIDENCE_DEFAULT = [
+    "Exercise records: objectives, scope, documented scenario, participant roles and the "
+    "decision log (\u00a710.5.7\u201310.5.9, \u00a714.1).",
+    "Time-stamped inject timeline and decision points captured in this report (\u00a78.6.2).",
+    "Root cause analysis, scope determination and notification decisions to be filed on "
+    "completion (\u00a78.6.3\u20138.6.4, \u00a79.9, \u00a714.3).",
+    "CAPA register with owners and remediation timelines, tracked to closure "
+    "(\u00a710.5.11, \u00a714.6).",
+]
+
+POLICY_RECOMMENDATIONS_DEFAULT = [
+    "Complete the remediation recommendations from the confirmed exercise findings and the "
+    "CAPA register below (\u00a78.6.7).",
+    "Feed the confirmed findings into the ISMS improvement plan and the risk register (\u00a715).",
+]
+
+POLICY_LESSONS_DEFAULT = [
+    "Record the lessons learned from the hotwash and post-exercise discussion before "
+    "issuing this report (\u00a77.7.2, \u00a78.6.8).",
+]
+
+POLICY_EXEC_REVIEW = [
+    {"step": "Exercise outcomes reviewed (\u00a710.5.12)",
+     "role": "Exercise facilitator / preparer", "name": "", "date": ""},
+    {"step": "Executive review of test outcomes (\u00a710.5.12)",
+     "role": "Executive sponsor", "name": "", "date": ""},
+    {"step": "Report accepted and retained as policy evidence (\u00a710.5.15)",
+     "role": "Director Information Security (policy owner)", "name": "", "date": ""},
+]
+
+POLICY_DISTRIBUTION = (
+    "Executive Leadership; S.A.F.E. Audit & Risk Committee; ISMS governance record "
+    "(SEC-POL-033 \u00a710.5.14, \u00a79.7.2).")
+
+POLICY_RETENTION = (
+    "Retained in secure, access-controlled repositories as evidence of ISO/IEC 27002 "
+    "operational compliance, TISAX Level 3 maturity and PCI DSS 4.0 \u00a712.10, together with "
+    "the exercise records, decision log and corrective-action tracking "
+    "(SEC-POL-033 \u00a710.5.13\u201310.5.15, \u00a714).")
+
+
 def build_afteraction(name, slides, live_responses=None, completed_date=None, injects=None):
-    """Word-ready After Action Executive Summary built from the deck's summary
-    slide data, following the standard executive-summary template:
-    title block + control framework line, meta table, executive summary with
-    callout, readiness score, highlights, exercise transcript (inject timeline and
-    decision points), capability assessment, lessons,
-    framework alignment, recommendations, CAPA action plan, roadmap, evidence
-    pack, KPIs, and executive decisions requested. Sections with no data are
-    skipped so older decks still export cleanly.
+    """Word-ready After-Action Report & Executive Summary built from the deck's
+    summary slide data, formatted to the SEC-POL-033 report procedure:
+    title block + control framework + policy basis line, meta table, then
+    \u00a78.6 required contents (executive summary of findings, timeline of events,
+    root cause, scope of affected systems and data, evidence summary, regulatory
+    impact, recommendations, lessons learned), \u00a79.7 executive reporting summary,
+    \u00a710.5 exercise-report requirements (objectives & scope, roles and
+    decision-making validation, control gaps, CAPA with remediation timelines,
+    executive review and retention), plus readiness score, highlights,
+    capability assessment, framework alignment, roadmap, KPIs, executive
+    decisions and live responses. Sections with no data fall back to the
+    policy defaults above so older decks still export cleanly.
 
     When *live_responses* is provided (captured from the presentation iframe),
     the roles and per-slide inject/decision responses are appended at the end.
@@ -984,6 +1120,24 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
     def section(title, inner):
         return '<div class="aar-section"><h2>%s</h2>%s</div>' % (esc(title), inner)
 
+    # -- deck-derived context for the policy sections (\u00a710.5.7\u201310.5.9) -------
+    def _slide_data(prefix, exact=False):
+        for s in slides or []:
+            nm = str((s or {}).get("name") or "").strip()
+            if (nm == prefix) if exact else nm.startswith(prefix):
+                d = s.get("data")
+                return d if isinstance(d, dict) else {}
+        return {}
+
+    _obj = _slide_data("Objectives & ground rules").get("objectives")
+    obj_items = [str(i) for i in (_obj.get("items") or [])] if isinstance(_obj, dict) else []
+    bg = _slide_data("Scenario background")
+    setting = str(bg.get("setting") or "").strip()
+    systems = [str(x) for x in (bg.get("systems") or []) if str(x).strip()]
+    role_rows = [r for r in (_slide_data("Roles", exact=True).get("roles") or [])
+                 if isinstance(r, dict) and (r.get("role") or r.get("owner"))]
+    participants = str(data.get("participants") or "").strip()
+
     meta = data.get("meta") if isinstance(data.get("meta"), dict) else {}
     exercise = data.get("exercise") if isinstance(data.get("exercise"), dict) else {}
     ex_name = str(exercise.get("name") or name)
@@ -996,10 +1150,11 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
         raw_date = str(exercise.get("date") or "").strip()
         ex_date = today_str if (raw_date in _placeholder_dates or not raw_date) else raw_date
 
-    head = ["<div class='report-head'><h1>Executive Summary</h1>"]
+    head = ["<div class='report-head'><h1>After-Action Report &amp; Executive Summary</h1>"]
     head.append("<p>%s%s</p>" % (esc(ex_name), (" &middot; " + esc(ex_date)) if ex_date else ""))
     if meta.get("framework"):
         head.append("<div class='framework'>%s</div>" % esc(meta["framework"]))
+    head.append("<div class='framework'>%s</div>" % esc(POLICY_BASIS))
     head.append("</div>")
 
     parts = []
@@ -1024,8 +1179,21 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
         exec_inner += "<p>%s</p>" % esc(story)
     if callout:
         exec_inner += "<div class='aar-callout'><b>Executive assessment:</b> %s</div>" % esc(callout)
-    if exec_inner:
-        parts.append(section("Executive Summary", exec_inner))
+    if not exec_inner:
+        exec_inner = ("<p>Exercise findings are summarised from the exercise transcript, "
+                      "decision log and hotwash recorded in this report. Complete the "
+                      "narrative assessment from those records (SEC-POL-033 §8.6.1).</p>")
+    parts.append(section("Executive Summary of Findings (§8.6.1)", exec_inner))
+
+    # \u00a79.7.5\u20139.7.10 — content required in executive reporting
+    ex_rows = [r for r in (data.get("exec_reporting") or []) if isinstance(r, dict)]
+    if not ex_rows:
+        ex_rows = POLICY_EXEC_REPORTING
+    parts.append(section("Executive Reporting Summary (\u00a79.7.5\u20139.7.10)",
+                         table(("Executive reporting element", "Finding from the exercise"),
+                               ("item", "finding"), ex_rows)
+                         + "<p class='aar-note'>Executive reporting content required for "
+                           "material incidents (SEC-POL-033 \u00a79.7.5\u20139.7.10).</p>"))
 
     score = data.get("score") if isinstance(data.get("score"), dict) else {}
     if any(score.get(k) for k in ("score", "rating", "risk", "priority")):
@@ -1038,6 +1206,24 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
 
     if rows("highlights"):
         parts.append(section("Exercise Highlights", bullets(rows("highlights"))))
+
+    # -- §10.5.7–10.5.8 objectives, scope and documented scenario -----------
+    obj_inner = ""
+    if obj_items:
+        obj_inner += "<h3>Objectives</h3>" + bullets(obj_items)
+    if setting:
+        obj_inner += "<h3>Documented scenario</h3><p>%s</p>" % esc(setting)
+    scope_txt = str(data.get("exercise_scope") or "").strip()
+    if not scope_txt:
+        if systems:
+            scope_txt = ("Discussion-based tabletop of %s. In scope for discussion: %s. "
+                         "No live systems, client data or production changes are touched by "
+                         "the exercise itself." % (ex_name, ", ".join(systems)))
+        else:
+            scope_txt = ("Discussion-based tabletop of %s. No live systems, client data or "
+                         "production changes are touched by the exercise itself." % ex_name)
+    obj_inner += "<h3>Scope</h3><p>%s</p>" % esc(scope_txt)
+    parts.append(section("Exercise Objectives, Scope & Scenario (§10.5.7–10.5.8)", obj_inner))
 
     # -- Exercise transcript: inject timeline + decision points -------------
     disc = data.get("discussion") if isinstance(data.get("discussion"), dict) else {}
@@ -1082,15 +1268,74 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
     if dec_html:
         tr_parts.append("<h3>Decision points</h3>" + dec_html)
     if tr_parts:
-        parts.append(section("Exercise Transcript", "".join(tr_parts)))
+        parts.append(section("Timeline of Events & Decision Points (§8.6.2)", "".join(tr_parts)))
+    else:
+        parts.append(section("Timeline of Events & Decision Points (§8.6.2)",
+                             "<p class='aar-note'>No inject timeline or decision points were "
+                             "recorded — reconstruct the event timeline, declaration and decision "
+                             "sequence from the scribe notes and decision log "
+                             "(SEC-POL-033 §8.6.2).</p>"))
+
+    # -- §10.5.9 participant roles & decision-making validation -------------
+    rv = ""
+    if participants:
+        rv += "<p><b>Participants:</b> %s</p>" % esc(participants)
+    if role_rows:
+        rv += table(("Role", "Owner", "Key concerns"), ("role", "owner", "concern"), role_rows)
+    rv_v = data.get("roles_validation")
+    rv_v = [str(x) for x in rv_v if str(x).strip()] if isinstance(rv_v, list) else []
+    rv += bullets(rv_v or POLICY_ROLES_VALIDATION)
+    parts.append(section("Participant Roles & Decision-Making Validation (§10.5.9)", rv))
+
+    # -- §8.6.3 root cause determination ------------------------------------
+    rc = str(data.get("root_cause") or "").strip() or POLICY_ROOT_CAUSE_DEFAULT
+    parts.append(section("Root Cause Determination (§8.6.3)", "<p>%s</p>" % esc(rc)))
+
+    # -- §8.6.4 scope of affected systems and data --------------------------
+    aff_raw = data.get("affected_scope")
+    aff = [str(x) for x in aff_raw if str(x).strip()] if isinstance(aff_raw, list) else []
+    if not aff:
+        if systems:
+            aff = ["%s — identified in the scenario background; confirm the actual "
+                   "affected scope against the exercise transcript (§8.6.4)." % s
+                   for s in systems]
+        else:
+            aff = [POLICY_SCOPE_DEFAULT]
+    parts.append(section("Scope of Affected Systems & Data (§8.6.4)", bullets(aff)))
+
+    # -- §8.6.5 evidence summary (rendered here so §8.6 contents stay in order)
+    ev = rows("evidence")
+    parts.append(section("Evidence Summary (§8.6.5)", bullets(ev or POLICY_EVIDENCE_DEFAULT)))
+
+    # -- §8.6.6 regulatory impact assessment --------------------------------
+    reg_raw = data.get("regulatory")
+    reg = [str(x) for x in reg_raw if str(x).strip()] if isinstance(reg_raw, list) else []
+    parts.append(section("Regulatory Impact Assessment (§8.6.6 / §9)",
+                         bullets(reg or POLICY_REGULATORY)
+                         + "<p class='aar-note'>Notification determinations follow a documented "
+                           "risk assessment; Legal Counsel and the DPO are engaged when the §9.1 "
+                           "thresholds are met.</p>"))
+
+    recs = rows("recommendations")
+    parts.append(section("Priority Recommendations (§8.6.7)",
+                         numbered(recs or POLICY_RECOMMENDATIONS_DEFAULT)))
+
+    lsn = rows("lessons")
+    parts.append(section("Key Lessons Learned (§8.6.8 / §7.7)",
+                         bullets(lsn or POLICY_LESSONS_DEFAULT)))
 
     if rows("capability"):
         parts.append(section("Executive Capability Assessment",
                              table(("Capability Domain", "Score", "Executive Assessment"),
                                    ("domain", "score", "assessment"), rows("capability"))))
 
-    if rows("lessons"):
-        parts.append(section("Key Lessons Learned", bullets(rows("lessons"))))
+    # -- §10.5.10 control gaps ----------------------------------------------
+    gaps_raw = data.get("control_gaps")
+    gaps = [str(x) for x in gaps_raw if str(x).strip()] if isinstance(gaps_raw, list) else []
+    parts.append(section("Control Gaps Identified (§10.5.10)",
+                         bullets(gaps or POLICY_CONTROL_GAPS)
+                         + "<p class='aar-note'>Gaps confirmed here drive the CAPA register below "
+                           "(SEC-POL-033 §10.5.10–10.5.11).</p>"))
 
     if rows("framework_alignment"):
         parts.append(section(
@@ -1101,9 +1346,6 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
               "final applicability should be validated against the organization's audit scope and Statement of "
               "Applicability.</p>"))
 
-    if rows("recommendations"):
-        parts.append(section("Priority Recommendations", numbered(rows("recommendations"))))
-
     capa = rows("capa")
     if capa:
         if any(isinstance(r, dict) and r.get("target") for r in capa):
@@ -1112,15 +1354,20 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
         else:
             capa_html = table(("Action", "Type", "Owner", "Due"),
                               ("item", "type", "owner", "due"), capa)
-        parts.append(section("Executive Action Plan (CAPA)", capa_html))
+    else:
+        capa_html = ("<p class='aar-note'>No corrective or preventive actions were recorded in "
+                     "this deck — assign each action an owner and a defined remediation timeline "
+                     "before issuing the report.</p>")
+    parts.append(section("Executive Action Plan (CAPA) (§10.5.11)",
+                         capa_html
+                         + "<p class='aar-note'>Every action carries an owner and a defined "
+                           "remediation timeline; closure is tracked and validated for "
+                           "effectiveness (SEC-POL-033 §10.5.11, §15).</p>"))
 
     if rows("roadmap"):
         parts.append(section("Roadmap View",
                              table(("Period", "Executive Milestones"),
                                    ("period", "milestones"), rows("roadmap"))))
-
-    if rows("evidence"):
-        parts.append(section("Audit-Ready Evidence Pack", bullets(rows("evidence"))))
 
     if rows("kpis"):
         parts.append(section("Recommended Executive KPIs",
@@ -1128,6 +1375,15 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
 
     if rows("decisions"):
         parts.append(section("Executive Decisions Requested", bullets(rows("decisions"))))
+
+    # -- §10.5.12 executive review + §10.5.14–10.5.15 distribution/retention --
+    rev_raw = data.get("exec_review")
+    rev_rows = [r for r in rev_raw if isinstance(r, dict)] if isinstance(rev_raw, list) else []
+    parts.append(section("Executive Review & Record Retention (§10.5.12, §10.5.14–10.5.15)",
+                         table(("Step", "Role", "Name", "Date"),
+                               ("step", "role", "name", "date"), rev_rows or POLICY_EXEC_REVIEW)
+                         + "<p><b>Distribution:</b> %s</p>" % esc(POLICY_DISTRIBUTION)
+                         + "<p><b>Retention:</b> %s</p>" % esc(POLICY_RETENTION)))
 
     # ── Live exercise responses captured during the presentation ──
     if live_responses and isinstance(live_responses, dict):
@@ -1179,7 +1435,7 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
         footer = "<p class='aar-note'>Framework Reference Basis: %s</p>" % esc(meta["reference"])
 
     stamp = time.strftime("%Y-%m-%d")
-    full = ("<!DOCTYPE html><html><head><meta charset='utf-8'><title>Executive Summary — %s</title>"
+    full = ("<!DOCTYPE html><html><head><meta charset='utf-8'><title>After-Action Report &amp; Executive Summary — %s</title>"
             "<style>%s%s</style></head><body>%s%s%s</body></html>"
             ) % (esc(ex_name), DOC_STYLE, AFTERACTION_CSS, "".join(head), "".join(parts), footer)
     return full, None

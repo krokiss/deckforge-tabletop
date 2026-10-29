@@ -697,9 +697,12 @@ def _normalize(deck):
 # --------------------------------------------------------------------------- #
 # Standard facilitator slides extracted from the TTX facilitator deck:        #
 #   • Rules of Engagement — opening slide, shown right after the title.       #
+#   • Policy Guidance (SEC-POL-033) — maps the exercise flow onto the        #
+#     policy's incident lifecycle, decision clocks and evidence rules, so     #
+#     the exercise is executed under the policy.                             #
 #   • Post-Exercise Discussion & Next Steps — closing slide; its button       #
 #     triggers generation of the After-Action Report + Executive Summary.     #
-# _add_standard_slides() adds both to every exercise deck (idempotent).       #
+# _add_standard_slides() adds all three to every exercise deck (idempotent).  #
 # --------------------------------------------------------------------------- #
 _RULES_OF_ENGAGEMENT = [
     "Tabletop Exercises are NOT \u201cPass\u201d or \u201cFail\u201d activities.",
@@ -739,6 +742,79 @@ def _rules_of_engagement_slide():
     }
 
 
+def policy_guidance_slide():
+    """SEC-POL-033 guidance slide — governs how the exercise is run.
+
+    Maps each stage of the exercise arc onto the policy's incident lifecycle
+    (§7), the decision clocks the team must apply (§7.3, §9.2.8, §7.6.5) and
+    the evidence/communications rules in force during the discussion (§8, §9).
+    Shown right after Rules of Engagement so the whole exercise is guided by
+    the policy.
+    """
+    return {
+        "name": "Policy Guidance — SEC-POL-033",
+        "layout": "content",
+        "body": ("## Exercise guided by SEC-POL-033\n\n"
+                 "**Policy:** {{policy}}\n\n"
+                 "### Exercise flow mapped to the policy lifecycle\n"
+                 "| Exercise stage | SEC-POL-033 | What the facilitator validates |\n"
+                 "|---|---|---|\n"
+                 "{{#each lifecycle}}\n| {{stage}} | {{clause}} | {{validates}} |\n{{/each}}\n\n"
+                 "### Decision clocks the team applies\n"
+                 "{{#each clocks}}\n- {{this}}\n{{/each}}\n\n"
+                 "### Evidence & communications rules during the exercise\n"
+                 "{{#each rules}}\n- {{this}}\n{{/each}}"),
+        "data": {
+            "policy": ("SEC-POL-033 — Incident Management, Forensics & Business Continuity "
+                       "(Rev. 01) · ISO/IEC 27002:2022 §5.24–5.30 · TISAX AL3 1.6.1–1.6.3, "
+                       "5.2.8 · PCI DSS 4.0 §12.10"),
+            "lifecycle": [
+                {"stage": "Opening — objectives, scope, roles & decision authority",
+                 "clause": "§10.5.7–10.5.9",
+                 "validates": "Defined objectives and scope, a documented scenario, participant roles and decision-making validation"},
+                {"stage": "Injects — detection & escalation",
+                 "clause": "§7.2–7.3 Detection, Reporting, Triage & Classification",
+                 "validates": "Immediate reporting, a central log entry with a unique ID, severity from the Incident Classification Matrix (Critical/High/Medium/Low)"},
+                {"stage": "Decision A — initial response",
+                 "clause": "§7.4 Containment · §8 Evidence",
+                 "validates": "Short-term containment choices that do not compromise evidence collection or forensic investigation"},
+                {"stage": "Injects — recovery & client impact",
+                 "clause": "§7.5–7.6 Eradication & Recovery",
+                 "validates": "Integrity verification, executive approval before restoring critical systems, BCP activation when RTOs are exceeded"},
+                {"stage": "Decision B — notification & continuity",
+                 "clause": "§9 Regulatory Notification · §10 BCP",
+                 "validates": "Notification triggers, Legal/DPO engagement, customer communication approval, RTO/RPO-driven continuity decisions"},
+                {"stage": "Hotwash",
+                 "clause": "§7.7 Post-Incident Review",
+                 "validates": "Root cause analysis, lessons-learned workshop, control gap analysis and corrective actions"},
+                {"stage": "Closing — Post-Exercise Discussion & Next Steps",
+                 "clause": "§10.5.11–10.5.12",
+                 "validates": "Corrective action tracking with defined remediation timelines; executive review of test outcomes"},
+                {"stage": "After-Action Report & Executive Summary",
+                 "clause": "§8.6 · §9.7 · §10.5.13",
+                 "validates": "Formal exercise report: timeline, root cause, scope, evidence summary, regulatory impact, remediation and lessons — with the executive reporting content"},
+            ],
+            "clocks": [
+                "Classify severity first — Critical / High / Medium / Low from the Incident Classification Matrix sets the response effort (§7.3).",
+                "High or Critical incidents: formal Information Security leadership review within 24 hours (§7.3.5).",
+                "Executive Leadership reporting within 24 hours for High or Critical incidents (§9.2.8).",
+                "Regulatory notification within 72 hours of incident confirmation where GDPR or similar applies (§9.2.8).",
+                "Escalate high/very-high risk, material client impact or regulatory exposure to the CIO and the S.A.F.E. Audit & Risk Committee (§4).",
+                "Activate the BCP when recovery exceeds the defined RTO; the RPO sets the acceptable data-loss window (§7.6.5, §10.1).",
+                "Record MTTD, MTTR and containment times against the response SLOs declared for the exercise (§7).",
+            ],
+            "rules": [
+                "Log every incident in the centralised incident system with a unique identifier (§7.2).",
+                "Preserve evidence forensically sound: memory before shutdown, write-blocking, hashing, chain of custody (§8.2–8.3).",
+                "Containment must not compromise evidence collection or the forensic investigation (§7.4).",
+                "No public disclosure or media statement without legal review and executive approval; no independent external communication (§8.7, §9.5, §9.8).",
+                "Record every decision with a time stamp and owner — the decision log is audit evidence (§7.1, §14).",
+                "Third-party and vendor incidents run through the same framework with their contractual notification clocks (§11).",
+            ],
+        },
+    }
+
+
 def _closing_slide():
     return {
         "name": "Post-Exercise Discussion & Next Steps",
@@ -751,16 +827,21 @@ def _closing_slide():
 
 
 def _add_standard_slides(deck):
-    """Insert the Rules of Engagement slide after the title and the
-    Post-Exercise Discussion & Next Steps closing slide just before the
-    After Action Executive Summary slide. Idempotent; leaves other slides,
-    injects and meta untouched."""
+    """Insert the Rules of Engagement slide after the title, the SEC-POL-033
+    policy guidance slide right after it, and the Post-Exercise Discussion &
+    Next Steps closing slide just before the After Action Executive Summary
+    slide. Idempotent; leaves other slides, injects and meta untouched."""
     slides = list(deck.get("slides") or [])
     names = [s.get("name", "") for s in slides]
 
     if "Rules of Engagement" not in names:
         idx = 1 if slides and slides[0].get("name") == "Title" else 0
         slides.insert(idx, _rules_of_engagement_slide())
+
+    if "Policy Guidance — SEC-POL-033" not in names:
+        roe = next((i for i, s in enumerate(slides)
+                    if s.get("name") == "Rules of Engagement"), None)
+        slides.insert(1 if roe is None else roe + 1, policy_guidance_slide())
 
     if "Post-Exercise Discussion & Next Steps" not in names:
         pos = next((i for i, s in enumerate(slides)
