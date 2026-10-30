@@ -55,17 +55,20 @@ def _fix_text(obj):
     return obj
 
 
-# Paired roles combined into a single Roles-slide entry. The merged name is a
-# superstring of both originals, so existing owner values and decision callouts
-# still resolve by substring match.
+# Paired roles combined into a single Roles-slide entry. Each list carries
+# both the original pair members and any earlier merged name, so decks that
+# were already merged in a previous run get renamed too (the first entry
+# whose target name is present wins — the others fall through as no-ops).
+# Old names keep resolving through _OWNER_ALIASES in scenarios.py.
 ROLE_MERGES = [
     (["Care Operations Leads", "Team Leaders"],
      "Care Operations Leads & Team Leaders",
      "Care operations & floor teams",
      "Queue prioritisation, answer times, agent status, escalation "
      "and caller experience (A.5.29, A.5.20)"),
-    (["Customer Care Manager & Director", "Client Delivery / Account Manager"],
-     "Customer Care Manager & Director / Client Delivery / Account Manager",
+    (["Customer Care Manager & Director", "Client Delivery / Account Manager",
+      "Customer Care Manager & Director / Client Delivery / Account Manager"],
+     "Customer Care & Client Delivery",
      "Care delivery & client relationship",
      "Continuity decisions, care capacity, staffing, SLA reporting, "
      "notifications and service credits (A.5.29, A.8.6, A.5.20)"),

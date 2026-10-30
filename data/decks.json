@@ -5042,7 +5042,7 @@
           "data": {
             "roles": [
               {
-                "role": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "role": "Customer Care & Client Delivery",
                 "owner": "Care delivery & client relationship",
                 "concern": "Continuity decisions, care capacity, staffing, SLA reporting, notifications and service credits (A.5.29, A.8.6, A.5.20)"
               },
@@ -5094,7 +5094,7 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — who declares a continuity event for the care program, and who triggers the BCP? (A.5.24, A.5.29)",
+                "question": "Customer Care & Client Delivery — who declares a continuity event for the care program, and who triggers the BCP? (A.5.24, A.5.29)",
                 "response": ""
               },
               {
@@ -5146,7 +5146,7 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — what is the inbound backlog-clearing plan — unanswered calls, queued chats, open cases — once the link returns, and in what queue order? (A.5.29, A.8.6)",
+                "question": "Customer Care & Client Delivery — what is the inbound backlog-clearing plan — unanswered calls, queued chats, open cases — once the link returns, and in what queue order? (A.5.29, A.8.6)",
                 "response": ""
               },
               {
@@ -5154,7 +5154,7 @@
                 "response": ""
               },
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — what timeline do we commit to the client for restored answer times, and how is progress reported? (A.5.20)",
+                "question": "Customer Care & Client Delivery — what timeline do we commit to the client for restored answer times, and how is progress reported? (A.5.20)",
                 "response": ""
               },
               {
@@ -5284,7 +5284,7 @@
               "name": "Network Outage Affecting Global Connectivity",
               "date": ""
             },
-            "participants": "Customer Care Manager & Director / Client Delivery / Account Manager, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
             "highlights": [
               "The continuity plan was triggered within 15 minutes of the link dropping",
               "Callers got clear hold messaging while customer records were unreachable",
@@ -5337,8 +5337,8 @@
             },
             "recommendations": [
               "Prioritise: Diversify the WAN paths with the telco (A.5.30) — owner: Care Operations Leads & Team Leaders.",
-              "Prioritise: Tabletop the care continuity playbook (A.5.29) — owner: Customer Care Manager & Director / Client Delivery / Account Manager.",
-              "Prioritise: Add a customer-visible status update routine (A.5.20) — owner: Customer Care Manager & Director / Client Delivery / Account Manager.",
+              "Prioritise: Tabletop the care continuity playbook (A.5.29) — owner: Customer Care & Client Delivery.",
+              "Prioritise: Add a customer-visible status update routine (A.5.20) — owner: Customer Care & Client Delivery.",
               "Prioritise: Rehearse degraded call-handling scripts on the floor (A.6.3) — owner: Care Operations Leads & Team Leaders."
             ],
             "capa": [
@@ -5354,7 +5354,7 @@
               {
                 "item": "Tabletop the care continuity playbook (A.5.29)",
                 "type": "Corrective",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "owner": "Customer Care & Client Delivery",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.29",
@@ -5363,7 +5363,7 @@
               {
                 "item": "Add a customer-visible status update routine (A.5.20)",
                 "type": "Corrective",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "owner": "Customer Care & Client Delivery",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -5380,7 +5380,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Customer Care Manager & Director / Client Delivery / Account Manager, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -5549,11 +5549,11 @@
               },
               {
                 "item": "Tabletop the care continuity playbook (A.5.29)",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager"
+                "owner": "Customer Care & Client Delivery"
               },
               {
                 "item": "Add a customer-visible status update routine (A.5.20)",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager"
+                "owner": "Customer Care & Client Delivery"
               },
               {
                 "item": "Rehearse degraded call-handling scripts on the floor (A.6.3)",
@@ -5731,7 +5731,7 @@
           "data": {
             "roles": [
               {
-                "role": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "role": "Customer Care & Client Delivery",
                 "owner": "Care delivery & client relationship",
                 "concern": "Continuity decisions, care capacity, staffing, SLA reporting, notifications and service credits (A.5.29, A.8.6, A.5.20)"
               },
@@ -5783,7 +5783,7 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — who declares a site-loss continuity event for the care program, and what is their authority? (A.5.24, A.5.29)",
+                "question": "Customer Care & Client Delivery — who declares a site-loss continuity event for the care program, and what is their authority? (A.5.24, A.5.29)",
                 "response": ""
               },
               {
@@ -5795,7 +5795,7 @@
                 "response": ""
               },
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — what is the notification sequence to the client, and who owns each message? (A.5.20)",
+                "question": "Customer Care & Client Delivery — what is the notification sequence to the client, and who owns each message? (A.5.20)",
                 "response": ""
               }
             ],
@@ -5835,7 +5835,7 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — how is the unanswered-call and pending-chat backlog triaged and worked down across sites? (A.5.29, A.8.6)",
+                "question": "Customer Care & Client Delivery — how is the unanswered-call and pending-chat backlog triaged and worked down across sites? (A.5.29, A.8.6)",
                 "response": ""
               },
               {
@@ -5843,11 +5843,11 @@
                 "response": ""
               },
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — what turnaround and service-credit position do we give the client? (A.5.20)",
+                "question": "Customer Care & Client Delivery — what turnaround and service-credit position do we give the client? (A.5.20)",
                 "response": ""
               },
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — what is the plan and timeline to resume the Site B care operation? (A.5.29, A.5.30)",
+                "question": "Customer Care & Client Delivery — what is the plan and timeline to resume the Site B care operation? (A.5.29, A.5.30)",
                 "response": ""
               }
             ],
@@ -5973,7 +5973,7 @@
               "name": "Fire at Secondary Site During Peak Hours",
               "date": ""
             },
-            "participants": "Customer Care Manager & Director / Client Delivery / Account Manager, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
             "highlights": [
               "The site was evacuated safely with every care agent accounted for",
               "Care queues were redistributed to Site A by end of day",
@@ -6027,7 +6027,7 @@
             "recommendations": [
               "Prioritise: Measure and publish Site A care capacity (A.8.6) — owner: Care Operations Leads & Team Leaders.",
               "Prioritise: Stand up an alternate-site runbook for the care platform (A.5.30) — owner: Care Operations Leads & Team Leaders.",
-              "Prioritise: Agree an unanswered-call backlog-triage protocol with the client (A.5.20) — owner: Customer Care Manager & Director / Client Delivery / Account Manager.",
+              "Prioritise: Agree an unanswered-call backlog-triage protocol with the client (A.5.20) — owner: Customer Care & Client Delivery.",
               "Prioritise: Rehearse evacuation accountability on every shift (A.5.29) — owner: Care Operations Leads & Team Leaders."
             ],
             "capa": [
@@ -6052,7 +6052,7 @@
               {
                 "item": "Agree an unanswered-call backlog-triage protocol with the client (A.5.20)",
                 "type": "Corrective",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "owner": "Customer Care & Client Delivery",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -6069,7 +6069,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Customer Care Manager & Director / Client Delivery / Account Manager, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -6242,7 +6242,7 @@
               },
               {
                 "item": "Agree an unanswered-call backlog-triage protocol with the client (A.5.20)",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager"
+                "owner": "Customer Care & Client Delivery"
               },
               {
                 "item": "Rehearse evacuation accountability on every shift (A.5.29)",
@@ -6420,7 +6420,7 @@
           "data": {
             "roles": [
               {
-                "role": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "role": "Customer Care & Client Delivery",
                 "owner": "Care delivery & client relationship",
                 "concern": "Continuity decisions, care capacity, staffing, SLA reporting, notifications and service credits (A.5.29, A.8.6, A.5.20)"
               },
@@ -6472,11 +6472,11 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — which inbound care channels are critical enough to keep running — emergency and complaint lines first — and which are suspended? (A.5.29)",
+                "question": "Customer Care & Client Delivery — which inbound care channels are critical enough to keep running — emergency and complaint lines first — and which are suspended? (A.5.29)",
                 "response": ""
               },
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — who has authority to suspend care queues and to inform the client? (A.5.24, A.5.20)",
+                "question": "Customer Care & Client Delivery — who has authority to suspend care queues and to inform the client? (A.5.24, A.5.20)",
                 "response": ""
               },
               {
@@ -6528,11 +6528,11 @@
                 "response": ""
               },
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — which care commitments and SLA deadlines move, and how are the renegotiations handled? (A.5.20)",
+                "question": "Customer Care & Client Delivery — which care commitments and SLA deadlines move, and how are the renegotiations handled? (A.5.20)",
                 "response": ""
               },
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — what is the order for resuming suspended inbound care queues once the site reopens? (A.5.29)",
+                "question": "Customer Care & Client Delivery — what is the order for resuming suspended inbound care queues once the site reopens? (A.5.29)",
                 "response": ""
               },
               {
@@ -6662,7 +6662,7 @@
               "name": "Complete Power Outage at HQ",
               "date": ""
             },
-            "participants": "Customer Care Manager & Director / Client Delivery / Account Manager, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
             "highlights": [
               "Triage was completed before the floor went dark, protecting in-flight customer interactions",
               "Emergency and complaint lines continued through the fallback arrangement",
@@ -6714,16 +6714,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Document the care continuity contingency for HQ (A.5.29) — owner: Customer Care Manager & Director / Client Delivery / Account Manager.",
+              "Prioritise: Document the care continuity contingency for HQ (A.5.29) — owner: Customer Care & Client Delivery.",
               "Prioritise: Test fallback care work at full program scale (A.6.7) — owner: Care Operations Leads & Team Leaders.",
-              "Prioritise: Agree SLA relief terms with the client in advance (A.5.20) — owner: Customer Care Manager & Director / Client Delivery / Account Manager.",
+              "Prioritise: Agree SLA relief terms with the client in advance (A.5.20) — owner: Customer Care & Client Delivery.",
               "Prioritise: Write the floor release-or-hold script into the BCP (A.5.24) — owner: Care Operations Leads & Team Leaders."
             ],
             "capa": [
               {
                 "item": "Document the care continuity contingency for HQ (A.5.29)",
                 "type": "Preventive",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "owner": "Customer Care & Client Delivery",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.29",
@@ -6741,7 +6741,7 @@
               {
                 "item": "Agree SLA relief terms with the client in advance (A.5.20)",
                 "type": "Corrective",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "owner": "Customer Care & Client Delivery",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -6758,7 +6758,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Customer Care Manager & Director / Client Delivery / Account Manager, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -6923,7 +6923,7 @@
             "actions": [
               {
                 "item": "Document the care continuity contingency for HQ (A.5.29)",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager"
+                "owner": "Customer Care & Client Delivery"
               },
               {
                 "item": "Test fallback care work at full program scale (A.6.7)",
@@ -6931,7 +6931,7 @@
               },
               {
                 "item": "Agree SLA relief terms with the client in advance (A.5.20)",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager"
+                "owner": "Customer Care & Client Delivery"
               },
               {
                 "item": "Write the floor release-or-hold script into the BCP (A.5.24)",
@@ -7109,7 +7109,7 @@
           "data": {
             "roles": [
               {
-                "role": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "role": "Customer Care & Client Delivery",
                 "owner": "Care delivery & client relationship",
                 "concern": "Continuity decisions, care capacity, staffing, SLA reporting, notifications and service credits (A.5.29, A.8.6, A.5.20)"
               },
@@ -7161,7 +7161,7 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — which inbound care queues receive the staff that reported in? (A.5.29)",
+                "question": "Customer Care & Client Delivery — which inbound care queues receive the staff that reported in? (A.5.29)",
                 "response": ""
               },
               {
@@ -7169,7 +7169,7 @@
                 "response": ""
               },
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — what capacity message goes to the client, and when? (A.5.20)",
+                "question": "Customer Care & Client Delivery — what capacity message goes to the client, and when? (A.5.20)",
                 "response": ""
               },
               {
@@ -7217,7 +7217,7 @@
                 "response": ""
               },
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — what surge capacity exists — contractors, cross-trained agents, overtime, other sites? (A.5.30, A.8.6)",
+                "question": "Customer Care & Client Delivery — what surge capacity exists — contractors, cross-trained agents, overtime, other sites? (A.5.30, A.8.6)",
                 "response": ""
               },
               {
@@ -7351,7 +7351,7 @@
               "name": "Geopolitic Concerns Reducing Workforce Availability",
               "date": ""
             },
-            "participants": "Customer Care Manager & Director / Client Delivery / Account Manager, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
             "highlights": [
               "Inbound care queues were prioritised and the capacity message reached the client within hours",
               "Cross-training absorbed part of the absenteeism shock on day one",
@@ -7403,16 +7403,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Define minimum viable staffing per inbound care queue (A.5.29) — owner: Customer Care Manager & Director / Client Delivery / Account Manager.",
+              "Prioritise: Define minimum viable staffing per inbound care queue (A.5.29) — owner: Customer Care & Client Delivery.",
               "Prioritise: Expand the cross-training matrix across care channels (A.6.3) — owner: Care Operations Leads & Team Leaders.",
-              "Prioritise: Build the customer capacity-reporting routine (A.5.20) — owner: Customer Care Manager & Director / Client Delivery / Account Manager.",
+              "Prioritise: Build the customer capacity-reporting routine (A.5.20) — owner: Customer Care & Client Delivery.",
               "Prioritise: Set enforced workload limits for crisis shifts (A.5.29) — owner: Workforce Management."
             ],
             "capa": [
               {
                 "item": "Define minimum viable staffing per inbound care queue (A.5.29)",
                 "type": "Corrective",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "owner": "Customer Care & Client Delivery",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.29",
@@ -7430,7 +7430,7 @@
               {
                 "item": "Build the customer capacity-reporting routine (A.5.20)",
                 "type": "Corrective",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "owner": "Customer Care & Client Delivery",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -7447,7 +7447,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Customer Care Manager & Director / Client Delivery / Account Manager, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -7612,7 +7612,7 @@
             "actions": [
               {
                 "item": "Define minimum viable staffing per inbound care queue (A.5.29)",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager"
+                "owner": "Customer Care & Client Delivery"
               },
               {
                 "item": "Expand the cross-training matrix across care channels (A.6.3)",
@@ -7620,7 +7620,7 @@
               },
               {
                 "item": "Build the customer capacity-reporting routine (A.5.20)",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager"
+                "owner": "Customer Care & Client Delivery"
               },
               {
                 "item": "Set enforced workload limits for crisis shifts (A.5.29)",
@@ -7798,7 +7798,7 @@
           "data": {
             "roles": [
               {
-                "role": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "role": "Customer Care & Client Delivery",
                 "owner": "Care delivery & client relationship",
                 "concern": "Continuity decisions, care capacity, staffing, SLA reporting, notifications and service credits (A.5.29, A.8.6, A.5.20)"
               },
@@ -7850,7 +7850,7 @@
           "data": {
             "pairs": [
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — do you suspend account servicing on the care desk immediately, and who authorises that call? (A.5.24, A.5.25)",
+                "question": "Customer Care & Client Delivery — do you suspend account servicing on the care desk immediately, and who authorises that call? (A.5.24, A.5.25)",
                 "response": ""
               },
               {
@@ -7858,7 +7858,7 @@
                 "response": ""
               },
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — what is the escalation path — care leadership, client contacts, fraud team? (A.5.24)",
+                "question": "Customer Care & Client Delivery — what is the escalation path — care leadership, client contacts, fraud team? (A.5.24)",
                 "response": ""
               },
               {
@@ -7906,11 +7906,11 @@
                 "response": ""
               },
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — how is account servicing resumed, and who signs off? (A.5.29)",
+                "question": "Customer Care & Client Delivery — how is account servicing resumed, and who signs off? (A.5.29)",
                 "response": ""
               },
               {
-                "question": "Customer Care Manager & Director / Client Delivery / Account Manager — which customer and regulatory notifications are required, and who owns them? (A.5.20)",
+                "question": "Customer Care & Client Delivery — which customer and regulatory notifications are required, and who owns them? (A.5.20)",
                 "response": ""
               },
               {
@@ -8040,7 +8040,7 @@
               "name": "Vishing Attack",
               "date": ""
             },
-            "participants": "Customer Care Manager & Director / Client Delivery / Account Manager, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
             "highlights": [
               "Account servicing was paused before the second fraudulent change could complete",
               "Affected customers were identified and notified within the hour",
@@ -8092,16 +8092,16 @@
               ]
             },
             "recommendations": [
-              "Prioritise: Introduce dual verification for customer account changes (A.5.24) — owner: Customer Care Manager & Director / Client Delivery / Account Manager.",
+              "Prioritise: Introduce dual verification for customer account changes (A.5.24) — owner: Customer Care & Client Delivery.",
               "Prioritise: Add a customer-verification ritual to the care runbook (A.6.3) — owner: Care Operations Leads & Team Leaders.",
               "Prioritise: Write the pause-and-resume procedure into the BCP (A.5.29) — owner: Care Operations Leads & Team Leaders.",
-              "Prioritise: Brief the care desk and the client on the new controls (A.5.20) — owner: Customer Care Manager & Director / Client Delivery / Account Manager."
+              "Prioritise: Brief the care desk and the client on the new controls (A.5.20) — owner: Customer Care & Client Delivery."
             ],
             "capa": [
               {
                 "item": "Introduce dual verification for customer account changes (A.5.24)",
                 "type": "Corrective",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "owner": "Customer Care & Client Delivery",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.24",
@@ -8128,7 +8128,7 @@
               {
                 "item": "Brief the care desk and the client on the new controls (A.5.20)",
                 "type": "Corrective",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager",
+                "owner": "Customer Care & Client Delivery",
                 "due": "30 days",
                 "target": "0–30 days",
                 "framework_focus": "ISO/IEC 27001:2022 A.5.20",
@@ -8136,7 +8136,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Customer Care Manager & Director / Client Delivery / Account Manager, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -8301,7 +8301,7 @@
             "actions": [
               {
                 "item": "Introduce dual verification for customer account changes (A.5.24)",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager"
+                "owner": "Customer Care & Client Delivery"
               },
               {
                 "item": "Add a customer-verification ritual to the care runbook (A.6.3)",
@@ -8313,7 +8313,7 @@
               },
               {
                 "item": "Brief the care desk and the client on the new controls (A.5.20)",
-                "owner": "Customer Care Manager & Director / Client Delivery / Account Manager"
+                "owner": "Customer Care & Client Delivery"
               }
             ],
             "next_step": "Verification-controls review within 5 working days; care desk briefing refreshed this month."
