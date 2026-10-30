@@ -281,15 +281,14 @@ _DEFAULT_ROLES = {
         {"role": "IT Network Team", "owner": "Networking", "concern": "Connectivity, segmentation, VPN (A.8.20, A.8.31)"},
         {"role": "Compliance", "owner": "Legal & Compliance", "concern": "Legal & compliance concerns (A.5.20, A.5.34)"},
         {"role": "Human Resources", "owner": "HR", "concern": "Employee policies & violations (A.6.1, A.6.3)"},
+        {"role": "Workforce Management", "owner": "WFM", "concern": "Forecasting, scheduling, attendance (A.8.6, A.6.1)"},
         {"role": "Marketing", "owner": "Corporate communications", "concern": "Official corporate press statements (A.5.20)"},
         {"role": "Executive Leadership", "owner": "C-suite", "concern": "Executive decision-making (A.5.24)"},
     ],
     BO: [
-        {"role": "Customer Care Manager & Director", "owner": "Care delivery", "concern": "Continuity decisions, care capacity, staffing (A.5.29, A.8.6)"},
-        {"role": "Care Operations Leads", "owner": "Care operations", "concern": "Queue prioritisation, answer times, client commitments (A.5.29, A.5.20)"},
-        {"role": "Team Leaders", "owner": "Care floor teams", "concern": "Agent status, escalation, caller experience (A.5.29)"},
+        {"role": "Customer Care Manager & Director / Client Delivery / Account Manager", "owner": "Care delivery & client relationship", "concern": "Continuity decisions, care capacity, staffing, SLA reporting, notifications and service credits (A.5.29, A.8.6, A.5.20)"},
+        {"role": "Care Operations Leads & Team Leaders", "owner": "Care operations & floor teams", "concern": "Queue prioritisation, answer times, agent status, escalation and caller experience (A.5.29, A.5.20)"},
         {"role": "Workforce Management", "owner": "WFM", "concern": "Forecasting, scheduling, attendance (A.8.6, A.6.1)"},
-        {"role": "Client Delivery / Account Manager", "owner": "Client relationship", "concern": "SLA reporting, notifications, service credits (A.5.20)"},
         {"role": "Quality & Training", "owner": "QA", "concern": "Call quality, script adherence, retraining (A.6.3, A.8.16)"},
         {"role": "Human Resources", "owner": "HR", "concern": "Absence, wellbeing, redeployment (A.6.1, A.6.7)"},
         {"role": "Executive Sponsor", "owner": "C-suite", "concern": "Continuity funding & governance (A.5.24)"},
@@ -348,17 +347,21 @@ _OWNER_ALIASES = {
     "dpo": "Compliance",
     "legal": "Compliance",
     "compliance": "Compliance",
-    "client delivery": "Client Delivery / Account Manager",
-    "client delivery / account manager": "Client Delivery / Account Manager",
-    "operations": "Care Operations Leads",
-    "care operations lead": "Care Operations Leads",
-    "care operations": "Care Operations Leads",
-    "customer care manager": "Customer Care Manager & Director",
-    "customer care managers": "Customer Care Manager & Director",
-    "operations director": "Customer Care Manager & Director",
+    "client delivery": "Customer Care Manager & Director / Client Delivery / Account Manager",
+    "client delivery / account manager": "Customer Care Manager & Director / Client Delivery / Account Manager",
+    "client delivery manager": "Customer Care Manager & Director / Client Delivery / Account Manager",
+    "operations": "Care Operations Leads & Team Leaders",
+    "care operations lead": "Care Operations Leads & Team Leaders",
+    "care operations leads": "Care Operations Leads & Team Leaders",
+    "care operations": "Care Operations Leads & Team Leaders",
+    "customer care manager": "Customer Care Manager & Director / Client Delivery / Account Manager",
+    "customer care managers": "Customer Care Manager & Director / Client Delivery / Account Manager",
+    "customer care manager & director": "Customer Care Manager & Director / Client Delivery / Account Manager",
+    "operations director": "Customer Care Manager & Director / Client Delivery / Account Manager",
     "wfm": "Workforce Management",
     "workforce management": "Workforce Management",
-    "team leaders": "Team Leaders",
+    "team leader": "Care Operations Leads & Team Leaders",
+    "team leaders": "Care Operations Leads & Team Leaders",
     "qa": "Quality & Training",
     "quality & training": "Quality & Training",
     "executive sponsor": "Executive Sponsor",
@@ -367,7 +370,7 @@ _OWNER_ALIASES = {
 
 _OWNER_FALLBACK = {
     "client delivery": ["Compliance", "Marketing"],
-    "operations": ["Customer Care Manager & Director"],
+    "operations": ["Customer Care Manager & Director / Client Delivery / Account Manager"],
     "it": ["Executive Sponsor", "Executive Leadership"],
 }
 
@@ -413,7 +416,7 @@ def normalize_question_callouts(questions, listed):
     out = []
     for q in questions or []:
         q = str(q)
-        m = re.match(r"^([A-Za-z][A-Za-z &/]{0,31}?)\s+[\u2014\u2013-]\s+", q)
+        m = re.match(r"^([A-Za-z][A-Za-z &/]{0,80}?)\s+[\u2014\u2013-]\s+", q)
         if m:
             prefix = m.group(1).strip()
             resolved = map_owner(prefix, listed)
@@ -1147,8 +1150,8 @@ SCENARIOS = [
     # with the INBOUND customer-care process as the only business process in
     # scope: every inject, decision and hotwash concerns the inbound voice,
     # chat and case queues — callers, answer times and customer SLAs — and
-    # every question is addressed to the Customer Care Manager, Care
-    # Operations Leads or Team Leaders running that program.
+    # every question is addressed to the customer-care/client-delivery
+    # managers or the care-operations/team-leader roles running that program.
     {
         "title": "Network Outage Affecting Global Connectivity", "category": BO, "difficulty": "INTERMEDIATE",
         "description": "The dedicated link to the client drops mid-shift, isolating a single inbound customer-care program.",

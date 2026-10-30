@@ -2,6 +2,9 @@
 from each deck's Roles slide.
 
 For every persisted exercise deck it:
+  * combines the paired role entries into one (Care Operations Leads +
+    Team Leaders, Customer Care Manager & Director + Client Delivery /
+    Account Manager) and keeps an HR and a WFM role in every selection,
   * rewrites the AAR slide's Participants line from the Roles slide,
   * maps every after-action/CAPA action owner to a listed role (map_owner),
   * regenerates the AAR recommendations and CAPA register from the sanitized
@@ -52,6 +55,63 @@ def _fix_text(obj):
     return obj
 
 
+# Paired roles combined into a single Roles-slide entry. The merged name is a
+# superstring of both originals, so existing owner values and decision callouts
+# still resolve by substring match.
+ROLE_MERGES = [
+    (["Care Operations Leads", "Team Leaders"],
+     "Care Operations Leads & Team Leaders",
+     "Care operations & floor teams",
+     "Queue prioritisation, answer times, agent status, escalation "
+     "and caller experience (A.5.29, A.5.20)"),
+    (["Customer Care Manager & Director", "Client Delivery / Account Manager"],
+     "Customer Care Manager & Director / Client Delivery / Account Manager",
+     "Care delivery & client relationship",
+     "Continuity decisions, care capacity, staffing, SLA reporting, "
+     "notifications and service credits (A.5.29, A.8.6, A.5.20)"),
+]
+
+HR_ROW = {"role": "Human Resources", "owner": "HR",
+          "concern": "Employee policies & violations (A.6.1, A.6.3)"}
+WFM_ROW = {"role": "Workforce Management", "owner": "WFM",
+           "concern": "Forecasting, scheduling, attendance (A.8.6, A.6.1)"}
+
+
+def _merge_roles(roles):
+    """Combine paired role entries into one and make sure the selection always
+    offers an HR and a WFM role. Returns (roles, changed)."""
+    changed = False
+    rows = [dict(r) for r in roles if isinstance(r, dict)]
+    for members, name, owner, concern in ROLE_MERGES:
+        names = {str(r.get("role") or "").strip() for r in rows}
+        if name in names:
+            continue                                  # already merged
+        hits = [i for i, r in enumerate(rows)
+                if str(r.get("role") or "").strip() in members]
+        if not hits:
+            continue
+        for i in reversed(hits):
+            del rows[i]
+        rows.insert(hits[0], {"role": name, "owner": owner,
+                              "concern": concern})
+        changed = True
+
+    def _has(keys):
+        return any(str(r.get("role") or "").strip().lower() in keys
+                   for r in rows)
+
+    if not _has({"human resources", "hr"}):
+        rows.append(dict(HR_ROW))
+        changed = True
+    if not _has({"workforce management", "wfm"}):
+        at = next((i for i, r in enumerate(rows)
+                   if str(r.get("role") or "").strip().lower()
+                   == "human resources"), len(rows) - 1)
+        rows.insert(at + 1, dict(WFM_ROW))
+        changed = True
+    return rows, changed
+
+
 def main():
     with open(FILE, encoding="utf-8") as f:
         doc = json.load(f)
@@ -63,11 +123,22 @@ def main():
             continue
         d = _fix_text(d)  # rebuilds nested containers, so fixes land in this copy
         slides = d.get("slides") or []
+        changed = False
+        # 1) Combine the paired roles into one entry and keep HR + WFM in the
+        #    selection, before anything else derives from the Roles slide.
+        for s in slides:
+            if (s.get("name") or "") != "Roles":
+                continue
+            sd0 = s.get("data") or {}
+            merged, rc = _merge_roles(sd0.get("roles") or [])
+            if rc:
+                s["data"] = dict(sd0, roles=merged)
+                changed = True
+            break
         listed = roles_of(d)
         if not listed:
             new_decks.append(d)
             continue
-        changed = False
         # Decision-question role callouts ("WFM —", "Care Operations Lead —")
         # must match the Roles slide name exactly.
         for s in slides:
