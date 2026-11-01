@@ -5067,7 +5067,7 @@
                 "concern": "Absence, wellbeing, redeployment (A.6.1, A.6.7)"
               },
               {
-                "role": "Executive Sponsor",
+                "role": "Executive Leadership",
                 "owner": "C-suite",
                 "concern": "Continuity funding & governance (A.5.24)"
               }
@@ -5284,7 +5284,7 @@
               "name": "Network Outage Affecting Global Connectivity",
               "date": ""
             },
-            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Leadership",
             "highlights": [
               "The continuity plan was triggered within 15 minutes of the link dropping",
               "Callers got clear hold messaging while customer records were unreachable",
@@ -5380,7 +5380,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -5756,7 +5756,7 @@
                 "concern": "Absence, wellbeing, redeployment (A.6.1, A.6.7)"
               },
               {
-                "role": "Executive Sponsor",
+                "role": "Executive Leadership",
                 "owner": "C-suite",
                 "concern": "Continuity funding & governance (A.5.24)"
               }
@@ -5973,7 +5973,7 @@
               "name": "Fire at Secondary Site During Peak Hours",
               "date": ""
             },
-            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Leadership",
             "highlights": [
               "The site was evacuated safely with every care agent accounted for",
               "Care queues were redistributed to Site A by end of day",
@@ -6069,7 +6069,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -6445,7 +6445,7 @@
                 "concern": "Absence, wellbeing, redeployment (A.6.1, A.6.7)"
               },
               {
-                "role": "Executive Sponsor",
+                "role": "Executive Leadership",
                 "owner": "C-suite",
                 "concern": "Continuity funding & governance (A.5.24)"
               }
@@ -6662,7 +6662,7 @@
               "name": "Complete Power Outage at HQ",
               "date": ""
             },
-            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Leadership",
             "highlights": [
               "Triage was completed before the floor went dark, protecting in-flight customer interactions",
               "Emergency and complaint lines continued through the fallback arrangement",
@@ -6758,7 +6758,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -6966,7 +6966,7 @@
         "diff": "ADVANCED"
       },
       "created": "2026-08-17T22:27:21",
-      "updated": "2026-10-18T05:35:44"
+      "updated": "2026-11-01T18:12:17"
     },
     {
       "id": "25a1db70cdea",
@@ -7134,7 +7134,7 @@
                 "concern": "Absence, wellbeing, redeployment (A.6.1, A.6.7)"
               },
               {
-                "role": "Executive Sponsor",
+                "role": "Executive Leadership",
                 "owner": "C-suite",
                 "concern": "Continuity funding & governance (A.5.24)"
               }
@@ -7351,7 +7351,7 @@
               "name": "Geopolitic Concerns Reducing Workforce Availability",
               "date": ""
             },
-            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Leadership",
             "highlights": [
               "Inbound care queues were prioritised and the capacity message reached the client within hours",
               "Cross-training absorbed part of the absenteeism shock on day one",
@@ -7447,7 +7447,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
@@ -7823,7 +7823,7 @@
                 "concern": "Absence, wellbeing, redeployment (A.6.1, A.6.7)"
               },
               {
-                "role": "Executive Sponsor",
+                "role": "Executive Leadership",
                 "owner": "C-suite",
                 "concern": "Continuity funding & governance (A.5.24)"
               }
@@ -8040,7 +8040,7 @@
               "name": "Vishing Attack",
               "date": ""
             },
-            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+            "participants": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Leadership",
             "highlights": [
               "Account servicing was paused before the second fraudulent change could complete",
               "Affected customers were identified and notified within the hour",
@@ -8136,7 +8136,7 @@
               }
             ],
             "meta": {
-              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Sponsor",
+              "prepared_for": "Customer Care & Client Delivery, Care Operations Leads & Team Leaders, Workforce Management, Quality & Training, Human Resources, Executive Leadership",
               "prepared_date": "2026-08-17",
               "source_document": "",
               "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",

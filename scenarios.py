@@ -291,7 +291,7 @@ _DEFAULT_ROLES = {
         {"role": "Workforce Management", "owner": "WFM", "concern": "Forecasting, scheduling, attendance (A.8.6, A.6.1)"},
         {"role": "Quality & Training", "owner": "QA", "concern": "Call quality, script adherence, retraining (A.6.3, A.8.16)"},
         {"role": "Human Resources", "owner": "HR", "concern": "Absence, wellbeing, redeployment (A.6.1, A.6.7)"},
-        {"role": "Executive Sponsor", "owner": "C-suite", "concern": "Continuity funding & governance (A.5.24)"},
+        {"role": "Executive Leadership", "owner": "C-suite", "concern": "Continuity funding & governance (A.5.24)"},
     ],
 }
 
@@ -366,14 +366,14 @@ _OWNER_ALIASES = {
     "team leaders": "Care Operations Leads & Team Leaders",
     "qa": "Quality & Training",
     "quality & training": "Quality & Training",
-    "executive sponsor": "Executive Sponsor",
+    "executive sponsor": "Executive Leadership",
     "executive leadership": "Executive Leadership",
 }
 
 _OWNER_FALLBACK = {
     "client delivery": ["Compliance", "Marketing"],
     "operations": ["Customer Care & Client Delivery"],
-    "it": ["Executive Sponsor", "Executive Leadership"],
+    "it": ["Executive Leadership"],
 }
 
 

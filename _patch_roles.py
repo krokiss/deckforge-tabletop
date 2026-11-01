@@ -55,10 +55,11 @@ def _fix_text(obj):
     return obj
 
 
-# Paired roles combined into a single Roles-slide entry. Each list carries
-# both the original pair members and any earlier merged name, so decks that
-# were already merged in a previous run get renamed too (the first entry
-# whose target name is present wins — the others fall through as no-ops).
+# Paired roles combined into a single Roles-slide entry, plus one plain
+# rename (Executive Sponsor -> Executive Leadership). Each list carries both
+# the original pair members and any earlier merged name, so decks that were
+# already merged in a previous run get renamed too (the first entry whose
+# target name is present wins — the others fall through as no-ops).
 # Old names keep resolving through _OWNER_ALIASES in scenarios.py.
 ROLE_MERGES = [
     (["Care Operations Leads", "Team Leaders"],
@@ -72,6 +73,10 @@ ROLE_MERGES = [
      "Care delivery & client relationship",
      "Continuity decisions, care capacity, staffing, SLA reporting, "
      "notifications and service credits (A.5.29, A.8.6, A.5.20)"),
+    (["Executive Sponsor"],
+     "Executive Leadership",
+     "C-suite",
+     "Continuity funding & governance (A.5.24)"),
 ]
 
 HR_ROW = {"role": "Human Resources", "owner": "HR",
