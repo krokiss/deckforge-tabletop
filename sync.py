@@ -52,7 +52,9 @@ DEFAULT_BACKUP = os.path.join(
 SKIP_DIRS = {"__pycache__", ".git", ".freebuff"}
 SKIP_SUFFIX = (".pyc", ".pyo", ".log", ".log.err", ".tmp")
 SKIP_PREFIX = ("preview-",)
-SKIP_FILES = {"desktop-v2.db", "desktop-v2.db-shm", "desktop-v2.db-wal"}
+# .live_password holds the live-site password for weekly.py: it stays on this
+# machine only, so it is never mirrored to the backup or zipped.
+SKIP_FILES = {"desktop-v2.db", "desktop-v2.db-shm", "desktop-v2.db-wal", ".live_password"}
 
 # How old (seconds) a file pair must be before we trust mtime comparison.
 SKEW = 2.0
