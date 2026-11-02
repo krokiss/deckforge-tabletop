@@ -23,3 +23,6 @@ data/templates.json.bak
 # Exercise history + recorded discussion: these stay on the local machine
 # and in the backup mirror, never in git/GitHub/Render.
 data/history/
+
+# Live-site password for weekly.py (never committed)
+data/.live_password
