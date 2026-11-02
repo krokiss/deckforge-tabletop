@@ -1068,49 +1068,102 @@ POLICY_RETENTION = (
     "(SEC-POL-033 \u00a710.5.13\u201310.5.15, \u00a714).")
 
 
-def _responses_html(live_responses, listed_roles=None):
-    """Per-role recorded discussion responses captured during the presentation.
-
-    Returns HTML (participating roles + one block per inject/decision) or "" when
-    the exercise recorded no responses.
-    """
-    if not (live_responses and isinstance(live_responses, dict)):
+def _condense(text, limit=220):
+    """One clean sentence condensed from a free-text participant response."""
+    t = " ".join(str(text or "").split()).strip("-*:— ").strip()
+    if not t:
         return ""
-    esc = lambda v: _html.escape("" if v is None else str(v))
-    out = ""
-    roles_text = str(live_responses.get("roles") or "").strip()
-    if roles_text and listed_roles and not roles_text.lower().startswith("no roles"):
-        _sel = [x.strip() for x in roles_text.replace("Participating roles:", "").split(",") if x.strip()]
-        _sel = [x for x in _sel if x in listed_roles]
-        roles_text = ("Participating roles: " + ", ".join(_sel)) if _sel else ""
-    if roles_text:
-        out += "<p><b>Participating roles:</b> %s</p>" % esc(roles_text)
-    for it in (live_responses.get("items") or []):
+    for i, ch in enumerate(t):
+        if ch in ".!?":
+            nxt = t[i + 1] if i + 1 < len(t) else ""
+            if not (ch == "." and nxt.isdigit()):
+                t = t[:i + 1]
+                break
+    if len(t) > limit:
+        t = t[:limit].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+    return t
+
+
+def _role_pairs(item):
+    """[(role, response)] for one recorded inject/decision item."""
+    body = str(item.get("body") or "").strip()
+    if not body:
+        return []
+    try:
+        parsed = json.loads(body)
+    except (ValueError, TypeError):
+        parsed = None
+    if isinstance(parsed, dict):
+        return [(str(k).strip(), str(v).strip()) for k, v in parsed.items() if str(v).strip()]
+    return [("Discussion", body)]
+
+
+def _discussion_points(live_responses):
+    """[(title, [(role, response)])] captured during the exercise, newest last."""
+    points = []
+    for it in ((live_responses or {}).get("items") or []):
         if not isinstance(it, dict):
             continue
         title = str(it.get("title") or "").strip()
         body = str(it.get("body") or "").strip()
         if not title and not body:
             continue
-        out += "<h4 style='margin:10px 0 4px;color:#111827'>%s</h4>" % esc(title)
-        try:
-            role_map = json.loads(body)
-        except (ValueError, TypeError):
-            role_map = None
-        if isinstance(role_map, dict):
-            out += ("<table style='width:100%;margin:4px 0'><tr><th style='width:160px'>Role</th>"
-                    "<th>Response</th></tr>")
-            for role_name, role_resp in role_map.items():
-                out += "<tr><td style='font-weight:600'>%s</td><td>%s</td></tr>" % (
-                    esc(role_name), esc(str(role_resp)))
-            out += "</table>"
+        if title.lower() == "roles" and body.lower().startswith("participating roles"):
             continue
-        lines_b = [ln.strip() for ln in body.split("\n\n") if ln.strip()]
-        has_role_prefix = any(": " in ln for ln in lines_b)
-        if has_role_prefix and len(lines_b) > 1:
-            out += "<ul>" + "".join("<li>%s</li>" % esc(ln) for ln in lines_b) + "</ul>"
-        else:
-            out += "<p>%s</p>" % esc(body)
+        pairs = _role_pairs(it)
+        if pairs:
+            points.append((title, pairs))
+    return points
+
+
+def _participants_line(live_responses, listed_roles=None):
+    if not (live_responses and isinstance(live_responses, dict)):
+        return ""
+    roles_text = str(live_responses.get("roles") or "").strip()
+    if roles_text and listed_roles and not roles_text.lower().startswith("no roles"):
+        picked = [x.strip() for x in roles_text.replace("Participating roles:", "").split(",") if x.strip()]
+        picked = [x for x in picked if x in listed_roles]
+        roles_text = ("Participating roles: " + ", ".join(picked)) if picked else ""
+    return roles_text
+
+
+def _discussion_prose_html(live_responses, listed_roles=None):
+    """Prose condensation of the recorded discussion for the executive summary."""
+    points = _discussion_points(live_responses)
+    if not points:
+        return ""
+    esc = lambda v: _html.escape("" if v is None else str(v))
+    out = ""
+    participants = _participants_line(live_responses, listed_roles)
+    if participants:
+        out += "<p><b>%s</b></p>" % esc(participants)
+    n_responses = sum(len(pairs) for _, pairs in points)
+    out += ("<p>The team worked through %d discussion points and recorded %d role responses. "
+            "Their decisions are condensed below.</p>" % (len(points), n_responses))
+    for title, pairs in points:
+        sentences = []
+        for role, text in pairs:
+            s = _condense(text)
+            if s:
+                sentences.append("<b>%s</b>: %s" % (esc(role), esc(s)))
+        if not sentences:
+            continue
+        lead = ("<b>%s.</b> " % esc(title)) if title else ""
+        out += "<p>%s%s</p>" % (lead, " ".join(sentences))
+    return out
+
+
+def _discussion_takeaways(live_responses, max_points=6, per_role=150, max_roles=2):
+    """Short takeaway bullets drawn from the recorded discussion responses."""
+    out = []
+    for title, pairs in _discussion_points(live_responses)[:max_points]:
+        bits = []
+        for role, text in pairs[:max_roles]:
+            s = _condense(text, per_role).rstrip(". ")
+            if s:
+                bits.append("%s — %s" % (role, s))
+        if bits:
+            out.append(("%s: " % title if title else "") + "; ".join(bits))
     return out
 
 
@@ -1251,7 +1304,7 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
         exec_inner += "<p>%s</p>" % esc(story)
     if callout:
         exec_inner += "<div class='aar-callout'><b>Executive assessment:</b> %s</div>" % esc(callout)
-    resp_html = _responses_html(live_responses, listed_roles)
+    resp_html = _discussion_prose_html(live_responses, listed_roles)
     if resp_html:
         exec_inner += ("<h3>Exercise discussion &amp; participant responses</h3>"
                        + resp_html)
@@ -1397,8 +1450,11 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
                          numbered(recs or POLICY_RECOMMENDATIONS_DEFAULT)))
 
     lsn = rows("lessons")
-    parts.append(section("Key Lessons Learned (§8.6.8 / §7.7)",
-                         bullets(lsn or POLICY_LESSONS_DEFAULT)))
+    lessons_inner = bullets(lsn or POLICY_LESSONS_DEFAULT)
+    takeaways = _discussion_takeaways(live_responses)
+    if takeaways:
+        lessons_inner += "<h3>From the exercise discussion</h3>" + bullets(takeaways)
+    parts.append(section("Key Lessons Learned (§8.6.8 / §7.7)", lessons_inner))
 
     if rows("capability"):
         parts.append(section("Executive Capability Assessment",
