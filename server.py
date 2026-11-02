@@ -1068,6 +1068,53 @@ POLICY_RETENTION = (
     "(SEC-POL-033 \u00a710.5.13\u201310.5.15, \u00a714).")
 
 
+def _responses_html(live_responses, listed_roles=None):
+    """Per-role recorded discussion responses captured during the presentation.
+
+    Returns HTML (participating roles + one block per inject/decision) or "" when
+    the exercise recorded no responses.
+    """
+    if not (live_responses and isinstance(live_responses, dict)):
+        return ""
+    esc = lambda v: _html.escape("" if v is None else str(v))
+    out = ""
+    roles_text = str(live_responses.get("roles") or "").strip()
+    if roles_text and listed_roles and not roles_text.lower().startswith("no roles"):
+        _sel = [x.strip() for x in roles_text.replace("Participating roles:", "").split(",") if x.strip()]
+        _sel = [x for x in _sel if x in listed_roles]
+        roles_text = ("Participating roles: " + ", ".join(_sel)) if _sel else ""
+    if roles_text:
+        out += "<p><b>Participating roles:</b> %s</p>" % esc(roles_text)
+    for it in (live_responses.get("items") or []):
+        if not isinstance(it, dict):
+            continue
+        title = str(it.get("title") or "").strip()
+        body = str(it.get("body") or "").strip()
+        if not title and not body:
+            continue
+        out += "<h4 style='margin:10px 0 4px;color:#111827'>%s</h4>" % esc(title)
+        try:
+            role_map = json.loads(body)
+        except (ValueError, TypeError):
+            role_map = None
+        if isinstance(role_map, dict):
+            out += ("<table style='width:100%;margin:4px 0'><tr><th style='width:160px'>Role</th>"
+                    "<th>Response</th></tr>")
+            for role_name, role_resp in role_map.items():
+                out += "<tr><td style='font-weight:600'>%s</td><td>%s</td></tr>" % (
+                    esc(role_name), esc(str(role_resp)))
+            out += "</table>"
+            continue
+        lines_b = [ln.strip() for ln in body.split("\n\n") if ln.strip()]
+        has_role_prefix = any(": " in ln for ln in lines_b)
+        if has_role_prefix and len(lines_b) > 1:
+            out += "<ul>" + "".join("<li>%s</li>" % esc(ln) for ln in lines_b) + "</ul>"
+        else:
+            out += "<p>%s</p>" % esc(body)
+    return out
+
+
+
 def build_afteraction(name, slides, live_responses=None, completed_date=None, injects=None):
     """Word-ready After-Action Report & Executive Summary built from the deck's
     summary slide data, formatted to the SEC-POL-033 report procedure:
@@ -1204,6 +1251,10 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
         exec_inner += "<p>%s</p>" % esc(story)
     if callout:
         exec_inner += "<div class='aar-callout'><b>Executive assessment:</b> %s</div>" % esc(callout)
+    resp_html = _responses_html(live_responses, listed_roles)
+    if resp_html:
+        exec_inner += ("<h3>Exercise discussion &amp; participant responses</h3>"
+                       + resp_html)
     if not exec_inner:
         exec_inner = ("<p>Exercise findings are summarised from the exercise transcript, "
                       "decision log and hotwash recorded in this report. Complete the "
@@ -1413,54 +1464,6 @@ def build_afteraction(name, slides, live_responses=None, completed_date=None, in
                          + "<p><b>Distribution:</b> %s</p>" % esc(POLICY_DISTRIBUTION)
                          + "<p><b>Retention:</b> %s</p>" % esc(POLICY_RETENTION)))
 
-    # ── Live exercise responses captured during the presentation ──
-    if live_responses and isinstance(live_responses, dict):
-        live_html = ""
-        # Roles
-        roles_text = str(live_responses.get("roles") or "").strip()
-        if roles_text and listed_roles and not roles_text.lower().startswith("no roles"):
-            _sel = [x.strip() for x in roles_text.replace("Participating roles:", "").split(",") if x.strip()]
-            _sel = [x for x in _sel if x in listed_roles]
-            roles_text = ("Participating roles: " + ", ".join(_sel)) if _sel else ""
-        if roles_text:
-            live_html += "<p><b>Participating roles:</b> %s</p>" % esc(roles_text)
-        # Per-slide inject / decision items (may contain per-role data)
-        items = live_responses.get("items") or []
-        if items:
-            live_html += "<h3>Recorded team responses</h3>"
-            for it in items:
-                title = str(it.get("title") or "").strip()
-                body = str(it.get("body") or "").strip()
-                if not title and not body:
-                    continue
-                live_html += "<h4 style='margin:10px 0 4px;color:#111827'>%s</h4>" % esc(title)
-                # Try to parse as JSON per-role map: {"Role": "response", ...}
-                try:
-                    import json as _json
-                    role_map = _json.loads(body)
-                    if isinstance(role_map, dict):
-                        live_html += "<table style='width:100%;margin:4px 0'><tr><th style='width:160px'>Role</th><th>Response</th></tr>"
-                        for role_name, role_resp in role_map.items():
-                            live_html += "<tr><td style='font-weight:600'>%s</td><td>%s</td></tr>" % (esc(role_name), esc(str(role_resp)))
-                        live_html += "</table>"
-                    else:
-                        live_html += "<p>%s</p>" % esc(body)
-                except (ValueError, TypeError):
-                    # Plain text body — also check for Q1:/Q2: style with per-role lines
-                    # Format: "Role: response\n\nRole: response"
-                    lines = body.split("\n\n")
-                    has_role_prefix = any(": " in ln for ln in lines if ln.strip())
-                    if has_role_prefix and len(lines) > 1:
-                        live_html += "<ul>"
-                        for ln in lines:
-                            ln = ln.strip()
-                            if ln:
-                                live_html += "<li>%s</li>" % esc(ln)
-                        live_html += "</ul>"
-                    else:
-                        live_html += "<p>%s</p>" % esc(body)
-        if live_html:
-            parts.append(section("Exercise Responses (Live)", live_html))
 
     footer = ""
     if meta.get("reference"):
