@@ -19,3 +19,7 @@ run.md
 # Legacy DocForge backup (data/decks.json IS committed on purpose —
 # the custom exercise decks ship with the deploy)
 data/templates.json.bak
+
+# Exercise history + recorded discussion: these stay on the local machine
+# and in the backup mirror, never in git/GitHub/Render.
+data/history/
