@@ -757,6 +757,8 @@ textarea.field-input { min-height: 74px; resize: vertical; font-family: var(--mo
 .dash-stat-label { color: var(--text-2); font-size: 12.5px; margin-top: 4px; }
 .dash-history { padding: 0 32px 32px; }
 .dash-history h3 { font-size: 16px; margin: 0 0 14px; color: var(--text); }
+.dash-history-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.dash-history-head h3 { margin: 0; }
 .dash-empty { color: var(--text-2); font-size: 14px; padding: 40px 0; text-align: center; }
 .dash-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 .dash-table th {

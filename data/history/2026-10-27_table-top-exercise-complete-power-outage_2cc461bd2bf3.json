@@ -1,0 +1,658 @@
+{
+  "deck_id": "e7d675daca3d",
+  "name": "Table Top Exercise · Complete Power Outage at HQ",
+  "deck_name": "Table Top Exercise · Complete Power Outage at HQ",
+  "completed_date": "2026-10-27",
+  "live_responses": {
+    "roles": "Participating roles: Customer Care Manager & Director, Care Operations Leads, Team Leaders, Quality & Training",
+    "items": [
+      {
+        "title": "Roles",
+        "body": "Participating roles: Customer Care Manager & Director, Care Operations Leads, Team Leaders, Quality & Training"
+      },
+      {
+        "title": "Inject #1 — Regional power loss",
+        "body": "{\"Customer Care Manager & Director\":\"assess who is in the building and coverage, identify and report to VP and IT. Communicate to all departments. Report to C&D and setup down queue in IVR in case with not able to answer. communicate with non affected reps/wfh. Shift coverage and leverage multi channel reps to cushion queue impact.\\n\\nCommunicating with Client:\\nImpact Assessment, IT and VP Ops communication.\\nWill be reporting with Client within the hour, or as soon we have the assessment.\",\"Team Leaders\":\"Assess the impact and communicate that BZ is not impacted of the power loss, communicate with wfh reps. PM to communicate with Client and VP to close queue. Reporting cadence with client and stake holders\",\"Quality & Training\":\"Similar decision and plan.Making sure to provide all necessary support for any issues.\"}"
+      },
+      {
+        "title": "Inject #2 — Floor shutting down",
+        "body": "{\"Customer Care Manager & Director\":\"We will now release and deploy the workforce for wfh setup.\\nInform the current of the prolong impact of power loss, may impact SL. All reps has remote access. Communicate immediately with client.\",\"Team Leaders\":\"For BZ team, delegate support to Phone Team and Chat/Email and SM are still covered. \\nCommunicate possible impact with team.\",\"Quality & Training\":\"Same with the Ops team, draft verbiage and communicate with frontline to assist with any help and materials needed for this scenario.\"}"
+      },
+      {
+        "title": "Inject #3 — Extended outage confirmed",
+        "body": "{\"Customer Care Manager & Director\":\"Very similar with the last inject response, wfh will be continued and utilized. \\nIf SLA will be affected, it will be communicated to C&D and proactively inform them of the plans and current utilization of the team.\\n8-4PM CT Phone Lines.\\nCommunicate with the team to check chats before returning to office.\\nReporting will resume in case any changes on the resolution.\",\"Team Leaders\":\"Same as with PM, making sure that we have coverage on all channels and continue communication with the team.\",\"Quality & Training\":\"No additional from Q&T\"}"
+      },
+      {
+        "title": "Decision A — Continuity triage",
+        "body": "{\"Customer Care Manager & Director\":\"Once Ops resumes, We will do callback and will reach out via email for chats.\",\"Team Leaders\":\"Communicate with team about Power Loss, informing of any drop calls and callbacks from customer.\",\"Quality & Training\":\"Training materials are in placed for this instance, verbiage are in placed.\"}"
+      },
+      {
+        "title": "Decision B — Sustained operations",
+        "body": "{\"Care Operations Leads\":\"No modification since the OPs closes at 4PM.\",\"Team Leaders\":\"The team will decide collectively.\",\"Customer Care Manager & Director\":\"Actual - Hourly reporting\\nProlonged Impact - Daily report\\nSLA - 70% within 30secs\\nChat/text - completed interactions\\nEmail - 48 Hours\\nAHT - 540 secs / QA trump AHT\"}"
+      }
+    ]
+  },
+  "injects": [
+    {
+      "time": "15:05",
+      "title": "Regional power loss",
+      "detail": "A regional outage hits HQ; the UPS carries the floor briefly but the backup generators fail to start."
+    },
+    {
+      "time": "15:20",
+      "title": "Floor shutting down",
+      "detail": "Workstations and telephony shut down mid-call; inbound customers are disconnected and 100% of care agents are losing their systems."
+    },
+    {
+      "time": "16:00",
+      "title": "Extended outage confirmed",
+      "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The inbound care SLA is at risk."
+    }
+  ],
+  "slides": [
+    {
+      "name": "Title",
+      "layout": "title",
+      "body": "# Table Top Exercise\n\n## {{scenario.title}}\n\n{{scenario.kicker}}",
+      "data": {
+        "scenario": {
+          "title": "Complete Power Outage at HQ",
+          "kicker": "Business Continuity Tabletop · ISO/IEC 27001:2022 & ISO/IEC 27002:2022 · Business Operations · Advanced · 90 minutes · Facilitated discussion"
+        }
+      }
+    },
+    {
+      "name": "Rules of Engagement",
+      "layout": "content",
+      "body": "## Rules of Engagement\n\n{{#each rules}}\n- {{this}}\n{{/each}}",
+      "data": {
+        "rules": [
+          "Tabletop Exercises are NOT “Pass” or “Fail” activities.",
+          "Treat the exercise scenarios as real events and assume that normal operational procedures and resources are in place.",
+          "There is no need to name specific cybersecurity technologies — focus on the processes for incident response.",
+          "All participants are encouraged to actively engage and contribute to discussions.",
+          "Approach the scenarios with a problem-solving mindset.",
+          "You are encouraged to highlight areas for improvement and suggest practical enhancements.",
+          "Actively participate in the evaluation process at the end of the exercise to identify “Lessons Learned”."
+        ]
+      }
+    },
+    {
+      "name": "Objectives & ground rules",
+      "layout": "content",
+      "body": "## {{objectives.title}}\n\n{{#each objectives.items}}\n- {{this}}\n{{/each}}\n\n**Ground rules:** {{ground_rules}}",
+      "data": {
+        "objectives": {
+          "title": "Objectives & ground rules",
+          "items": [
+            "Test decision-making when customer care continuity is at stake",
+            "Map every decision to ISO/IEC 27001:2022 continuity and operational controls",
+            "Expose gaps in care capacity, customer communication and recovery",
+            "Leave with an after-action list with owners and dates"
+          ]
+        },
+        "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+      }
+    },
+    {
+      "name": "Scenario background",
+      "layout": "content",
+      "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
+      "data": {
+        "company": {
+          "profile": "ISO/IEC 27001-certified BPO running a client inbound Customer Care Program from a single HQ delivery center with 900 seats"
+        },
+        "iso_scope": "Client Customer Care Program — inbound voice, chat and customer case handling under one client contract",
+        "systems": [
+          "Care agent desktops & telephony (HQ)",
+          "Customer care platform (voice & chat)",
+          "Workforce management & scheduling",
+          "Customer SLA dashboard",
+          "Peak call-window calendar"
+        ],
+        "setting": "Weekday 15:00, with the client's billing-cycle announcement driving peak inbound call volumes into the close of day."
+      }
+    },
+    {
+      "name": "Roles",
+      "layout": "content",
+      "body": "## Roles & responsibilities\n\n| Role | Owner | Key concerns |\n|------|-------|--------------|\n{{#each roles}}\n| {{role}} | {{owner}} | {{concern}} |\n{{/each}}",
+      "data": {
+        "roles": [
+          {
+            "role": "Customer Care Manager & Director",
+            "owner": "Care delivery",
+            "concern": "Continuity decisions, care capacity, staffing (A.5.29, A.8.6)"
+          },
+          {
+            "role": "Care Operations Leads",
+            "owner": "Care operations",
+            "concern": "Queue prioritisation, answer times, client commitments (A.5.29, A.5.20)"
+          },
+          {
+            "role": "Team Leaders",
+            "owner": "Care floor teams",
+            "concern": "Agent status, escalation, caller experience (A.5.29)"
+          },
+          {
+            "role": "Workforce Management",
+            "owner": "WFM",
+            "concern": "Forecasting, scheduling, attendance (A.8.6, A.6.1)"
+          },
+          {
+            "role": "Client Delivery / Account Manager",
+            "owner": "Client relationship",
+            "concern": "SLA reporting, notifications, service credits (A.5.20)"
+          },
+          {
+            "role": "Quality & Training",
+            "owner": "QA",
+            "concern": "Call quality, script adherence, retraining (A.6.3, A.8.16)"
+          },
+          {
+            "role": "Human Resources",
+            "owner": "HR",
+            "concern": "Absence, wellbeing, redeployment (A.6.1, A.6.7)"
+          },
+          {
+            "role": "Executive Sponsor",
+            "owner": "C-suite",
+            "concern": "Continuity funding & governance (A.5.24)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Inject #1 — Regional power loss",
+      "layout": "section",
+      "body": "# Inject #1 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+      "data": {
+        "number": 1,
+        "time": "15:05",
+        "title": "Regional power loss",
+        "detail": "A regional outage hits HQ; the UPS carries the floor briefly but the backup generators fail to start.",
+        "prompt": "Team Response — Critical decision point",
+        "observation": ""
+      }
+    },
+    {
+      "name": "Decision A — Continuity triage",
+      "layout": "content",
+      "body": "## Decision A — Continuity triage\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+      "data": {
+        "pairs": [
+          {
+            "question": "Customer Care Manager — which inbound care channels are critical enough to keep running — emergency and complaint lines first — and which are suspended? (A.5.29)",
+            "response": ""
+          },
+          {
+            "question": "Customer Care Manager — who has authority to suspend care queues and to inform the client? (A.5.24, A.5.20)",
+            "response": ""
+          },
+          {
+            "question": "Team Leader — what is the floor plan for your care team right now — redeploy, release, or hold? (A.6.7, A.5.29)",
+            "response": ""
+          },
+          {
+            "question": "Care Operations Lead — how are in-flight calls and open chats handed over so no customer is dropped mid-interaction? (A.5.29)",
+            "response": ""
+          }
+        ],
+        "timebox": "15 minutes"
+      }
+    },
+    {
+      "name": "Inject #2 — Floor shutting down",
+      "layout": "section",
+      "body": "# Inject #2 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+      "data": {
+        "number": 2,
+        "time": "15:20",
+        "title": "Floor shutting down",
+        "detail": "Workstations and telephony shut down mid-call; inbound customers are disconnected and 100% of care agents are losing their systems.",
+        "prompt": "Team Response — Critical decision point",
+        "observation": ""
+      }
+    },
+    {
+      "name": "Inject #3 — Extended outage confirmed",
+      "layout": "section",
+      "body": "# Inject #3 — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n### Initial Observations\n{{observation}}",
+      "data": {
+        "number": 3,
+        "time": "16:00",
+        "title": "Extended outage confirmed",
+        "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The inbound care SLA is at risk.",
+        "prompt": "Team Response — Critical decision point",
+        "observation": ""
+      }
+    },
+    {
+      "name": "Decision B — Sustained operations",
+      "layout": "content",
+      "body": "## Decision B — Sustained operations\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+      "data": {
+        "pairs": [
+          {
+            "question": "WFM — what staffing and scheduling changes sustain inbound customer care through a multi-hour outage? (A.5.29, A.8.6)",
+            "response": ""
+          },
+          {
+            "question": "Client Delivery Manager — which care commitments and SLA deadlines move, and how are the renegotiations handled? (A.5.20)",
+            "response": ""
+          },
+          {
+            "question": "Customer Care Manager — what is the order for resuming suspended inbound care queues once the site reopens? (A.5.29)",
+            "response": ""
+          },
+          {
+            "question": "Care Operations Lead — how is service-level progress reported to the client during the extended outage? (A.5.20)",
+            "response": ""
+          }
+        ],
+        "timebox": "20 minutes"
+      }
+    },
+    {
+      "name": "Discussion Summary",
+      "layout": "content",
+      "body": "## Discussion Summary\n\n### Injects\n{{#each injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n\n### Decision Points\n{{#each decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}",
+      "data": {
+        "injects": [
+          {
+            "inject": "Inject #1 — Regional power loss",
+            "time": "15:05",
+            "detail": "A regional outage hits HQ; the UPS carries the floor briefly but the backup generators fail to start."
+          },
+          {
+            "inject": "Inject #2 — Floor shutting down",
+            "time": "15:20",
+            "detail": "Workstations and telephony shut down mid-call; inbound customers are disconnected and 100% of care agents are losing their systems."
+          },
+          {
+            "inject": "Inject #3 — Extended outage confirmed",
+            "time": "16:00",
+            "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The inbound care SLA is at risk."
+          }
+        ],
+        "decisions": [
+          {
+            "decision": "Decision A — Continuity triage",
+            "responses": [
+              "",
+              "",
+              "",
+              ""
+            ]
+          },
+          {
+            "decision": "Decision B — Sustained operations",
+            "responses": [
+              "",
+              "",
+              "",
+              ""
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "ISO/IEC 27001 clause map",
+      "layout": "content",
+      "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
+      "data": {
+        "clause_map": [
+          {
+            "decision": "Continuity triage",
+            "control": "A.5.29 · Continuity planning",
+            "guidance": "Trigger the site BCP (27002 §5.29)"
+          },
+          {
+            "decision": "Suspend care queues",
+            "control": "A.5.24 · Incident management planning",
+            "guidance": "Coordinated decisions and authority (27002 §5.24)"
+          },
+          {
+            "decision": "Fallback work modes",
+            "control": "A.6.7 · Remote working",
+            "guidance": "Continue critical care off-site (27002 §6.7)"
+          },
+          {
+            "decision": "Customer SLA deadlines",
+            "control": "A.5.20 · Supplier agreements",
+            "guidance": "Renegotiate commitments (27002 §5.20)"
+          },
+          {
+            "decision": "Queue resumption order",
+            "control": "A.8.6 · Capacity management",
+            "guidance": "Bring care queues back safely (27002 §8.6)"
+          },
+          {
+            "decision": "Lessons learned",
+            "control": "A.5.27 · Learning from incidents",
+            "guidance": "Improve power resilience (27002 §5.27)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Hotwash",
+      "layout": "section",
+      "body": "# Hotwash\n\n{{text}}",
+      "data": {
+        "text": "Would our inbound customer care service have survived an outage lasting 25% of the operating day? Where does the inbound answer-time SLA break first?"
+      }
+    },
+    {
+      "name": "Post-Exercise Discussion & Next Steps",
+      "layout": "content",
+      "body": "## Post-Exercise Discussion\n\n{{#each discussion}}\n- {{this}}\n{{/each}}\n\n### Next Steps\n{{#each next_steps}}\n- {{this}}\n{{/each}}",
+      "data": {
+        "discussion": [
+          "What went well during the exercise?",
+          "What didn’t go well?",
+          "Did the exercise reveal any gaps in training or knowledge?",
+          "What were the key lessons learned?",
+          "What improvements or changes should be made to response plans and procedures?"
+        ],
+        "next_steps": [
+          "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
+          "Generate a TTX Exercise Assessment Report.",
+          "The final report will be provided for review."
+        ]
+      }
+    },
+    {
+      "name": "After Action Executive Summary",
+      "layout": "content",
+      "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+      "data": {
+        "exercise": {
+          "name": "Complete Power Outage at HQ",
+          "date": ""
+        },
+        "participants": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+        "highlights": [
+          "Triage was completed before the floor went dark, protecting in-flight customer interactions",
+          "Emergency and complaint lines continued through the fallback arrangement",
+          "The client knew the revised timeline before the SLA was breached"
+        ],
+        "lessons": [
+          "The inbound care program's dependency on HQ needs a documented contingency",
+          "Fallback work arrangements must be tested at real care scale",
+          "Release-or-hold decisions for the floor need a pre-agreed script"
+        ],
+        "story": "Weekday 15:00, with the client's billing-cycle announcement driving peak inbound call volumes into the close of day. The exercise unfolded through the following injects: At 15:05, Regional power loss — A regional outage hits HQ; the UPS carries the floor briefly but the backup generators fail to start. At 15:20, Floor shutting down — Workstations and telephony shut down mid-call; inbound customers are disconnected and 100% of care agents are losing their systems. At 16:00, Extended outage confirmed — The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The inbound care SLA is at risk. The hotwash closed on a single question: Would our inbound customer care service have survived an outage lasting 25% of the operating day? Where does the inbound answer-time SLA break first? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+        "discussion": {
+          "injects": [
+            {
+              "inject": "Inject #1 — Regional power loss",
+              "time": "15:05",
+              "detail": "A regional outage hits HQ; the UPS carries the floor briefly but the backup generators fail to start."
+            },
+            {
+              "inject": "Inject #2 — Floor shutting down",
+              "time": "15:20",
+              "detail": "Workstations and telephony shut down mid-call; inbound customers are disconnected and 100% of care agents are losing their systems."
+            },
+            {
+              "inject": "Inject #3 — Extended outage confirmed",
+              "time": "16:00",
+              "detail": "The utility reports power out for 25% of the operating day or more; generators can be repaired, but not before midnight. The inbound care SLA is at risk."
+            }
+          ],
+          "decisions": [
+            {
+              "decision": "Decision A — Continuity triage",
+              "responses": [
+                "",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "decision": "Decision B — Sustained operations",
+              "responses": [
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ]
+        },
+        "recommendations": [
+          "Prioritise: Document the care continuity contingency for HQ (A.5.29) — owner: Customer Care Manager.",
+          "Prioritise: Test fallback care work at full program scale (A.6.7) — owner: Operations.",
+          "Prioritise: Agree SLA relief terms with the client in advance (A.5.20) — owner: Client Delivery.",
+          "Prioritise: Write the floor release-or-hold script into the BCP (A.5.24) — owner: Team Leaders."
+        ],
+        "capa": [
+          {
+            "item": "Document the care continuity contingency for HQ (A.5.29)",
+            "type": "Preventive",
+            "owner": "Customer Care Manager",
+            "due": "30 days",
+            "target": "0–30 days",
+            "framework_focus": "ISO/IEC 27001:2022 A.5.29",
+            "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
+          },
+          {
+            "item": "Test fallback care work at full program scale (A.6.7)",
+            "type": "Preventive",
+            "owner": "Operations",
+            "due": "30 days",
+            "target": "0–30 days",
+            "framework_focus": "ISO/IEC 27001:2022 A.6.7",
+            "evidence": "Approved procedure, test evidence and review log; closure reviewed at management review."
+          },
+          {
+            "item": "Agree SLA relief terms with the client in advance (A.5.20)",
+            "type": "Corrective",
+            "owner": "Client Delivery",
+            "due": "30 days",
+            "target": "0–30 days",
+            "framework_focus": "ISO/IEC 27001:2022 A.5.20",
+            "evidence": "Implementation evidence, validation test result and owner sign-off."
+          },
+          {
+            "item": "Write the floor release-or-hold script into the BCP (A.5.24)",
+            "type": "Corrective",
+            "owner": "Team Leaders",
+            "due": "30 days",
+            "target": "0–30 days",
+            "framework_focus": "ISO/IEC 27001:2022 A.5.24",
+            "evidence": "Implementation evidence, validation test result and owner sign-off."
+          }
+        ],
+        "meta": {
+          "prepared_for": "Operations Director, Customer Care Managers, Team Leaders, Client Delivery, Workforce Management",
+          "prepared_date": "2026-08-17",
+          "source_document": "",
+          "status": "Executive summary and customer-care continuity-readiness control alignment; not a certification opinion",
+          "framework": "SOC 2 (Availability criteria) | ISO 22301-aligned continuity practices | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
+          "reference": "AICPA 2017 Trust Services Criteria; ISO 22301 business continuity guidance; ISO/IEC 27001:2022 and ISO/IEC 27002:2022 continuity and operational controls (A.5.24, A.5.29, A.5.30, A.8.6)."
+        },
+        "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: customer communication, care-queue prioritisation and team coordination. Expected gaps to verify: minimum-viable-staffing decisions, unanswered-call and backlog recovery speed, alternate care arrangements, SLA/credit handling and audit-ready continuity documentation.",
+        "score": {
+          "score": "To be scored",
+          "rating": "To be rated",
+          "risk": "High until CAPA closure",
+          "priority": "To be confirmed after scoring"
+        },
+        "capability": [
+          {
+            "domain": "Care Continuity Activation & Triage",
+            "score": "To be scored",
+            "assessment": "Record who declared the continuity event, how priority care queues were chosen, and the decision log from the exercise transcript."
+          },
+          {
+            "domain": "Customer Communication & SLA Management",
+            "score": "To be scored",
+            "assessment": "Assess customer notification timing, ownership and SLA/credit handling from the exercise transcript."
+          },
+          {
+            "domain": "Care Workforce & Capacity Management",
+            "score": "To be scored",
+            "assessment": "Assess staffing decisions, redeployment, shift changes and care-queue prioritisation from the exercise transcript."
+          },
+          {
+            "domain": "Service Recovery & Resumption",
+            "score": "To be scored",
+            "assessment": "Assess queue resumption order, unanswered-call backlog clearance and verification before returning to normal service from the exercise transcript."
+          },
+          {
+            "domain": "Governance, Lessons Learned & CAPA",
+            "score": "To be scored",
+            "assessment": "Assess follow-up ownership, evidence capture and CAPA closure discipline from the exercise transcript."
+          }
+        ],
+        "framework_alignment": [
+          {
+            "theme": "Care continuity governance, roles, escalation, customer communication",
+            "soc2": "CC1, CC2, CC5, A1.1–A1.3",
+            "tisax": "Business continuity management, operational responsibility",
+            "iso": "Clauses 5, 6, 7; 5.24, 5.29, 5.30, 5.20"
+          },
+          {
+            "theme": "Care workforce availability, scheduling, attendance and wellbeing",
+            "soc2": "CC1, A1.2",
+            "tisax": "Personnel security and operational availability",
+            "iso": "6.1, 6.2, 6.3, 6.7"
+          },
+          {
+            "theme": "Care capacity: inbound answer times, queue prioritisation, unanswered-call backlog recovery",
+            "soc2": "A1.2, A1.3, CC7",
+            "tisax": "Operational capacity and service continuity",
+            "iso": "8.6, 8.14, 5.29"
+          },
+          {
+            "theme": "Customer SLAs, notifications, service credits and reporting",
+            "soc2": "CC9, CC2",
+            "tisax": "Customer requirements and communication",
+            "iso": "5.20, 5.21, 5.31"
+          },
+          {
+            "theme": "Alternate care arrangements, remote work and queue redistribution",
+            "soc2": "A1.1, A1.2",
+            "tisax": "Continuity arrangements for critical operations",
+            "iso": "5.29, 5.30, 6.7"
+          },
+          {
+            "theme": "Decision logging, customer-impact evidence, exercise records",
+            "soc2": "CC7, CC4",
+            "tisax": "Operational incident evidence and readiness",
+            "iso": "5.24, 5.26, 5.28"
+          },
+          {
+            "theme": "Lessons learned, CAPA closure, follow-up exercising",
+            "soc2": "CC4, A1.3",
+            "tisax": "Business continuity and continual improvement",
+            "iso": "5.27, 5.29, Clause 9, Clause 10"
+          }
+        ],
+        "kpis": [
+          {
+            "kpi": "Time to activate the continuity plan after a care-service disruption",
+            "target": "< 15 minutes"
+          },
+          {
+            "kpi": "Priority care queues kept live (emergency and complaint lines)",
+            "target": "≥ 90% of priority queues"
+          },
+          {
+            "kpi": "Calls answered within the agreed service level during the disruption",
+            "target": "≥ 90% of contracted target"
+          },
+          {
+            "kpi": "Unanswered inbound calls cleared from the disruption backlog",
+            "target": "within 48 hours of recovery"
+          },
+          {
+            "kpi": "Customer notifications issued within the agreed window",
+            "target": "100% of triggered cases"
+          },
+          {
+            "kpi": "Staffing coverage against minimum viable care staffing",
+            "target": "≥ 95% of plan"
+          },
+          {
+            "kpi": "Customer SLA adherence during and after the disruption",
+            "target": "≥ 95% of contracted targets"
+          },
+          {
+            "kpi": "Service credits paid vs SLA exposure",
+            "target": "≤ agreed tolerance"
+          },
+          {
+            "kpi": "CAPA closure by committed date",
+            "target": "≥ 90% on time"
+          },
+          {
+            "kpi": "Follow-up customer-care continuity exercise score",
+            "target": "≥ 22/25"
+          }
+        ],
+        "decisions": [
+          "Approve a funded continuity programme covering alternate care-delivery arrangements, staffing capacity and remote-work readiness for the customer care operation.",
+          "Designate a single executive owner for customer-care continuity CAPA governance and monthly reporting until all high-priority items are closed and validated.",
+          "Direct Care Operations, Workforce Management, HR and Client Delivery to finalise minimum-viable-staffing and customer-notification matrices within 30 days.",
+          "Require a follow-up customer-care continuity tabletop within 180 days using the same scoring model and evidence-pack requirements."
+        ],
+        "evidence": [
+          "Care continuity plan versions, trigger records and the time-stamped decision log.",
+          "Customer notification log: who was told, when, by whom and against which SLA clause.",
+          "Care workforce evidence: attendance records, rosters, redeployment decisions and shift changes.",
+          "Care capacity evidence: inbound call and chat volumes, answer times, abandonment and unanswered-call backlog tracking.",
+          "Continuity-drill records: alternate care arrangements, remote work, results and gaps.",
+          "Recovery and improvement evidence: SLA reconciliation, customer reporting, RCA, CAPA closure and management review."
+        ],
+        "roadmap": [
+          {
+            "period": "0–30 days",
+            "milestones": "Assign care continuity owners; publish the customer-notification matrix; define minimum viable staffing per care queue; confirm alternate care arrangements and remote capacity."
+          },
+          {
+            "period": "30–90 days",
+            "milestones": "Run care continuity and remote-work drills; test inbound backlog-recovery playbooks; cross-train teams on priority inbound queues; agree SLA relief protocols with key clients."
+          },
+          {
+            "period": "90–180 days",
+            "milestones": "Run the follow-up customer-care continuity tabletop; close CAPA evidence; embed continuity tests in the operating rhythm; update control narratives and evidence repository."
+          }
+        ]
+      }
+    },
+    {
+      "name": "After-action review",
+      "layout": "content",
+      "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+      "data": {
+        "actions": [
+          {
+            "item": "Document the care continuity contingency for HQ (A.5.29)",
+            "owner": "Customer Care Manager"
+          },
+          {
+            "item": "Test fallback care work at full program scale (A.6.7)",
+            "owner": "Operations"
+          },
+          {
+            "item": "Agree SLA relief terms with the client in advance (A.5.20)",
+            "owner": "Client Delivery"
+          },
+          {
+            "item": "Write the floor release-or-hold script into the BCP (A.5.24)",
+            "owner": "Team Leaders"
+          }
+        ],
+        "next_step": "Power-resilience review within 10 working days; fallback care drill scheduled."
+      }
+    }
+  ],
+  "category": "",
+  "completed_at": "2026-11-03T02:51:15",
+  "id": "2cc461bd2bf3"
+}

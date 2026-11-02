@@ -1,0 +1,522 @@
+{
+  "deck_id": "a940276b6450",
+  "name": "Table Top Exercise · Vishing Attack",
+  "deck_name": "Table Top Exercise · Vishing Attack",
+  "completed_date": "2026-08-27",
+  "live_responses": {
+    "roles": "",
+    "items": [
+      {
+        "title": "Inject #1 - Spoofed IT call for account access",
+        "body": "If the reps has identified that their accounts are compromised, once escalated to TL,\n- An IT ticket will be created for Corporate Security to Investigate\n- An incident ticket will be created on the client side, inform via Program’s internal Chat providing the INC ticket number\n- send an email to Client’s phishing reporting channel"
+      },
+      {
+        "title": "Inject #2 - Unauthorized access detected",
+        "body": "After containment, blocking of IP and Domain of the login attempts, Logs will be reviewed for any other attack vectors or ongoing attacks. Accounts are flagged and block with in-placed security controls. Further investigation will be conducted, review logs and interview the affected account user."
+      },
+      {
+        "title": "Decision A - Contain the breach",
+        "body": "Q1: Once ticket has been created and account/s has been identified, it will be isolated, pw reset and trace/check logs for any compromise/attacks\n\nQ2: L1 - initial assessment of BI, Ops team has cross/up skilled reps to distribute workload\nSales - will be distributing workloads to active reps and solicit OT\nL2 - taps specialized/skilled trained rep to increase volume and workload distribution\n\nQ3: Logs will be reviewed. IP and domains will be blocked and check logs from IP and Domain for any attack vectors or ongoing attacks\n\nQ4: Ops Leader will create the Ticket notifying both Internal IT and Client IT, with communication to the Client about the incident"
+      },
+      {
+        "title": "Decision B - Operations recovery",
+        "body": "Q1: Ops and Security Team are coordinating in restoring operation without high potential business impact. Operations has BC plan and operational protocols to eliminate any impact.\n\nQ2: The Ops team has verification protocols in place following non-customer related calls coming through the customer hotline\n\nQ3: Cybersecurity Awareness training, Courses in KB and reinforcement through posting in Sharepoint\n\nQ4: Reinforcement of awareness and constant reminders with reps. Continuing education and awareness training is being conducted. Security team conducts Phishing tests to test employee awareness."
+      }
+    ]
+  },
+  "injects": [],
+  "slides": [
+    {
+      "name": "Title",
+      "layout": "title",
+      "body": "# Table Top Exercise\n\n## {{scenario.title}}\n\n{{scenario.kicker}}",
+      "data": {
+        "scenario": {
+          "title": "Vishing Attack",
+          "kicker": "Social engineering attack targeting customer care staff to obtain account access"
+        }
+      }
+    },
+    {
+      "name": "Objectives & ground rules",
+      "layout": "content",
+      "body": "## {{objectives.title}}\n\n{{#each objectives.items}}\n- {{this}}\n{{/each}}\n\n**Ground rules:** {{ground_rules}}",
+      "data": {
+        "objectives": {
+          "title": "Objectives & ground rules",
+          "items": [
+            "Test the customer care team's ability to identify and report spoofed IT calls",
+            "Evaluate account security procedures and escalation protocols",
+            "Assess operational impact on service delivery during a security incident",
+            "Review incident communication and client notification processes"
+          ]
+        },
+        "ground_rules": "Stay in role. No wrong answers — this is a discussion, not a test. Call out what you don't know. Every decision gets an Annex A control."
+      }
+    },
+    {
+      "name": "Scenario background",
+      "layout": "content",
+      "body": "## Scenario background\n\n**Organisation:** {{company.profile}}\n\n**ISO/IEC 27001 scope:** {{iso_scope}}\n\n**Key systems:**\n{{#each systems}}\n- {{this}}\n{{/each}}\n\n**Setting:** {{setting}}",
+      "data": {
+        "company": {
+          "profile": "BPO organization with customer care teams handling client inquiries"
+        },
+        "iso_scope": "Customer care operations with account access controls, caller verification protocols, and incident escalation procedures",
+        "systems": [
+          "Customer relationship management (CRM) platform",
+          "Account management system",
+          "Telephony and call logging system",
+          "Identity and access management (IAM)",
+          "Security incident reporting"
+        ],
+        "setting": "Monday 14:10 — a customer care agent receives a call from someone claiming to be from internal IT support, requesting account verification for a \"system migration.\""
+      }
+    },
+    {
+      "name": "Roles",
+      "layout": "content",
+      "body": "## Roles & responsibilities\n\n| Role | Owner | Key concerns |\n|------|-------|--------------|\n{{#each roles}}\n| {{role}} | {{owner}} | {{concern}} |\n{{/each}}",
+      "data": {
+        "roles": [
+          {
+            "role": "Corporate Security",
+            "owner": "Security",
+            "concern": "Information & privacy security (A.5.x, A.8.2)"
+          },
+          {
+            "role": "IT Server & System Team",
+            "owner": "Infrastructure",
+            "concern": "Servers, systems, recovery (A.8.13)"
+          },
+          {
+            "role": "IT Desktop Team",
+            "owner": "End-user computing",
+            "concern": "Endpoints, patching, user access (A.8.7, A.8.8)"
+          },
+          {
+            "role": "IT Network Team",
+            "owner": "Networking",
+            "concern": "Connectivity, segmentation, VPN (A.8.20, A.8.31)"
+          },
+          {
+            "role": "Compliance",
+            "owner": "Legal & Compliance",
+            "concern": "Legal & compliance concerns (A.5.20, A.5.34)"
+          },
+          {
+            "role": "Human Resources",
+            "owner": "HR",
+            "concern": "Employee policies & violations (A.6.1, A.6.3)"
+          },
+          {
+            "role": "Marketing",
+            "owner": "Corporate communications",
+            "concern": "Official corporate press statements (A.5.20)"
+          },
+          {
+            "role": "Executive Leadership",
+            "owner": "C-suite",
+            "concern": "Executive decision-making (A.5.24)"
+          },
+          {
+            "role": "Team Leaders",
+            "owner": "Operations",
+            "concern": "Floor teams, escalation, agent status (A.5.29)"
+          },
+          {
+            "role": "Operations Manager & Director",
+            "owner": "Operations",
+            "concern": "Service continuity, capacity, staffing (A.5.29)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Inject #1 - Spoofed IT call for account access",
+      "layout": "section",
+      "body": "# Inject #{{number}} — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n---\n\n### Initial Observations\n{{observation}}",
+      "data": {
+        "number": 1,
+        "time": "14:10",
+        "title": "Spoofed IT call for account access",
+        "detail": "A spoofed call from \"IT support\" requests account verification. The agent provides login credentials and answers security questions.",
+        "prompt": "Team Response — Critical decision point",
+        "observation": ""
+      }
+    },
+    {
+      "name": "Decision A - Contain the breach",
+      "layout": "content",
+      "body": "## Decision A — Contain the breach\n\n**Context:** {{inject_context}}\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+      "data": {
+        "questions": [
+          "How do you immediately secure the compromised account - reset password, revoke sessions, disable access? (A.8.5, A.8.3)",
+          "What is the operational impact - is the agent's queue affected and how do you redistribute workload? (A.5.24)",
+          "How do you verify if unauthorized access occurred and what customer data may be exposed? (A.8.15, A.8.16)",
+          "What is the escalation process to notify operations management and affected clients? (A.5.20, A.5.25)"
+        ],
+        "timebox": "15 minutes",
+        "pairs": [
+          {
+            "question": "How do you immediately secure the compromised account - reset password, revoke sessions, disable access? (A.8.5, A.8.3)",
+            "response": ""
+          },
+          {
+            "question": "What is the operational impact - is the agent's queue affected and how do you redistribute workload? (A.5.24)",
+            "response": ""
+          },
+          {
+            "question": "How do you verify if unauthorized access occurred and what customer data may be exposed? (A.8.15, A.8.16)",
+            "response": ""
+          },
+          {
+            "question": "What is the escalation process to notify operations management and affected clients? (A.5.20, A.5.25)",
+            "response": ""
+          }
+        ],
+        "inject_context": "Inject #1: Spoofed IT call for account access (14:10) — Agent provided credentials and security answers"
+      }
+    },
+    {
+      "name": "Inject #2 - Unauthorized access detected",
+      "layout": "section",
+      "body": "# Inject #{{number}} — {{title}}\n\n**{{time}}** — {{detail}}\n\n> {{prompt}}\n\n---\n\n### Initial Observations\n{{observation}}",
+      "data": {
+        "number": 2,
+        "time": "14:35",
+        "title": "Unauthorized access detected",
+        "detail": "Security alerts flag login attempts from an unknown location. The attacker has accessed customer records and is attempting to export data.",
+        "prompt": "Team Response — Critical decision point",
+        "observation": ""
+      }
+    },
+    {
+      "name": "Key Findings",
+      "layout": "content",
+      "body": "## Key Findings\n\n### Attack Timeline\n- **14:10** — Spoofed IT call received, MFA codes obtained from 2 staff\n- **14:35** — Unauthorized access attempt detected and blocked\n\n### Findings\n{{#each findings}}\n- {{this}}\n{{/each}}\n\n### Impact Assessment\n{{impact}}",
+      "data": {
+        "findings": [
+          "Agent fell victim to social engineering and provided account credentials",
+          "Attacker accessed customer records from unauthorized location",
+          "Data export attempt was blocked by DLP controls",
+          "Verification protocol was not followed per policy"
+        ],
+        "impact": "Customer data exposure risk, potential regulatory reporting required"
+      }
+    },
+    {
+      "name": "Decision B - Operations recovery",
+      "layout": "content",
+      "body": "## Decision B — Prevent recurrence\n\n**Context:** {{inject_context}}\n\n{{#each pairs}}\n### Q{{@number}}. {{question | raw}}\n\n> **Team Response:** {{response}}\n\n{{/each}}\n\n**Timebox:** {{timebox}}",
+      "data": {
+        "questions": [
+          "How do you restore normal operations while maintaining security controls? (A.8.5, A.8.2)",
+          "What additional verification steps should be implemented for IT support calls? (A.6.3, A.5.24)",
+          "How do you train the customer care team to recognize social engineering attempts? (A.6.3, A.7.2)",
+          "What operational adjustments are needed to prevent similar incidents? (A.5.20, A.5.25)"
+        ],
+        "timebox": "20 minutes",
+        "pairs": [
+          {
+            "question": "How do you restore normal operations while maintaining security controls? (A.8.5, A.8.2)",
+            "response": ""
+          },
+          {
+            "question": "What additional verification steps should be implemented for IT support calls? (A.6.3, A.5.24)",
+            "response": ""
+          },
+          {
+            "question": "How do you train the customer care team to recognize social engineering attempts? (A.6.3, A.7.2)",
+            "response": ""
+          },
+          {
+            "question": "What operational adjustments are needed to prevent similar incidents? (A.5.20, A.5.25)",
+            "response": ""
+          }
+        ],
+        "inject_context": "Inject #2: Unauthorized access detected (14:35) — Attacker accessed customer records from unknown location"
+      }
+    },
+    {
+      "name": "ISO/IEC 27001 clause map",
+      "layout": "content",
+      "body": "## Aligning decisions to ISO/IEC 27001\n\n| Decision | ISO/IEC 27001:2022 control | ISO/IEC 27002:2022 guidance |\n|----------|----------------------------|-----------------------------|\n{{#each clause_map}}\n| {{decision}} | {{control}} | {{guidance}} |\n{{/each}}\n\n*ISO/IEC 27002:2022 is the code of practice that guides implementation of the Annex A controls referenced above.*",
+      "data": {
+        "clause_map": [
+          {
+            "decision": "Verify the caller",
+            "control": "A.5.24 - Incident management planning",
+            "guidance": "Predefined checks and authority (27002 Section 5.24)"
+          },
+          {
+            "decision": "Reset credentials",
+            "control": "A.8.5 - Secure authentication",
+            "guidance": "Reissue MFA and tokens (27002 Section 8.5)"
+          },
+          {
+            "decision": "Preserve evidence",
+            "control": "A.8.15 - Logging",
+            "guidance": "Call and system records (27002 Section 8.15)"
+          },
+          {
+            "decision": "Awareness & training",
+            "control": "A.6.3 - Awareness",
+            "guidance": "Social-engineering training (27002 Section 6.3)"
+          },
+          {
+            "decision": "Client & regulator reporting",
+            "control": "A.5.20 - Supplier agreements",
+            "guidance": "Notification duties (27002 Section 5.20)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Hotwash",
+      "layout": "section",
+      "body": "# Hotwash\n\n{{text}}",
+      "data": {
+        "text": "Would our customer care team challenge a spoofed IT call? What is our verification ritual?"
+      }
+    },
+    {
+      "name": "After Action Executive Summary",
+      "layout": "content",
+      "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
+      "data": {
+        "exercise": {
+          "name": "Vishing Attack",
+          "date": ""
+        },
+        "participants": "Operations Manager, Team Leaders, Customer Care Agents, IT Security, Compliance, HR",
+        "highlights": [
+          "Customer care agent fell victim to social engineering and provided account credentials",
+          "Security detected unauthorized access from unknown location within 25 minutes",
+          "Data export attempt was blocked by DLP controls before customer data was exfiltrated",
+          "Verification protocol was not followed — no challenge to caller identity"
+        ],
+        "lessons": [
+          "Caller verification needs a formal ritual — not just good intentions",
+          "Customer care teams need regular social engineering awareness training",
+          "Operational impact assessment must be immediate — agent queue redistribution",
+          "Client notification criteria need to be clear and contractual"
+        ],
+        "story": "The exercise unfolded through the following injects: At 14:10, Spoofed IT call for account access — A customer care agent received a call from someone claiming to be from internal IT support, requesting account verification for a 'system migration.' The agent provided login credentials and answered security questions. At 14:35, Unauthorized access detected — Security alerts flagged login attempts from an unknown location. The attacker had accessed customer records and was attempting to export data. The hotwash closed on a single question: Would our customer care team challenge a spoofed IT call? What is our verification ritual? Every decision was mapped to an ISO/IEC 27001:2022 Annex A control, and the exercise ended with a set of owned follow-up actions.",
+        "recommendations": [
+          "Prioritise: Implement IT support call verification protocol (A.6.3) — owner: IT Security",
+          "Prioritise: Add social engineering training for customer care teams (A.7.2) — owner: HR",
+          "Prioritise: Deploy account monitoring for unauthorized location access (A.8.15) — owner: IT Security",
+          "Prioritise: Establish client notification criteria and escalation matrix (A.5.20) — owner: Compliance"
+        ],
+        "capa": [
+          {
+            "item": "Implement IT support call verification protocol (A.6.3)",
+            "type": "Corrective",
+            "owner": "IT Security",
+            "due": "30 days",
+            "target": "0-30 days",
+            "framework_focus": "ISO/IEC 27001:2022 A.6.3",
+            "evidence": "Verification procedure document, training completion records, and test results"
+          },
+          {
+            "item": "Deploy social engineering awareness training for customer care (A.7.2)",
+            "type": "Preventive",
+            "owner": "HR",
+            "due": "30 days",
+            "target": "0-30 days",
+            "framework_focus": "ISO/IEC 27001:2022 A.7.2",
+            "evidence": "Training materials, attendance records, and phishing simulation results"
+          },
+          {
+            "item": "Enhance account monitoring for unauthorized location access (A.8.15)",
+            "type": "Corrective",
+            "owner": "IT Security",
+            "due": "30 days",
+            "target": "0-30 days",
+            "framework_focus": "ISO/IEC 27001:2022 A.8.15",
+            "evidence": "SIEM alert configuration, test alerts, and response playbook"
+          },
+          {
+            "item": "Establish client notification criteria and escalation matrix (A.5.20)",
+            "type": "Preventive",
+            "owner": "Compliance",
+            "due": "30 days",
+            "target": "0-30 days",
+            "framework_focus": "ISO/IEC 27001:2022 A.5.20",
+            "evidence": "Notification matrix document, escalation contacts, and test notification"
+          }
+        ],
+        "meta": {
+          "prepared_for": "Executive Leadership, Corporate Security, IT Operations, Compliance",
+          "prepared_date": "",
+          "source_document": "",
+          "status": "Executive summary and audit-readiness control alignment; not a certification opinion",
+          "framework": "SOC 2 Trust Services Criteria | TISAX AL3 / VDA ISA | ISO/IEC 27001:2022 and ISO/IEC 27002:2022",
+          "reference": "AICPA 2017 Trust Services Criteria with revised points of focus (2022); ENX/VDA TISAX Participant Handbook v2.8 and ISA 6.0.3; ISO/IEC 27001:2022; ISO/IEC 27002:2022."
+        },
+        "executive_assessment": "The team should complete scoring from the exercise transcript. Expected strengths to verify: containment, escalation, evidence preservation and coordination. Expected gaps to verify: credential-rotation decisiveness, formal evidence handling, notification criteria, recovery validation and audit-ready documentation.",
+        "score": {
+          "score": "To be scored",
+          "rating": "To be rated",
+          "risk": "High until CAPA closure",
+          "priority": "To be confirmed after scoring"
+        },
+        "capability": [
+          {
+            "domain": "Detection and Triage",
+            "score": "To be scored",
+            "assessment": "Record initial recognition, severity classification, incident commander, scribe and time-stamped decision log from the exercise transcript."
+          },
+          {
+            "domain": "Containment and Eradication",
+            "score": "To be scored",
+            "assessment": "Assess isolation, session revocation, account disablement, blocking and persistence removal from the exercise transcript."
+          },
+          {
+            "domain": "Investigation and Forensics",
+            "score": "To be scored",
+            "assessment": "Assess threat hunting, evidence preservation and chain of custody from the exercise transcript."
+          },
+          {
+            "domain": "Communication and Coordination",
+            "score": "To be scored",
+            "assessment": "Assess stakeholder cadence, legal notification thresholds and service-desk scripts from the exercise transcript."
+          },
+          {
+            "domain": "Recovery and Lessons Learned",
+            "score": "To be scored",
+            "assessment": "Assess recovery validation, credential rotation completion and lessons-learned closure from the exercise transcript."
+          }
+        ],
+        "framework_alignment": [
+          {
+            "theme": "Governance, roles, escalation, secure communications",
+            "soc2": "CC1, CC2, CC5, CC7",
+            "tisax": "ISMS governance, incident management, AL3 interview/evidence readiness",
+            "iso": "Clauses 5, 6, 7, 8; 5.2, 5.24, 5.25, 5.26, 5.27, 5.37"
+          },
+          {
+            "theme": "Identity, privileged access, rogue account disablement, remote access",
+            "soc2": "CC6.1–CC6.8, CC7.2–CC7.4",
+            "tisax": "Identity and access management, privileged access, remote access control",
+            "iso": "5.15, 5.16, 5.17, 5.18, 8.2, 8.3, 8.5"
+          },
+          {
+            "theme": "Monitoring, logging, detection, threat hunting, C2 blocking",
+            "soc2": "CC3, CC4, CC6, CC7",
+            "tisax": "IT operations and network security; monitoring and event handling",
+            "iso": "5.7, 8.15, 8.16, 8.20, 8.21, 8.22"
+          },
+          {
+            "theme": "Malware, persistence, unusual services, vulnerability analysis",
+            "soc2": "CC7.2, CC7.3, CC7.4, CC8",
+            "tisax": "Secure operations, endpoint protection, vulnerability management",
+            "iso": "8.7, 8.8, 8.9, 8.19, 8.32"
+          },
+          {
+            "theme": "Data exfiltration, staging files, provider engagement, legal review",
+            "soc2": "C1, P criteria if personal data in scope; CC7",
+            "tisax": "Information classification, protection of confidential information, incident handling",
+            "iso": "5.12, 5.13, 5.14, 5.31, 5.33, 5.34"
+          },
+          {
+            "theme": "Forensic snapshots, evidence preservation, insider investigation",
+            "soc2": "CC7.4, CC7.5, CC9",
+            "tisax": "Incident evidence and AL3 verification artifacts",
+            "iso": "5.24, 5.26, 5.28, 5.30"
+          },
+          {
+            "theme": "Recovery validation, lessons learned, CAPA tracking, future tabletop testing",
+            "soc2": "CC4, CC7.5, A1.2/A1.3",
+            "tisax": "Business continuity and continual improvement",
+            "iso": "5.27, 5.29, 5.30, 8.13, Clause 9, Clause 10"
+          }
+        ],
+        "kpis": [
+          {
+            "kpi": "Mean time to detect unauthorized account access",
+            "target": "< 15 minutes"
+          },
+          {
+            "kpi": "Time to secure compromised account",
+            "target": "< 30 minutes after detection"
+          },
+          {
+            "kpi": "Time to complete customer care team training",
+            "target": "< 30 days"
+          },
+          {
+            "kpi": "Time to notify affected clients",
+            "target": "Within contractual window"
+          },
+          {
+            "kpi": "Customer care social engineering awareness score",
+            "target": ">= 90%"
+          },
+          {
+            "kpi": "Caller verification protocol compliance",
+            "target": ">= 95%"
+          },
+          {
+            "kpi": "CAPA closure by committed date",
+            "target": ">= 90% on time"
+          },
+          {
+            "kpi": "Follow-up tabletop exercise score",
+            "target": ">= 22/25"
+          }
+        ],
+        "decisions": [
+          "Approve a funded remediation program for caller verification, social engineering training, account monitoring, and client notification.",
+          "Designate a single operations owner for CAPA governance and monthly reporting until all high-priority items are closed.",
+          "Require customer care teams to complete social engineering awareness training within 30 days.",
+          "Require a follow-up tabletop exercise within 180 days to verify improvement."
+        ],
+        "evidence": [
+          "Incident declaration, severity classification, and time-stamped decision log.",
+          "Account access logs, login attempt records, and unauthorized location evidence.",
+          "DLP alerts, data export attempts, and blocked transfer evidence.",
+          "Caller verification protocol test results and training completion records.",
+          "Client notification records and escalation matrix documentation.",
+          "Recovery and improvement evidence: account reset, session revocation, and CAPA closure."
+        ],
+        "roadmap": [
+          {
+            "period": "0–30 days",
+            "milestones": "Assign owners; publish war-room RACI; approve containment thresholds; update legal/privacy notification matrix; complete privileged-account inventory; implement priority SIEM alerts."
+          },
+          {
+            "period": "30–90 days",
+            "milestones": "Deploy or tune PAM/JIT controls; complete detection engineering; exercise exfiltration response; execute forensic evidence tabletop."
+          },
+          {
+            "period": "90–180 days",
+            "milestones": "Validate recovery gates and restore drills; run follow-up tabletop; close CAPA evidence; update control narratives and evidence repository."
+          }
+        ]
+      }
+    },
+    {
+      "name": "After-action review",
+      "layout": "content",
+      "body": "## After-action review\n\n{{#each actions}}\n- **{{item}}** — owner: {{owner}}\n{{/each}}\n\n**Next step:** {{next_step}}",
+      "data": {
+        "actions": [
+          {
+            "item": "Reissue MFA tokens and audit sessions (A.8.5)",
+            "owner": "IT"
+          },
+          {
+            "item": "Add vishing to awareness training (A.6.3)",
+            "owner": "Corporate Security"
+          }
+        ],
+        "next_step": "controls review within 5 working days; awareness training refreshed this month."
+      }
+    }
+  ],
+  "category": "",
+  "completed_at": "2026-11-03T02:51:15",
+  "id": "46816c08a43d"
+}

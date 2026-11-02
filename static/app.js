@@ -1902,7 +1902,13 @@ function renderDashboard() {
   }
 
   historyEl.innerHTML = `
-    <h3>${filterLabel ? filterLabel + ' — ' : ''}Exercise History (${filtered.length})</h3>
+    <div class="dash-history-head">
+      <h3>${filterLabel ? filterLabel + ' — ' : ''}Exercise History (${filtered.length})</h3>
+      <button class="dash-download" onclick="downloadHistoryBundle()" title="Save every completed run as one JSON file from the local server">
+        <svg viewBox="0 0 16 16" width="12" height="12"><path d="M8 2v8M4.5 7L8 10.5 11.5 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.5 12.5h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Download all
+      </button>
+    </div>
     <table class="dash-table">
       <thead>
         <tr>
@@ -1933,6 +1939,15 @@ function renderDashboard() {
       </tbody>
     </table>
   `;
+}
+
+function downloadHistoryBundle() {
+  /* Pull every completed run as one JSON file from the local server. */
+  const a = document.createElement('a');
+  a.href = '/api/history/export';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 }
 
 async function downloadAARForExercise(exerciseId) {

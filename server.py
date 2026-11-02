@@ -1624,6 +1624,17 @@ class Handler(BaseHTTPRequestHandler):
                     self._json(404, {"error": "deck not found"})
             elif path == "/api/completed-exercises":
                 self._json(200, store.list_completed_exercises())
+            elif path == "/api/history/export":
+                # Pull every completed run as one downloadable JSON file.
+                items = store.list_completed_exercises()
+                payload = json.dumps({
+                    "exported_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
+                    "count": len(items),
+                    "completed_exercises": items,
+                }, ensure_ascii=False, indent=2)
+                self._send(200, payload, headers={
+                    "Content-Disposition": "attachment; filename=deckforge-history-%s.json" % time.strftime("%Y-%m-%d"),
+                })
             elif path.startswith("/api/completed-exercises/"):
                 eid = path.rsplit("/", 1)[-1]
                 ex = store.get_completed_exercise(eid)
