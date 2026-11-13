@@ -188,6 +188,10 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #0b0e15; }
 .slide.title p { font-size: 28px; color: #8b93b8; margin: 0; }
 .slide.section h1 { color: #ffffff; font-size: 62px; letter-spacing: .5px; margin: 0 0 18px; }
 .slide.section p { color: #aeb6cc; font-size: 26px; margin: 0; }
+/* Closing slide: the wrap-up block is sparse, so centre it in the canvas */
+.slide.closing-thanks .inner {
+  display: flex; flex-direction: column; justify-content: center;
+}
 .slide.blank .inner { padding: 0; }
 .empty-deck {
   position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);
@@ -917,6 +921,8 @@ def build_presentation(name, slides, injects=None, meta=None):
         extra = ' roles' if sname_raw == 'Roles' else ''
         if sname_raw == "Post-Exercise Discussion & Next Steps":
             extra += ' closing-slide'
+        if sname_raw == "Thank You":
+            extra += ' closing-thanks'
         if sname_raw.startswith('Decision'):
             extra += ' dec-slide'
         data_h = ''
