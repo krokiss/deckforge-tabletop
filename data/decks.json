@@ -390,6 +390,18 @@
           }
         },
         {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
           "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
@@ -1086,6 +1098,18 @@
               "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
               "Generate a TTX Exercise Assessment Report.",
               "The final report will be provided for review."
+            ]
+          }
+        },
+        {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
             ]
           }
         },
@@ -1790,6 +1814,18 @@
           }
         },
         {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
           "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
@@ -2486,6 +2522,18 @@
               "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
               "Generate a TTX Exercise Assessment Report.",
               "The final report will be provided for review."
+            ]
+          }
+        },
+        {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
             ]
           }
         },
@@ -3191,6 +3239,18 @@
           }
         },
         {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
           "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
@@ -3887,6 +3947,18 @@
               "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
               "Generate a TTX Exercise Assessment Report.",
               "The final report will be provided for review."
+            ]
+          }
+        },
+        {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
             ]
           }
         },
@@ -4591,6 +4663,18 @@
           }
         },
         {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
           "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
@@ -5272,6 +5356,18 @@
               "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
               "Generate a TTX Exercise Assessment Report.",
               "The final report will be provided for review."
+            ]
+          }
+        },
+        {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
             ]
           }
         },
@@ -5965,6 +6061,18 @@
           }
         },
         {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
           "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
@@ -6650,6 +6758,18 @@
               "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
               "Generate a TTX Exercise Assessment Report.",
               "The final report will be provided for review."
+            ]
+          }
+        },
+        {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
             ]
           }
         },
@@ -7343,6 +7463,18 @@
           }
         },
         {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
+            ]
+          }
+        },
+        {
           "name": "After Action Executive Summary",
           "layout": "content",
           "body": "## After Action Executive Summary\n\n**Exercise:** {{exercise.name}}\n**Date:** {{exercise.date | default:\"—\"}}\n**Participants:** {{participants | default:\"—\"}}\n\n### Summary\n{{story}}\n\n### Exercise highlights\n{{#each highlights}}\n- {{this}}\n{{/each}}\n\n### Discussion Summary\n{{#each discussion.injects}}\n**{{inject}}** ({{time}})\n> {{detail}}\n\n{{/each}}\n{{#each discussion.decisions}}\n**{{decision}}**\n{{#each responses}}\n- {{this}}\n{{/each}}\n\n{{/each}}\n\n### Lessons learned\n{{#each lessons}}\n- {{this}}\n{{/each}}\n\n### Recommendations\n{{#each recommendations}}\n- {{this}}\n{{/each}}\n\n### Corrective & Preventive Actions (CAPA)\n| Action | Type | Owner | Due |\n|---|---|---|---|\n{{#each capa}}\n| {{item}} | {{type}} | {{owner}} | {{due}} |\n{{/each}}",
@@ -8028,6 +8160,18 @@
               "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
               "Generate a TTX Exercise Assessment Report.",
               "The final report will be provided for review."
+            ]
+          }
+        },
+        {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
             ]
           }
         },
@@ -8742,6 +8886,18 @@
               "Identify key strengths and opportunities for improvement of the Incident Response Plan and processes.",
               "Generate a TTX Exercise Assessment Report.",
               "The final report will be provided for review."
+            ]
+          }
+        },
+        {
+          "name": "Thank You",
+          "layout": "content",
+          "body": "## Thank you for participating\n\nThis was a facilitated discussion, not a test — the value is in the decisions taken under time pressure and the gaps they exposed.\n\n{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n**Exercise closed.** Please raise anything you want captured with the facilitator before you leave.",
+          "data": {
+            "wrap_up": [
+              "Every response and decision recorded today is carried into the After-Action Report and Executive Summary.",
+              "Corrective actions are tracked with an owner and a target date until they are closed.",
+              "The final report is distributed to participants for review and kept for the audit trail."
             ]
           }
         },

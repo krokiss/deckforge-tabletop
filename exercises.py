@@ -741,7 +741,8 @@ def _normalize(deck):
 #     the exercise is executed under the policy.                             #
 #   • Post-Exercise Discussion & Next Steps — closing slide; its button       #
 #     triggers generation of the After-Action Report + Executive Summary.     #
-# _add_standard_slides() adds all three to every exercise deck (idempotent).  #
+#   • Thank You — final slide, shown right after the discussion slide.        #
+# _add_standard_slides() adds all four  to every exercise deck (idempotent).  #
 # --------------------------------------------------------------------------- #
 _RULES_OF_ENGAGEMENT = [
     "Tabletop Exercises are NOT \u201cPass\u201d or \u201cFail\u201d activities.",
@@ -864,12 +865,35 @@ def _closing_slide():
                  "next_steps": list(_NEXT_STEPS)},
     }
 
+_WRAP_UP = [
+    "Every response and decision recorded today is carried into the After-Action "
+    "Report and Executive Summary.",
+    "Corrective actions are tracked with an owner and a target date until they are closed.",
+    "The final report is distributed to participants for review and kept for the audit trail.",
+]
+
+
+def _thank_you_slide():
+    """Final slide: thanks the team and closes the exercise."""
+    return {
+        "name": "Thank You",
+        "layout": "content",
+        "body": ("## Thank you for participating\n\n"
+                 "This was a facilitated discussion, not a test \u2014 the value is in the "
+                 "decisions taken under time pressure and the gaps they exposed.\n\n"
+                 "{{#each wrap_up}}\n- {{this}}\n{{/each}}\n\n"
+                 "**Exercise closed.** Please raise anything you want captured with the "
+                 "facilitator before you leave."),
+        "data": {"wrap_up": list(_WRAP_UP)},
+    }
+
 
 def _add_standard_slides(deck):
     """Insert the Rules of Engagement slide after the title, the SEC-POL-033
-    policy guidance slide right after it, and the Post-Exercise Discussion &
-    Next Steps closing slide just before the After Action Executive Summary
-    slide. Idempotent; leaves other slides, injects and meta untouched."""
+    policy guidance slide right after it, the Post-Exercise Discussion &
+    Next Steps slide just before the After Action Executive Summary slide,
+    and the Thank You closing slide right after it. Idempotent; leaves
+    other slides, injects and meta untouched."""
     slides = list(deck.get("slides") or [])
     names = [s.get("name", "") for s in slides]
 
@@ -887,6 +911,13 @@ def _add_standard_slides(deck):
                     if (s.get("name") or "").startswith("After Action Executive")),
                    len(slides))
         slides.insert(pos, _closing_slide())
+
+    names = [s.get("name", "") for s in slides]
+    if "Thank You" not in names:
+        pos = next((i for i, s in enumerate(slides)
+                    if s.get("name") == "Post-Exercise Discussion & Next Steps"), None)
+        if pos is not None:
+            slides.insert(pos + 1, _thank_you_slide())
 
     out = dict(deck)
     out["slides"] = slides
