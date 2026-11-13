@@ -742,7 +742,7 @@ def _normalize(deck):
 #   • Post-Exercise Discussion & Next Steps — closing slide; its button       #
 #     triggers generation of the After-Action Report + Executive Summary.     #
 #   • Thank You — final slide, shown right after the discussion slide.        #
-# _add_standard_slides() adds all four  to every exercise deck (idempotent).  #
+# _add_standard_slides() adds all four to every exercise deck (idempotent).   #
 # --------------------------------------------------------------------------- #
 _RULES_OF_ENGAGEMENT = [
     "Tabletop Exercises are NOT \u201cPass\u201d or \u201cFail\u201d activities.",
